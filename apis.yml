@@ -1,0 +1,138 @@
+name: Salesforce Sales Cloud
+description: Enterprise CRM platform providing sales automation, customer relationship management, and business intelligence capabilities through REST and SOAP APIs
+image: https://www.salesforce.com/content/dam/web/en_us/www/images/salesforce-logo.svg
+url: https://www.salesforce.com/products/sales-cloud/overview/
+created: '2024-01-15'
+modified: '2024-01-15'
+specificationVersion: '0.18'
+tags:
+- CRM
+- Sales
+- Customer Management
+- Enterprise
+- Cloud
+apis:
+- name: Salesforce REST API
+  description: Primary REST API for accessing Salesforce data including accounts, contacts, leads, opportunities, and custom objects
+  image: https://www.salesforce.com/content/dam/web/en_us/www/images/salesforce-logo.svg
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - REST
+  - Data
+  - CRUD
+  properties:
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: OpenAPI
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_list.htm
+  - type: Authentication
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: Postman Collection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+- name: Salesforce SOAP API
+  description: Comprehensive SOAP-based API for enterprise integrations with full CRUD operations on Salesforce objects
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/
+  baseURL: https://yourInstance.salesforce.com/services/Soap/u/59.0
+  tags:
+  - SOAP
+  - Enterprise
+  - Integration
+  properties:
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_intro.htm
+  - type: WSDL
+    url: https://yourInstance.salesforce.com/services/wsdl/enterprise
+  - type: Authentication
+    url: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_login.htm
+- name: Bulk API 2.0
+  description: Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST API
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0/jobs/ingest
+  tags:
+  - Bulk
+  - Data Loading
+  - Async
+  properties:
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+- name: Metadata API
+  description: API for retrieving, deploying, creating, updating, or deleting customization information such as custom object definitions and page layouts
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/
+  baseURL: https://yourInstance.salesforce.com/services/Soap/m/59.0
+  tags:
+  - Metadata
+  - Deployment
+  - Configuration
+  properties:
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm
+  - type: WSDL
+    url: https://yourInstance.salesforce.com/services/wsdl/metadata
+- name: Streaming API
+  description: Push notification API using Bayeux protocol to receive near real-time updates when data changes in Salesforce
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/
+  baseURL: https://yourInstance.salesforce.com/cometd/59.0
+  tags:
+  - Streaming
+  - Push Notifications
+  - Real-time
+  - Events
+  properties:
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/intro_stream.htm
+  - type: Examples
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/code_sample_java_client_intro.htm
+- name: Platform Events API
+  description: Event-driven architecture API for publishing and subscribing to custom events for app integration
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0/sobjects
+  tags:
+  - Events
+  - Pub/Sub
+  - Integration
+  properties:
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_intro.htm
+  - type: Guide
+    url: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_publish_api.htm
+- name: Analytics REST API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0/analytics
+  tags:
+  - Analytics
+  - Reports
+  - Dashboards
+  properties:
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+common:
+- type: Developer Portal
+  url: https://developer.salesforce.com/
+- type: Authentication
+  url: https://help.salesforce.com/s/articleView?id=sf.remoteaccess_authenticate.htm
+- type: API Console
+  url: https://workbench.developerforce.com/
+- type: Status Page
+  url: https://status.salesforce.com/
+- type: SDKs
+  url: https://developer.salesforce.com/tools/sdk
+- type: Trailhead Learning
+  url: https://trailhead.salesforce.com/en/content/learn/modules/api_basics
+- type: Community
+  url: https://developer.salesforce.com/forums
+- type: API Limits
+  url: https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_api.htm
+- type: Terms of Service
+  url: https://www.salesforce.com/company/legal/agreements/
+- type: Privacy Policy
+  url: https://www.salesforce.com/company/privacy/
+- type: Support
+  url: https://help.salesforce.com/
+maintainers:
+- name: Salesforce
+  email: developer@salesforce.com
+  url: https://developer.salesforce.com/support
