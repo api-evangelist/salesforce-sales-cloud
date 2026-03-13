@@ -1,0 +1,820 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Connect REST API
+  description: >-
+    Integrate mobile apps, intranet sites, and third-party web applications
+    with Salesforce. Provides access to Chatter feeds, groups, users, files,
+    and collaboration features. Responses are localized, structured for
+    presentation, and can be filtered to contain only what the app needs.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Connect REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0/connect
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Feeds
+    description: Chatter feed operations
+  - name: Feed Items
+    description: Individual feed item operations
+  - name: Groups
+    description: Chatter group operations
+  - name: Users
+    description: User profile and photo operations
+  - name: Files
+    description: File sharing and management
+  - name: Communities
+    description: Community (Experience Cloud) operations
+paths:
+  /communities:
+    get:
+      operationId: listCommunities
+      summary: List communities
+      description: >-
+        Returns a list of communities (Experience Cloud sites) available
+        to the current user. Includes community name, URL, status, and
+        description.
+      tags:
+        - Communities
+      responses:
+        '200':
+          description: Successfully retrieved communities
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  communities:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Community'
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatter/feeds/news/me/feed-elements:
+    get:
+      operationId: getNewsFeed
+      summary: Get news feed for current user
+      description: >-
+        Returns the news feed for the current user. The news feed includes
+        updates from people and records the user follows, groups the user
+        belongs to, and the user's own posts.
+      tags:
+        - Feeds
+      parameters:
+        - name: pageSize
+          in: query
+          description: Number of items per page (default 25, max 100)
+          required: false
+          schema:
+            type: integer
+            default: 25
+            maximum: 100
+        - name: pageToken
+          in: query
+          description: Token for the next page of results
+          required: false
+          schema:
+            type: string
+        - name: sort
+          in: query
+          description: Sort order for feed elements
+          required: false
+          schema:
+            type: string
+            enum:
+              - CreatedDateDesc
+              - LastModifiedDateDesc
+      responses:
+        '200':
+          description: Successfully retrieved news feed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedElementPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatter/feeds/record/{recordId}/feed-elements:
+    get:
+      operationId: getRecordFeed
+      summary: Get feed for a specific record
+      description: >-
+        Returns the feed associated with the specified record. The record
+        feed includes posts, comments, and tracked changes for the record.
+      tags:
+        - Feeds
+      parameters:
+        - name: recordId
+          in: path
+          required: true
+          description: The ID of the record
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 25
+        - name: pageToken
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved record feed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedElementPage'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /chatter/feed-elements:
+    post:
+      operationId: postFeedElement
+      summary: Post a feed element
+      description: >-
+        Creates a new feed element (post) on a user profile, group, or record
+        feed. Supports text posts, link posts, and content posts with
+        attachments.
+      tags:
+        - Feed Items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedElementInput'
+      responses:
+        '201':
+          description: Feed element created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedElement'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatter/feed-elements/{feedElementId}:
+    get:
+      operationId: getFeedElement
+      summary: Get a feed element
+      description: >-
+        Returns the specified feed element including its body, comments,
+        likes, and metadata.
+      tags:
+        - Feed Items
+      parameters:
+        - name: feedElementId
+          in: path
+          required: true
+          description: The ID of the feed element
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved feed element
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedElement'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteFeedElement
+      summary: Delete a feed element
+      description: >-
+        Deletes the specified feed element. Only the author or an admin can
+        delete a feed element.
+      tags:
+        - Feed Items
+      parameters:
+        - name: feedElementId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: Feed element deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /chatter/feed-elements/{feedElementId}/capabilities/comments/items:
+    get:
+      operationId: getFeedElementComments
+      summary: Get comments on a feed element
+      description: >-
+        Returns all comments on the specified feed element, paginated.
+      tags:
+        - Feed Items
+      parameters:
+        - name: feedElementId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 25
+      responses:
+        '200':
+          description: Successfully retrieved comments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comment'
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: postComment
+      summary: Post a comment on a feed element
+      description: >-
+        Creates a new comment on the specified feed element.
+      tags:
+        - Feed Items
+      parameters:
+        - name: feedElementId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  $ref: '#/components/schemas/MessageBody'
+      responses:
+        '201':
+          description: Comment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatter/groups:
+    get:
+      operationId: listGroups
+      summary: List Chatter groups
+      description: >-
+        Returns a list of Chatter groups visible to the current user.
+        Includes public groups, private groups the user is a member of,
+        and unlisted groups the user has access to.
+      tags:
+        - Groups
+      parameters:
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 25
+        - name: pageToken
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: Search term to filter groups
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved groups
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  groups:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ChatterGroup'
+                  nextPageUrl:
+                    type: string
+                    nullable: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatter/groups/{groupId}:
+    get:
+      operationId: getGroup
+      summary: Get a Chatter group
+      description: >-
+        Returns detailed information about the specified Chatter group
+        including member count, description, and the current user's
+        membership status.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved group
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChatterGroup'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /chatter/groups/{groupId}/members:
+    get:
+      operationId: getGroupMembers
+      summary: Get group members
+      description: >-
+        Returns a list of members in the specified Chatter group.
+      tags:
+        - Groups
+      parameters:
+        - name: groupId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 25
+      responses:
+        '200':
+          description: Successfully retrieved group members
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  members:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        role:
+                          type: string
+                        user:
+                          $ref: '#/components/schemas/UserSummary'
+                  totalMemberCount:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /chatter/users/me:
+    get:
+      operationId: getCurrentUser
+      summary: Get current user information
+      description: >-
+        Returns detailed information about the current user including
+        profile, photo, and Chatter activity.
+      tags:
+        - Users
+      responses:
+        '200':
+          description: Successfully retrieved current user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatter/users/{userId}:
+    get:
+      operationId: getUser
+      summary: Get user information
+      description: >-
+        Returns detailed information about the specified user including
+        profile, photo, and Chatter statistics.
+      tags:
+        - Users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserDetail'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /files/users/me:
+    get:
+      operationId: getMyFiles
+      summary: Get files owned by current user
+      description: >-
+        Returns a list of files owned by the current user.
+      tags:
+        - Files
+      parameters:
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 25
+        - name: pageToken
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved files
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  files:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/FileReference'
+                  nextPageUrl:
+                    type: string
+                    nullable: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+            chatter_api: Access Chatter data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  schemas:
+    FeedElementPage:
+      type: object
+      properties:
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeedElement'
+        nextPageUrl:
+          type: string
+          nullable: true
+        updatesUrl:
+          type: string
+          nullable: true
+    FeedElement:
+      type: object
+      properties:
+        id:
+          type: string
+        body:
+          $ref: '#/components/schemas/MessageBody'
+        capabilities:
+          type: object
+          properties:
+            comments:
+              type: object
+              properties:
+                total:
+                  type: integer
+            chatterLikes:
+              type: object
+              properties:
+                total:
+                  type: integer
+        createdDate:
+          type: string
+          format: date-time
+        actor:
+          $ref: '#/components/schemas/UserSummary'
+        feedElementType:
+          type: string
+          enum:
+            - FeedItem
+            - Bundle
+        header:
+          type: object
+          properties:
+            text:
+              type: string
+        parent:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+        type:
+          type: string
+        url:
+          type: string
+    FeedElementInput:
+      type: object
+      required:
+        - body
+        - feedElementType
+        - subjectId
+      properties:
+        body:
+          $ref: '#/components/schemas/MessageBody'
+        feedElementType:
+          type: string
+          enum:
+            - FeedItem
+        subjectId:
+          type: string
+          description: The ID of the parent record, user, or group
+    MessageBody:
+      type: object
+      properties:
+        messageSegments:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - Text
+                  - Mention
+                  - Hashtag
+                  - Link
+              text:
+                type: string
+              id:
+                type: string
+              url:
+                type: string
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+        body:
+          $ref: '#/components/schemas/MessageBody'
+        createdDate:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/UserSummary'
+    ChatterGroup:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        memberCount:
+          type: integer
+        myRole:
+          type: string
+          enum:
+            - GroupOwner
+            - GroupManager
+            - StandardMember
+            - NotAMember
+        visibility:
+          type: string
+          enum:
+            - PublicAccess
+            - PrivateAccess
+            - Unlisted
+        url:
+          type: string
+    UserSummary:
+      type: object
+      properties:
+        companyName:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        photo:
+          type: object
+          properties:
+            smallPhotoUrl:
+              type: string
+            mediumPhotoUrl:
+              type: string
+        title:
+          type: string
+          nullable: true
+        type:
+          type: string
+        url:
+          type: string
+    UserDetail:
+      type: object
+      properties:
+        aboutMe:
+          type: string
+          nullable: true
+        companyName:
+          type: string
+        displayName:
+          type: string
+        email:
+          type: string
+        firstName:
+          type: string
+        followersCount:
+          type: integer
+        followingCounts:
+          type: object
+          properties:
+            people:
+              type: integer
+            records:
+              type: integer
+            total:
+              type: integer
+        groupCount:
+          type: integer
+        id:
+          type: string
+        isActive:
+          type: boolean
+        lastName:
+          type: string
+        name:
+          type: string
+        photo:
+          type: object
+          properties:
+            smallPhotoUrl:
+              type: string
+            mediumPhotoUrl:
+              type: string
+            largePhotoUrl:
+              type: string
+        title:
+          type: string
+          nullable: true
+        type:
+          type: string
+        url:
+          type: string
+        username:
+          type: string
+    FileReference:
+      type: object
+      properties:
+        id:
+          type: string
+        contentUrl:
+          type: string
+        description:
+          type: string
+          nullable: true
+        fileExtension:
+          type: string
+        fileSize:
+          type: integer
+        fileType:
+          type: string
+        modifiedDate:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/UserSummary'
+        title:
+          type: string
+    Community:
+      type: object
+      properties:
+        allowChatterAccessWithoutLogin:
+          type: boolean
+        allowMembersToFlag:
+          type: boolean
+        description:
+          type: string
+          nullable: true
+        id:
+          type: string
+        invitationsEnabled:
+          type: boolean
+        knowledgeableEnabled:
+          type: boolean
+        loginUrl:
+          type: string
+        name:
+          type: string
+        nicknameDisplayEnabled:
+          type: boolean
+        privateMessagesEnabled:
+          type: boolean
+        reputationEnabled:
+          type: boolean
+        sendWelcomeEmail:
+          type: boolean
+        siteAsContainerEnabled:
+          type: boolean
+        siteUrl:
+          type: string
+        status:
+          type: string
+          enum:
+            - Live
+            - Inactive
+            - UnderConstruction
+        url:
+          type: string
+        urlPathPrefix:
+          type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

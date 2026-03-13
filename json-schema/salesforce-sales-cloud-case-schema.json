@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.salesforce.com/schemas/sales-cloud/case.json",
+  "title": "Salesforce Case",
+  "description": "Represents a case, which is a customer issue or problem. Cases are used to track and manage customer support inquiries, complaints, and service requests. Cases can be associated with accounts, contacts, and assets.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "description": "Unique 18-character Salesforce record identifier",
+      "pattern": "^[a-zA-Z0-9]{18}$",
+      "readOnly": true
+    },
+    "IsDeleted": {
+      "type": "boolean",
+      "description": "Indicates whether the record has been moved to the Recycle Bin",
+      "readOnly": true
+    },
+    "MasterRecordId": {
+      "type": ["string", "null"],
+      "description": "If deleted as result of a merge, ID of the master record",
+      "readOnly": true
+    },
+    "CaseNumber": {
+      "type": "string",
+      "description": "Auto-number identifier for the case",
+      "readOnly": true
+    },
+    "ContactId": {
+      "type": ["string", "null"],
+      "description": "ID of the associated Contact"
+    },
+    "AccountId": {
+      "type": ["string", "null"],
+      "description": "ID of the associated Account"
+    },
+    "AssetId": {
+      "type": ["string", "null"],
+      "description": "ID of the associated Asset"
+    },
+    "ParentId": {
+      "type": ["string", "null"],
+      "description": "ID of the parent case (for case hierarchies)"
+    },
+    "SuppliedName": {
+      "type": ["string", "null"],
+      "description": "Name of the contact supplied during case creation via Web-to-Case",
+      "maxLength": 80
+    },
+    "SuppliedEmail": {
+      "type": ["string", "null"],
+      "description": "Email address supplied during case creation",
+      "format": "email",
+      "maxLength": 80
+    },
+    "SuppliedPhone": {
+      "type": ["string", "null"],
+      "description": "Phone number supplied during case creation",
+      "maxLength": 40
+    },
+    "SuppliedCompany": {
+      "type": ["string", "null"],
+      "description": "Company name supplied during case creation",
+      "maxLength": 80
+    },
+    "Type": {
+      "type": ["string", "null"],
+      "description": "Type of case",
+      "enum": [null, "Mechanical", "Electrical", "Electronic", "Structural", "Other"]
+    },
+    "Status": {
+      "type": "string",
+      "description": "Status of the case",
+      "enum": ["New", "Working", "Escalated", "Closed"]
+    },
+    "Reason": {
+      "type": ["string", "null"],
+      "description": "Reason the case was created",
+      "enum": [null, "Installation", "Equipment Complexity", "Performance", "Breakdown", "Equipment Design", "Feedback", "Other"]
+    },
+    "Origin": {
+      "type": ["string", "null"],
+      "description": "Source of the case",
+      "enum": [null, "Phone", "Email", "Web"]
+    },
+    "Subject": {
+      "type": ["string", "null"],
+      "description": "Subject of the case",
+      "maxLength": 255
+    },
+    "Priority": {
+      "type": ["string", "null"],
+      "description": "Priority of the case",
+      "enum": [null, "High", "Medium", "Low"]
+    },
+    "Description": {
+      "type": ["string", "null"],
+      "description": "Full description of the case"
+    },
+    "IsClosed": {
+      "type": "boolean",
+      "description": "Indicates whether the case is closed",
+      "readOnly": true
+    },
+    "ClosedDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Date and time when the case was closed",
+      "readOnly": true
+    },
+    "IsEscalated": {
+      "type": "boolean",
+      "description": "Indicates whether the case has been escalated",
+      "default": false
+    },
+    "OwnerId": {
+      "type": "string",
+      "description": "ID of the user or queue that owns the case"
+    },
+    "CreatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was created",
+      "readOnly": true
+    },
+    "CreatedById": {
+      "type": "string",
+      "description": "ID of the user who created this record",
+      "readOnly": true
+    },
+    "LastModifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was last modified",
+      "readOnly": true
+    },
+    "LastModifiedById": {
+      "type": "string",
+      "description": "ID of the user who last modified this record",
+      "readOnly": true
+    },
+    "SystemModstamp": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "ContactPhone": {
+      "type": ["string", "null"],
+      "description": "Phone number of the associated contact",
+      "readOnly": true
+    },
+    "ContactMobile": {
+      "type": ["string", "null"],
+      "description": "Mobile phone number of the associated contact",
+      "readOnly": true
+    },
+    "ContactEmail": {
+      "type": ["string", "null"],
+      "description": "Email of the associated contact",
+      "readOnly": true
+    },
+    "ContactFax": {
+      "type": ["string", "null"],
+      "description": "Fax of the associated contact",
+      "readOnly": true
+    },
+    "Comments": {
+      "type": ["string", "null"],
+      "description": "Internal comments associated with this case"
+    },
+    "LastViewedDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "readOnly": true
+    },
+    "LastReferencedDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "readOnly": true
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Case"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["Status"]
+}

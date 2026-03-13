@@ -1,0 +1,307 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.salesforce.com/schemas/sales-cloud/contact.json",
+  "title": "Salesforce Contact",
+  "description": "Represents a contact, which is a person associated with an account. Contacts are one of the core objects in Salesforce Sales Cloud for managing relationships with individuals at customer organizations.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "description": "Unique 18-character Salesforce record identifier",
+      "pattern": "^[a-zA-Z0-9]{18}$",
+      "readOnly": true
+    },
+    "IsDeleted": {
+      "type": "boolean",
+      "description": "Indicates whether the record has been moved to the Recycle Bin",
+      "readOnly": true
+    },
+    "MasterRecordId": {
+      "type": ["string", "null"],
+      "description": "If deleted as result of a merge, ID of the master record",
+      "readOnly": true
+    },
+    "AccountId": {
+      "type": ["string", "null"],
+      "description": "ID of the account that is the parent of this contact"
+    },
+    "LastName": {
+      "type": "string",
+      "description": "Last name of the contact",
+      "maxLength": 80
+    },
+    "FirstName": {
+      "type": ["string", "null"],
+      "description": "First name of the contact",
+      "maxLength": 40
+    },
+    "Salutation": {
+      "type": ["string", "null"],
+      "description": "Honorific abbreviation or title of the contact",
+      "enum": [null, "Mr.", "Ms.", "Mrs.", "Dr.", "Prof."]
+    },
+    "Name": {
+      "type": "string",
+      "description": "Concatenation of FirstName, MiddleName, LastName, and Suffix",
+      "readOnly": true
+    },
+    "MiddleName": {
+      "type": ["string", "null"],
+      "description": "Middle name of the contact",
+      "maxLength": 40
+    },
+    "Suffix": {
+      "type": ["string", "null"],
+      "description": "Name suffix of the contact",
+      "maxLength": 40
+    },
+    "OtherStreet": {
+      "type": ["string", "null"],
+      "description": "Street address for the other address"
+    },
+    "OtherCity": {
+      "type": ["string", "null"],
+      "description": "City for the other address",
+      "maxLength": 40
+    },
+    "OtherState": {
+      "type": ["string", "null"],
+      "description": "State for the other address",
+      "maxLength": 80
+    },
+    "OtherPostalCode": {
+      "type": ["string", "null"],
+      "description": "Postal code for the other address",
+      "maxLength": 20
+    },
+    "OtherCountry": {
+      "type": ["string", "null"],
+      "description": "Country for the other address",
+      "maxLength": 80
+    },
+    "OtherLatitude": {
+      "type": ["number", "null"],
+      "description": "Latitude for the other address",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "OtherLongitude": {
+      "type": ["number", "null"],
+      "description": "Longitude for the other address",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "MailingStreet": {
+      "type": ["string", "null"],
+      "description": "Street address for the mailing address"
+    },
+    "MailingCity": {
+      "type": ["string", "null"],
+      "description": "City for the mailing address",
+      "maxLength": 40
+    },
+    "MailingState": {
+      "type": ["string", "null"],
+      "description": "State for the mailing address",
+      "maxLength": 80
+    },
+    "MailingPostalCode": {
+      "type": ["string", "null"],
+      "description": "Postal code for the mailing address",
+      "maxLength": 20
+    },
+    "MailingCountry": {
+      "type": ["string", "null"],
+      "description": "Country for the mailing address",
+      "maxLength": 80
+    },
+    "MailingLatitude": {
+      "type": ["number", "null"],
+      "description": "Latitude for the mailing address",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "MailingLongitude": {
+      "type": ["number", "null"],
+      "description": "Longitude for the mailing address",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "Phone": {
+      "type": ["string", "null"],
+      "description": "Phone number for the contact",
+      "maxLength": 40
+    },
+    "Fax": {
+      "type": ["string", "null"],
+      "description": "Fax number for the contact",
+      "maxLength": 40
+    },
+    "MobilePhone": {
+      "type": ["string", "null"],
+      "description": "Contact's mobile phone number",
+      "maxLength": 40
+    },
+    "HomePhone": {
+      "type": ["string", "null"],
+      "description": "Home phone number for the contact",
+      "maxLength": 40
+    },
+    "OtherPhone": {
+      "type": ["string", "null"],
+      "description": "Other phone number for the contact",
+      "maxLength": 40
+    },
+    "AssistantPhone": {
+      "type": ["string", "null"],
+      "description": "Phone number for the contact's assistant",
+      "maxLength": 40
+    },
+    "ReportsToId": {
+      "type": ["string", "null"],
+      "description": "ID of the contact that this contact reports to"
+    },
+    "Email": {
+      "type": ["string", "null"],
+      "description": "Email address for the contact",
+      "format": "email",
+      "maxLength": 80
+    },
+    "Title": {
+      "type": ["string", "null"],
+      "description": "Title of the contact, such as CEO or Vice President",
+      "maxLength": 128
+    },
+    "Department": {
+      "type": ["string", "null"],
+      "description": "Department of the contact",
+      "maxLength": 80
+    },
+    "AssistantName": {
+      "type": ["string", "null"],
+      "description": "Name of the assistant",
+      "maxLength": 40
+    },
+    "LeadSource": {
+      "type": ["string", "null"],
+      "description": "Source from which the contact was obtained",
+      "enum": [null, "Web", "Phone Inquiry", "Partner Referral", "Purchased List", "Other"]
+    },
+    "Birthdate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Birthdate for the contact"
+    },
+    "Description": {
+      "type": ["string", "null"],
+      "description": "Text description of the contact"
+    },
+    "OwnerId": {
+      "type": "string",
+      "description": "ID of the owner of the account associated with this contact"
+    },
+    "HasOptedOutOfEmail": {
+      "type": "boolean",
+      "description": "Indicates whether the contact has opted out of email (true) or not (false)",
+      "default": false
+    },
+    "HasOptedOutOfFax": {
+      "type": "boolean",
+      "description": "Indicates whether the contact has opted out of fax (true) or not (false)",
+      "default": false
+    },
+    "DoNotCall": {
+      "type": "boolean",
+      "description": "Indicates that the contact does not want to be called",
+      "default": false
+    },
+    "CreatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was created",
+      "readOnly": true
+    },
+    "CreatedById": {
+      "type": "string",
+      "description": "ID of the user who created this record",
+      "readOnly": true
+    },
+    "LastModifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was last modified",
+      "readOnly": true
+    },
+    "LastModifiedById": {
+      "type": "string",
+      "description": "ID of the user who last modified this record",
+      "readOnly": true
+    },
+    "SystemModstamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was last modified by a user or process",
+      "readOnly": true
+    },
+    "LastActivityDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Most recent activity date",
+      "readOnly": true
+    },
+    "LastCURequestDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Last date the contact was requested via a customer update",
+      "readOnly": true
+    },
+    "LastCUUpdateDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Last date the contact was updated via a customer update",
+      "readOnly": true
+    },
+    "EmailBouncedReason": {
+      "type": ["string", "null"],
+      "description": "If bounced, the reason for the bounce",
+      "maxLength": 255
+    },
+    "EmailBouncedDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "If bounced, the date and time the bounce occurred"
+    },
+    "Jigsaw": {
+      "type": ["string", "null"],
+      "description": "References the ID of a contact in Data.com",
+      "maxLength": 20
+    },
+    "JigsawContactId": {
+      "type": ["string", "null"],
+      "description": "References a contact in Data.com",
+      "readOnly": true
+    },
+    "CleanStatus": {
+      "type": ["string", "null"],
+      "description": "Indicates the record's clean status as compared with Data.com",
+      "enum": [null, "Matched", "Different", "Acknowledged", "NotFound", "Inactive", "Pending", "SelectMatch", "Skipped"]
+    },
+    "IndividualId": {
+      "type": ["string", "null"],
+      "description": "ID of the related individual record for data privacy"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Contact"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["LastName"]
+}

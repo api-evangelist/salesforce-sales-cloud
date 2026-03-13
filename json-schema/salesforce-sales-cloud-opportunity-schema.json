@@ -1,0 +1,214 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.salesforce.com/schemas/sales-cloud/opportunity.json",
+  "title": "Salesforce Opportunity",
+  "description": "Represents an opportunity, which is a sale or pending deal. Opportunities are one of the core objects in Salesforce Sales Cloud for tracking the sales pipeline, revenue forecasting, and deal management.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "description": "Unique 18-character Salesforce record identifier",
+      "pattern": "^[a-zA-Z0-9]{18}$",
+      "readOnly": true
+    },
+    "IsDeleted": {
+      "type": "boolean",
+      "description": "Indicates whether the record has been moved to the Recycle Bin",
+      "readOnly": true
+    },
+    "AccountId": {
+      "type": ["string", "null"],
+      "description": "ID of the account associated with this opportunity"
+    },
+    "Name": {
+      "type": "string",
+      "description": "A name for this opportunity",
+      "maxLength": 120
+    },
+    "Description": {
+      "type": ["string", "null"],
+      "description": "Text description of the opportunity"
+    },
+    "StageName": {
+      "type": "string",
+      "description": "Current stage of this opportunity in the sales process",
+      "enum": [
+        "Prospecting",
+        "Qualification",
+        "Needs Analysis",
+        "Value Proposition",
+        "Id. Decision Makers",
+        "Perception Analysis",
+        "Proposal/Price Quote",
+        "Negotiation/Review",
+        "Closed Won",
+        "Closed Lost"
+      ]
+    },
+    "Amount": {
+      "type": ["number", "null"],
+      "description": "Estimated total sale amount"
+    },
+    "Probability": {
+      "type": ["number", "null"],
+      "description": "Percentage of estimated confidence in closing the opportunity",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "ExpectedRevenue": {
+      "type": ["number", "null"],
+      "description": "Calculated revenue based on the Amount field multiplied by the Probability",
+      "readOnly": true
+    },
+    "TotalOpportunityQuantity": {
+      "type": ["number", "null"],
+      "description": "Number of items included in this opportunity"
+    },
+    "CloseDate": {
+      "type": "string",
+      "format": "date",
+      "description": "Date when the opportunity is expected to close"
+    },
+    "Type": {
+      "type": ["string", "null"],
+      "description": "Type of opportunity",
+      "enum": [null, "Existing Customer - Upgrade", "Existing Customer - Replacement", "Existing Customer - Downgrade", "New Customer"]
+    },
+    "NextStep": {
+      "type": ["string", "null"],
+      "description": "Description of the next step in the sales process",
+      "maxLength": 255
+    },
+    "LeadSource": {
+      "type": ["string", "null"],
+      "description": "Source of this opportunity",
+      "enum": [null, "Web", "Phone Inquiry", "Partner Referral", "Purchased List", "Other"]
+    },
+    "IsClosed": {
+      "type": "boolean",
+      "description": "Indicates whether the opportunity is closed",
+      "readOnly": true
+    },
+    "IsWon": {
+      "type": "boolean",
+      "description": "Indicates whether the opportunity is won",
+      "readOnly": true
+    },
+    "ForecastCategory": {
+      "type": ["string", "null"],
+      "description": "Forecast category determined by the Stage",
+      "enum": [null, "Omitted", "Pipeline", "BestCase", "MostLikely", "Forecast", "Closed"],
+      "readOnly": true
+    },
+    "ForecastCategoryName": {
+      "type": ["string", "null"],
+      "description": "Name of the forecast category",
+      "enum": [null, "Omitted", "Pipeline", "Best Case", "Most Likely", "Commit", "Closed"]
+    },
+    "CampaignId": {
+      "type": ["string", "null"],
+      "description": "ID of the campaign that generated this opportunity"
+    },
+    "HasOpportunityLineItem": {
+      "type": "boolean",
+      "description": "Indicates whether the opportunity has associated opportunity products",
+      "readOnly": true
+    },
+    "Pricebook2Id": {
+      "type": ["string", "null"],
+      "description": "ID of the price book associated with this opportunity"
+    },
+    "OwnerId": {
+      "type": "string",
+      "description": "ID of the user who owns this opportunity"
+    },
+    "ContactId": {
+      "type": ["string", "null"],
+      "description": "ID of the primary contact for this opportunity"
+    },
+    "CreatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was created",
+      "readOnly": true
+    },
+    "CreatedById": {
+      "type": "string",
+      "description": "ID of the user who created this record",
+      "readOnly": true
+    },
+    "LastModifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was last modified",
+      "readOnly": true
+    },
+    "LastModifiedById": {
+      "type": "string",
+      "description": "ID of the user who last modified this record",
+      "readOnly": true
+    },
+    "SystemModstamp": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "LastActivityDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "readOnly": true
+    },
+    "FiscalQuarter": {
+      "type": ["integer", "null"],
+      "description": "The fiscal quarter for the close date",
+      "readOnly": true
+    },
+    "FiscalYear": {
+      "type": ["integer", "null"],
+      "description": "The fiscal year for the close date",
+      "readOnly": true
+    },
+    "Fiscal": {
+      "type": ["string", "null"],
+      "description": "The fiscal period for the close date",
+      "readOnly": true
+    },
+    "LastStageChangeDate": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Date when the opportunity stage was last changed",
+      "readOnly": true
+    },
+    "HasOpenActivity": {
+      "type": "boolean",
+      "description": "Indicates whether there is an open activity for the opportunity",
+      "readOnly": true
+    },
+    "HasOverdueTask": {
+      "type": "boolean",
+      "description": "Indicates whether there is an overdue task for the opportunity",
+      "readOnly": true
+    },
+    "LastAmountChangedHistoryId": {
+      "type": ["string", "null"],
+      "readOnly": true
+    },
+    "LastCloseDateChangedHistoryId": {
+      "type": ["string", "null"],
+      "readOnly": true
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Opportunity"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["Name", "StageName", "CloseDate"]
+}

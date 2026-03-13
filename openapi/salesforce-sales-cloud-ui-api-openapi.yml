@@ -1,0 +1,794 @@
+openapi: 3.1.0
+info:
+  title: Salesforce User Interface API
+  description: >-
+    Build custom user interfaces for Salesforce data using the same API that
+    powers Lightning Experience. Returns data and metadata in a single response
+    with layout, picklist, and field-level security awareness. Provides
+    record CRUD operations, layout metadata, picklist values, and object
+    information optimized for UI rendering.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: User Interface API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0/ui-api
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Records
+    description: Record CRUD operations with UI metadata
+  - name: Record UI
+    description: Complete record page data including layout and metadata
+  - name: Layouts
+    description: Page layout metadata
+  - name: Object Info
+    description: Object and field metadata for UI rendering
+  - name: Picklist Values
+    description: Picklist field values with record type awareness
+  - name: List Views
+    description: List view metadata and records
+  - name: Lookups
+    description: Lookup field search
+paths:
+  /records/{recordId}:
+    get:
+      operationId: getRecord
+      summary: Get a record with UI metadata
+      description: >-
+        Retrieves a record with field values and UI metadata. Specify the
+        fields to return or use a layout mode to get the fields appropriate
+        for a specific page layout. Returned data respects field-level
+        security.
+      tags:
+        - Records
+      parameters:
+        - $ref: '#/components/parameters/recordId'
+        - name: fields
+          in: query
+          description: Comma-separated list of field API names to return
+          required: false
+          schema:
+            type: string
+        - name: layoutTypes
+          in: query
+          description: Layout type to determine which fields to return
+          required: false
+          schema:
+            type: string
+            enum:
+              - Compact
+              - Full
+        - name: modes
+          in: query
+          description: The mode for the layout
+          required: false
+          schema:
+            type: string
+            enum:
+              - Create
+              - Edit
+              - View
+        - name: optionalFields
+          in: query
+          description: Optional fields returned if accessible
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordRepresentation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRecord
+      summary: Update a record
+      description: >-
+        Updates the specified record. Only include fields that need to be
+        changed. Returns the updated record with UI metadata.
+      tags:
+        - Records
+      parameters:
+        - $ref: '#/components/parameters/recordId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordRepresentation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRecord
+      summary: Delete a record
+      description: >-
+        Deletes the specified record.
+      tags:
+        - Records
+      parameters:
+        - $ref: '#/components/parameters/recordId'
+      responses:
+        '204':
+          description: Record deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /records:
+    post:
+      operationId: createRecord
+      summary: Create a record
+      description: >-
+        Creates a new record. Returns the created record with UI metadata
+        and the new record ID.
+      tags:
+        - Records
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - apiName
+                - fields
+              properties:
+                apiName:
+                  type: string
+                  description: The sObject API name
+                fields:
+                  type: object
+                  additionalProperties: true
+                  description: Field name-value pairs
+      responses:
+        '201':
+          description: Record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordRepresentation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /record-ui/{recordIds}:
+    get:
+      operationId: getRecordUI
+      summary: Get record UI data
+      description: >-
+        Returns layout information, field metadata, and record data for one
+        or more records in a single response. This is the most efficient way
+        to get everything needed to render a record detail page.
+      tags:
+        - Record UI
+      parameters:
+        - name: recordIds
+          in: path
+          required: true
+          description: Comma-separated list of record IDs (up to 200)
+          schema:
+            type: string
+        - name: formFactor
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Large
+              - Medium
+              - Small
+        - name: layoutTypes
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Compact
+              - Full
+        - name: modes
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Create
+              - Edit
+              - View
+      responses:
+        '200':
+          description: Successfully retrieved record UI data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  layouts:
+                    type: object
+                    additionalProperties: true
+                  objectInfos:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/ObjectInfo'
+                  records:
+                    type: object
+                    additionalProperties:
+                      $ref: '#/components/schemas/RecordRepresentation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /layout/{objectApiName}:
+    get:
+      operationId: getRecordLayout
+      summary: Get record layout metadata
+      description: >-
+        Returns layout metadata for the specified sObject including sections,
+        fields, and their arrangement on the page. Respects record type
+        and profile-based layout assignments.
+      tags:
+        - Layouts
+      parameters:
+        - name: objectApiName
+          in: path
+          required: true
+          description: The API name of the sObject
+          schema:
+            type: string
+        - name: layoutType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Compact
+              - Full
+        - name: mode
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Create
+              - Edit
+              - View
+        - name: recordTypeId
+          in: query
+          required: false
+          description: The record type ID for record-type-specific layouts
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved layout
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /object-info/{objectApiName}:
+    get:
+      operationId: getObjectInfo
+      summary: Get object metadata for UI
+      description: >-
+        Returns metadata about the specified sObject optimized for UI
+        rendering, including field metadata, record type info, child
+        relationships, and theme information.
+      tags:
+        - Object Info
+      parameters:
+        - name: objectApiName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved object info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /object-info/{objectApiName}/picklist-values/{recordTypeId}:
+    get:
+      operationId: getPicklistValues
+      summary: Get picklist values for all fields
+      description: >-
+        Returns the picklist values for all picklist fields on the specified
+        object, filtered by record type. Includes dependent picklist
+        controlling field information.
+      tags:
+        - Picklist Values
+      parameters:
+        - name: objectApiName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: recordTypeId
+          in: path
+          required: true
+          description: The record type ID (use 012000000000000AAA for master)
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved picklist values
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  picklistFieldValues:
+                    type: object
+                    additionalProperties:
+                      type: object
+                      properties:
+                        controllerValues:
+                          type: object
+                          additionalProperties:
+                            type: integer
+                        defaultValue:
+                          nullable: true
+                        url:
+                          type: string
+                        values:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/PicklistValue'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /object-info/{objectApiName}/picklist-values/{recordTypeId}/{fieldApiName}:
+    get:
+      operationId: getPicklistValuesByField
+      summary: Get picklist values for a specific field
+      description: >-
+        Returns the picklist values for the specified picklist field,
+        filtered by record type.
+      tags:
+        - Picklist Values
+      parameters:
+        - name: objectApiName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: recordTypeId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fieldApiName
+          in: path
+          required: true
+          description: The API name of the picklist field
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved picklist values
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  controllerValues:
+                    type: object
+                  defaultValue:
+                    nullable: true
+                  url:
+                    type: string
+                  values:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/PicklistValue'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /list-ui/{listViewId}:
+    get:
+      operationId: getListViewRecords
+      summary: Get list view records
+      description: >-
+        Returns records and metadata for the specified list view, including
+        column definitions, sort information, and filtered records.
+      tags:
+        - List Views
+      parameters:
+        - name: listViewId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+        - name: pageToken
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved list view records
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /lookups/{objectApiName}/{fieldApiName}/{targetApiName}:
+    get:
+      operationId: lookupFieldSearch
+      summary: Search for lookup field values
+      description: >-
+        Searches for records to populate a lookup field, filtered by the
+        lookup filter criteria configured for the field.
+      tags:
+        - Lookups
+      parameters:
+        - name: objectApiName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: fieldApiName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: targetApiName
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: q
+          in: query
+          description: Search string
+          required: false
+          schema:
+            type: string
+        - name: searchType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - Recent
+              - Search
+              - TypeAhead
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved lookup results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  count:
+                    type: integer
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RecordRepresentation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  parameters:
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      description: The 18-character Salesforce record ID
+      schema:
+        type: string
+  schemas:
+    RecordRepresentation:
+      type: object
+      description: A record with field values and UI metadata
+      properties:
+        apiName:
+          type: string
+          description: The sObject API name
+        childRelationships:
+          type: object
+          additionalProperties: true
+        eTag:
+          type: string
+        fields:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              displayValue:
+                type: string
+                nullable: true
+              value:
+                nullable: true
+        id:
+          type: string
+        lastModifiedById:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        recordTypeId:
+          type: string
+          nullable: true
+        recordTypeInfo:
+          type: object
+          nullable: true
+          properties:
+            available:
+              type: boolean
+            defaultRecordTypeMapping:
+              type: boolean
+            master:
+              type: boolean
+            name:
+              type: string
+            recordTypeId:
+              type: string
+        systemModstamp:
+          type: string
+          format: date-time
+        weakEtag:
+          type: integer
+    ObjectInfo:
+      type: object
+      description: Object metadata optimized for UI rendering
+      properties:
+        apiName:
+          type: string
+        childRelationships:
+          type: array
+          items:
+            type: object
+            properties:
+              childObjectApiName:
+                type: string
+              fieldName:
+                type: string
+              junctionIdListNames:
+                type: array
+                items:
+                  type: string
+              junctionReferenceTo:
+                type: array
+                items:
+                  type: string
+              relationshipName:
+                type: string
+        createable:
+          type: boolean
+        custom:
+          type: boolean
+        defaultRecordTypeId:
+          type: string
+          nullable: true
+        deletable:
+          type: boolean
+        eTag:
+          type: string
+        feedEnabled:
+          type: boolean
+        fields:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              apiName:
+                type: string
+              compound:
+                type: boolean
+              compoundComponentName:
+                type: string
+                nullable: true
+              compoundFieldName:
+                type: string
+                nullable: true
+              controllerName:
+                type: string
+                nullable: true
+              controllingFields:
+                type: array
+                items:
+                  type: string
+              createable:
+                type: boolean
+              custom:
+                type: boolean
+              dataType:
+                type: string
+              extraTypeInfo:
+                type: string
+                nullable: true
+              filterable:
+                type: boolean
+              htmlFormatted:
+                type: boolean
+              inlineHelpText:
+                type: string
+                nullable: true
+              label:
+                type: string
+              length:
+                type: integer
+              nameField:
+                type: boolean
+              polymorphicForeignKey:
+                type: boolean
+              precision:
+                type: integer
+              reference:
+                type: boolean
+              referenceTargetField:
+                type: string
+                nullable: true
+              referenceToInfos:
+                type: array
+                items:
+                  type: object
+              relationshipName:
+                type: string
+                nullable: true
+              required:
+                type: boolean
+              scale:
+                type: integer
+              searchPrefilterable:
+                type: boolean
+              sortable:
+                type: boolean
+              unique:
+                type: boolean
+              updateable:
+                type: boolean
+        keyPrefix:
+          type: string
+        label:
+          type: string
+        labelPlural:
+          type: string
+        layoutable:
+          type: boolean
+        mruEnabled:
+          type: boolean
+        queryable:
+          type: boolean
+        recordTypeInfos:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              available:
+                type: boolean
+              defaultRecordTypeMapping:
+                type: boolean
+              master:
+                type: boolean
+              name:
+                type: string
+              recordTypeId:
+                type: string
+        searchable:
+          type: boolean
+        themeInfo:
+          type: object
+          properties:
+            color:
+              type: string
+            iconUrl:
+              type: string
+        updateable:
+          type: boolean
+    PicklistValue:
+      type: object
+      properties:
+        attributes:
+          type: object
+          nullable: true
+        label:
+          type: string
+        validFor:
+          type: array
+          items:
+            type: integer
+          description: Indices of controlling field values for which this value is valid
+        value:
+          type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

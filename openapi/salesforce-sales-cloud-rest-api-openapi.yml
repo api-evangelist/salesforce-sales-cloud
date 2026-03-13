@@ -1,0 +1,1319 @@
+openapi: 3.1.0
+info:
+  title: Salesforce REST API
+  description: >-
+    Primary REST API for accessing Salesforce data including accounts, contacts,
+    leads, opportunities, and custom objects. Supports JSON and XML formats with
+    a lightweight request and response framework. Provides CRUD operations on
+    standard and custom sObjects, SOQL/SOSL queries, and access to org metadata.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Salesforce REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier (e.g., na1, eu5, or custom My Domain)
+  - url: https://{instance}.sandbox.my.salesforce.com/services/data/v59.0
+    description: Salesforce Sandbox
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce sandbox instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Versions
+    description: API version information and discovery
+  - name: Resources
+    description: Available REST resources for a given API version
+  - name: Limits
+    description: Org limits and usage information
+  - name: SObject
+    description: Operations on Salesforce standard and custom objects
+  - name: SObject Describe
+    description: Metadata description of sObjects
+  - name: SObject Rows
+    description: CRUD operations on individual sObject records
+  - name: SObject Collections
+    description: Bulk CRUD operations on collections of records
+  - name: Query
+    description: SOQL query execution
+  - name: Search
+    description: SOSL search execution
+  - name: Recently Viewed
+    description: Recently viewed items
+  - name: Tabs
+    description: Tab metadata
+  - name: Themes
+    description: Theme information
+  - name: Process Approvals
+    description: Process approval operations
+paths:
+  /:
+    get:
+      operationId: listAvailableResources
+      summary: List available REST resources
+      description: >-
+        Lists the available REST API resources for the specified API version,
+        including resource name and URI for each resource.
+      tags:
+        - Resources
+      responses:
+        '200':
+          description: Successfully retrieved list of available resources
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: string
+                  format: uri
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /limits:
+    get:
+      operationId: getOrgLimits
+      summary: Get organization limits
+      description: >-
+        Lists information about limits in your org. For each limit, this
+        resource returns the maximum allocation and the remaining allocation
+        based on usage. This resource is available in REST API version 29.0 and
+        later.
+      tags:
+        - Limits
+      responses:
+        '200':
+          description: Successfully retrieved org limits
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties:
+                  type: object
+                  properties:
+                    Max:
+                      type: integer
+                      description: Maximum allocation for this limit
+                    Remaining:
+                      type: integer
+                      description: Remaining allocation for this limit
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects:
+    get:
+      operationId: listSObjects
+      summary: List available sObjects
+      description: >-
+        Lists the available objects and their metadata for your organization's
+        data. Provides the name, label, custom status, keyPrefix, and URLs for
+        each object.
+      tags:
+        - SObject
+      responses:
+        '200':
+          description: Successfully retrieved list of sObjects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  encoding:
+                    type: string
+                  maxBatchSize:
+                    type: integer
+                  sobjects:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SObjectDescribeBrief'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects/{sObjectName}:
+    get:
+      operationId: getSObjectBasicInfo
+      summary: Get sObject basic information
+      description: >-
+        Describes the individual metadata for the specified object. Returns
+        metadata about the object including default field values, and child
+        relationships.
+      tags:
+        - SObject
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+      responses:
+        '200':
+          description: Successfully retrieved sObject basic information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  objectDescribe:
+                    $ref: '#/components/schemas/SObjectDescribe'
+                  recentItems:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/SObjectRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createSObjectRecord
+      summary: Create a new sObject record
+      description: >-
+        Creates a new record for the specified sObject. The request body
+        contains the field values for the new record in JSON format.
+      tags:
+        - SObject Rows
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: Field name-value pairs for the new record
+      responses:
+        '201':
+          description: Record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecordResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects/{sObjectName}/describe:
+    get:
+      operationId: describeSObject
+      summary: Describe an sObject
+      description: >-
+        Completely describes the individual metadata at all levels for the
+        specified object. Returns metadata including fields, child
+        relationships, record type mappings, and other object-level attributes.
+      tags:
+        - SObject Describe
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+      responses:
+        '200':
+          description: Successfully retrieved sObject describe
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SObjectDescribe'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sobjects/{sObjectName}/{recordId}:
+    get:
+      operationId: getSObjectRecord
+      summary: Get an sObject record by ID
+      description: >-
+        Retrieves a record for the specified sObject using the record ID.
+        Optionally, specify the fields to return using the fields parameter to
+        limit the response size.
+      tags:
+        - SObject Rows
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+        - $ref: '#/components/parameters/recordId'
+        - name: fields
+          in: query
+          description: Comma-separated list of field names to return
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved sObject record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SObjectRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateSObjectRecord
+      summary: Update an sObject record
+      description: >-
+        Updates an individual record for the specified sObject. Provide field
+        values in the request body as JSON.
+      tags:
+        - SObject Rows
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+        - $ref: '#/components/parameters/recordId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: Field name-value pairs to update
+      responses:
+        '204':
+          description: Record updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSObjectRecord
+      summary: Delete an sObject record
+      description: >-
+        Deletes a record for the specified sObject using the record ID.
+      tags:
+        - SObject Rows
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+        - $ref: '#/components/parameters/recordId'
+      responses:
+        '204':
+          description: Record deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sobjects/{sObjectName}/{fieldName}/{fieldValue}:
+    get:
+      operationId: getSObjectRecordByExternalId
+      summary: Get record by external ID
+      description: >-
+        Retrieves a record using an external ID field. If the external ID is
+        not unique, a 300 response with multiple matching records is returned.
+      tags:
+        - SObject Rows
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+        - name: fieldName
+          in: path
+          required: true
+          description: The API name of the external ID field
+          schema:
+            type: string
+        - name: fieldValue
+          in: path
+          required: true
+          description: The external ID value
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved record by external ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SObjectRecord'
+        '300':
+          description: Multiple records matched the external ID value
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: upsertSObjectRecordByExternalId
+      summary: Upsert record by external ID
+      description: >-
+        Creates or updates (upserts) a record using an external ID field. If
+        the external ID is not matched, a new record is created. If the
+        external ID is matched, the existing record is updated.
+      tags:
+        - SObject Rows
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+        - name: fieldName
+          in: path
+          required: true
+          description: The API name of the external ID field
+          schema:
+            type: string
+        - name: fieldValue
+          in: path
+          required: true
+          description: The external ID value
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecordResult'
+        '201':
+          description: Record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecordResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects/{sObjectName}/describe/layouts:
+    get:
+      operationId: getSObjectLayouts
+      summary: Get sObject page layouts
+      description: >-
+        Returns a list of layouts and descriptions, including for publisher
+        actions, for the specified sObject.
+      tags:
+        - SObject Describe
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+      responses:
+        '200':
+          description: Successfully retrieved sObject layouts
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /composite/sobjects:
+    post:
+      operationId: createSObjectCollection
+      summary: Create multiple sObject records
+      description: >-
+        Creates up to 200 records in a single request. The request body contains
+        an array of sObject records to create. All records must be of the same
+        sObject type.
+      tags:
+        - SObject Collections
+      parameters:
+        - name: allOrNone
+          in: query
+          description: If true, all records must succeed or all fail
+          required: false
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allOrNone:
+                  type: boolean
+                  default: false
+                records:
+                  type: array
+                  maxItems: 200
+                  items:
+                    type: object
+                    properties:
+                      attributes:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                    additionalProperties: true
+      responses:
+        '200':
+          description: Collection create results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateRecordResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateSObjectCollection
+      summary: Update multiple sObject records
+      description: >-
+        Updates up to 200 records in a single request. Each record must include
+        an Id field and the sObject type.
+      tags:
+        - SObject Collections
+      parameters:
+        - name: allOrNone
+          in: query
+          description: If true, all records must succeed or all fail
+          required: false
+          schema:
+            type: boolean
+            default: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allOrNone:
+                  type: boolean
+                  default: false
+                records:
+                  type: array
+                  maxItems: 200
+                  items:
+                    type: object
+                    properties:
+                      attributes:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                      Id:
+                        type: string
+                    required:
+                      - Id
+                    additionalProperties: true
+      responses:
+        '200':
+          description: Collection update results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateRecordResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteSObjectCollection
+      summary: Delete multiple sObject records
+      description: >-
+        Deletes up to 200 records in a single request. Specify the record IDs
+        as a comma-separated list in the ids query parameter.
+      tags:
+        - SObject Collections
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated list of record IDs to delete
+          schema:
+            type: string
+        - name: allOrNone
+          in: query
+          description: If true, all records must succeed or all fail
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Collection delete results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CreateRecordResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /query:
+    get:
+      operationId: executeSOQLQuery
+      summary: Execute a SOQL query
+      description: >-
+        Executes the specified SOQL query string and returns the results. If the
+        query results are too large, the response contains the first batch of
+        results and a query identifier to retrieve the remaining results.
+      tags:
+        - Query
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The SOQL query string
+          schema:
+            type: string
+          example: SELECT Id, Name FROM Account LIMIT 10
+      responses:
+        '200':
+          description: Query executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /queryAll:
+    get:
+      operationId: executeSOQLQueryAll
+      summary: Execute a SOQL query including deleted records
+      description: >-
+        Executes the specified SOQL query, including results from deleted and
+        archived records. This is useful for querying against soft-deleted
+        records in the Recycle Bin.
+      tags:
+        - Query
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The SOQL query string
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Query executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /query/{queryLocator}:
+    get:
+      operationId: getNextQueryResults
+      summary: Get next batch of query results
+      description: >-
+        Retrieves the next batch of query results using the query locator
+        returned from a previous query request. Use this endpoint to paginate
+        through large result sets.
+      tags:
+        - Query
+      parameters:
+        - name: queryLocator
+          in: path
+          required: true
+          description: The query locator returned from a previous query response
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved next batch of results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /search:
+    get:
+      operationId: executeSOSLSearch
+      summary: Execute a SOSL search
+      description: >-
+        Executes the specified SOSL search string and returns matching records.
+        SOSL searches are optimized for text-based searching across multiple
+        objects simultaneously.
+      tags:
+        - Search
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The SOSL search string
+          schema:
+            type: string
+          example: FIND {Acme} IN ALL FIELDS RETURNING Account(Id, Name)
+      responses:
+        '200':
+          description: Search executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /recent:
+    get:
+      operationId: getRecentlyViewedItems
+      summary: Get recently viewed items
+      description: >-
+        Gets the most recently accessed items that were viewed or referenced by
+        the current user. Items are returned for every object type that the
+        user has recently accessed.
+      tags:
+        - Recently Viewed
+      parameters:
+        - name: limit
+          in: query
+          description: Maximum number of items to return
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved recently viewed items
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SObjectRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /tabs:
+    get:
+      operationId: getTabs
+      summary: Get available tabs
+      description: >-
+        Returns a list of all tabs available to the current user, including
+        custom tabs and standard tabs. Includes tab metadata such as icon URLs,
+        colors, and whether the tab is custom.
+      tags:
+        - Tabs
+      responses:
+        '200':
+          description: Successfully retrieved tabs
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    custom:
+                      type: boolean
+                    iconUrl:
+                      type: string
+                    label:
+                      type: string
+                    name:
+                      type: string
+                    sobjectName:
+                      type: string
+                    url:
+                      type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /theme:
+    get:
+      operationId: getTheme
+      summary: Get theme information
+      description: >-
+        Returns information about the theme and branding for the current org
+        including icon URLs and colors for standard and custom objects.
+      tags:
+        - Themes
+      responses:
+        '200':
+          description: Successfully retrieved theme information
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /process/approvals:
+    get:
+      operationId: getProcessApprovals
+      summary: Get pending process approvals
+      description: >-
+        Returns a list of all approval processes and their current state.
+        Available in API version 30.0 and later.
+      tags:
+        - Process Approvals
+      responses:
+        '200':
+          description: Successfully retrieved process approvals
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  approvals:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: submitProcessApproval
+      summary: Submit a process approval request
+      description: >-
+        Submits a particular record for approval, approves or rejects an
+        approval request, or processes bulk approval requests.
+      tags:
+        - Process Approvals
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                requests:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      actionType:
+                        type: string
+                        enum:
+                          - Submit
+                          - Approve
+                          - Reject
+                      contextActorId:
+                        type: string
+                      contextId:
+                        type: string
+                      comments:
+                        type: string
+                      nextApproverIds:
+                        type: array
+                        items:
+                          type: string
+      responses:
+        '200':
+          description: Approval request processed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    actorIds:
+                      type: array
+                      items:
+                        type: string
+                    entityId:
+                      type: string
+                    instanceId:
+                      type: string
+                    instanceStatus:
+                      type: string
+                    success:
+                      type: boolean
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          refreshUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+            full: Full access to your Salesforce data
+            refresh_token: Allow refresh token access
+        clientCredentials:
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+      description: Bearer token obtained via OAuth 2.0 flow
+  parameters:
+    sObjectName:
+      name: sObjectName
+      in: path
+      required: true
+      description: The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)
+      schema:
+        type: string
+      examples:
+        account:
+          value: Account
+          summary: Standard Account object
+        contact:
+          value: Contact
+          summary: Standard Contact object
+        lead:
+          value: Lead
+          summary: Standard Lead object
+        opportunity:
+          value: Opportunity
+          summary: Standard Opportunity object
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      description: The 15 or 18 character Salesforce record ID
+      schema:
+        type: string
+        pattern: '^[a-zA-Z0-9]{15}([a-zA-Z0-9]{3})?$'
+  schemas:
+    SObjectDescribeBrief:
+      type: object
+      description: Brief metadata description of an sObject
+      properties:
+        activateable:
+          type: boolean
+        custom:
+          type: boolean
+        customSetting:
+          type: boolean
+        createable:
+          type: boolean
+        deletable:
+          type: boolean
+        deprecatedAndHidden:
+          type: boolean
+        feedEnabled:
+          type: boolean
+        hasSubtypes:
+          type: boolean
+        isSubtype:
+          type: boolean
+        keyPrefix:
+          type: string
+          nullable: true
+        label:
+          type: string
+        labelPlural:
+          type: string
+        layoutable:
+          type: boolean
+        mergeable:
+          type: boolean
+        mruEnabled:
+          type: boolean
+        name:
+          type: string
+        queryable:
+          type: boolean
+        replicateable:
+          type: boolean
+        retrieveable:
+          type: boolean
+        searchable:
+          type: boolean
+        triggerable:
+          type: boolean
+        undeletable:
+          type: boolean
+        updateable:
+          type: boolean
+        urls:
+          type: object
+          additionalProperties:
+            type: string
+    SObjectDescribe:
+      type: object
+      description: Full metadata description of an sObject including fields and relationships
+      properties:
+        actionOverrides:
+          type: array
+          items:
+            type: object
+        activateable:
+          type: boolean
+        childRelationships:
+          type: array
+          items:
+            type: object
+            properties:
+              cascadeDelete:
+                type: boolean
+              childSObject:
+                type: string
+              deprecatedAndHidden:
+                type: boolean
+              field:
+                type: string
+              junctionIdListNames:
+                type: array
+                items:
+                  type: string
+              junctionReferenceTo:
+                type: array
+                items:
+                  type: string
+              relationshipName:
+                type: string
+                nullable: true
+              restrictedDelete:
+                type: boolean
+        compactLayoutable:
+          type: boolean
+        createable:
+          type: boolean
+        custom:
+          type: boolean
+        customSetting:
+          type: boolean
+        deletable:
+          type: boolean
+        deprecatedAndHidden:
+          type: boolean
+        feedEnabled:
+          type: boolean
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldDescribe'
+        hasSubtypes:
+          type: boolean
+        isSubtype:
+          type: boolean
+        keyPrefix:
+          type: string
+          nullable: true
+        label:
+          type: string
+        labelPlural:
+          type: string
+        layoutable:
+          type: boolean
+        listviewable:
+          type: boolean
+        lookupLayoutable:
+          type: boolean
+        mergeable:
+          type: boolean
+        mruEnabled:
+          type: boolean
+        name:
+          type: string
+        namedLayoutInfos:
+          type: array
+          items:
+            type: object
+        queryable:
+          type: boolean
+        recordTypeInfos:
+          type: array
+          items:
+            type: object
+            properties:
+              active:
+                type: boolean
+              available:
+                type: boolean
+              defaultRecordTypeMapping:
+                type: boolean
+              developerName:
+                type: string
+              master:
+                type: boolean
+              name:
+                type: string
+              recordTypeId:
+                type: string
+        replicateable:
+          type: boolean
+        retrieveable:
+          type: boolean
+        searchLayoutable:
+          type: boolean
+        searchable:
+          type: boolean
+        triggerable:
+          type: boolean
+        undeletable:
+          type: boolean
+        updateable:
+          type: boolean
+        urls:
+          type: object
+          additionalProperties:
+            type: string
+    FieldDescribe:
+      type: object
+      description: Metadata description of a single field on an sObject
+      properties:
+        aggregatable:
+          type: boolean
+        autoNumber:
+          type: boolean
+        byteLength:
+          type: integer
+        calculated:
+          type: boolean
+        calculatedFormula:
+          type: string
+          nullable: true
+        cascadeDelete:
+          type: boolean
+        caseSensitive:
+          type: boolean
+        compoundFieldName:
+          type: string
+          nullable: true
+        controllerName:
+          type: string
+          nullable: true
+        createable:
+          type: boolean
+        custom:
+          type: boolean
+        defaultValue:
+          nullable: true
+        defaultValueFormula:
+          type: string
+          nullable: true
+        defaultedOnCreate:
+          type: boolean
+        dependentPicklist:
+          type: boolean
+        deprecatedAndHidden:
+          type: boolean
+        digits:
+          type: integer
+        displayLocationInDecimal:
+          type: boolean
+        encrypted:
+          type: boolean
+        externalId:
+          type: boolean
+        extraTypeInfo:
+          type: string
+          nullable: true
+        filterable:
+          type: boolean
+        filteredLookupInfo:
+          type: object
+          nullable: true
+        formulaTreatNullNumberAsZero:
+          type: boolean
+        groupable:
+          type: boolean
+        highScaleNumber:
+          type: boolean
+        htmlFormatted:
+          type: boolean
+        idLookup:
+          type: boolean
+        inlineHelpText:
+          type: string
+          nullable: true
+        label:
+          type: string
+        length:
+          type: integer
+        mask:
+          type: string
+          nullable: true
+        maskType:
+          type: string
+          nullable: true
+        name:
+          type: string
+        nameField:
+          type: boolean
+        namePointing:
+          type: boolean
+        nillable:
+          type: boolean
+        permissionable:
+          type: boolean
+        picklistValues:
+          type: array
+          items:
+            type: object
+            properties:
+              active:
+                type: boolean
+              defaultValue:
+                type: boolean
+              label:
+                type: string
+              validFor:
+                type: string
+                nullable: true
+              value:
+                type: string
+        polymorphicForeignKey:
+          type: boolean
+        precision:
+          type: integer
+        queryByDistance:
+          type: boolean
+        referenceTargetField:
+          type: string
+          nullable: true
+        referenceTo:
+          type: array
+          items:
+            type: string
+        relationshipName:
+          type: string
+          nullable: true
+        relationshipOrder:
+          type: integer
+          nullable: true
+        restrictedDelete:
+          type: boolean
+        restrictedPicklist:
+          type: boolean
+        scale:
+          type: integer
+        searchPrefilterable:
+          type: boolean
+        soapType:
+          type: string
+        sortable:
+          type: boolean
+        type:
+          type: string
+          enum:
+            - id
+            - boolean
+            - currency
+            - date
+            - datetime
+            - double
+            - email
+            - int
+            - multipicklist
+            - percent
+            - phone
+            - picklist
+            - reference
+            - string
+            - textarea
+            - url
+        unique:
+          type: boolean
+        updateable:
+          type: boolean
+        writeRequiresMasterRead:
+          type: boolean
+    SObjectRecord:
+      type: object
+      description: An sObject record with attributes and field values
+      properties:
+        attributes:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The sObject type
+            url:
+              type: string
+              description: The relative URL for the record
+        Id:
+          type: string
+          description: The 18-character Salesforce record ID
+      additionalProperties: true
+    CreateRecordResult:
+      type: object
+      description: Result from a create, update, or delete operation
+      properties:
+        id:
+          type: string
+          description: The ID of the created or affected record
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+        errors:
+          type: array
+          description: List of errors if the operation failed
+          items:
+            $ref: '#/components/schemas/ApiError'
+    QueryResult:
+      type: object
+      description: Result from a SOQL query execution
+      properties:
+        totalSize:
+          type: integer
+          description: Total number of records matching the query
+        done:
+          type: boolean
+          description: Whether all results have been returned
+        nextRecordsUrl:
+          type: string
+          description: URL to retrieve the next batch of results (if done is false)
+        records:
+          type: array
+          description: Array of matching records
+          items:
+            $ref: '#/components/schemas/SObjectRecord'
+    SearchResult:
+      type: object
+      description: Result from a SOSL search execution
+      properties:
+        searchRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/SObjectRecord'
+    ApiError:
+      type: object
+      description: An API error message
+      properties:
+        statusCode:
+          type: string
+          description: The error status code
+        message:
+          type: string
+          description: The error message
+        fields:
+          type: array
+          description: Fields related to the error
+          items:
+            type: string
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    BadRequest:
+      description: Invalid request - malformed query, missing required fields, or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed - invalid, expired, or missing access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found - invalid sObject name or record ID
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

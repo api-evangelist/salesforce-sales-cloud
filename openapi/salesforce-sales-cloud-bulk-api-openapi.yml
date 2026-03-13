@@ -1,0 +1,764 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Bulk API 2.0
+  description: >-
+    Optimized API for loading, updating, or deleting large data sets
+    asynchronously with better performance than REST API. Supports ingest
+    (insert, update, upsert, delete) and query operations on large volumes of
+    records using CSV data format. Designed for ETL workflows and mass data
+    operations.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Bulk API 2.0 and Bulk API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+  - url: https://{instance}.sandbox.my.salesforce.com/services/data/v59.0
+    description: Salesforce Sandbox
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce sandbox instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Ingest Jobs
+    description: Create and manage bulk ingest jobs for insert, update, upsert, and delete operations
+  - name: Ingest Data
+    description: Upload CSV data to ingest jobs and retrieve results
+  - name: Query Jobs
+    description: Create and manage bulk query jobs for extracting large data sets
+  - name: Query Results
+    description: Retrieve results from completed query jobs
+paths:
+  /jobs/ingest:
+    get:
+      operationId: listIngestJobs
+      summary: List all ingest jobs
+      description: >-
+        Retrieves all ingest jobs in the org. Results include jobs that have
+        been opened, those in progress, and completed jobs in all states.
+      tags:
+        - Ingest Jobs
+      parameters:
+        - name: isPkChunkingEnabled
+          in: query
+          description: Filter by PK Chunking enabled status
+          required: false
+          schema:
+            type: boolean
+        - name: jobType
+          in: query
+          description: Filter by job type
+          required: false
+          schema:
+            type: string
+            enum:
+              - BigObjectIngest
+              - Classic
+              - V2Ingest
+        - name: concurrencyMode
+          in: query
+          description: Filter by concurrency mode
+          required: false
+          schema:
+            type: string
+            enum:
+              - parallel
+        - name: queryLocator
+          in: query
+          description: Query locator for paginating through results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved list of ingest jobs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  done:
+                    type: boolean
+                    description: Indicates if all results have been returned
+                  nextRecordsUrl:
+                    type: string
+                    description: URL for the next set of results
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IngestJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createIngestJob
+      summary: Create an ingest job
+      description: >-
+        Creates a new ingest job for bulk insert, update, upsert, or delete
+        operations. After creating the job, upload CSV data using the job ID,
+        then close the job to begin processing.
+      tags:
+        - Ingest Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIngestJobRequest'
+      responses:
+        '200':
+          description: Ingest job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestJobInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /jobs/ingest/{jobId}:
+    get:
+      operationId: getIngestJobInfo
+      summary: Get ingest job information
+      description: >-
+        Retrieves detailed information about an ingest job, including its
+        current state, number of records processed, and any errors.
+      tags:
+        - Ingest Jobs
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved ingest job information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateIngestJobState
+      summary: Close, abort, or delete an ingest job
+      description: >-
+        Updates the state of an ingest job. Set the state to UploadComplete to
+        close the job and begin processing, or Aborted to abort the job.
+        A job must be closed before Salesforce processes the uploaded data.
+      tags:
+        - Ingest Jobs
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - state
+              properties:
+                state:
+                  type: string
+                  description: The new state for the job
+                  enum:
+                    - UploadComplete
+                    - Aborted
+      responses:
+        '200':
+          description: Job state updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestJobInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteIngestJob
+      summary: Delete an ingest job
+      description: >-
+        Deletes an ingest job. The job must be in a terminal state (JobComplete,
+        Aborted, or Failed) before it can be deleted.
+      tags:
+        - Ingest Jobs
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '204':
+          description: Job deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs/ingest/{jobId}/batches:
+    put:
+      operationId: uploadIngestJobData
+      summary: Upload data for an ingest job
+      description: >-
+        Uploads CSV data for an ingest job. The job must be in the Open state.
+        You can upload data in multiple requests, each up to 150 MB. The CSV
+        data must include a header row with field API names.
+      tags:
+        - Ingest Data
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema:
+              type: string
+              description: CSV data with header row containing field API names
+      responses:
+        '201':
+          description: Data uploaded successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs/ingest/{jobId}/successfulResults:
+    get:
+      operationId: getIngestJobSuccessfulResults
+      summary: Get successful results for an ingest job
+      description: >-
+        Retrieves a list of successfully processed records for a completed
+        ingest job. Results are returned in CSV format.
+      tags:
+        - Ingest Data
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved successful results
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: CSV data of successfully processed records
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs/ingest/{jobId}/failedResults:
+    get:
+      operationId: getIngestJobFailedResults
+      summary: Get failed results for an ingest job
+      description: >-
+        Retrieves a list of failed records for a completed ingest job. Results
+        are returned in CSV format and include error information for each
+        failed record.
+      tags:
+        - Ingest Data
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved failed results
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: CSV data of failed records with error details
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs/ingest/{jobId}/unprocessedrecords:
+    get:
+      operationId: getIngestJobUnprocessedRecords
+      summary: Get unprocessed records for an ingest job
+      description: >-
+        Retrieves a list of unprocessed records for a completed ingest job.
+        These are records that were not processed due to the job being aborted
+        or hitting limits.
+      tags:
+        - Ingest Data
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved unprocessed records
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: CSV data of unprocessed records
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs/query:
+    get:
+      operationId: listQueryJobs
+      summary: List all query jobs
+      description: >-
+        Retrieves all query jobs in the org. Results include jobs in all
+        states including completed, failed, and aborted jobs.
+      tags:
+        - Query Jobs
+      parameters:
+        - name: isPkChunkingEnabled
+          in: query
+          description: Filter by PK Chunking enabled status
+          required: false
+          schema:
+            type: boolean
+        - name: jobType
+          in: query
+          description: Filter by job type
+          required: false
+          schema:
+            type: string
+            enum:
+              - BigObjectIngest
+              - Classic
+              - V2Query
+        - name: queryLocator
+          in: query
+          description: Query locator for paginating through results
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved list of query jobs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  done:
+                    type: boolean
+                  nextRecordsUrl:
+                    type: string
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/QueryJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createQueryJob
+      summary: Create a query job
+      description: >-
+        Creates a new query job to extract data from Salesforce using SOQL.
+        The query runs asynchronously and results can be retrieved when the
+        job completes.
+      tags:
+        - Query Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQueryJobRequest'
+      responses:
+        '200':
+          description: Query job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryJobInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /jobs/query/{jobId}:
+    get:
+      operationId: getQueryJobInfo
+      summary: Get query job information
+      description: >-
+        Retrieves detailed information about a query job including its current
+        state, number of records processed, and the SOQL query.
+      tags:
+        - Query Jobs
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved query job information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: abortQueryJob
+      summary: Abort a query job
+      description: >-
+        Aborts a query job. Only jobs that have not yet completed can be aborted.
+      tags:
+        - Query Jobs
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - state
+              properties:
+                state:
+                  type: string
+                  enum:
+                    - Aborted
+      responses:
+        '200':
+          description: Query job aborted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteQueryJob
+      summary: Delete a query job
+      description: >-
+        Deletes a query job. The job must be in a terminal state before it
+        can be deleted.
+      tags:
+        - Query Jobs
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+      responses:
+        '204':
+          description: Query job deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs/query/{jobId}/results:
+    get:
+      operationId: getQueryJobResults
+      summary: Get query job results
+      description: >-
+        Retrieves the results of a completed query job in CSV format. Use the
+        locator and maxRecords parameters to paginate through large result sets.
+      tags:
+        - Query Results
+      parameters:
+        - $ref: '#/components/parameters/jobId'
+        - name: locator
+          in: query
+          description: Locator value for retrieving the next set of results
+          required: false
+          schema:
+            type: string
+        - name: maxRecords
+          in: query
+          description: Maximum number of records to return per request
+          required: false
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successfully retrieved query results
+          headers:
+            Sforce-Locator:
+              description: Locator value for the next set of results (null if no more)
+              schema:
+                type: string
+            Sforce-NumberOfRecords:
+              description: Number of records in this result set
+              schema:
+                type: integer
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: CSV data of query results
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      required: true
+      description: The ID of the bulk job
+      schema:
+        type: string
+  schemas:
+    CreateIngestJobRequest:
+      type: object
+      description: Request body for creating a new ingest job
+      required:
+        - object
+        - operation
+      properties:
+        assignmentRuleId:
+          type: string
+          description: The ID of an assignment rule to apply during the operation
+        columnDelimiter:
+          type: string
+          description: The column delimiter used in the CSV data
+          enum:
+            - BACKQUOTE
+            - CARET
+            - COMMA
+            - PIPE
+            - SEMICOLON
+            - TAB
+          default: COMMA
+        contentType:
+          type: string
+          description: The content type of the data
+          enum:
+            - CSV
+          default: CSV
+        externalIdFieldName:
+          type: string
+          description: The external ID field name for upsert operations
+        lineEnding:
+          type: string
+          description: The line ending used in the CSV data
+          enum:
+            - LF
+            - CRLF
+          default: LF
+        object:
+          type: string
+          description: The sObject type for the job (e.g., Account, Contact)
+        operation:
+          type: string
+          description: The operation to perform
+          enum:
+            - insert
+            - delete
+            - hardDelete
+            - update
+            - upsert
+    CreateQueryJobRequest:
+      type: object
+      description: Request body for creating a new query job
+      required:
+        - operation
+        - query
+      properties:
+        operation:
+          type: string
+          description: The operation type
+          enum:
+            - query
+            - queryAll
+        query:
+          type: string
+          description: The SOQL query string
+        columnDelimiter:
+          type: string
+          description: The column delimiter for the result CSV
+          enum:
+            - BACKQUOTE
+            - CARET
+            - COMMA
+            - PIPE
+            - SEMICOLON
+            - TAB
+          default: COMMA
+        lineEnding:
+          type: string
+          description: The line ending for the result CSV
+          enum:
+            - LF
+            - CRLF
+          default: LF
+    IngestJobInfo:
+      type: object
+      description: Detailed information about an ingest job
+      properties:
+        id:
+          type: string
+          description: The unique ID for the job
+        operation:
+          type: string
+          enum:
+            - insert
+            - delete
+            - hardDelete
+            - update
+            - upsert
+        object:
+          type: string
+          description: The sObject type
+        createdById:
+          type: string
+          description: The ID of the user who created the job
+        createdDate:
+          type: string
+          format: date-time
+        systemModstamp:
+          type: string
+          format: date-time
+        state:
+          type: string
+          description: The current state of the job
+          enum:
+            - Open
+            - UploadComplete
+            - InProgress
+            - JobComplete
+            - Aborted
+            - Failed
+        externalIdFieldName:
+          type: string
+          description: The external ID field for upsert operations
+        concurrencyMode:
+          type: string
+          enum:
+            - parallel
+        contentType:
+          type: string
+          enum:
+            - CSV
+        apiVersion:
+          type: number
+          description: The API version for the job
+        jobType:
+          type: string
+          enum:
+            - BigObjectIngest
+            - Classic
+            - V2Ingest
+        contentUrl:
+          type: string
+          description: URL for uploading data
+        lineEnding:
+          type: string
+        columnDelimiter:
+          type: string
+        numberRecordsProcessed:
+          type: integer
+          description: Number of records processed
+        numberRecordsFailed:
+          type: integer
+          description: Number of records that failed
+        retries:
+          type: integer
+        totalProcessingTime:
+          type: integer
+          description: Total processing time in milliseconds
+        apiActiveProcessingTime:
+          type: integer
+        apexProcessingTime:
+          type: integer
+    QueryJobInfo:
+      type: object
+      description: Detailed information about a query job
+      properties:
+        id:
+          type: string
+        operation:
+          type: string
+          enum:
+            - query
+            - queryAll
+        object:
+          type: string
+        createdById:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        systemModstamp:
+          type: string
+          format: date-time
+        state:
+          type: string
+          enum:
+            - UploadComplete
+            - InProgress
+            - JobComplete
+            - Aborted
+            - Failed
+        concurrencyMode:
+          type: string
+        contentType:
+          type: string
+        apiVersion:
+          type: number
+        jobType:
+          type: string
+        lineEnding:
+          type: string
+        columnDelimiter:
+          type: string
+        numberRecordsProcessed:
+          type: integer
+        retries:
+          type: integer
+        totalProcessingTime:
+          type: integer
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed or access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified job was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

@@ -1,0 +1,537 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Composite API
+  description: >-
+    Executes a series of REST API requests in a single call, reducing round
+    trips between client and server. Supports composite requests with
+    inter-request references, composite batches for independent subrequests,
+    composite graphs for complex multi-step operations, and sObject tree
+    for hierarchical record creation.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Using Composite Resources - REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Composite
+    description: Composite requests with inter-request references
+  - name: Composite Batch
+    description: Batch of independent subrequests
+  - name: Composite Graph
+    description: Complex multi-step composite graph operations
+  - name: SObject Tree
+    description: Hierarchical record creation
+  - name: SObject Collections
+    description: Bulk CRUD on collections of same-type records
+paths:
+  /composite:
+    post:
+      operationId: executeCompositeRequest
+      summary: Execute a composite request
+      description: >-
+        Executes a series of REST API requests in a single call. Each request
+        can reference the results of previous requests via referenceId, enabling
+        dependent operations. Supports up to 25 subrequests per composite call.
+        If allOrNone is true, all subrequests are rolled back on any failure.
+      tags:
+        - Composite
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompositeRequest'
+      responses:
+        '200':
+          description: Composite request executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /composite/batch:
+    post:
+      operationId: executeCompositeBatch
+      summary: Execute a composite batch request
+      description: >-
+        Executes up to 25 subrequests in a single request. Subrequests are
+        independent and do not share context or reference each other. Each
+        subrequest counts against rate limits. The response includes the
+        status code and result for each subrequest.
+      tags:
+        - Composite Batch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompositeBatchRequest'
+      responses:
+        '200':
+          description: Batch request executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeBatchResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /composite/graph:
+    post:
+      operationId: executeCompositeGraph
+      summary: Execute a composite graph request
+      description: >-
+        Executes one or more composite graphs. Each graph consists of a series
+        of composite subrequests that can reference each other. Graphs are
+        independent of each other and can succeed or fail independently.
+        Available in API version 50.0 and later.
+      tags:
+        - Composite Graph
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompositeGraphRequest'
+      responses:
+        '200':
+          description: Graph request executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeGraphResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /composite/tree/{sObjectName}:
+    post:
+      operationId: createSObjectTree
+      summary: Create an sObject tree
+      description: >-
+        Creates one or more sObject trees with root records of the specified
+        type. An sObject tree is a collection of nested, parent-child records
+        with a single root record. Use this to create a parent record with
+        related child records in a single request.
+      tags:
+        - SObject Tree
+      parameters:
+        - name: sObjectName
+          in: path
+          required: true
+          description: The API name of the root sObject type
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                records:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/SObjectTreeRecord'
+      responses:
+        '201':
+          description: Tree records created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  hasErrors:
+                    type: boolean
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        referenceId:
+                          type: string
+                        errors:
+                          type: array
+                          items:
+                            $ref: '#/components/schemas/ApiError'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /composite/sobjects:
+    post:
+      operationId: createSObjectCollection
+      summary: Create a collection of sObject records
+      description: >-
+        Creates up to 200 records of the same or different sObject types in
+        a single request. Returns individual success/failure results for
+        each record.
+      tags:
+        - SObject Collections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allOrNone:
+                  type: boolean
+                  default: false
+                records:
+                  type: array
+                  maxItems: 200
+                  items:
+                    type: object
+                    additionalProperties: true
+      responses:
+        '200':
+          description: Collection operation results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateSObjectCollection
+      summary: Update a collection of sObject records
+      description: >-
+        Updates up to 200 records in a single request. Each record must include
+        the Id field and sObject type.
+      tags:
+        - SObject Collections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allOrNone:
+                  type: boolean
+                  default: false
+                records:
+                  type: array
+                  maxItems: 200
+                  items:
+                    type: object
+                    additionalProperties: true
+      responses:
+        '200':
+          description: Collection update results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteSObjectCollection
+      summary: Delete a collection of sObject records
+      description: >-
+        Deletes up to 200 records in a single request. Record IDs are passed
+        as a comma-separated list in the ids query parameter.
+      tags:
+        - SObject Collections
+      parameters:
+        - name: ids
+          in: query
+          required: true
+          description: Comma-separated list of record IDs to delete
+          schema:
+            type: string
+        - name: allOrNone
+          in: query
+          required: false
+          schema:
+            type: boolean
+            default: false
+      responses:
+        '200':
+          description: Collection delete results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  schemas:
+    CompositeRequest:
+      type: object
+      description: A composite request containing multiple subrequests
+      required:
+        - compositeRequest
+      properties:
+        allOrNone:
+          type: boolean
+          default: false
+          description: If true, all subrequests are rolled back on any failure
+        collateSubrequests:
+          type: boolean
+          default: false
+          description: If true, subrequests with no dependencies are executed in parallel
+        compositeRequest:
+          type: array
+          maxItems: 25
+          items:
+            type: object
+            required:
+              - method
+              - url
+              - referenceId
+            properties:
+              body:
+                description: The request body for the subrequest
+              httpHeaders:
+                type: object
+                additionalProperties:
+                  type: string
+              method:
+                type: string
+                enum:
+                  - GET
+                  - POST
+                  - PATCH
+                  - PUT
+                  - DELETE
+              referenceId:
+                type: string
+                description: Unique identifier for this subrequest, used to reference results
+              url:
+                type: string
+                description: The resource URL relative to the API version
+    CompositeResponse:
+      type: object
+      description: Response from a composite request
+      properties:
+        compositeResponse:
+          type: array
+          items:
+            type: object
+            properties:
+              body:
+                description: The response body
+              httpHeaders:
+                type: object
+                additionalProperties:
+                  type: string
+              httpStatusCode:
+                type: integer
+              referenceId:
+                type: string
+    CompositeBatchRequest:
+      type: object
+      description: A batch of independent subrequests
+      required:
+        - batchRequests
+      properties:
+        haltOnError:
+          type: boolean
+          default: false
+        batchRequests:
+          type: array
+          maxItems: 25
+          items:
+            type: object
+            required:
+              - method
+              - url
+            properties:
+              method:
+                type: string
+                enum:
+                  - GET
+                  - POST
+                  - PATCH
+                  - PUT
+                  - DELETE
+              url:
+                type: string
+              richInput:
+                description: The request body for the subrequest
+    CompositeBatchResponse:
+      type: object
+      description: Response from a composite batch request
+      properties:
+        hasErrors:
+          type: boolean
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              result:
+                description: The subrequest result
+    CompositeGraphRequest:
+      type: object
+      description: A composite graph request containing one or more graphs
+      required:
+        - graphs
+      properties:
+        graphs:
+          type: array
+          items:
+            type: object
+            required:
+              - graphId
+              - compositeRequest
+            properties:
+              graphId:
+                type: string
+                description: Unique identifier for this graph
+              compositeRequest:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - method
+                    - url
+                    - referenceId
+                  properties:
+                    body:
+                      description: The request body
+                    method:
+                      type: string
+                      enum:
+                        - GET
+                        - POST
+                        - PATCH
+                        - PUT
+                        - DELETE
+                    referenceId:
+                      type: string
+                    url:
+                      type: string
+    CompositeGraphResponse:
+      type: object
+      description: Response from a composite graph request
+      properties:
+        graphs:
+          type: array
+          items:
+            type: object
+            properties:
+              graphId:
+                type: string
+              graphResponse:
+                type: object
+                properties:
+                  compositeResponse:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        body:
+                          description: The response body
+                        httpHeaders:
+                          type: object
+                        httpStatusCode:
+                          type: integer
+                        referenceId:
+                          type: string
+              isSuccessful:
+                type: boolean
+    SObjectTreeRecord:
+      type: object
+      description: An sObject tree record with optional nested child records
+      properties:
+        attributes:
+          type: object
+          properties:
+            type:
+              type: string
+            referenceId:
+              type: string
+      additionalProperties: true
+    SaveResult:
+      type: object
+      description: Result of a single record create, update, or delete operation
+      properties:
+        id:
+          type: string
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

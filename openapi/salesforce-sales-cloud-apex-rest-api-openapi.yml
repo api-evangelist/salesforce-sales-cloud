@@ -1,0 +1,256 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Apex REST API
+  description: >-
+    Create custom REST endpoints in Salesforce using Apex classes annotated
+    with @RestResource. Supports OAuth 2.0 authentication and JSON and XML
+    request and response formats. Custom Apex REST endpoints are accessed
+    under the /services/apexrest/ URL namespace. Each endpoint is defined
+    by an Apex class with @HttpGet, @HttpPost, @HttpPatch, @HttpPut, and
+    @HttpDelete annotated methods.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Apex REST Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/apexrest
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Custom Endpoints
+    description: Custom Apex REST endpoints defined by @RestResource annotated classes
+paths:
+  /{resourcePath}:
+    get:
+      operationId: getApexRestResource
+      summary: GET request to a custom Apex REST endpoint
+      description: >-
+        Executes the @HttpGet annotated method on the Apex class mapped to
+        the specified resource path. The resource path is defined by the
+        urlMapping property of the @RestResource annotation on the Apex class.
+        Response format depends on the Apex class implementation.
+      tags:
+        - Custom Endpoints
+      parameters:
+        - $ref: '#/components/parameters/resourcePath'
+      responses:
+        '200':
+          description: Successful response from the custom endpoint
+          content:
+            application/json:
+              schema:
+                description: Response structure defined by the Apex REST class
+            application/xml:
+              schema:
+                description: Response structure defined by the Apex REST class
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    post:
+      operationId: postApexRestResource
+      summary: POST request to a custom Apex REST endpoint
+      description: >-
+        Executes the @HttpPost annotated method on the Apex class mapped to
+        the specified resource path. The request body is deserialized into
+        the method's parameters.
+      tags:
+        - Custom Endpoints
+      parameters:
+        - $ref: '#/components/parameters/resourcePath'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              description: Request body defined by the Apex REST class
+          application/xml:
+            schema:
+              description: Request body defined by the Apex REST class
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                description: Response structure defined by the Apex REST class
+        '201':
+          description: Resource created
+          content:
+            application/json:
+              schema:
+                description: Response structure defined by the Apex REST class
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    patch:
+      operationId: patchApexRestResource
+      summary: PATCH request to a custom Apex REST endpoint
+      description: >-
+        Executes the @HttpPatch annotated method on the Apex class mapped to
+        the specified resource path. Typically used for partial updates.
+      tags:
+        - Custom Endpoints
+      parameters:
+        - $ref: '#/components/parameters/resourcePath'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              description: Request body defined by the Apex REST class
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                description: Response structure defined by the Apex REST class
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    put:
+      operationId: putApexRestResource
+      summary: PUT request to a custom Apex REST endpoint
+      description: >-
+        Executes the @HttpPut annotated method on the Apex class mapped to
+        the specified resource path. Typically used for full replacements
+        or upserts.
+      tags:
+        - Custom Endpoints
+      parameters:
+        - $ref: '#/components/parameters/resourcePath'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              description: Request body defined by the Apex REST class
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                description: Response structure defined by the Apex REST class
+        '201':
+          description: Resource created
+          content:
+            application/json:
+              schema:
+                description: Response structure defined by the Apex REST class
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    delete:
+      operationId: deleteApexRestResource
+      summary: DELETE request to a custom Apex REST endpoint
+      description: >-
+        Executes the @HttpDelete annotated method on the Apex class mapped to
+        the specified resource path. The record to delete is typically
+        identified by a query parameter or path segment.
+      tags:
+        - Custom Endpoints
+      parameters:
+        - $ref: '#/components/parameters/resourcePath'
+      responses:
+        '200':
+          description: Resource deleted successfully
+        '204':
+          description: Resource deleted, no content
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalError'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  parameters:
+    resourcePath:
+      name: resourcePath
+      in: path
+      required: true
+      description: >-
+        The resource path defined by the @RestResource urlMapping annotation
+        on the Apex class (e.g., /MyCustomEndpoint/*)
+      schema:
+        type: string
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    BadRequest:
+      description: Invalid request parameters or body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource or endpoint not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    InternalError:
+      description: Unhandled Apex exception or internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

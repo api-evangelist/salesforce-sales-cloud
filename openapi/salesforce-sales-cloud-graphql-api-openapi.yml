@@ -1,0 +1,180 @@
+openapi: 3.1.0
+info:
+  title: Salesforce GraphQL API
+  description: >-
+    Query and mutate Salesforce data using GraphQL, allowing clients to request
+    exactly the fields they need in a single request. Reduces payload size and
+    supports aggregation across object relationships. Supports queries for
+    reading data and mutations (RecordCreate, RecordUpdate, RecordDelete) for
+    modifying records.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Salesforce GraphQL API Developer Guide
+  url: https://developer.salesforce.com/docs/platform/graphql/overview
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: GraphQL
+    description: Execute GraphQL queries and mutations against Salesforce data
+paths:
+  /graphql:
+    post:
+      operationId: executeGraphQLQuery
+      summary: Execute a GraphQL query or mutation
+      description: >-
+        Executes a GraphQL query or mutation against the Salesforce data model.
+        Queries allow reading data from any accessible sObject with field-level
+        precision. Mutations support RecordCreate, RecordUpdate, and
+        RecordDelete operations through the UIAPIMutations type. The request
+        body must contain the GraphQL query string and may optionally include
+        variables and an operation name.
+      tags:
+        - GraphQL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+      responses:
+        '200':
+          description: GraphQL query or mutation executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+        '400':
+          description: Malformed GraphQL request or syntax error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLErrorResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  schemas:
+    GraphQLRequest:
+      type: object
+      description: A GraphQL request payload
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: The GraphQL query or mutation string
+          example: |
+            {
+              uiapi {
+                query {
+                  Account(first: 10) {
+                    edges {
+                      node {
+                        Id
+                        Name { value }
+                        Industry { value }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+        variables:
+          type: object
+          description: Variables referenced in the query
+          additionalProperties: true
+        operationName:
+          type: string
+          description: Name of the operation to execute if the query contains multiple operations
+    GraphQLResponse:
+      type: object
+      description: A GraphQL response containing data and/or errors
+      properties:
+        data:
+          description: The result data from the query or mutation
+          nullable: true
+        errors:
+          type: array
+          description: List of errors encountered during execution
+          items:
+            $ref: '#/components/schemas/GraphQLError'
+    GraphQLErrorResponse:
+      type: object
+      description: A response containing only errors
+      properties:
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/GraphQLError'
+    GraphQLError:
+      type: object
+      description: A single GraphQL error
+      properties:
+        message:
+          type: string
+          description: Description of the error
+        locations:
+          type: array
+          description: Locations in the query where the error occurred
+          items:
+            type: object
+            properties:
+              line:
+                type: integer
+              column:
+                type: integer
+        path:
+          type: array
+          description: Path to the field that caused the error
+          items:
+            type: string
+        extensions:
+          type: object
+          description: Additional error details
+          additionalProperties: true
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

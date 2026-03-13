@@ -1,0 +1,311 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Change Data Capture API
+  description: >-
+    Receive near-real-time notifications of changes to Salesforce records
+    including creates, updates, deletes, and undeletes. Enables synchronization
+    of external data stores with Salesforce data. Uses REST endpoints for
+    schema retrieval and configuration, with event delivery via CometD
+    streaming or Pub/Sub API.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Change Data Capture Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Change Events
+    description: Change event metadata and schema operations
+  - name: Event Schema
+    description: Retrieve event schema definitions
+paths:
+  /sobjects/{changeEventName}:
+    get:
+      operationId: describeChangeEvent
+      summary: Describe a change event object
+      description: >-
+        Retrieves metadata about a change event object. For standard objects,
+        the change event name follows the pattern {ObjectName}ChangeEvent
+        (e.g., AccountChangeEvent). For custom objects, the pattern is
+        {ObjectName}__ChangeEvent.
+      tags:
+        - Change Events
+      parameters:
+        - $ref: '#/components/parameters/changeEventName'
+      responses:
+        '200':
+          description: Successfully retrieved change event metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  objectDescribe:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      label:
+                        type: string
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            label:
+                              type: string
+                            type:
+                              type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sobjects/{changeEventName}/describe:
+    get:
+      operationId: describeChangeEventFull
+      summary: Get full change event metadata
+      description: >-
+        Returns complete metadata for a change event type including all
+        header and changed fields. The change event header contains the
+        changeType (CREATE, UPDATE, DELETE, UNDELETE), changedFields,
+        commitTimestamp, transactionKey, and other metadata.
+      tags:
+        - Change Events
+      parameters:
+        - $ref: '#/components/parameters/changeEventName'
+      responses:
+        '200':
+          description: Successfully retrieved full metadata
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sobjects/{changeEventName}/eventSchema:
+    get:
+      operationId: getChangeEventSchema
+      summary: Get change event Avro schema
+      description: >-
+        Retrieves the Apache Avro schema for the specified change event.
+        The schema defines the event message structure including header
+        fields and object-specific data fields.
+      tags:
+        - Event Schema
+      parameters:
+        - $ref: '#/components/parameters/changeEventName'
+        - name: payloadFormat
+          in: query
+          description: The payload format for the schema
+          required: false
+          schema:
+            type: string
+            enum:
+              - EXPANDED
+              - COMPACT
+      responses:
+        '200':
+          description: Successfully retrieved event schema
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                  type:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /event/eventSchema/{schemaId}:
+    get:
+      operationId: getEventSchemaById
+      summary: Get event schema by ID
+      description: >-
+        Retrieves an event schema using the schema ID provided in a change
+        event message. Useful when dynamically processing change events and
+        needing to resolve the schema at runtime.
+      tags:
+        - Event Schema
+      parameters:
+        - name: schemaId
+          in: path
+          required: true
+          description: The schema ID from the change event message
+          schema:
+            type: string
+        - name: payloadFormat
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - EXPANDED
+              - COMPACT
+      responses:
+        '200':
+          description: Successfully retrieved schema
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  parameters:
+    changeEventName:
+      name: changeEventName
+      in: path
+      required: true
+      description: >-
+        The change event API name (e.g., AccountChangeEvent for Account,
+        Contact__ChangeEvent for a custom object)
+      schema:
+        type: string
+      examples:
+        account:
+          value: AccountChangeEvent
+          summary: Account change events
+        contact:
+          value: ContactChangeEvent
+          summary: Contact change events
+        opportunity:
+          value: OpportunityChangeEvent
+          summary: Opportunity change events
+        lead:
+          value: LeadChangeEvent
+          summary: Lead change events
+  schemas:
+    ChangeEventMessage:
+      type: object
+      description: >-
+        Structure of a change data capture event message. Note that events
+        are delivered via CometD streaming or Pub/Sub API, not REST.
+        This schema documents the message format for reference.
+      properties:
+        schema:
+          type: string
+          description: The Avro schema ID for the event
+        payload:
+          type: object
+          properties:
+            ChangeEventHeader:
+              type: object
+              properties:
+                entityName:
+                  type: string
+                  description: The sObject type that was changed
+                recordIds:
+                  type: array
+                  items:
+                    type: string
+                  description: List of record IDs affected
+                changeType:
+                  type: string
+                  description: The type of change
+                  enum:
+                    - CREATE
+                    - UPDATE
+                    - DELETE
+                    - UNDELETE
+                    - GAP_CREATE
+                    - GAP_UPDATE
+                    - GAP_DELETE
+                    - GAP_UNDELETE
+                    - GAP_OVERFLOW
+                changedFields:
+                  type: array
+                  items:
+                    type: string
+                  description: List of field names that were changed (UPDATE only)
+                changeOrigin:
+                  type: string
+                commitTimestamp:
+                  type: integer
+                  format: int64
+                  description: The timestamp of the commit in milliseconds
+                commitNumber:
+                  type: integer
+                  format: int64
+                commitUser:
+                  type: string
+                  description: The ID of the user who made the change
+                sequenceNumber:
+                  type: integer
+                transactionKey:
+                  type: string
+                  description: Unique key for the transaction
+          additionalProperties: true
+        event:
+          type: object
+          properties:
+            replayId:
+              type: integer
+              description: The replay ID for resuming event consumption
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

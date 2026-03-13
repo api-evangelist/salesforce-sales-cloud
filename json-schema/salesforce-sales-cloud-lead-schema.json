@@ -1,0 +1,309 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.salesforce.com/schemas/sales-cloud/lead.json",
+  "title": "Salesforce Lead",
+  "description": "Represents a prospect or lead. A lead is a person who has expressed interest in your company or products but has not yet been qualified as a potential buyer. After qualification, leads can be converted to accounts, contacts, and opportunities.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "description": "Unique 18-character Salesforce record identifier",
+      "pattern": "^[a-zA-Z0-9]{18}$",
+      "readOnly": true
+    },
+    "IsDeleted": {
+      "type": "boolean",
+      "description": "Indicates whether the record has been moved to the Recycle Bin",
+      "readOnly": true
+    },
+    "MasterRecordId": {
+      "type": ["string", "null"],
+      "description": "If deleted as result of a merge, ID of the master record",
+      "readOnly": true
+    },
+    "LastName": {
+      "type": "string",
+      "description": "Last name of the lead",
+      "maxLength": 80
+    },
+    "FirstName": {
+      "type": ["string", "null"],
+      "description": "First name of the lead",
+      "maxLength": 40
+    },
+    "Salutation": {
+      "type": ["string", "null"],
+      "description": "Honorific abbreviation or title",
+      "enum": [null, "Mr.", "Ms.", "Mrs.", "Dr.", "Prof."]
+    },
+    "Name": {
+      "type": "string",
+      "description": "Concatenation of FirstName, MiddleName, LastName, and Suffix",
+      "readOnly": true
+    },
+    "MiddleName": {
+      "type": ["string", "null"],
+      "description": "Middle name of the lead",
+      "maxLength": 40
+    },
+    "Suffix": {
+      "type": ["string", "null"],
+      "description": "Name suffix of the lead",
+      "maxLength": 40
+    },
+    "Title": {
+      "type": ["string", "null"],
+      "description": "Title of the lead, such as CEO or Vice President",
+      "maxLength": 128
+    },
+    "Company": {
+      "type": "string",
+      "description": "Name of the company associated with the lead",
+      "maxLength": 255
+    },
+    "Street": {
+      "type": ["string", "null"],
+      "description": "Street address for the lead"
+    },
+    "City": {
+      "type": ["string", "null"],
+      "description": "City for the lead's address",
+      "maxLength": 40
+    },
+    "State": {
+      "type": ["string", "null"],
+      "description": "State or province for the lead's address",
+      "maxLength": 80
+    },
+    "PostalCode": {
+      "type": ["string", "null"],
+      "description": "Postal code for the lead's address",
+      "maxLength": 20
+    },
+    "Country": {
+      "type": ["string", "null"],
+      "description": "Country for the lead's address",
+      "maxLength": 80
+    },
+    "Latitude": {
+      "type": ["number", "null"],
+      "description": "Latitude of the lead's address",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "Longitude": {
+      "type": ["number", "null"],
+      "description": "Longitude of the lead's address",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "Phone": {
+      "type": ["string", "null"],
+      "description": "Phone number for the lead",
+      "maxLength": 40
+    },
+    "MobilePhone": {
+      "type": ["string", "null"],
+      "description": "Mobile phone number for the lead",
+      "maxLength": 40
+    },
+    "Fax": {
+      "type": ["string", "null"],
+      "description": "Fax number for the lead",
+      "maxLength": 40
+    },
+    "Email": {
+      "type": ["string", "null"],
+      "description": "Email address for the lead",
+      "format": "email",
+      "maxLength": 80
+    },
+    "Website": {
+      "type": ["string", "null"],
+      "description": "Website for the lead",
+      "format": "uri",
+      "maxLength": 255
+    },
+    "Description": {
+      "type": ["string", "null"],
+      "description": "Text description of the lead"
+    },
+    "LeadSource": {
+      "type": ["string", "null"],
+      "description": "Source from which the lead was obtained",
+      "enum": [null, "Web", "Phone Inquiry", "Partner Referral", "Purchased List", "Other"]
+    },
+    "Status": {
+      "type": "string",
+      "description": "Status of the lead (e.g., Open, Contacted, Qualified)",
+      "enum": ["Open - Not Contacted", "Working - Contacted", "Closed - Converted", "Closed - Not Converted"]
+    },
+    "Industry": {
+      "type": ["string", "null"],
+      "description": "Industry associated with the lead",
+      "enum": [
+        null,
+        "Agriculture",
+        "Apparel",
+        "Banking",
+        "Biotechnology",
+        "Chemicals",
+        "Communications",
+        "Construction",
+        "Consulting",
+        "Education",
+        "Electronics",
+        "Energy",
+        "Engineering",
+        "Entertainment",
+        "Environmental",
+        "Finance",
+        "Food & Beverage",
+        "Government",
+        "Healthcare",
+        "Hospitality",
+        "Insurance",
+        "Machinery",
+        "Manufacturing",
+        "Media",
+        "Not For Profit",
+        "Recreation",
+        "Retail",
+        "Shipping",
+        "Technology",
+        "Telecommunications",
+        "Transportation",
+        "Utilities",
+        "Other"
+      ]
+    },
+    "Rating": {
+      "type": ["string", "null"],
+      "description": "Rating for the lead",
+      "enum": [null, "Hot", "Warm", "Cold"]
+    },
+    "AnnualRevenue": {
+      "type": ["number", "null"],
+      "description": "Annual revenue of the lead's company"
+    },
+    "NumberOfEmployees": {
+      "type": ["integer", "null"],
+      "description": "Number of employees at the lead's company"
+    },
+    "OwnerId": {
+      "type": "string",
+      "description": "ID of the user who owns this lead"
+    },
+    "IsConverted": {
+      "type": "boolean",
+      "description": "Indicates whether the lead has been converted (true) or not (false)",
+      "readOnly": true
+    },
+    "ConvertedDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Date when the lead was converted",
+      "readOnly": true
+    },
+    "ConvertedAccountId": {
+      "type": ["string", "null"],
+      "description": "Object reference ID of the account into which the lead converted",
+      "readOnly": true
+    },
+    "ConvertedContactId": {
+      "type": ["string", "null"],
+      "description": "Object reference ID of the contact into which the lead converted",
+      "readOnly": true
+    },
+    "ConvertedOpportunityId": {
+      "type": ["string", "null"],
+      "description": "Object reference ID of the opportunity created during lead conversion",
+      "readOnly": true
+    },
+    "IsUnreadByOwner": {
+      "type": "boolean",
+      "description": "Indicates whether the lead has been read by the owner"
+    },
+    "HasOptedOutOfEmail": {
+      "type": "boolean",
+      "description": "Indicates the lead does not wish to receive email",
+      "default": false
+    },
+    "DoNotCall": {
+      "type": "boolean",
+      "description": "Indicates the lead does not wish to be called",
+      "default": false
+    },
+    "HasOptedOutOfFax": {
+      "type": "boolean",
+      "description": "Indicates the lead does not wish to receive faxes",
+      "default": false
+    },
+    "CreatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was created",
+      "readOnly": true
+    },
+    "CreatedById": {
+      "type": "string",
+      "description": "ID of the user who created this record",
+      "readOnly": true
+    },
+    "LastModifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was last modified",
+      "readOnly": true
+    },
+    "LastModifiedById": {
+      "type": "string",
+      "description": "ID of the user who last modified this record",
+      "readOnly": true
+    },
+    "SystemModstamp": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "LastActivityDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "readOnly": true
+    },
+    "Jigsaw": {
+      "type": ["string", "null"],
+      "maxLength": 20
+    },
+    "JigsawContactId": {
+      "type": ["string", "null"],
+      "readOnly": true
+    },
+    "CleanStatus": {
+      "type": ["string", "null"],
+      "enum": [null, "Matched", "Different", "Acknowledged", "NotFound", "Inactive", "Pending", "SelectMatch", "Skipped"]
+    },
+    "CompanyDunsNumber": {
+      "type": ["string", "null"],
+      "description": "D-U-N-S number for the lead's company",
+      "maxLength": 9
+    },
+    "IndividualId": {
+      "type": ["string", "null"],
+      "description": "ID of the related individual record for data privacy"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Lead"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["LastName", "Company"]
+}

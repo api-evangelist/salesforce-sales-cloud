@@ -1,0 +1,169 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.salesforce.com/schemas/sales-cloud/campaign.json",
+  "title": "Salesforce Campaign",
+  "description": "Represents a marketing campaign, such as a direct mail promotion, webinar, or trade show. Campaigns organize marketing efforts and track their effectiveness by associating leads, contacts, and opportunities.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "description": "Unique 18-character Salesforce record identifier",
+      "pattern": "^[a-zA-Z0-9]{18}$",
+      "readOnly": true
+    },
+    "IsDeleted": {
+      "type": "boolean",
+      "description": "Indicates whether the record has been moved to the Recycle Bin",
+      "readOnly": true
+    },
+    "Name": {
+      "type": "string",
+      "description": "Name of the campaign",
+      "maxLength": 80
+    },
+    "ParentId": {
+      "type": ["string", "null"],
+      "description": "ID of the parent campaign for campaign hierarchy"
+    },
+    "Type": {
+      "type": ["string", "null"],
+      "description": "Type of campaign",
+      "enum": [null, "Conference", "Webinar", "Trade Show", "Public Relations", "Partners", "Referral Program", "Advertisement", "Banner Ads", "Direct Mail", "Email", "Telemarketing", "Other"]
+    },
+    "Status": {
+      "type": ["string", "null"],
+      "description": "Status of the campaign",
+      "enum": [null, "Planned", "In Progress", "Completed", "Aborted"]
+    },
+    "StartDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Starting date for the campaign"
+    },
+    "EndDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Ending date for the campaign"
+    },
+    "ExpectedRevenue": {
+      "type": ["number", "null"],
+      "description": "Amount of revenue expected from the campaign"
+    },
+    "BudgetedCost": {
+      "type": ["number", "null"],
+      "description": "Amount budgeted for the campaign"
+    },
+    "ActualCost": {
+      "type": ["number", "null"],
+      "description": "Actual amount spent on the campaign"
+    },
+    "ExpectedResponse": {
+      "type": ["number", "null"],
+      "description": "Percentage of expected response for the campaign",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "NumberSent": {
+      "type": ["number", "null"],
+      "description": "Number of individuals targeted by the campaign"
+    },
+    "IsActive": {
+      "type": "boolean",
+      "description": "Indicates whether the campaign is active",
+      "default": false
+    },
+    "Description": {
+      "type": ["string", "null"],
+      "description": "Text description of the campaign"
+    },
+    "NumberOfLeads": {
+      "type": "integer",
+      "description": "Number of leads associated with the campaign",
+      "readOnly": true
+    },
+    "NumberOfConvertedLeads": {
+      "type": "integer",
+      "description": "Number of leads converted to contacts from the campaign",
+      "readOnly": true
+    },
+    "NumberOfContacts": {
+      "type": "integer",
+      "description": "Number of contacts associated with the campaign",
+      "readOnly": true
+    },
+    "NumberOfResponses": {
+      "type": "integer",
+      "description": "Number of campaign members that have responded",
+      "readOnly": true
+    },
+    "NumberOfWonOpportunities": {
+      "type": "integer",
+      "description": "Number of won opportunities associated with the campaign",
+      "readOnly": true
+    },
+    "NumberOfOpportunities": {
+      "type": "integer",
+      "description": "Number of opportunities associated with the campaign",
+      "readOnly": true
+    },
+    "AmountAllOpportunities": {
+      "type": ["number", "null"],
+      "description": "Total amount of all opportunities associated with the campaign",
+      "readOnly": true
+    },
+    "AmountWonOpportunities": {
+      "type": ["number", "null"],
+      "description": "Total amount of won opportunities",
+      "readOnly": true
+    },
+    "OwnerId": {
+      "type": "string",
+      "description": "ID of the user who owns the campaign"
+    },
+    "CreatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "CreatedById": {
+      "type": "string",
+      "readOnly": true
+    },
+    "LastModifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "LastModifiedById": {
+      "type": "string",
+      "readOnly": true
+    },
+    "SystemModstamp": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "LastActivityDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "readOnly": true
+    },
+    "CampaignMemberRecordTypeId": {
+      "type": ["string", "null"],
+      "description": "The record type for campaign members"
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Campaign"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["Name"]
+}

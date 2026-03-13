@@ -1,0 +1,372 @@
+{
+  "@context": {
+    "@vocab": "https://developer.salesforce.com/schemas/sales-cloud/",
+    "sf": "https://developer.salesforce.com/schemas/sales-cloud/",
+    "schema": "https://schema.org/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "vcard": "http://www.w3.org/2006/vcard/ns#",
+    "org": "http://www.w3.org/ns/org#",
+    "skos": "http://www.w3.org/2004/02/skos/core#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "gr": "http://purl.org/goodrelations/v1#",
+
+    "Account": {
+      "@id": "sf:Account",
+      "@type": "schema:Organization",
+      "@context": {
+        "Name": "schema:name",
+        "Description": "schema:description",
+        "Phone": "schema:telephone",
+        "Fax": "schema:faxNumber",
+        "Website": "schema:url",
+        "Industry": "schema:isicV4",
+        "AnnualRevenue": "schema:annualRevenue",
+        "NumberOfEmployees": "schema:numberOfEmployees",
+        "BillingStreet": "schema:streetAddress",
+        "BillingCity": "schema:addressLocality",
+        "BillingState": "schema:addressRegion",
+        "BillingPostalCode": "schema:postalCode",
+        "BillingCountry": "schema:addressCountry",
+        "BillingLatitude": "schema:latitude",
+        "BillingLongitude": "schema:longitude",
+        "ShippingStreet": "schema:streetAddress",
+        "ShippingCity": "schema:addressLocality",
+        "ShippingState": "schema:addressRegion",
+        "ShippingPostalCode": "schema:postalCode",
+        "ShippingCountry": "schema:addressCountry",
+        "TickerSymbol": "schema:tickerSymbol",
+        "AccountNumber": "schema:identifier",
+        "Ownership": "schema:ownershipFundingInfo",
+        "DunsNumber": "schema:duns",
+        "NaicsCode": "schema:naics",
+        "CreatedDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "LastModifiedDate": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "OwnerId": "sf:ownedBy",
+        "ParentId": "schema:parentOrganization",
+        "Type": "sf:accountType",
+        "Rating": "schema:ratingValue",
+        "AccountSource": "sf:leadSource",
+        "Site": "schema:location"
+      }
+    },
+
+    "Contact": {
+      "@id": "sf:Contact",
+      "@type": "schema:Person",
+      "@context": {
+        "FirstName": "schema:givenName",
+        "LastName": "schema:familyName",
+        "MiddleName": "schema:additionalName",
+        "Name": "schema:name",
+        "Salutation": "schema:honorificPrefix",
+        "Suffix": "schema:honorificSuffix",
+        "Email": "schema:email",
+        "Phone": "schema:telephone",
+        "MobilePhone": "schema:telephone",
+        "HomePhone": "schema:telephone",
+        "Fax": "schema:faxNumber",
+        "Title": "schema:jobTitle",
+        "Department": "schema:department",
+        "Birthdate": {
+          "@id": "schema:birthDate",
+          "@type": "xsd:date"
+        },
+        "Description": "schema:description",
+        "MailingStreet": "schema:streetAddress",
+        "MailingCity": "schema:addressLocality",
+        "MailingState": "schema:addressRegion",
+        "MailingPostalCode": "schema:postalCode",
+        "MailingCountry": "schema:addressCountry",
+        "AccountId": {
+          "@id": "schema:worksFor",
+          "@type": "@id"
+        },
+        "ReportsToId": {
+          "@id": "org:reportsTo",
+          "@type": "@id"
+        },
+        "AssistantName": "sf:assistantName",
+        "LeadSource": "sf:leadSource",
+        "HasOptedOutOfEmail": "sf:emailOptOut",
+        "DoNotCall": "sf:doNotCall",
+        "CreatedDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "LastModifiedDate": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "OwnerId": "sf:ownedBy"
+      }
+    },
+
+    "Lead": {
+      "@id": "sf:Lead",
+      "@type": "schema:Person",
+      "@context": {
+        "FirstName": "schema:givenName",
+        "LastName": "schema:familyName",
+        "Name": "schema:name",
+        "Salutation": "schema:honorificPrefix",
+        "Title": "schema:jobTitle",
+        "Company": "schema:worksFor",
+        "Email": "schema:email",
+        "Phone": "schema:telephone",
+        "MobilePhone": "schema:telephone",
+        "Fax": "schema:faxNumber",
+        "Website": "schema:url",
+        "Description": "schema:description",
+        "Street": "schema:streetAddress",
+        "City": "schema:addressLocality",
+        "State": "schema:addressRegion",
+        "PostalCode": "schema:postalCode",
+        "Country": "schema:addressCountry",
+        "Latitude": "schema:latitude",
+        "Longitude": "schema:longitude",
+        "Industry": "schema:isicV4",
+        "AnnualRevenue": "schema:annualRevenue",
+        "NumberOfEmployees": "schema:numberOfEmployees",
+        "Status": "sf:leadStatus",
+        "Rating": "schema:ratingValue",
+        "LeadSource": "sf:leadSource",
+        "IsConverted": "sf:isConverted",
+        "ConvertedDate": {
+          "@id": "sf:convertedDate",
+          "@type": "xsd:date"
+        },
+        "ConvertedAccountId": {
+          "@id": "sf:convertedAccount",
+          "@type": "@id"
+        },
+        "ConvertedContactId": {
+          "@id": "sf:convertedContact",
+          "@type": "@id"
+        },
+        "ConvertedOpportunityId": {
+          "@id": "sf:convertedOpportunity",
+          "@type": "@id"
+        },
+        "HasOptedOutOfEmail": "sf:emailOptOut",
+        "DoNotCall": "sf:doNotCall",
+        "CreatedDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "LastModifiedDate": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "OwnerId": "sf:ownedBy"
+      }
+    },
+
+    "Opportunity": {
+      "@id": "sf:Opportunity",
+      "@type": "gr:Offering",
+      "@context": {
+        "Name": "schema:name",
+        "Description": "schema:description",
+        "Amount": {
+          "@id": "schema:price",
+          "@type": "xsd:decimal"
+        },
+        "StageName": "sf:salesStage",
+        "Probability": "sf:probability",
+        "ExpectedRevenue": "sf:expectedRevenue",
+        "CloseDate": {
+          "@id": "sf:closeDate",
+          "@type": "xsd:date"
+        },
+        "Type": "sf:opportunityType",
+        "LeadSource": "sf:leadSource",
+        "NextStep": "sf:nextStep",
+        "ForecastCategoryName": "sf:forecastCategory",
+        "IsClosed": "sf:isClosed",
+        "IsWon": "sf:isWon",
+        "AccountId": {
+          "@id": "schema:seller",
+          "@type": "@id"
+        },
+        "ContactId": {
+          "@id": "sf:primaryContact",
+          "@type": "@id"
+        },
+        "CampaignId": {
+          "@id": "sf:sourceCampaign",
+          "@type": "@id"
+        },
+        "CreatedDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "LastModifiedDate": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        },
+        "OwnerId": "sf:ownedBy"
+      }
+    },
+
+    "Task": {
+      "@id": "sf:Task",
+      "@type": "schema:Action",
+      "@context": {
+        "Subject": "schema:name",
+        "Description": "schema:description",
+        "Status": "schema:actionStatus",
+        "Priority": "sf:priority",
+        "ActivityDate": {
+          "@id": "sf:dueDate",
+          "@type": "xsd:date"
+        },
+        "WhoId": {
+          "@id": "sf:relatedContact",
+          "@type": "@id"
+        },
+        "WhatId": {
+          "@id": "sf:relatedRecord",
+          "@type": "@id"
+        },
+        "OwnerId": {
+          "@id": "schema:agent",
+          "@type": "@id"
+        },
+        "IsClosed": "sf:isClosed",
+        "CallType": "sf:callType",
+        "CallDurationInSeconds": "sf:callDuration",
+        "CompletedDateTime": {
+          "@id": "schema:endTime",
+          "@type": "xsd:dateTime"
+        },
+        "CreatedDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "LastModifiedDate": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Case": {
+      "@id": "sf:Case",
+      "@type": "schema:CreativeWork",
+      "@context": {
+        "CaseNumber": "schema:identifier",
+        "Subject": "schema:name",
+        "Description": "schema:description",
+        "Status": "sf:caseStatus",
+        "Priority": "sf:priority",
+        "Origin": "sf:caseOrigin",
+        "Reason": "sf:caseReason",
+        "Type": "sf:caseType",
+        "IsClosed": "sf:isClosed",
+        "IsEscalated": "sf:isEscalated",
+        "ClosedDate": {
+          "@id": "sf:closedDate",
+          "@type": "xsd:dateTime"
+        },
+        "ContactId": {
+          "@id": "sf:reportedBy",
+          "@type": "@id"
+        },
+        "AccountId": {
+          "@id": "sf:relatedAccount",
+          "@type": "@id"
+        },
+        "OwnerId": {
+          "@id": "schema:agent",
+          "@type": "@id"
+        },
+        "ParentId": {
+          "@id": "sf:parentCase",
+          "@type": "@id"
+        },
+        "CreatedDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "LastModifiedDate": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Campaign": {
+      "@id": "sf:Campaign",
+      "@type": "schema:Event",
+      "@context": {
+        "Name": "schema:name",
+        "Description": "schema:description",
+        "Type": "sf:campaignType",
+        "Status": "schema:eventStatus",
+        "StartDate": {
+          "@id": "schema:startDate",
+          "@type": "xsd:date"
+        },
+        "EndDate": {
+          "@id": "schema:endDate",
+          "@type": "xsd:date"
+        },
+        "IsActive": "sf:isActive",
+        "BudgetedCost": "sf:budgetedCost",
+        "ActualCost": "sf:actualCost",
+        "ExpectedRevenue": "sf:expectedRevenue",
+        "ExpectedResponse": "sf:expectedResponse",
+        "NumberSent": "sf:numberSent",
+        "NumberOfLeads": "schema:attendee",
+        "NumberOfContacts": "sf:numberOfContacts",
+        "NumberOfResponses": "sf:numberOfResponses",
+        "NumberOfOpportunities": "sf:numberOfOpportunities",
+        "NumberOfWonOpportunities": "sf:numberOfWonOpportunities",
+        "AmountAllOpportunities": "sf:totalOpportunityAmount",
+        "AmountWonOpportunities": "sf:wonOpportunityAmount",
+        "ParentId": {
+          "@id": "schema:superEvent",
+          "@type": "@id"
+        },
+        "OwnerId": {
+          "@id": "schema:organizer",
+          "@type": "@id"
+        },
+        "CreatedDate": {
+          "@id": "dcterms:created",
+          "@type": "xsd:dateTime"
+        },
+        "LastModifiedDate": {
+          "@id": "dcterms:modified",
+          "@type": "xsd:dateTime"
+        }
+      }
+    },
+
+    "Id": {
+      "@id": "dcterms:identifier",
+      "@type": "xsd:string"
+    },
+    "CreatedDate": {
+      "@id": "dcterms:created",
+      "@type": "xsd:dateTime"
+    },
+    "LastModifiedDate": {
+      "@id": "dcterms:modified",
+      "@type": "xsd:dateTime"
+    },
+    "SystemModstamp": {
+      "@id": "dcterms:modified",
+      "@type": "xsd:dateTime"
+    },
+    "IsDeleted": "sf:isDeleted",
+    "OwnerId": "sf:ownedBy"
+  }
+}

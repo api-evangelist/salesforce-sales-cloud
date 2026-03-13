@@ -1,0 +1,796 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Analytics REST API
+  description: >-
+    Access Salesforce reports, dashboards, and analytics data
+    programmatically. Enables embedding analytics into custom applications,
+    automating report generation, running reports synchronously or
+    asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Reports
+    description: Operations for listing, describing, and running reports
+  - name: Report Instances
+    description: Asynchronous report execution and results retrieval
+  - name: Report Types
+    description: Report type metadata and discovery
+  - name: Dashboards
+    description: Operations for listing, describing, and refreshing dashboards
+paths:
+  /reports:
+    get:
+      operationId: listReports
+      summary: List reports
+      description: >-
+        Returns a list of recently used reports. Each report in the list
+        includes the report ID, name, URL, and description.
+      tags:
+        - Reports
+      responses:
+        '200':
+          description: Successfully retrieved list of reports
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReportListItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /reports/{reportId}:
+    get:
+      operationId: getReport
+      summary: Get report metadata
+      description: >-
+        Retrieves report metadata, including report type, format, groupings,
+        filters, and summary fields for the specified report.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Successfully retrieved report metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateReport
+      summary: Update a report
+      description: >-
+        Updates report metadata including filters, groupings, and other
+        settings. Only report properties included in the request body are
+        updated.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reportMetadata:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Report updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportMetadata'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteReport
+      summary: Delete a report
+      description: >-
+        Deletes the specified report. The report must not be currently in use
+        by a dashboard component.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      responses:
+        '204':
+          description: Report deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /reports/{reportId}/describe:
+    get:
+      operationId: describeReport
+      summary: Describe a report
+      description: >-
+        Retrieves detailed metadata about a report including the report type
+        metadata, grouping column information, summary field information,
+        and extended metadata. This information can be used to build dynamic
+        report filter UIs.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Successfully retrieved report description
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reportExtendedMetadata:
+                    type: object
+                  reportMetadata:
+                    type: object
+                  reportTypeMetadata:
+                    type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /reports/{reportId}?includeDetails=true:
+    post:
+      operationId: executeReportSync
+      summary: Run a report synchronously
+      description: >-
+        Runs a report synchronously and returns the report results. Optionally
+        apply dynamic filters, aggregates, and groupings. Use includeDetails
+        query parameter to include detail rows.
+      tags:
+        - Reports
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reportMetadata:
+                  type: object
+                  description: Override report metadata for this execution
+                  properties:
+                    reportFilters:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/ReportFilter'
+      responses:
+        '200':
+          description: Report executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResults'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /reports/{reportId}/instances:
+    get:
+      operationId: listReportInstances
+      summary: List report instances
+      description: >-
+        Returns a list of instances for the specified report that have been
+        run asynchronously. Each instance includes the status and completion
+        date.
+      tags:
+        - Report Instances
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Successfully retrieved report instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReportInstance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: executeReportAsync
+      summary: Run a report asynchronously
+      description: >-
+        Runs a report asynchronously. Returns the report instance ID which
+        can be used to retrieve the results when the report has finished
+        running.
+      tags:
+        - Report Instances
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reportMetadata:
+                  type: object
+                  description: Override report metadata for this execution
+      responses:
+        '200':
+          description: Report execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportInstance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /reports/{reportId}/instances/{instanceId}:
+    get:
+      operationId: getReportInstanceResults
+      summary: Get report instance results
+      description: >-
+        Retrieves the results of an asynchronous report run using the
+        instance ID. If the report is still running, the status is returned
+        instead of results.
+      tags:
+        - Report Instances
+      parameters:
+        - $ref: '#/components/parameters/reportId'
+        - name: instanceId
+          in: path
+          required: true
+          description: The ID of the report instance
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved report instance results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResults'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /reportTypes:
+    get:
+      operationId: listReportTypes
+      summary: List available report types
+      description: >-
+        Returns a list of report types available in the org. Each report type
+        includes its label and API name.
+      tags:
+        - Report Types
+      responses:
+        '200':
+          description: Successfully retrieved report types
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    type:
+                      type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /reportTypes/{reportType}:
+    get:
+      operationId: describeReportType
+      summary: Describe a report type
+      description: >-
+        Returns metadata about the specified report type including available
+        fields, groupable fields, and filterable fields.
+      tags:
+        - Report Types
+      parameters:
+        - name: reportType
+          in: path
+          required: true
+          description: The API name of the report type
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successfully retrieved report type description
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /dashboards:
+    get:
+      operationId: listDashboards
+      summary: List dashboards
+      description: >-
+        Returns a list of recently used dashboards. Each dashboard in the list
+        includes the dashboard ID, name, URL, and folder information.
+      tags:
+        - Dashboards
+      responses:
+        '200':
+          description: Successfully retrieved list of dashboards
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  dashboards:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/DashboardListItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /dashboards/{dashboardId}:
+    get:
+      operationId: getDashboard
+      summary: Get dashboard metadata and results
+      description: >-
+        Returns the metadata and cached results for the specified dashboard,
+        including component data, status, and filter information.
+      tags:
+        - Dashboards
+      parameters:
+        - $ref: '#/components/parameters/dashboardId'
+      responses:
+        '200':
+          description: Successfully retrieved dashboard
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: refreshDashboard
+      summary: Refresh a dashboard
+      description: >-
+        Refreshes the specified dashboard by re-running all component reports.
+        Dashboard refresh requests are limited to 200 per hour.
+      tags:
+        - Dashboards
+      parameters:
+        - $ref: '#/components/parameters/dashboardId'
+      responses:
+        '200':
+          description: Dashboard refreshed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dashboard'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteDashboard
+      summary: Delete a dashboard
+      description: >-
+        Deletes the specified dashboard.
+      tags:
+        - Dashboards
+      parameters:
+        - $ref: '#/components/parameters/dashboardId'
+      responses:
+        '204':
+          description: Dashboard deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /dashboards/{dashboardId}/status:
+    get:
+      operationId: getDashboardStatus
+      summary: Get dashboard refresh status
+      description: >-
+        Returns the status of the most recent refresh for the specified
+        dashboard, including component-level status information.
+      tags:
+        - Dashboards
+      parameters:
+        - $ref: '#/components/parameters/dashboardId'
+      responses:
+        '200':
+          description: Successfully retrieved dashboard status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  componentStatus:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        componentId:
+                          type: string
+                        refreshDate:
+                          type: string
+                          format: date-time
+                        refreshStatus:
+                          type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  parameters:
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: The 15 or 18 character Salesforce report ID
+      schema:
+        type: string
+    dashboardId:
+      name: dashboardId
+      in: path
+      required: true
+      description: The 15 or 18 character Salesforce dashboard ID
+      schema:
+        type: string
+  schemas:
+    ReportListItem:
+      type: object
+      description: Summary information about a report
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+        describeUrl:
+          type: string
+        instancesUrl:
+          type: string
+    ReportMetadata:
+      type: object
+      description: Metadata describing a report configuration
+      properties:
+        aggregates:
+          type: array
+          items:
+            type: string
+        chart:
+          type: object
+          nullable: true
+        crossFilters:
+          type: array
+          items:
+            type: object
+        currency:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        detailColumns:
+          type: array
+          items:
+            type: string
+        developerName:
+          type: string
+        division:
+          type: string
+          nullable: true
+        folderId:
+          type: string
+        groupingsAcross:
+          type: array
+          items:
+            type: object
+            properties:
+              dateGranularity:
+                type: string
+              name:
+                type: string
+              sortAggregate:
+                type: string
+                nullable: true
+              sortOrder:
+                type: string
+        groupingsDown:
+          type: array
+          items:
+            type: object
+            properties:
+              dateGranularity:
+                type: string
+              name:
+                type: string
+              sortAggregate:
+                type: string
+                nullable: true
+              sortOrder:
+                type: string
+        hasDetailRows:
+          type: boolean
+        hasRecordCount:
+          type: boolean
+        historicalSnapshotDates:
+          type: array
+          items:
+            type: string
+        id:
+          type: string
+        name:
+          type: string
+        reportBooleanFilter:
+          type: string
+          nullable: true
+        reportFilters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportFilter'
+        reportFormat:
+          type: string
+          enum:
+            - TABULAR
+            - SUMMARY
+            - MATRIX
+            - MULTI_BLOCK
+        reportType:
+          type: object
+          properties:
+            label:
+              type: string
+            type:
+              type: string
+        scope:
+          type: string
+        sortBy:
+          type: array
+          items:
+            type: object
+        standardDateFilter:
+          type: object
+          properties:
+            column:
+              type: string
+            durationValue:
+              type: string
+            endDate:
+              type: string
+              nullable: true
+            startDate:
+              type: string
+              nullable: true
+    ReportFilter:
+      type: object
+      description: A filter applied to a report
+      properties:
+        column:
+          type: string
+        filterType:
+          type: string
+        isRunPageEditable:
+          type: boolean
+        operator:
+          type: string
+          enum:
+            - equals
+            - notEqual
+            - lessThan
+            - greaterThan
+            - lessOrEqual
+            - greaterOrEqual
+            - contains
+            - notContain
+            - startsWith
+            - includes
+            - excludes
+        value:
+          type: string
+    ReportResults:
+      type: object
+      description: Results from running a report
+      properties:
+        allData:
+          type: boolean
+        factMap:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              aggregates:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    value:
+                      nullable: true
+              rows:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dataCells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          label:
+                            type: string
+                          value:
+                            nullable: true
+        groupingsAcross:
+          type: object
+        groupingsDown:
+          type: object
+        hasDetailRows:
+          type: boolean
+        reportExtendedMetadata:
+          type: object
+        reportMetadata:
+          $ref: '#/components/schemas/ReportMetadata'
+    ReportInstance:
+      type: object
+      description: Information about an asynchronous report execution instance
+      properties:
+        completionDate:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: string
+        ownerId:
+          type: string
+        requestDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+            - New
+            - Success
+            - Running
+            - Error
+        url:
+          type: string
+    DashboardListItem:
+      type: object
+      description: Summary information about a dashboard
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        statusUrl:
+          type: string
+        url:
+          type: string
+        folderId:
+          type: string
+        folderName:
+          type: string
+    Dashboard:
+      type: object
+      description: Full dashboard representation with components and data
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        folderId:
+          type: string
+        folderName:
+          type: string
+        runningUser:
+          type: object
+          properties:
+            displayName:
+              type: string
+            id:
+              type: string
+        components:
+          type: array
+          items:
+            type: object
+            properties:
+              componentData:
+                type: object
+              footer:
+                type: string
+                nullable: true
+              header:
+                type: string
+                nullable: true
+              id:
+                type: string
+              reportId:
+                type: string
+              type:
+                type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

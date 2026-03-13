@@ -1,0 +1,537 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Tooling API
+  description: >-
+    Build custom development tools for Salesforce applications by accessing
+    metadata about Apex classes, triggers, Visualforce pages, and other
+    development artifacts. Provides REST endpoints for querying, creating,
+    updating, and deleting tooling objects such as ApexClass, ApexTrigger,
+    ApexLog, ApexTestQueueItem, and MetadataContainer.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Tooling API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0/tooling
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Tooling Query
+    description: Execute SOQL queries against Tooling API objects
+  - name: Tooling SObjects
+    description: CRUD operations on Tooling API sObjects
+  - name: Tooling SObject Describe
+    description: Metadata about Tooling API sObjects
+  - name: Completions
+    description: Apex code completions
+  - name: Execute Anonymous
+    description: Execute anonymous Apex code
+  - name: Run Tests
+    description: Execute Apex tests
+paths:
+  /sobjects:
+    get:
+      operationId: listToolingSObjects
+      summary: List available Tooling API sObjects
+      description: >-
+        Lists all available Tooling API sObjects and their metadata, including
+        ApexClass, ApexTrigger, ApexComponent, ApexPage, ApexLog,
+        MetadataContainer, and other developer-focused objects.
+      tags:
+        - Tooling SObjects
+      responses:
+        '200':
+          description: Successfully retrieved list of Tooling sObjects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  encoding:
+                    type: string
+                  maxBatchSize:
+                    type: integer
+                  sobjects:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        activateable:
+                          type: boolean
+                        custom:
+                          type: boolean
+                        label:
+                          type: string
+                        name:
+                          type: string
+                        queryable:
+                          type: boolean
+                        urls:
+                          type: object
+                          additionalProperties:
+                            type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects/{sObjectName}:
+    get:
+      operationId: getToolingSObjectBasicInfo
+      summary: Get Tooling sObject basic information
+      description: >-
+        Retrieves basic metadata for the specified Tooling API sObject,
+        including default field values and recently accessed records.
+      tags:
+        - Tooling SObjects
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+      responses:
+        '200':
+          description: Successfully retrieved sObject info
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createToolingSObjectRecord
+      summary: Create a Tooling sObject record
+      description: >-
+        Creates a new record for the specified Tooling API sObject. For example,
+        creating an ApexClass record will create and compile a new Apex class
+        in the org.
+      tags:
+        - Tooling SObjects
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects/{sObjectName}/describe:
+    get:
+      operationId: describeToolingSObject
+      summary: Describe a Tooling sObject
+      description: >-
+        Completely describes the individual metadata for the specified Tooling
+        API sObject, including all fields, child relationships, and other
+        metadata attributes.
+      tags:
+        - Tooling SObject Describe
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+      responses:
+        '200':
+          description: Successfully retrieved sObject describe
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sobjects/{sObjectName}/{recordId}:
+    get:
+      operationId: getToolingSObjectRecord
+      summary: Get a Tooling sObject record
+      description: >-
+        Retrieves a Tooling API record by its ID. For example, retrieve an
+        ApexClass record to get its source code, metadata, and compilation
+        status.
+      tags:
+        - Tooling SObjects
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+        - $ref: '#/components/parameters/recordId'
+      responses:
+        '200':
+          description: Successfully retrieved record
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateToolingSObjectRecord
+      summary: Update a Tooling sObject record
+      description: >-
+        Updates an existing Tooling API record. For example, updating an
+        ApexClass record will update and recompile the Apex class.
+      tags:
+        - Tooling SObjects
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+        - $ref: '#/components/parameters/recordId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '204':
+          description: Record updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteToolingSObjectRecord
+      summary: Delete a Tooling sObject record
+      description: >-
+        Deletes a Tooling API record by its ID.
+      tags:
+        - Tooling SObjects
+      parameters:
+        - $ref: '#/components/parameters/sObjectName'
+        - $ref: '#/components/parameters/recordId'
+      responses:
+        '204':
+          description: Record deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /query:
+    get:
+      operationId: executeToolingQuery
+      summary: Execute a Tooling API SOQL query
+      description: >-
+        Executes a SOQL query against Tooling API objects. Use this to query
+        ApexClass, ApexTrigger, ApexLog, ApexTestQueueItem, and other Tooling
+        API sObjects.
+      tags:
+        - Tooling Query
+      parameters:
+        - name: q
+          in: query
+          required: true
+          description: The SOQL query string targeting Tooling API objects
+          schema:
+            type: string
+          example: SELECT Id, Name, Body FROM ApexClass WHERE NamespacePrefix = null
+      responses:
+        '200':
+          description: Query executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /completions:
+    get:
+      operationId: getApexCompletions
+      summary: Get Apex code completions
+      description: >-
+        Returns code completions for Apex system type information. Useful for
+        building IDE-like features for Salesforce development tools.
+      tags:
+        - Completions
+      parameters:
+        - name: type
+          in: query
+          required: true
+          description: The type of completions to return
+          schema:
+            type: string
+            enum:
+              - apex
+      responses:
+        '200':
+          description: Successfully retrieved completions
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  publicDeclarations:
+                    type: object
+                    additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /executeAnonymous:
+    get:
+      operationId: executeAnonymousApex
+      summary: Execute anonymous Apex code
+      description: >-
+        Executes a block of anonymous Apex code. The code does not need to be
+        part of an Apex class. Returns compilation and execution results,
+        including any debug log output.
+      tags:
+        - Execute Anonymous
+      parameters:
+        - name: anonymousBody
+          in: query
+          required: true
+          description: The Apex code to execute
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Apex code executed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  compiled:
+                    type: boolean
+                  compileProblem:
+                    type: string
+                    nullable: true
+                  exceptionMessage:
+                    type: string
+                    nullable: true
+                  exceptionStackTrace:
+                    type: string
+                    nullable: true
+                  line:
+                    type: integer
+                  column:
+                    type: integer
+                  success:
+                    type: boolean
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /runTestsAsynchronous:
+    post:
+      operationId: runTestsAsync
+      summary: Run Apex tests asynchronously
+      description: >-
+        Runs one or more Apex test methods asynchronously. Returns the test
+        run ID which can be used to check status and retrieve results.
+      tags:
+        - Run Tests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                classids:
+                  type: string
+                  description: Comma-separated list of Apex class IDs
+                suiteids:
+                  type: string
+                  description: Comma-separated list of test suite IDs
+                tests:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      classId:
+                        type: string
+                      testMethods:
+                        type: array
+                        items:
+                          type: string
+                maxFailedTests:
+                  type: integer
+                  description: Maximum number of failed tests before aborting
+                testLevel:
+                  type: string
+                  enum:
+                    - RunSpecifiedTests
+                    - RunLocalTests
+                    - RunAllTestsInOrg
+      responses:
+        '200':
+          description: Test run initiated
+          content:
+            application/json:
+              schema:
+                type: string
+                description: The async test run ID
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /runTestsSynchronous:
+    post:
+      operationId: runTestsSync
+      summary: Run Apex tests synchronously
+      description: >-
+        Runs specified Apex tests synchronously and returns the results inline.
+        Best for small numbers of tests that complete quickly.
+      tags:
+        - Run Tests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tests:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      classId:
+                        type: string
+                      testMethods:
+                        type: array
+                        items:
+                          type: string
+                maxFailedTests:
+                  type: integer
+                testLevel:
+                  type: string
+                  enum:
+                    - RunSpecifiedTests
+      responses:
+        '200':
+          description: Test execution completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  numFailures:
+                    type: integer
+                  numTestsRun:
+                    type: integer
+                  successes:
+                    type: array
+                    items:
+                      type: object
+                  failures:
+                    type: array
+                    items:
+                      type: object
+                  totalTime:
+                    type: number
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  parameters:
+    sObjectName:
+      name: sObjectName
+      in: path
+      required: true
+      description: The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)
+      schema:
+        type: string
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      description: The Salesforce record ID
+      schema:
+        type: string
+  schemas:
+    QueryResult:
+      type: object
+      properties:
+        totalSize:
+          type: integer
+        done:
+          type: boolean
+        nextRecordsUrl:
+          type: string
+        records:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+    SaveResult:
+      type: object
+      properties:
+        id:
+          type: string
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

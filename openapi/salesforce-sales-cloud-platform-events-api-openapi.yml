@@ -1,0 +1,288 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Platform Events API
+  description: >-
+    Event-driven architecture API for publishing and subscribing to custom
+    platform events for app integration. Publish events using standard sObject
+    REST endpoints. Define custom event channels with schema for loosely
+    coupled systems. Platform events use the sObject API name with the __e
+    suffix.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+externalDocs:
+  description: Platform Events Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_intro.htm
+servers:
+  - url: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Production or Developer Edition
+    variables:
+      instance:
+        default: yourInstance
+        description: Your Salesforce instance identifier
+security:
+  - oauth2: []
+  - bearerAuth: []
+tags:
+  - name: Platform Events
+    description: Publish and describe platform events
+  - name: Event Schema
+    description: Event schema retrieval
+paths:
+  /sobjects/{eventApiName}:
+    get:
+      operationId: describePlatformEvent
+      summary: Describe a platform event
+      description: >-
+        Retrieves metadata about the specified platform event including its
+        fields, label, and API name. The event API name uses the __e suffix
+        (e.g., Order_Event__e).
+      tags:
+        - Platform Events
+      parameters:
+        - $ref: '#/components/parameters/eventApiName'
+      responses:
+        '200':
+          description: Successfully retrieved event metadata
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  objectDescribe:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      label:
+                        type: string
+                      custom:
+                        type: boolean
+                      fields:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            name:
+                              type: string
+                            label:
+                              type: string
+                            type:
+                              type: string
+                            length:
+                              type: integer
+                  recentItems:
+                    type: array
+                    items:
+                      type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: publishPlatformEvent
+      summary: Publish a platform event
+      description: >-
+        Publishes a single platform event message by inserting an sObject
+        record for the event type. The event API name uses the __e suffix.
+        Include the event's custom fields in the request body.
+      tags:
+        - Platform Events
+      parameters:
+        - $ref: '#/components/parameters/eventApiName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: Event field name-value pairs
+      responses:
+        '201':
+          description: Event published successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PublishResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects/{eventApiName}/describe:
+    get:
+      operationId: describePlatformEventFull
+      summary: Get full platform event metadata
+      description: >-
+        Retrieves complete metadata about the specified platform event
+        including all fields, their types, lengths, and other attributes.
+      tags:
+        - Platform Events
+      parameters:
+        - $ref: '#/components/parameters/eventApiName'
+      responses:
+        '200':
+          description: Successfully retrieved full event metadata
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sobjects/{eventApiName}/eventSchema:
+    get:
+      operationId: getPlatformEventSchema
+      summary: Get platform event schema
+      description: >-
+        Retrieves the Apache Avro schema for the specified platform event.
+        The schema describes the event's fields and their types in Avro
+        format, used by the Pub/Sub API for binary event encoding.
+      tags:
+        - Event Schema
+      parameters:
+        - $ref: '#/components/parameters/eventApiName'
+        - name: payloadFormat
+          in: query
+          description: The payload format for the schema
+          required: false
+          schema:
+            type: string
+            enum:
+              - EXPANDED
+              - COMPACT
+      responses:
+        '200':
+          description: Successfully retrieved event schema
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                  type:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /event/eventSchema/{schemaId}:
+    get:
+      operationId: getEventSchemaById
+      summary: Get event schema by schema ID
+      description: >-
+        Retrieves the event schema using the schema ID provided in an event
+        message. This endpoint supports both platform events and change
+        data capture events.
+      tags:
+        - Event Schema
+      parameters:
+        - name: schemaId
+          in: path
+          required: true
+          description: The schema ID from the event message
+          schema:
+            type: string
+        - name: payloadFormat
+          in: query
+          description: The payload format
+          required: false
+          schema:
+            type: string
+            enum:
+              - EXPANDED
+              - COMPACT
+      responses:
+        '200':
+          description: Successfully retrieved event schema
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+  parameters:
+    eventApiName:
+      name: eventApiName
+      in: path
+      required: true
+      description: The API name of the platform event (e.g., Order_Event__e)
+      schema:
+        type: string
+  schemas:
+    PublishResult:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The event message ID
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'

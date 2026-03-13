@@ -1,0 +1,166 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.salesforce.com/schemas/sales-cloud/task.json",
+  "title": "Salesforce Task",
+  "description": "Represents a business activity such as making a phone call or other to-do items. Tasks can be associated with leads, accounts, contacts, opportunities, and other records. In the user interface, Task and Event records are collectively referred to as activities.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "description": "Unique 18-character Salesforce record identifier",
+      "pattern": "^[a-zA-Z0-9]{18}$",
+      "readOnly": true
+    },
+    "WhoId": {
+      "type": ["string", "null"],
+      "description": "The ID of a related Contact or Lead"
+    },
+    "WhatId": {
+      "type": ["string", "null"],
+      "description": "The ID of a related Account, Opportunity, Campaign, Case, or custom object"
+    },
+    "Subject": {
+      "type": ["string", "null"],
+      "description": "Subject line of the task",
+      "maxLength": 255
+    },
+    "ActivityDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Due date of the task"
+    },
+    "Status": {
+      "type": "string",
+      "description": "Status of the task",
+      "enum": ["Not Started", "In Progress", "Completed", "Waiting on someone else", "Deferred"]
+    },
+    "Priority": {
+      "type": "string",
+      "description": "Priority of the task",
+      "enum": ["High", "Normal", "Low"]
+    },
+    "IsHighPriority": {
+      "type": "boolean",
+      "description": "Indicates whether the task is high priority",
+      "readOnly": true
+    },
+    "OwnerId": {
+      "type": "string",
+      "description": "ID of the user or queue that owns the task"
+    },
+    "Description": {
+      "type": ["string", "null"],
+      "description": "Contains a text description of the task"
+    },
+    "IsDeleted": {
+      "type": "boolean",
+      "description": "Indicates whether the record has been moved to the Recycle Bin",
+      "readOnly": true
+    },
+    "AccountId": {
+      "type": ["string", "null"],
+      "description": "Represents the ID of the related Account",
+      "readOnly": true
+    },
+    "IsClosed": {
+      "type": "boolean",
+      "description": "Indicates whether the task has been completed",
+      "readOnly": true
+    },
+    "CreatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was created",
+      "readOnly": true
+    },
+    "CreatedById": {
+      "type": "string",
+      "description": "ID of the user who created this record",
+      "readOnly": true
+    },
+    "LastModifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was last modified",
+      "readOnly": true
+    },
+    "LastModifiedById": {
+      "type": "string",
+      "description": "ID of the user who last modified this record",
+      "readOnly": true
+    },
+    "SystemModstamp": {
+      "type": "string",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "IsArchived": {
+      "type": "boolean",
+      "description": "Indicates whether the task has been archived",
+      "readOnly": true
+    },
+    "CallDurationInSeconds": {
+      "type": ["integer", "null"],
+      "description": "Duration of the call in seconds, if this task is a call"
+    },
+    "CallType": {
+      "type": ["string", "null"],
+      "description": "Type of call being tracked",
+      "enum": [null, "Internal", "Inbound", "Outbound"]
+    },
+    "CallDisposition": {
+      "type": ["string", "null"],
+      "description": "Result of a given call",
+      "maxLength": 255
+    },
+    "CallObject": {
+      "type": ["string", "null"],
+      "description": "Identifier for the call",
+      "maxLength": 255
+    },
+    "ReminderDateTime": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Date and time to show a reminder"
+    },
+    "IsReminderSet": {
+      "type": "boolean",
+      "description": "Indicates whether a reminder is set for this task",
+      "default": false
+    },
+    "RecurrenceActivityId": {
+      "type": ["string", "null"],
+      "description": "The recurrence activity ID for the recurring series",
+      "readOnly": true
+    },
+    "IsRecurrence": {
+      "type": "boolean",
+      "description": "Indicates whether the task is set to recur",
+      "readOnly": true
+    },
+    "TaskSubtype": {
+      "type": ["string", "null"],
+      "description": "Provides classification for tasks",
+      "enum": [null, "Task", "Email", "ListEmail", "Cadence", "Call"]
+    },
+    "CompletedDateTime": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Date and time the task was completed",
+      "readOnly": true
+    },
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Task"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["Status", "Priority"]
+}

@@ -1,0 +1,323 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://developer.salesforce.com/schemas/sales-cloud/account.json",
+  "title": "Salesforce Account",
+  "description": "Represents an individual account, which is an organization or person involved with your business (such as customers, competitors, and partners). Accounts are one of the core objects in Salesforce Sales Cloud.",
+  "type": "object",
+  "properties": {
+    "Id": {
+      "type": "string",
+      "description": "Unique 18-character Salesforce record identifier",
+      "pattern": "^[a-zA-Z0-9]{18}$",
+      "readOnly": true
+    },
+    "IsDeleted": {
+      "type": "boolean",
+      "description": "Indicates whether the record has been moved to the Recycle Bin (true) or not (false)",
+      "readOnly": true
+    },
+    "MasterRecordId": {
+      "type": ["string", "null"],
+      "description": "If this record was deleted as the result of a merge, this field contains the ID of the master record",
+      "readOnly": true
+    },
+    "Name": {
+      "type": "string",
+      "description": "Name of the account. Maximum 255 characters.",
+      "maxLength": 255
+    },
+    "Type": {
+      "type": ["string", "null"],
+      "description": "Type of account, for example, Customer, Competitor, or Partner",
+      "enum": [
+        null,
+        "Prospect",
+        "Customer - Direct",
+        "Customer - Channel",
+        "Channel Partner / Reseller",
+        "Installation Partner",
+        "Technology Partner",
+        "Other"
+      ]
+    },
+    "ParentId": {
+      "type": ["string", "null"],
+      "description": "ID of the parent object, if any"
+    },
+    "BillingStreet": {
+      "type": ["string", "null"],
+      "description": "Street address for the billing address of this account"
+    },
+    "BillingCity": {
+      "type": ["string", "null"],
+      "description": "City for the billing address of this account",
+      "maxLength": 40
+    },
+    "BillingState": {
+      "type": ["string", "null"],
+      "description": "State or province for the billing address of this account",
+      "maxLength": 80
+    },
+    "BillingPostalCode": {
+      "type": ["string", "null"],
+      "description": "Postal code for the billing address of this account",
+      "maxLength": 20
+    },
+    "BillingCountry": {
+      "type": ["string", "null"],
+      "description": "Country for the billing address of this account",
+      "maxLength": 80
+    },
+    "BillingLatitude": {
+      "type": ["number", "null"],
+      "description": "Latitude of the billing address",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "BillingLongitude": {
+      "type": ["number", "null"],
+      "description": "Longitude of the billing address",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "ShippingStreet": {
+      "type": ["string", "null"],
+      "description": "Street address for the shipping address of this account"
+    },
+    "ShippingCity": {
+      "type": ["string", "null"],
+      "description": "City for the shipping address of this account",
+      "maxLength": 40
+    },
+    "ShippingState": {
+      "type": ["string", "null"],
+      "description": "State or province for the shipping address of this account",
+      "maxLength": 80
+    },
+    "ShippingPostalCode": {
+      "type": ["string", "null"],
+      "description": "Postal code for the shipping address of this account",
+      "maxLength": 20
+    },
+    "ShippingCountry": {
+      "type": ["string", "null"],
+      "description": "Country for the shipping address of this account",
+      "maxLength": 80
+    },
+    "ShippingLatitude": {
+      "type": ["number", "null"],
+      "description": "Latitude of the shipping address",
+      "minimum": -90,
+      "maximum": 90
+    },
+    "ShippingLongitude": {
+      "type": ["number", "null"],
+      "description": "Longitude of the shipping address",
+      "minimum": -180,
+      "maximum": 180
+    },
+    "Phone": {
+      "type": ["string", "null"],
+      "description": "Phone number for this account",
+      "maxLength": 40
+    },
+    "Fax": {
+      "type": ["string", "null"],
+      "description": "Fax number for this account",
+      "maxLength": 40
+    },
+    "AccountNumber": {
+      "type": ["string", "null"],
+      "description": "Account number assigned to this account (external)",
+      "maxLength": 40
+    },
+    "Website": {
+      "type": ["string", "null"],
+      "description": "The website of this account",
+      "format": "uri",
+      "maxLength": 255
+    },
+    "Sic": {
+      "type": ["string", "null"],
+      "description": "Standard Industrial Classification code of the company's main business categorization",
+      "maxLength": 20
+    },
+    "Industry": {
+      "type": ["string", "null"],
+      "description": "An industry associated with this account",
+      "enum": [
+        null,
+        "Agriculture",
+        "Apparel",
+        "Banking",
+        "Biotechnology",
+        "Chemicals",
+        "Communications",
+        "Construction",
+        "Consulting",
+        "Education",
+        "Electronics",
+        "Energy",
+        "Engineering",
+        "Entertainment",
+        "Environmental",
+        "Finance",
+        "Food & Beverage",
+        "Government",
+        "Healthcare",
+        "Hospitality",
+        "Insurance",
+        "Machinery",
+        "Manufacturing",
+        "Media",
+        "Not For Profit",
+        "Recreation",
+        "Retail",
+        "Shipping",
+        "Technology",
+        "Telecommunications",
+        "Transportation",
+        "Utilities",
+        "Other"
+      ]
+    },
+    "AnnualRevenue": {
+      "type": ["number", "null"],
+      "description": "Estimated annual revenue of the account"
+    },
+    "NumberOfEmployees": {
+      "type": ["integer", "null"],
+      "description": "Number of employees working at the company"
+    },
+    "Ownership": {
+      "type": ["string", "null"],
+      "description": "Ownership type for the account",
+      "enum": [null, "Public", "Private", "Subsidiary", "Other"]
+    },
+    "TickerSymbol": {
+      "type": ["string", "null"],
+      "description": "The stock ticker symbol for this account",
+      "maxLength": 20
+    },
+    "Description": {
+      "type": ["string", "null"],
+      "description": "Text description of the account"
+    },
+    "Rating": {
+      "type": ["string", "null"],
+      "description": "The account's prospect rating",
+      "enum": [null, "Hot", "Warm", "Cold"]
+    },
+    "Site": {
+      "type": ["string", "null"],
+      "description": "Name of the account's location",
+      "maxLength": 80
+    },
+    "OwnerId": {
+      "type": "string",
+      "description": "ID of the user who currently owns this account"
+    },
+    "CreatedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was created",
+      "readOnly": true
+    },
+    "CreatedById": {
+      "type": "string",
+      "description": "ID of the user who created this record",
+      "readOnly": true
+    },
+    "LastModifiedDate": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when a user last modified this record",
+      "readOnly": true
+    },
+    "LastModifiedById": {
+      "type": "string",
+      "description": "ID of the user who last updated this record",
+      "readOnly": true
+    },
+    "SystemModstamp": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Date and time when this record was last modified by a user or automated process",
+      "readOnly": true
+    },
+    "LastActivityDate": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "Value is the most recent of either the due date of the most recent event or the due date of the most recently closed task",
+      "readOnly": true
+    },
+    "Jigsaw": {
+      "type": ["string", "null"],
+      "description": "References the ID of a company in Data.com",
+      "maxLength": 20
+    },
+    "JigsawCompanyId": {
+      "type": ["string", "null"],
+      "description": "References a company in Data.com",
+      "readOnly": true
+    },
+    "CleanStatus": {
+      "type": ["string", "null"],
+      "description": "Indicates the record's clean status as compared with Data.com",
+      "enum": [null, "Matched", "Different", "Acknowledged", "NotFound", "Inactive", "Pending", "SelectMatch", "Skipped"]
+    },
+    "AccountSource": {
+      "type": ["string", "null"],
+      "description": "The source of the account record",
+      "enum": [null, "Web", "Phone Inquiry", "Partner Referral", "Purchased List", "Other"]
+    },
+    "DunsNumber": {
+      "type": ["string", "null"],
+      "description": "The Dun & Bradstreet Data Universal Numbering System (D-U-N-S) number",
+      "maxLength": 9
+    },
+    "Tradestyle": {
+      "type": ["string", "null"],
+      "description": "A name, different from its legal name, that an org may use for conducting business",
+      "maxLength": 255
+    },
+    "NaicsCode": {
+      "type": ["string", "null"],
+      "description": "The six-digit North American Industry Classification System (NAICS) code",
+      "maxLength": 8
+    },
+    "NaicsDesc": {
+      "type": ["string", "null"],
+      "description": "A brief description of an organization's line of business",
+      "maxLength": 120
+    },
+    "YearStarted": {
+      "type": ["string", "null"],
+      "description": "The year the organization was legally established",
+      "maxLength": 4
+    },
+    "SicDesc": {
+      "type": ["string", "null"],
+      "description": "A brief description of the organization's line of business based on SIC code",
+      "maxLength": 80
+    },
+    "OperatingHoursId": {
+      "type": ["string", "null"],
+      "description": "The operating hours associated with the account"
+    },
+    "attributes": {
+      "type": "object",
+      "description": "sObject metadata attributes",
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "Account"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": ["Name"]
+}
