@@ -28,14 +28,14 @@ security:
   - oauth2: []
   - bearerAuth: []
 tags:
-  - name: Reports
-    description: Operations for listing, describing, and running reports
+  - name: Dashboards
+    description: Operations for listing, describing, and refreshing dashboards
   - name: Report Instances
     description: Asynchronous report execution and results retrieval
   - name: Report Types
     description: Report type metadata and discovery
-  - name: Dashboards
-    description: Operations for listing, describing, and refreshing dashboards
+  - name: Reports
+    description: Operations for listing, describing, and running reports
 paths:
   /reports:
     get:

@@ -35,10 +35,10 @@ tags:
     description: Batch of independent subrequests
   - name: Composite Graph
     description: Complex multi-step composite graph operations
-  - name: SObject Tree
-    description: Hierarchical record creation
   - name: SObject Collections
     description: Bulk CRUD on collections of same-type records
+  - name: SObject Tree
+    description: Hierarchical record creation
 paths:
   /composite:
     post:

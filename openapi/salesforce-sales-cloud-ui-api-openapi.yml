@@ -29,20 +29,20 @@ security:
   - oauth2: []
   - bearerAuth: []
 tags:
-  - name: Records
-    description: Record CRUD operations with UI metadata
-  - name: Record UI
-    description: Complete record page data including layout and metadata
   - name: Layouts
     description: Page layout metadata
-  - name: Object Info
-    description: Object and field metadata for UI rendering
-  - name: Picklist Values
-    description: Picklist field values with record type awareness
   - name: List Views
     description: List view metadata and records
   - name: Lookups
     description: Lookup field search
+  - name: Object Info
+    description: Object and field metadata for UI rendering
+  - name: Picklist Values
+    description: Picklist field values with record type awareness
+  - name: Record UI
+    description: Complete record page data including layout and metadata
+  - name: Records
+    description: Record CRUD operations with UI metadata
 paths:
   /records/{recordId}:
     get:

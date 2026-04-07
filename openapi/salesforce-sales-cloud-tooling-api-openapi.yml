@@ -29,18 +29,18 @@ security:
   - oauth2: []
   - bearerAuth: []
 tags:
-  - name: Tooling Query
-    description: Execute SOQL queries against Tooling API objects
-  - name: Tooling SObjects
-    description: CRUD operations on Tooling API sObjects
-  - name: Tooling SObject Describe
-    description: Metadata about Tooling API sObjects
   - name: Completions
     description: Apex code completions
   - name: Execute Anonymous
     description: Execute anonymous Apex code
   - name: Run Tests
     description: Execute Apex tests
+  - name: Tooling Query
+    description: Execute SOQL queries against Tooling API objects
+  - name: Tooling SObject Describe
+    description: Metadata about Tooling API sObjects
+  - name: Tooling SObjects
+    description: CRUD operations on Tooling API sObjects
 paths:
   /sobjects:
     get:

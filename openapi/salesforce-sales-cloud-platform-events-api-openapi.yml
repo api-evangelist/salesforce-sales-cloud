@@ -29,10 +29,10 @@ security:
   - oauth2: []
   - bearerAuth: []
 tags:
-  - name: Platform Events
-    description: Publish and describe platform events
   - name: Event Schema
     description: Event schema retrieval
+  - name: Platform Events
+    description: Publish and describe platform events
 paths:
   /sobjects/{eventApiName}:
     get:

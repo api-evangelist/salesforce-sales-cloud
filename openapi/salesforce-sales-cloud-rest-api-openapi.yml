@@ -34,32 +34,30 @@ security:
   - oauth2: []
   - bearerAuth: []
 tags:
-  - name: Versions
-    description: API version information and discovery
-  - name: Resources
-    description: Available REST resources for a given API version
   - name: Limits
     description: Org limits and usage information
+  - name: Process Approvals
+    description: Process approval operations
+  - name: Query
+    description: SOQL query execution
+  - name: Recently Viewed
+    description: Recently viewed items
+  - name: Resources
+    description: Available REST resources for a given API version
+  - name: Search
+    description: SOSL search execution
   - name: SObject
     description: Operations on Salesforce standard and custom objects
+  - name: SObject Collections
+    description: Bulk CRUD operations on collections of records
   - name: SObject Describe
     description: Metadata description of sObjects
   - name: SObject Rows
     description: CRUD operations on individual sObject records
-  - name: SObject Collections
-    description: Bulk CRUD operations on collections of records
-  - name: Query
-    description: SOQL query execution
-  - name: Search
-    description: SOSL search execution
-  - name: Recently Viewed
-    description: Recently viewed items
   - name: Tabs
     description: Tab metadata
   - name: Themes
     description: Theme information
-  - name: Process Approvals
-    description: Process approval operations
 paths:
   /:
     get:

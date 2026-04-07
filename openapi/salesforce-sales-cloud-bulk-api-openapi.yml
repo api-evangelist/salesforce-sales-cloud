@@ -35,10 +35,10 @@ security:
   - oauth2: []
   - bearerAuth: []
 tags:
-  - name: Ingest Jobs
-    description: Create and manage bulk ingest jobs for insert, update, upsert, and delete operations
   - name: Ingest Data
     description: Upload CSV data to ingest jobs and retrieve results
+  - name: Ingest Jobs
+    description: Create and manage bulk ingest jobs for insert, update, upsert, and delete operations
   - name: Query Jobs
     description: Create and manage bulk query jobs for extracting large data sets
   - name: Query Results

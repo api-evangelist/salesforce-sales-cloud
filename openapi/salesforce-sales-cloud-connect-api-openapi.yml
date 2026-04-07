@@ -28,18 +28,18 @@ security:
   - oauth2: []
   - bearerAuth: []
 tags:
-  - name: Feeds
-    description: Chatter feed operations
+  - name: Communities
+    description: Community (Experience Cloud) operations
   - name: Feed Items
     description: Individual feed item operations
+  - name: Feeds
+    description: Chatter feed operations
+  - name: Files
+    description: File sharing and management
   - name: Groups
     description: Chatter group operations
   - name: Users
     description: User profile and photo operations
-  - name: Files
-    description: File sharing and management
-  - name: Communities
-    description: Community (Experience Cloud) operations
 paths:
   /communities:
     get:
