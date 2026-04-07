@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Bulk API 2.0
+  title: Salesforce Sales Cloud Salesforce Bulk API 2.0
   description: >-
     Optimized API for loading, updating, or deleting large data sets
     asynchronously with better performance than REST API. Supports ingest
@@ -47,7 +47,7 @@ paths:
   /jobs/ingest:
     get:
       operationId: listIngestJobs
-      summary: List all ingest jobs
+      summary: Salesforce Sales Cloud List all ingest jobs
       description: >-
         Retrieves all ingest jobs in the org. Results include jobs that have
         been opened, those in progress, and completed jobs in all states.
@@ -106,7 +106,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createIngestJob
-      summary: Create an ingest job
+      summary: Salesforce Sales Cloud Create an ingest job
       description: >-
         Creates a new ingest job for bulk insert, update, upsert, or delete
         operations. After creating the job, upload CSV data using the job ID,
@@ -133,7 +133,7 @@ paths:
   /jobs/ingest/{jobId}:
     get:
       operationId: getIngestJobInfo
-      summary: Get ingest job information
+      summary: Salesforce Sales Cloud Get ingest job information
       description: >-
         Retrieves detailed information about an ingest job, including its
         current state, number of records processed, and any errors.
@@ -154,7 +154,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateIngestJobState
-      summary: Close, abort, or delete an ingest job
+      summary: Salesforce Sales Cloud Close, abort, or delete an ingest job
       description: >-
         Updates the state of an ingest job. Set the state to UploadComplete to
         close the job and begin processing, or Aborted to abort the job.
@@ -193,7 +193,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteIngestJob
-      summary: Delete an ingest job
+      summary: Salesforce Sales Cloud Delete an ingest job
       description: >-
         Deletes an ingest job. The job must be in a terminal state (JobComplete,
         Aborted, or Failed) before it can be deleted.
@@ -211,7 +211,7 @@ paths:
   /jobs/ingest/{jobId}/batches:
     put:
       operationId: uploadIngestJobData
-      summary: Upload data for an ingest job
+      summary: Salesforce Sales Cloud Upload data for an ingest job
       description: >-
         Uploads CSV data for an ingest job. The job must be in the Open state.
         You can upload data in multiple requests, each up to 150 MB. The CSV
@@ -239,7 +239,7 @@ paths:
   /jobs/ingest/{jobId}/successfulResults:
     get:
       operationId: getIngestJobSuccessfulResults
-      summary: Get successful results for an ingest job
+      summary: Salesforce Sales Cloud Get successful results for an ingest job
       description: >-
         Retrieves a list of successfully processed records for a completed
         ingest job. Results are returned in CSV format.
@@ -262,7 +262,7 @@ paths:
   /jobs/ingest/{jobId}/failedResults:
     get:
       operationId: getIngestJobFailedResults
-      summary: Get failed results for an ingest job
+      summary: Salesforce Sales Cloud Get failed results for an ingest job
       description: >-
         Retrieves a list of failed records for a completed ingest job. Results
         are returned in CSV format and include error information for each
@@ -286,7 +286,7 @@ paths:
   /jobs/ingest/{jobId}/unprocessedrecords:
     get:
       operationId: getIngestJobUnprocessedRecords
-      summary: Get unprocessed records for an ingest job
+      summary: Salesforce Sales Cloud Get unprocessed records for an ingest job
       description: >-
         Retrieves a list of unprocessed records for a completed ingest job.
         These are records that were not processed due to the job being aborted
@@ -310,7 +310,7 @@ paths:
   /jobs/query:
     get:
       operationId: listQueryJobs
-      summary: List all query jobs
+      summary: Salesforce Sales Cloud List all query jobs
       description: >-
         Retrieves all query jobs in the org. Results include jobs in all
         states including completed, failed, and aborted jobs.
@@ -359,7 +359,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: createQueryJob
-      summary: Create a query job
+      summary: Salesforce Sales Cloud Create a query job
       description: >-
         Creates a new query job to extract data from Salesforce using SOQL.
         The query runs asynchronously and results can be retrieved when the
@@ -386,7 +386,7 @@ paths:
   /jobs/query/{jobId}:
     get:
       operationId: getQueryJobInfo
-      summary: Get query job information
+      summary: Salesforce Sales Cloud Get query job information
       description: >-
         Retrieves detailed information about a query job including its current
         state, number of records processed, and the SOQL query.
@@ -407,7 +407,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: abortQueryJob
-      summary: Abort a query job
+      summary: Salesforce Sales Cloud Abort a query job
       description: >-
         Aborts a query job. Only jobs that have not yet completed can be aborted.
       tags:
@@ -440,7 +440,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteQueryJob
-      summary: Delete a query job
+      summary: Salesforce Sales Cloud Delete a query job
       description: >-
         Deletes a query job. The job must be in a terminal state before it
         can be deleted.
@@ -458,7 +458,7 @@ paths:
   /jobs/query/{jobId}/results:
     get:
       operationId: getQueryJobResults
-      summary: Get query job results
+      summary: Salesforce Sales Cloud Get query job results
       description: >-
         Retrieves the results of a completed query job in CSV format. Use the
         locator and maxRecords parameters to paginate through large result sets.

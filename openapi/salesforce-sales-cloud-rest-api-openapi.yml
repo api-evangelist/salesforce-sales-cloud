@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce REST API
+  title: Salesforce Sales Cloud Salesforce REST API
   description: >-
     Primary REST API for accessing Salesforce data including accounts, contacts,
     leads, opportunities, and custom objects. Supports JSON and XML formats with
@@ -64,7 +64,7 @@ paths:
   /:
     get:
       operationId: listAvailableResources
-      summary: List available REST resources
+      summary: Salesforce Sales Cloud List available REST resources
       description: >-
         Lists the available REST API resources for the specified API version,
         including resource name and URI for each resource.
@@ -85,7 +85,7 @@ paths:
   /limits:
     get:
       operationId: getOrgLimits
-      summary: Get organization limits
+      summary: Salesforce Sales Cloud Get organization limits
       description: >-
         Lists information about limits in your org. For each limit, this
         resource returns the maximum allocation and the remaining allocation
@@ -114,7 +114,7 @@ paths:
   /sobjects:
     get:
       operationId: listSObjects
-      summary: List available sObjects
+      summary: Salesforce Sales Cloud List available sObjects
       description: >-
         Lists the available objects and their metadata for your organization's
         data. Provides the name, label, custom status, keyPrefix, and URLs for
@@ -142,7 +142,7 @@ paths:
   /sobjects/{sObjectName}:
     get:
       operationId: getSObjectBasicInfo
-      summary: Get sObject basic information
+      summary: Salesforce Sales Cloud Get sObject basic information
       description: >-
         Describes the individual metadata for the specified object. Returns
         metadata about the object including default field values, and child
@@ -171,7 +171,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: createSObjectRecord
-      summary: Create a new sObject record
+      summary: Salesforce Sales Cloud Create a new sObject record
       description: >-
         Creates a new record for the specified sObject. The request body
         contains the field values for the new record in JSON format.
@@ -201,7 +201,7 @@ paths:
   /sobjects/{sObjectName}/describe:
     get:
       operationId: describeSObject
-      summary: Describe an sObject
+      summary: Salesforce Sales Cloud Describe an sObject
       description: >-
         Completely describes the individual metadata at all levels for the
         specified object. Returns metadata including fields, child
@@ -224,7 +224,7 @@ paths:
   /sobjects/{sObjectName}/{recordId}:
     get:
       operationId: getSObjectRecord
-      summary: Get an sObject record by ID
+      summary: Salesforce Sales Cloud Get an sObject record by ID
       description: >-
         Retrieves a record for the specified sObject using the record ID.
         Optionally, specify the fields to return using the fields parameter to
@@ -253,7 +253,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateSObjectRecord
-      summary: Update an sObject record
+      summary: Salesforce Sales Cloud Update an sObject record
       description: >-
         Updates an individual record for the specified sObject. Provide field
         values in the request body as JSON.
@@ -281,7 +281,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteSObjectRecord
-      summary: Delete an sObject record
+      summary: Salesforce Sales Cloud Delete an sObject record
       description: >-
         Deletes a record for the specified sObject using the record ID.
       tags:
@@ -299,7 +299,7 @@ paths:
   /sobjects/{sObjectName}/{fieldName}/{fieldValue}:
     get:
       operationId: getSObjectRecordByExternalId
-      summary: Get record by external ID
+      summary: Salesforce Sales Cloud Get record by external ID
       description: >-
         Retrieves a record using an external ID field. If the external ID is
         not unique, a 300 response with multiple matching records is returned.
@@ -340,7 +340,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: upsertSObjectRecordByExternalId
-      summary: Upsert record by external ID
+      summary: Salesforce Sales Cloud Upsert record by external ID
       description: >-
         Creates or updates (upserts) a record using an external ID field. If
         the external ID is not matched, a new record is created. If the
@@ -388,7 +388,7 @@ paths:
   /sobjects/{sObjectName}/describe/layouts:
     get:
       operationId: getSObjectLayouts
-      summary: Get sObject page layouts
+      summary: Salesforce Sales Cloud Get sObject page layouts
       description: >-
         Returns a list of layouts and descriptions, including for publisher
         actions, for the specified sObject.
@@ -410,7 +410,7 @@ paths:
   /composite/sobjects:
     post:
       operationId: createSObjectCollection
-      summary: Create multiple sObject records
+      summary: Salesforce Sales Cloud Create multiple sObject records
       description: >-
         Creates up to 200 records in a single request. The request body contains
         an array of sObject records to create. All records must be of the same
@@ -462,7 +462,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     patch:
       operationId: updateSObjectCollection
-      summary: Update multiple sObject records
+      summary: Salesforce Sales Cloud Update multiple sObject records
       description: >-
         Updates up to 200 records in a single request. Each record must include
         an Id field and the sObject type.
@@ -517,7 +517,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deleteSObjectCollection
-      summary: Delete multiple sObject records
+      summary: Salesforce Sales Cloud Delete multiple sObject records
       description: >-
         Deletes up to 200 records in a single request. Specify the record IDs
         as a comma-separated list in the ids query parameter.
@@ -553,7 +553,7 @@ paths:
   /query:
     get:
       operationId: executeSOQLQuery
-      summary: Execute a SOQL query
+      summary: Salesforce Sales Cloud Execute a SOQL query
       description: >-
         Executes the specified SOQL query string and returns the results. If the
         query results are too large, the response contains the first batch of
@@ -582,7 +582,7 @@ paths:
   /queryAll:
     get:
       operationId: executeSOQLQueryAll
-      summary: Execute a SOQL query including deleted records
+      summary: Salesforce Sales Cloud Execute a SOQL query including deleted records
       description: >-
         Executes the specified SOQL query, including results from deleted and
         archived records. This is useful for querying against soft-deleted
@@ -610,7 +610,7 @@ paths:
   /query/{queryLocator}:
     get:
       operationId: getNextQueryResults
-      summary: Get next batch of query results
+      summary: Salesforce Sales Cloud Get next batch of query results
       description: >-
         Retrieves the next batch of query results using the query locator
         returned from a previous query request. Use this endpoint to paginate
@@ -638,7 +638,7 @@ paths:
   /search:
     get:
       operationId: executeSOSLSearch
-      summary: Execute a SOSL search
+      summary: Salesforce Sales Cloud Execute a SOSL search
       description: >-
         Executes the specified SOSL search string and returns matching records.
         SOSL searches are optimized for text-based searching across multiple
@@ -667,7 +667,7 @@ paths:
   /recent:
     get:
       operationId: getRecentlyViewedItems
-      summary: Get recently viewed items
+      summary: Salesforce Sales Cloud Get recently viewed items
       description: >-
         Gets the most recently accessed items that were viewed or referenced by
         the current user. Items are returned for every object type that the
@@ -695,7 +695,7 @@ paths:
   /tabs:
     get:
       operationId: getTabs
-      summary: Get available tabs
+      summary: Salesforce Sales Cloud Get available tabs
       description: >-
         Returns a list of all tabs available to the current user, including
         custom tabs and standard tabs. Includes tab metadata such as icon URLs,
@@ -729,7 +729,7 @@ paths:
   /theme:
     get:
       operationId: getTheme
-      summary: Get theme information
+      summary: Salesforce Sales Cloud Get theme information
       description: >-
         Returns information about the theme and branding for the current org
         including icon URLs and colors for standard and custom objects.
@@ -747,7 +747,7 @@ paths:
   /process/approvals:
     get:
       operationId: getProcessApprovals
-      summary: Get pending process approvals
+      summary: Salesforce Sales Cloud Get pending process approvals
       description: >-
         Returns a list of all approval processes and their current state.
         Available in API version 30.0 and later.
@@ -771,7 +771,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     post:
       operationId: submitProcessApproval
-      summary: Submit a process approval request
+      summary: Salesforce Sales Cloud Submit a process approval request
       description: >-
         Submits a particular record for approval, approves or rejects an
         approval request, or processes bulk approval requests.

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Platform Events API
+  title: Salesforce Sales Cloud Salesforce Platform Events API
   description: >-
     Event-driven architecture API for publishing and subscribing to custom
     platform events for app integration. Publish events using standard sObject
@@ -37,7 +37,7 @@ paths:
   /sobjects/{eventApiName}:
     get:
       operationId: describePlatformEvent
-      summary: Describe a platform event
+      summary: Salesforce Sales Cloud Describe a platform event
       description: >-
         Retrieves metadata about the specified platform event including its
         fields, label, and API name. The event API name uses the __e suffix
@@ -86,7 +86,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: publishPlatformEvent
-      summary: Publish a platform event
+      summary: Salesforce Sales Cloud Publish a platform event
       description: >-
         Publishes a single platform event message by inserting an sObject
         record for the event type. The event API name uses the __e suffix.
@@ -117,7 +117,7 @@ paths:
   /sobjects/{eventApiName}/describe:
     get:
       operationId: describePlatformEventFull
-      summary: Get full platform event metadata
+      summary: Salesforce Sales Cloud Get full platform event metadata
       description: >-
         Retrieves complete metadata about the specified platform event
         including all fields, their types, lengths, and other attributes.
@@ -139,7 +139,7 @@ paths:
   /sobjects/{eventApiName}/eventSchema:
     get:
       operationId: getPlatformEventSchema
-      summary: Get platform event schema
+      summary: Salesforce Sales Cloud Get platform event schema
       description: >-
         Retrieves the Apache Avro schema for the specified platform event.
         The schema describes the event's fields and their types in Avro
@@ -182,7 +182,7 @@ paths:
   /event/eventSchema/{schemaId}:
     get:
       operationId: getEventSchemaById
-      summary: Get event schema by schema ID
+      summary: Salesforce Sales Cloud Get event schema by schema ID
       description: >-
         Retrieves the event schema using the schema ID provided in an event
         message. This endpoint supports both platform events and change

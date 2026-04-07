@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Change Data Capture API
+  title: Salesforce Sales Cloud Salesforce Change Data Capture API
   description: >-
     Receive near-real-time notifications of changes to Salesforce records
     including creates, updates, deletes, and undeletes. Enables synchronization
@@ -37,7 +37,7 @@ paths:
   /sobjects/{changeEventName}:
     get:
       operationId: describeChangeEvent
-      summary: Describe a change event object
+      summary: Salesforce Sales Cloud Describe a change event object
       description: >-
         Retrieves metadata about a change event object. For standard objects,
         the change event name follows the pattern {ObjectName}ChangeEvent
@@ -80,7 +80,7 @@ paths:
   /sobjects/{changeEventName}/describe:
     get:
       operationId: describeChangeEventFull
-      summary: Get full change event metadata
+      summary: Salesforce Sales Cloud Get full change event metadata
       description: >-
         Returns complete metadata for a change event type including all
         header and changed fields. The change event header contains the
@@ -104,7 +104,7 @@ paths:
   /sobjects/{changeEventName}/eventSchema:
     get:
       operationId: getChangeEventSchema
-      summary: Get change event Avro schema
+      summary: Salesforce Sales Cloud Get change event Avro schema
       description: >-
         Retrieves the Apache Avro schema for the specified change event.
         The schema defines the event message structure including header
@@ -147,7 +147,7 @@ paths:
   /event/eventSchema/{schemaId}:
     get:
       operationId: getEventSchemaById
-      summary: Get event schema by ID
+      summary: Salesforce Sales Cloud Get event schema by ID
       description: >-
         Retrieves an event schema using the schema ID provided in a change
         event message. Useful when dynamically processing change events and

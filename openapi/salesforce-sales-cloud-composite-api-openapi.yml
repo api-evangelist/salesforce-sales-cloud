@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Composite API
+  title: Salesforce Sales Cloud Salesforce Composite API
   description: >-
     Executes a series of REST API requests in a single call, reducing round
     trips between client and server. Supports composite requests with
@@ -43,7 +43,7 @@ paths:
   /composite:
     post:
       operationId: executeCompositeRequest
-      summary: Execute a composite request
+      summary: Salesforce Sales Cloud Execute a composite request
       description: >-
         Executes a series of REST API requests in a single call. Each request
         can reference the results of previous requests via referenceId, enabling
@@ -71,7 +71,7 @@ paths:
   /composite/batch:
     post:
       operationId: executeCompositeBatch
-      summary: Execute a composite batch request
+      summary: Salesforce Sales Cloud Execute a composite batch request
       description: >-
         Executes up to 25 subrequests in a single request. Subrequests are
         independent and do not share context or reference each other. Each
@@ -99,7 +99,7 @@ paths:
   /composite/graph:
     post:
       operationId: executeCompositeGraph
-      summary: Execute a composite graph request
+      summary: Salesforce Sales Cloud Execute a composite graph request
       description: >-
         Executes one or more composite graphs. Each graph consists of a series
         of composite subrequests that can reference each other. Graphs are
@@ -127,7 +127,7 @@ paths:
   /composite/tree/{sObjectName}:
     post:
       operationId: createSObjectTree
-      summary: Create an sObject tree
+      summary: Salesforce Sales Cloud Create an sObject tree
       description: >-
         Creates one or more sObject trees with root records of the specified
         type. An sObject tree is a collection of nested, parent-child records
@@ -183,7 +183,7 @@ paths:
   /composite/sobjects:
     post:
       operationId: createSObjectCollection
-      summary: Create a collection of sObject records
+      summary: Salesforce Sales Cloud Create a collection of sObject records
       description: >-
         Creates up to 200 records of the same or different sObject types in
         a single request. Returns individual success/failure results for
@@ -221,7 +221,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     patch:
       operationId: updateSObjectCollection
-      summary: Update a collection of sObject records
+      summary: Salesforce Sales Cloud Update a collection of sObject records
       description: >-
         Updates up to 200 records in a single request. Each record must include
         the Id field and sObject type.
@@ -258,7 +258,7 @@ paths:
           $ref: '#/components/responses/Unauthorized'
     delete:
       operationId: deleteSObjectCollection
-      summary: Delete a collection of sObject records
+      summary: Salesforce Sales Cloud Delete a collection of sObject records
       description: >-
         Deletes up to 200 records in a single request. Record IDs are passed
         as a comma-separated list in the ids query parameter.

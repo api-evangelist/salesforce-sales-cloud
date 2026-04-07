@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce GraphQL API
+  title: Salesforce Sales Cloud Salesforce GraphQL API
   description: >-
     Query and mutate Salesforce data using GraphQL, allowing clients to request
     exactly the fields they need in a single request. Reduces payload size and
@@ -35,7 +35,7 @@ paths:
   /graphql:
     post:
       operationId: executeGraphQLQuery
-      summary: Execute a GraphQL query or mutation
+      summary: Salesforce Sales Cloud Execute a GraphQL query or mutation
       description: >-
         Executes a GraphQL query or mutation against the Salesforce data model.
         Queries allow reading data from any accessible sObject with field-level

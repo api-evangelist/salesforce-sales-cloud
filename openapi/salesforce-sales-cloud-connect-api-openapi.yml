@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Connect REST API
+  title: Salesforce Sales Cloud Salesforce Connect REST API
   description: >-
     Integrate mobile apps, intranet sites, and third-party web applications
     with Salesforce. Provides access to Chatter feeds, groups, users, files,
@@ -44,7 +44,7 @@ paths:
   /communities:
     get:
       operationId: listCommunities
-      summary: List communities
+      summary: Salesforce Sales Cloud List communities
       description: >-
         Returns a list of communities (Experience Cloud sites) available
         to the current user. Includes community name, URL, status, and
@@ -70,7 +70,7 @@ paths:
   /chatter/feeds/news/me/feed-elements:
     get:
       operationId: getNewsFeed
-      summary: Get news feed for current user
+      summary: Salesforce Sales Cloud Get news feed for current user
       description: >-
         Returns the news feed for the current user. The news feed includes
         updates from people and records the user follows, groups the user
@@ -113,7 +113,7 @@ paths:
   /chatter/feeds/record/{recordId}/feed-elements:
     get:
       operationId: getRecordFeed
-      summary: Get feed for a specific record
+      summary: Salesforce Sales Cloud Get feed for a specific record
       description: >-
         Returns the feed associated with the specified record. The record
         feed includes posts, comments, and tracked changes for the record.
@@ -151,7 +151,7 @@ paths:
   /chatter/feed-elements:
     post:
       operationId: postFeedElement
-      summary: Post a feed element
+      summary: Salesforce Sales Cloud Post a feed element
       description: >-
         Creates a new feed element (post) on a user profile, group, or record
         feed. Supports text posts, link posts, and content posts with
@@ -178,7 +178,7 @@ paths:
   /chatter/feed-elements/{feedElementId}:
     get:
       operationId: getFeedElement
-      summary: Get a feed element
+      summary: Salesforce Sales Cloud Get a feed element
       description: >-
         Returns the specified feed element including its body, comments,
         likes, and metadata.
@@ -204,7 +204,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteFeedElement
-      summary: Delete a feed element
+      summary: Salesforce Sales Cloud Delete a feed element
       description: >-
         Deletes the specified feed element. Only the author or an admin can
         delete a feed element.
@@ -226,7 +226,7 @@ paths:
   /chatter/feed-elements/{feedElementId}/capabilities/comments/items:
     get:
       operationId: getFeedElementComments
-      summary: Get comments on a feed element
+      summary: Salesforce Sales Cloud Get comments on a feed element
       description: >-
         Returns all comments on the specified feed element, paginated.
       tags:
@@ -263,7 +263,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: postComment
-      summary: Post a comment on a feed element
+      summary: Salesforce Sales Cloud Post a comment on a feed element
       description: >-
         Creates a new comment on the specified feed element.
       tags:
@@ -297,7 +297,7 @@ paths:
   /chatter/groups:
     get:
       operationId: listGroups
-      summary: List Chatter groups
+      summary: Salesforce Sales Cloud List Chatter groups
       description: >-
         Returns a list of Chatter groups visible to the current user.
         Includes public groups, private groups the user is a member of,
@@ -342,7 +342,7 @@ paths:
   /chatter/groups/{groupId}:
     get:
       operationId: getGroup
-      summary: Get a Chatter group
+      summary: Salesforce Sales Cloud Get a Chatter group
       description: >-
         Returns detailed information about the specified Chatter group
         including member count, description, and the current user's
@@ -369,7 +369,7 @@ paths:
   /chatter/groups/{groupId}/members:
     get:
       operationId: getGroupMembers
-      summary: Get group members
+      summary: Salesforce Sales Cloud Get group members
       description: >-
         Returns a list of members in the specified Chatter group.
       tags:
@@ -414,7 +414,7 @@ paths:
   /chatter/users/me:
     get:
       operationId: getCurrentUser
-      summary: Get current user information
+      summary: Salesforce Sales Cloud Get current user information
       description: >-
         Returns detailed information about the current user including
         profile, photo, and Chatter activity.
@@ -432,7 +432,7 @@ paths:
   /chatter/users/{userId}:
     get:
       operationId: getUser
-      summary: Get user information
+      summary: Salesforce Sales Cloud Get user information
       description: >-
         Returns detailed information about the specified user including
         profile, photo, and Chatter statistics.
@@ -458,7 +458,7 @@ paths:
   /files/users/me:
     get:
       operationId: getMyFiles
-      summary: Get files owned by current user
+      summary: Salesforce Sales Cloud Get files owned by current user
       description: >-
         Returns a list of files owned by the current user.
       tags:

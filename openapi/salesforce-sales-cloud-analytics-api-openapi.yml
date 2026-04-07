@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Analytics REST API
+  title: Salesforce Sales Cloud Salesforce Analytics REST API
   description: >-
     Access Salesforce reports, dashboards, and analytics data
     programmatically. Enables embedding analytics into custom applications,
@@ -40,7 +40,7 @@ paths:
   /reports:
     get:
       operationId: listReports
-      summary: List reports
+      summary: Salesforce Sales Cloud List reports
       description: >-
         Returns a list of recently used reports. Each report in the list
         includes the report ID, name, URL, and description.
@@ -60,7 +60,7 @@ paths:
   /reports/{reportId}:
     get:
       operationId: getReport
-      summary: Get report metadata
+      summary: Salesforce Sales Cloud Get report metadata
       description: >-
         Retrieves report metadata, including report type, format, groupings,
         filters, and summary fields for the specified report.
@@ -81,7 +81,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateReport
-      summary: Update a report
+      summary: Salesforce Sales Cloud Update a report
       description: >-
         Updates report metadata including filters, groupings, and other
         settings. Only report properties included in the request body are
@@ -115,7 +115,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteReport
-      summary: Delete a report
+      summary: Salesforce Sales Cloud Delete a report
       description: >-
         Deletes the specified report. The report must not be currently in use
         by a dashboard component.
@@ -133,7 +133,7 @@ paths:
   /reports/{reportId}/describe:
     get:
       operationId: describeReport
-      summary: Describe a report
+      summary: Salesforce Sales Cloud Describe a report
       description: >-
         Retrieves detailed metadata about a report including the report type
         metadata, grouping column information, summary field information,
@@ -164,7 +164,7 @@ paths:
   /reports/{reportId}?includeDetails=true:
     post:
       operationId: executeReportSync
-      summary: Run a report synchronously
+      summary: Salesforce Sales Cloud Run a report synchronously
       description: >-
         Runs a report synchronously and returns the report results. Optionally
         apply dynamic filters, aggregates, and groupings. Use includeDetails
@@ -204,7 +204,7 @@ paths:
   /reports/{reportId}/instances:
     get:
       operationId: listReportInstances
-      summary: List report instances
+      summary: Salesforce Sales Cloud List report instances
       description: >-
         Returns a list of instances for the specified report that have been
         run asynchronously. Each instance includes the status and completion
@@ -228,7 +228,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: executeReportAsync
-      summary: Run a report asynchronously
+      summary: Salesforce Sales Cloud Run a report asynchronously
       description: >-
         Runs a report asynchronously. Returns the report instance ID which
         can be used to retrieve the results when the report has finished
@@ -261,7 +261,7 @@ paths:
   /reports/{reportId}/instances/{instanceId}:
     get:
       operationId: getReportInstanceResults
-      summary: Get report instance results
+      summary: Salesforce Sales Cloud Get report instance results
       description: >-
         Retrieves the results of an asynchronous report run using the
         instance ID. If the report is still running, the status is returned
@@ -290,7 +290,7 @@ paths:
   /reportTypes:
     get:
       operationId: listReportTypes
-      summary: List available report types
+      summary: Salesforce Sales Cloud List available report types
       description: >-
         Returns a list of report types available in the org. Each report type
         includes its label and API name.
@@ -315,7 +315,7 @@ paths:
   /reportTypes/{reportType}:
     get:
       operationId: describeReportType
-      summary: Describe a report type
+      summary: Salesforce Sales Cloud Describe a report type
       description: >-
         Returns metadata about the specified report type including available
         fields, groupable fields, and filterable fields.
@@ -342,7 +342,7 @@ paths:
   /dashboards:
     get:
       operationId: listDashboards
-      summary: List dashboards
+      summary: Salesforce Sales Cloud List dashboards
       description: >-
         Returns a list of recently used dashboards. Each dashboard in the list
         includes the dashboard ID, name, URL, and folder information.
@@ -365,7 +365,7 @@ paths:
   /dashboards/{dashboardId}:
     get:
       operationId: getDashboard
-      summary: Get dashboard metadata and results
+      summary: Salesforce Sales Cloud Get dashboard metadata and results
       description: >-
         Returns the metadata and cached results for the specified dashboard,
         including component data, status, and filter information.
@@ -386,7 +386,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     put:
       operationId: refreshDashboard
-      summary: Refresh a dashboard
+      summary: Salesforce Sales Cloud Refresh a dashboard
       description: >-
         Refreshes the specified dashboard by re-running all component reports.
         Dashboard refresh requests are limited to 200 per hour.
@@ -407,7 +407,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteDashboard
-      summary: Delete a dashboard
+      summary: Salesforce Sales Cloud Delete a dashboard
       description: >-
         Deletes the specified dashboard.
       tags:
@@ -424,7 +424,7 @@ paths:
   /dashboards/{dashboardId}/status:
     get:
       operationId: getDashboardStatus
-      summary: Get dashboard refresh status
+      summary: Salesforce Sales Cloud Get dashboard refresh status
       description: >-
         Returns the status of the most recent refresh for the specified
         dashboard, including component-level status information.

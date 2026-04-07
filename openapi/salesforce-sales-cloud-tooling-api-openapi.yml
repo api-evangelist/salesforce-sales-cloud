@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Tooling API
+  title: Salesforce Sales Cloud Salesforce Tooling API
   description: >-
     Build custom development tools for Salesforce applications by accessing
     metadata about Apex classes, triggers, Visualforce pages, and other
@@ -45,7 +45,7 @@ paths:
   /sobjects:
     get:
       operationId: listToolingSObjects
-      summary: List available Tooling API sObjects
+      summary: Salesforce Sales Cloud List available Tooling API sObjects
       description: >-
         Lists all available Tooling API sObjects and their metadata, including
         ApexClass, ApexTrigger, ApexComponent, ApexPage, ApexLog,
@@ -88,7 +88,7 @@ paths:
   /sobjects/{sObjectName}:
     get:
       operationId: getToolingSObjectBasicInfo
-      summary: Get Tooling sObject basic information
+      summary: Salesforce Sales Cloud Get Tooling sObject basic information
       description: >-
         Retrieves basic metadata for the specified Tooling API sObject,
         including default field values and recently accessed records.
@@ -109,7 +109,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     post:
       operationId: createToolingSObjectRecord
-      summary: Create a Tooling sObject record
+      summary: Salesforce Sales Cloud Create a Tooling sObject record
       description: >-
         Creates a new record for the specified Tooling API sObject. For example,
         creating an ApexClass record will create and compile a new Apex class
@@ -139,7 +139,7 @@ paths:
   /sobjects/{sObjectName}/describe:
     get:
       operationId: describeToolingSObject
-      summary: Describe a Tooling sObject
+      summary: Salesforce Sales Cloud Describe a Tooling sObject
       description: >-
         Completely describes the individual metadata for the specified Tooling
         API sObject, including all fields, child relationships, and other
@@ -162,7 +162,7 @@ paths:
   /sobjects/{sObjectName}/{recordId}:
     get:
       operationId: getToolingSObjectRecord
-      summary: Get a Tooling sObject record
+      summary: Salesforce Sales Cloud Get a Tooling sObject record
       description: >-
         Retrieves a Tooling API record by its ID. For example, retrieve an
         ApexClass record to get its source code, metadata, and compilation
@@ -186,7 +186,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateToolingSObjectRecord
-      summary: Update a Tooling sObject record
+      summary: Salesforce Sales Cloud Update a Tooling sObject record
       description: >-
         Updates an existing Tooling API record. For example, updating an
         ApexClass record will update and recompile the Apex class.
@@ -213,7 +213,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteToolingSObjectRecord
-      summary: Delete a Tooling sObject record
+      summary: Salesforce Sales Cloud Delete a Tooling sObject record
       description: >-
         Deletes a Tooling API record by its ID.
       tags:
@@ -231,7 +231,7 @@ paths:
   /query:
     get:
       operationId: executeToolingQuery
-      summary: Execute a Tooling API SOQL query
+      summary: Salesforce Sales Cloud Execute a Tooling API SOQL query
       description: >-
         Executes a SOQL query against Tooling API objects. Use this to query
         ApexClass, ApexTrigger, ApexLog, ApexTestQueueItem, and other Tooling
@@ -260,7 +260,7 @@ paths:
   /completions:
     get:
       operationId: getApexCompletions
-      summary: Get Apex code completions
+      summary: Salesforce Sales Cloud Get Apex code completions
       description: >-
         Returns code completions for Apex system type information. Useful for
         building IDE-like features for Salesforce development tools.
@@ -291,7 +291,7 @@ paths:
   /executeAnonymous:
     get:
       operationId: executeAnonymousApex
-      summary: Execute anonymous Apex code
+      summary: Salesforce Sales Cloud Execute anonymous Apex code
       description: >-
         Executes a block of anonymous Apex code. The code does not need to be
         part of an Apex class. Returns compilation and execution results,
@@ -335,7 +335,7 @@ paths:
   /runTestsAsynchronous:
     post:
       operationId: runTestsAsync
-      summary: Run Apex tests asynchronously
+      summary: Salesforce Sales Cloud Run Apex tests asynchronously
       description: >-
         Runs one or more Apex test methods asynchronously. Returns the test
         run ID which can be used to check status and retrieve results.
@@ -389,7 +389,7 @@ paths:
   /runTestsSynchronous:
     post:
       operationId: runTestsSync
-      summary: Run Apex tests synchronously
+      summary: Salesforce Sales Cloud Run Apex tests synchronously
       description: >-
         Runs specified Apex tests synchronously and returns the results inline.
         Best for small numbers of tests that complete quickly.

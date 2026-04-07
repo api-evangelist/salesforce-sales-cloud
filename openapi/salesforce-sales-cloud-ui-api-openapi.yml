@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce User Interface API
+  title: Salesforce Sales Cloud Salesforce User Interface API
   description: >-
     Build custom user interfaces for Salesforce data using the same API that
     powers Lightning Experience. Returns data and metadata in a single response
@@ -47,7 +47,7 @@ paths:
   /records/{recordId}:
     get:
       operationId: getRecord
-      summary: Get a record with UI metadata
+      summary: Salesforce Sales Cloud Get a record with UI metadata
       description: >-
         Retrieves a record with field values and UI metadata. Specify the
         fields to return or use a layout mode to get the fields appropriate
@@ -101,7 +101,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     patch:
       operationId: updateRecord
-      summary: Update a record
+      summary: Salesforce Sales Cloud Update a record
       description: >-
         Updates the specified record. Only include fields that need to be
         changed. Returns the updated record with UI metadata.
@@ -134,7 +134,7 @@ paths:
           $ref: '#/components/responses/NotFound'
     delete:
       operationId: deleteRecord
-      summary: Delete a record
+      summary: Salesforce Sales Cloud Delete a record
       description: >-
         Deletes the specified record.
       tags:
@@ -151,7 +151,7 @@ paths:
   /records:
     post:
       operationId: createRecord
-      summary: Create a record
+      summary: Salesforce Sales Cloud Create a record
       description: >-
         Creates a new record. Returns the created record with UI metadata
         and the new record ID.
@@ -188,7 +188,7 @@ paths:
   /record-ui/{recordIds}:
     get:
       operationId: getRecordUI
-      summary: Get record UI data
+      summary: Salesforce Sales Cloud Get record UI data
       description: >-
         Returns layout information, field metadata, and record data for one
         or more records in a single response. This is the most efficient way
@@ -252,7 +252,7 @@ paths:
   /layout/{objectApiName}:
     get:
       operationId: getRecordLayout
-      summary: Get record layout metadata
+      summary: Salesforce Sales Cloud Get record layout metadata
       description: >-
         Returns layout metadata for the specified sObject including sections,
         fields, and their arrangement on the page. Respects record type
@@ -303,7 +303,7 @@ paths:
   /object-info/{objectApiName}:
     get:
       operationId: getObjectInfo
-      summary: Get object metadata for UI
+      summary: Salesforce Sales Cloud Get object metadata for UI
       description: >-
         Returns metadata about the specified sObject optimized for UI
         rendering, including field metadata, record type info, child
@@ -330,7 +330,7 @@ paths:
   /object-info/{objectApiName}/picklist-values/{recordTypeId}:
     get:
       operationId: getPicklistValues
-      summary: Get picklist values for all fields
+      summary: Salesforce Sales Cloud Get picklist values for all fields
       description: >-
         Returns the picklist values for all picklist fields on the specified
         object, filtered by record type. Includes dependent picklist
@@ -381,7 +381,7 @@ paths:
   /object-info/{objectApiName}/picklist-values/{recordTypeId}/{fieldApiName}:
     get:
       operationId: getPicklistValuesByField
-      summary: Get picklist values for a specific field
+      summary: Salesforce Sales Cloud Get picklist values for a specific field
       description: >-
         Returns the picklist values for the specified picklist field,
         filtered by record type.
@@ -429,7 +429,7 @@ paths:
   /list-ui/{listViewId}:
     get:
       operationId: getListViewRecords
-      summary: Get list view records
+      summary: Salesforce Sales Cloud Get list view records
       description: >-
         Returns records and metadata for the specified list view, including
         column definitions, sort information, and filtered records.
@@ -466,7 +466,7 @@ paths:
   /lookups/{objectApiName}/{fieldApiName}/{targetApiName}:
     get:
       operationId: lookupFieldSearch
-      summary: Search for lookup field values
+      summary: Salesforce Sales Cloud Search for lookup field values
       description: >-
         Searches for records to populate a lookup field, filtered by the
         lookup filter criteria configured for the field.
