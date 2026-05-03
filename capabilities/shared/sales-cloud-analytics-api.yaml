@@ -1,0 +1,214 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Salesforce Sales Cloud Analytics REST API"
+  description: "API for accessing Salesforce reports, dashboards, and analytics data programmatically."
+  tags:
+    - Salesforce
+    - Sales Cloud
+    - Analytics
+    - Reports
+    - Dashboards
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SALESFORCE_ACCESS_TOKEN: SALESFORCE_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - type: http
+      namespace: salesforce-analytics
+      baseUri: https://{instance}.salesforce.com/services/data/v59.0/analytics
+      description: "Salesforce Analytics REST API"
+      authentication:
+        type: bearer
+        token: "{{SALESFORCE_ACCESS_TOKEN}}"
+      resources:
+        - name: reports
+          path: /reports
+          description: "Report management"
+          operations:
+            - name: list-reports
+              method: GET
+              description: "List all available reports"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: report
+          path: /reports/{reportId}
+          description: "Individual report operations"
+          operations:
+            - name: get-report
+              method: GET
+              description: "Get report metadata"
+              inputParameters:
+                - name: reportId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Salesforce report ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: run-report
+              method: POST
+              description: "Run a report synchronously"
+              inputParameters:
+                - name: reportId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Salesforce report ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: dashboards
+          path: /dashboards
+          description: "Dashboard management"
+          operations:
+            - name: list-dashboards
+              method: GET
+              description: "List all dashboards"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: dashboard
+          path: /dashboards/{dashboardId}
+          description: "Individual dashboard operations"
+          operations:
+            - name: get-dashboard
+              method: GET
+              description: "Get dashboard metadata"
+              inputParameters:
+                - name: dashboardId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Salesforce dashboard ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: refresh-dashboard
+              method: PUT
+              description: "Refresh dashboard data"
+              inputParameters:
+                - name: dashboardId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Salesforce dashboard ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8101
+      namespace: sales-cloud-analytics-rest
+      resources:
+        - path: /v1/reports
+          name: reports
+          operations:
+            - method: GET
+              name: list-reports
+              description: "List reports"
+              call: "salesforce-analytics.list-reports"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/reports/{reportId}/run
+          name: report-run
+          operations:
+            - method: POST
+              name: run-report
+              description: "Run a report"
+              call: "salesforce-analytics.run-report"
+              with:
+                reportId: "rest.reportId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9101
+      namespace: sales-cloud-analytics-mcp
+      transport: http
+      tools:
+        - name: list-reports
+          description: "List all available Salesforce reports"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-analytics.list-reports"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-report
+          description: "Get report metadata and column definitions"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-analytics.get-report"
+          with:
+            reportId: "tools.reportId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: run-report
+          description: "Execute a Salesforce report and get results"
+          hints:
+            readOnly: true
+            idempotent: false
+          call: "salesforce-analytics.run-report"
+          with:
+            reportId: "tools.reportId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-dashboards
+          description: "List all available Salesforce dashboards"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-analytics.list-dashboards"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-dashboard
+          description: "Get dashboard component data"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-analytics.get-dashboard"
+          with:
+            dashboardId: "tools.dashboardId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: refresh-dashboard
+          description: "Refresh a dashboard to update its data"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: true
+          call: "salesforce-analytics.refresh-dashboard"
+          with:
+            dashboardId: "tools.dashboardId"
+          outputParameters:
+            - type: object
+              mapping: "$."

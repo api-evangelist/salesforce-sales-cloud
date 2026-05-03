@@ -1,0 +1,185 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Salesforce Sales Cloud Data Integration"
+  description: >-
+    Workflow capability for bulk data loading, real-time event streaming, and
+    enterprise data integration in Salesforce Sales Cloud. Combines Bulk API 2.0
+    for large dataset operations with Change Data Capture for real-time sync.
+    Designed for data engineers and ETL/ELT pipeline developers.
+  tags:
+    - Salesforce
+    - Sales Cloud
+    - Data Integration
+    - Bulk Loading
+    - ETL
+    - Change Data Capture
+    - Events
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SALESFORCE_ACCESS_TOKEN: SALESFORCE_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: salesforce-bulk
+      location: ./shared/sales-cloud-bulk-api.yaml
+    - import: salesforce-sales-rest
+      location: ./shared/sales-cloud-rest-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: data-integration-api
+      description: "Unified REST API for Salesforce data integration operations."
+      resources:
+        - path: /v1/bulk/ingest-jobs
+          name: ingest-jobs
+          description: "Bulk data ingest job management"
+          operations:
+            - method: GET
+              name: list-ingest-jobs
+              description: "List bulk ingest jobs"
+              call: "salesforce-bulk.list-ingest-jobs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-ingest-job
+              description: "Create a bulk ingest job"
+              call: "salesforce-bulk.create-ingest-job"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/bulk/ingest-jobs/{jobId}
+          name: ingest-job
+          description: "Individual job management"
+          operations:
+            - method: GET
+              name: get-ingest-job
+              description: "Get bulk job status"
+              call: "salesforce-bulk.get-ingest-job"
+              with:
+                jobId: "rest.jobId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/bulk/query-jobs
+          name: query-jobs
+          description: "Bulk query job management"
+          operations:
+            - method: GET
+              name: list-query-jobs
+              description: "List bulk query jobs"
+              call: "salesforce-bulk.list-query-jobs"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-query-job
+              description: "Create a bulk query job"
+              call: "salesforce-bulk.create-query-job"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/query
+          name: soql
+          description: "SOQL data extraction"
+          operations:
+            - method: GET
+              name: query
+              description: "Extract data with SOQL"
+              call: "salesforce-sales-rest.soql-query"
+              with:
+                q: "rest.q"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: data-integration-mcp
+      transport: http
+      description: "MCP server for AI-assisted Salesforce data integration and ETL operations."
+      tools:
+        - name: list-bulk-ingest-jobs
+          description: "List all bulk data ingest jobs and their statuses"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-bulk.list-ingest-jobs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-bulk-ingest-job
+          description: "Create a new bulk data ingest job for large dataset loading"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "salesforce-bulk.create-ingest-job"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-bulk-ingest-job
+          description: "Get status and results of a bulk ingest job"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-bulk.get-ingest-job"
+          with:
+            jobId: "tools.jobId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: close-bulk-ingest-job
+          description: "Close or abort a bulk ingest job"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "salesforce-bulk.close-ingest-job"
+          with:
+            jobId: "tools.jobId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-bulk-query-job
+          description: "Create a bulk query job to extract large datasets via SOQL"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "salesforce-bulk.create-query-job"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-bulk-query-jobs
+          description: "List bulk query jobs"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-bulk.list-query-jobs"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: extract-data-soql
+          description: "Extract Salesforce data using SOQL for integration pipelines"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-sales-rest.soql-query"
+          with:
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-api-limits
+          description: "Check API rate limits before running bulk operations"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-sales-rest.get-org-limits"
+          outputParameters:
+            - type: object
+              mapping: "$."

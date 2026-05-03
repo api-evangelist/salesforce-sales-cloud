@@ -1,0 +1,89 @@
+rules:
+  salesforce-sc-operation-summary-title-case:
+    description: Operation summaries must use Title Case
+    message: "Summary '{{value}}' should use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  salesforce-sc-operation-id-camel-case:
+    description: OperationIds must use camelCase
+    message: "OperationId '{{value}}' must use camelCase"
+    severity: warn
+    given: "$.paths[*][*].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  salesforce-sc-tags-title-case:
+    description: All tags must use Title Case
+    message: "Tag '{{value}}' should use Title Case"
+    severity: warn
+    given: "$.paths[*][*].tags[*]"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  salesforce-sc-response-200-description:
+    description: All 200 responses must have a description
+    severity: error
+    given: "$.paths[*][*].responses['200']"
+    then:
+      field: description
+      function: truthy
+
+  salesforce-sc-contact-required:
+    description: API info must include contact details
+    severity: error
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  salesforce-sc-version-required:
+    description: API info must include a version
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  salesforce-sc-servers-required:
+    description: API must define at least one server
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  salesforce-sc-security-defined:
+    description: API must define security requirements
+    severity: error
+    given: "$"
+    then:
+      field: security
+      function: truthy
+
+  salesforce-sc-sobject-paths-lowercase:
+    description: sObject paths should use standard Salesforce casing conventions
+    message: "Path '{{value}}' should follow Salesforce sObject naming conventions"
+    severity: info
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/[a-zA-Z/{}._-]+$"
+
+  salesforce-sc-bulk-job-content-type:
+    description: Bulk API job creation should accept application/json
+    message: "Bulk API endpoints should accept application/json content type"
+    severity: warn
+    given: "$.paths./jobs/ingest.post.requestBody.content"
+    then:
+      field: application/json
+      function: truthy

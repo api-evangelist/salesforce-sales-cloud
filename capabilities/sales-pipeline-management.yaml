@@ -1,0 +1,388 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Salesforce Sales Pipeline Management"
+  description: >-
+    Unified workflow capability for managing the full sales pipeline in Salesforce
+    Sales Cloud. Combines REST API access to accounts, contacts, leads,
+    opportunities, and activities with analytics for pipeline reporting.
+    Designed for sales operations teams and AI assistants managing deal flow.
+  tags:
+    - Salesforce
+    - Sales Cloud
+    - CRM
+    - Sales Pipeline
+    - Opportunities
+    - Accounts
+    - Leads
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SALESFORCE_ACCESS_TOKEN: SALESFORCE_ACCESS_TOKEN
+
+capability:
+  consumes:
+    - import: salesforce-sales-rest
+      location: ./shared/sales-cloud-rest-api.yaml
+    - import: salesforce-analytics
+      location: ./shared/sales-cloud-analytics-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: sales-pipeline-api
+      description: "Unified REST API for Salesforce sales pipeline management."
+      resources:
+        - path: /v1/accounts
+          name: accounts
+          description: "Account management"
+          operations:
+            - method: POST
+              name: create-account
+              description: "Create a new account record"
+              call: "salesforce-sales-rest.create-sobject-record"
+              with:
+                sObjectName: "Account"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/accounts/{id}
+          name: account
+          description: "Individual account operations"
+          operations:
+            - method: GET
+              name: get-account
+              description: "Get an account record"
+              call: "salesforce-sales-rest.get-sobject-record"
+              with:
+                sObjectName: "Account"
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PATCH
+              name: update-account
+              description: "Update an account record"
+              call: "salesforce-sales-rest.update-sobject-record"
+              with:
+                sObjectName: "Account"
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/contacts
+          name: contacts
+          description: "Contact management"
+          operations:
+            - method: POST
+              name: create-contact
+              description: "Create a new contact record"
+              call: "salesforce-sales-rest.create-sobject-record"
+              with:
+                sObjectName: "Contact"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/contacts/{id}
+          name: contact
+          description: "Individual contact operations"
+          operations:
+            - method: GET
+              name: get-contact
+              description: "Get a contact record"
+              call: "salesforce-sales-rest.get-sobject-record"
+              with:
+                sObjectName: "Contact"
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/leads
+          name: leads
+          description: "Lead management"
+          operations:
+            - method: POST
+              name: create-lead
+              description: "Create a new lead record"
+              call: "salesforce-sales-rest.create-sobject-record"
+              with:
+                sObjectName: "Lead"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/leads/{id}
+          name: lead
+          description: "Individual lead operations"
+          operations:
+            - method: GET
+              name: get-lead
+              description: "Get a lead record"
+              call: "salesforce-sales-rest.get-sobject-record"
+              with:
+                sObjectName: "Lead"
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/opportunities
+          name: opportunities
+          description: "Opportunity management"
+          operations:
+            - method: POST
+              name: create-opportunity
+              description: "Create a new opportunity"
+              call: "salesforce-sales-rest.create-sobject-record"
+              with:
+                sObjectName: "Opportunity"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/opportunities/{id}
+          name: opportunity
+          description: "Individual opportunity operations"
+          operations:
+            - method: GET
+              name: get-opportunity
+              description: "Get an opportunity record"
+              call: "salesforce-sales-rest.get-sobject-record"
+              with:
+                sObjectName: "Opportunity"
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: PATCH
+              name: update-opportunity
+              description: "Update an opportunity"
+              call: "salesforce-sales-rest.update-sobject-record"
+              with:
+                sObjectName: "Opportunity"
+                id: "rest.id"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/query
+          name: soql-query
+          description: "SOQL query for advanced data access"
+          operations:
+            - method: GET
+              name: query
+              description: "Execute a SOQL query"
+              call: "salesforce-sales-rest.soql-query"
+              with:
+                q: "rest.q"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/reports
+          name: reports
+          description: "Sales reports"
+          operations:
+            - method: GET
+              name: list-reports
+              description: "List available sales reports"
+              call: "salesforce-analytics.list-reports"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/reports/{reportId}/run
+          name: report-execution
+          description: "Report execution"
+          operations:
+            - method: POST
+              name: run-report
+              description: "Execute a sales report"
+              call: "salesforce-analytics.run-report"
+              with:
+                reportId: "rest.reportId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: sales-pipeline-mcp
+      transport: http
+      description: "MCP server for AI-assisted sales pipeline management in Salesforce."
+      tools:
+        - name: get-account
+          description: "Get a Salesforce Account record by ID"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-sales-rest.get-sobject-record"
+          with:
+            sObjectName: "Account"
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-account
+          description: "Create a new Account record in Salesforce"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "salesforce-sales-rest.create-sobject-record"
+          with:
+            sObjectName: "Account"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-account
+          description: "Update an existing Account record"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "salesforce-sales-rest.update-sobject-record"
+          with:
+            sObjectName: "Account"
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-contact
+          description: "Get a Salesforce Contact record by ID"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-sales-rest.get-sobject-record"
+          with:
+            sObjectName: "Contact"
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-contact
+          description: "Create a new Contact record in Salesforce"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "salesforce-sales-rest.create-sobject-record"
+          with:
+            sObjectName: "Contact"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-lead
+          description: "Get a Salesforce Lead record by ID"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-sales-rest.get-sobject-record"
+          with:
+            sObjectName: "Lead"
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-lead
+          description: "Create a new Lead record in Salesforce"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "salesforce-sales-rest.create-sobject-record"
+          with:
+            sObjectName: "Lead"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-opportunity
+          description: "Get a Salesforce Opportunity record by ID"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-sales-rest.get-sobject-record"
+          with:
+            sObjectName: "Opportunity"
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-opportunity
+          description: "Create a new Opportunity record in Salesforce"
+          hints:
+            readOnly: false
+            destructive: false
+          call: "salesforce-sales-rest.create-sobject-record"
+          with:
+            sObjectName: "Opportunity"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-opportunity
+          description: "Update an existing Opportunity (stage, amount, close date)"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "salesforce-sales-rest.update-sobject-record"
+          with:
+            sObjectName: "Opportunity"
+            id: "tools.id"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: soql-query
+          description: "Execute a SOQL query to retrieve CRM records with custom filters"
+          hints:
+            readOnly: true
+            idempotent: true
+            openWorld: true
+          call: "salesforce-sales-rest.soql-query"
+          with:
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: sosl-search
+          description: "Search across Salesforce objects using SOSL"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-sales-rest.sosl-search"
+          with:
+            q: "tools.q"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-org-api-limits
+          description: "Get current API usage and limits for the Salesforce org"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-sales-rest.get-org-limits"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-sales-reports
+          description: "List available Salesforce reports for sales analytics"
+          hints:
+            readOnly: true
+            idempotent: true
+            openWorld: true
+          call: "salesforce-analytics.list-reports"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: run-sales-report
+          description: "Execute a Salesforce report and retrieve results for pipeline analysis"
+          hints:
+            readOnly: true
+            idempotent: false
+          call: "salesforce-analytics.run-report"
+          with:
+            reportId: "tools.reportId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-dashboards
+          description: "List available Salesforce dashboards"
+          hints:
+            readOnly: true
+            idempotent: true
+          call: "salesforce-analytics.list-dashboards"
+          outputParameters:
+            - type: object
+              mapping: "$."

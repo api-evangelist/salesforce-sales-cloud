@@ -1,0 +1,140 @@
+{
+  "title": "Salesforce Sales Cloud Account Structure",
+  "description": "Structural documentation for the Salesforce Account sObject — the core CRM record for companies.",
+  "resource": "Account",
+  "baseUri": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/Account",
+  "fields": [
+    {
+      "name": "Id",
+      "type": "string",
+      "required": true,
+      "description": "Unique Salesforce record ID",
+      "example": "001xx000003GYkJAAW"
+    },
+    {
+      "name": "Name",
+      "type": "string",
+      "required": true,
+      "description": "Company name",
+      "example": "Acme Corporation"
+    },
+    {
+      "name": "Type",
+      "type": "string",
+      "required": false,
+      "description": "Type of account relationship",
+      "example": "Customer - Direct"
+    },
+    {
+      "name": "Industry",
+      "type": "string",
+      "required": false,
+      "description": "Primary industry the account operates in",
+      "example": "Technology"
+    },
+    {
+      "name": "AnnualRevenue",
+      "type": "number",
+      "required": false,
+      "description": "Annual revenue in the default currency",
+      "example": 5000000
+    },
+    {
+      "name": "NumberOfEmployees",
+      "type": "integer",
+      "required": false,
+      "description": "Number of employees at the company",
+      "example": 500
+    },
+    {
+      "name": "Phone",
+      "type": "string",
+      "required": false,
+      "description": "Primary phone number",
+      "example": "+1-415-555-0100"
+    },
+    {
+      "name": "Website",
+      "type": "string",
+      "required": false,
+      "description": "Company website URL",
+      "example": "https://www.acme.com"
+    },
+    {
+      "name": "BillingStreet",
+      "type": "string",
+      "required": false,
+      "description": "Billing address street",
+      "example": "123 Market St"
+    },
+    {
+      "name": "BillingCity",
+      "type": "string",
+      "required": false,
+      "description": "Billing address city",
+      "example": "San Francisco"
+    },
+    {
+      "name": "BillingState",
+      "type": "string",
+      "required": false,
+      "description": "Billing address state/province",
+      "example": "CA"
+    },
+    {
+      "name": "BillingCountry",
+      "type": "string",
+      "required": false,
+      "description": "Billing address country",
+      "example": "USA"
+    },
+    {
+      "name": "OwnerId",
+      "type": "string",
+      "required": false,
+      "description": "Salesforce ID of the account owner (User record)",
+      "example": "005xx000001gN1aAAE"
+    },
+    {
+      "name": "Rating",
+      "type": "string",
+      "required": false,
+      "description": "Account rating (Hot, Warm, Cold)",
+      "example": "Hot"
+    },
+    {
+      "name": "CreatedDate",
+      "type": "datetime",
+      "required": false,
+      "description": "ISO 8601 creation timestamp",
+      "example": "2024-01-15T10:30:00.000Z"
+    },
+    {
+      "name": "LastModifiedDate",
+      "type": "datetime",
+      "required": false,
+      "description": "ISO 8601 last modification timestamp",
+      "example": "2024-06-01T14:22:00.000Z"
+    }
+  ],
+  "relationships": [
+    {
+      "name": "Contacts",
+      "description": "Contact records associated with this account",
+      "type": "hasMany",
+      "resource": "Contact"
+    },
+    {
+      "name": "Opportunities",
+      "description": "Sales opportunities associated with this account",
+      "type": "hasMany",
+      "resource": "Opportunity"
+    },
+    {
+      "name": "Cases",
+      "description": "Support cases associated with this account",
+      "type": "hasMany",
+      "resource": "Case"
+    }
+  ]
+}

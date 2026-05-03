@@ -1,0 +1,202 @@
+name: Salesforce Sales Cloud Vocabulary
+description: >-
+  Domain vocabulary and taxonomy for Salesforce Sales Cloud, covering
+  key CRM concepts, data model objects, sales process terminology,
+  and API-specific terms used across the Salesforce platform.
+version: "1.0"
+created: "2026-05-02"
+modified: "2026-05-02"
+source: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+
+terms:
+  - term: sObject
+    definition: >-
+      A Salesforce object — the fundamental data model entity in the Salesforce
+      platform. Standard sObjects include Account, Contact, Lead, Opportunity,
+      Case, Campaign, and Task. Custom sObjects are defined by the organization.
+    aliases:
+      - Salesforce Object
+      - Standard Object
+      - Custom Object
+    related:
+      - SOQL
+      - SOSL
+      - REST API
+
+  - term: Account
+    definition: >-
+      A Salesforce standard object representing a company or organization
+      in the CRM. Accounts are the central entity that Contacts, Opportunities,
+      and Cases are associated with.
+    related:
+      - Contact
+      - Opportunity
+      - Case
+
+  - term: Contact
+    definition: >-
+      A Salesforce standard object representing an individual person associated
+      with an Account. Contacts store personal and professional information
+      including email, phone, title, and department.
+    related:
+      - Account
+      - Lead
+
+  - term: Lead
+    definition: >-
+      A Salesforce standard object representing a prospect who has not yet
+      been qualified as an opportunity. Leads are converted to Accounts,
+      Contacts, and Opportunities upon qualification.
+    related:
+      - Contact
+      - Opportunity
+      - Lead Conversion
+
+  - term: Opportunity
+    definition: >-
+      A Salesforce standard object representing a sales deal or potential
+      revenue event. Opportunities track the sales stage, expected close date,
+      probability, and associated contacts.
+    aliases:
+      - Deal
+    related:
+      - Account
+      - Stage Name
+      - Pipeline
+
+  - term: Stage Name
+    definition: >-
+      The current position of an Opportunity in the sales pipeline. Standard
+      stages include Prospecting, Qualification, Needs Analysis, Proposal,
+      Negotiation, Closed Won, and Closed Lost.
+    related:
+      - Opportunity
+      - Forecast Category
+
+  - term: SOQL
+    definition: >-
+      Salesforce Object Query Language — a query language similar to SQL
+      used to retrieve Salesforce data. Supports SELECT, FROM, WHERE, ORDER BY,
+      GROUP BY, LIMIT, and relationship queries using dot notation.
+    aliases:
+      - Salesforce Object Query Language
+    related:
+      - SOSL
+      - Query
+
+  - term: SOSL
+    definition: >-
+      Salesforce Object Search Language — a search language for performing
+      text-based searches across multiple sObject types simultaneously.
+      Returns records matching the search term across fields.
+    aliases:
+      - Salesforce Object Search Language
+    related:
+      - SOQL
+      - Search
+
+  - term: Bulk API
+    definition: >-
+      A specialized Salesforce API for loading, updating, or deleting large
+      volumes of data asynchronously. Supports CSV, JSON, and XML. The current
+      version is Bulk API 2.0 with simplified job management.
+    related:
+      - Ingest Job
+      - Query Job
+
+  - term: Composite API
+    definition: >-
+      A Salesforce REST API resource that allows executing multiple API
+      requests in a single HTTP call. Includes composite batches, requests,
+      graphs, and SObject trees for reducing round-trip latency.
+    related:
+      - REST API
+
+  - term: Platform Event
+    definition: >-
+      A Salesforce event-driven messaging system that allows publishing and
+      subscribing to custom events. Platform events are defined as sObjects
+      and used for real-time integrations and decoupled architectures.
+    related:
+      - Streaming API
+      - Change Data Capture
+
+  - term: Change Data Capture
+    definition: >-
+      A Salesforce feature that generates near-real-time event notifications
+      when records are created, updated, deleted, or undeleted. Used for
+      keeping external systems synchronized with Salesforce data.
+    aliases:
+      - CDC
+    related:
+      - Platform Event
+      - Streaming API
+
+  - term: Ingest Job
+    definition: >-
+      A Bulk API 2.0 job for loading data into Salesforce. Supports insert,
+      update, upsert, and delete operations. Jobs are created, data is uploaded
+      in batches, then the job is closed to start processing.
+    related:
+      - Bulk API
+      - Query Job
+
+  - term: Forecast Category
+    definition: >-
+      A categorization of opportunities for sales forecasting. Standard
+      categories include Pipeline, Best Case, Commit, and Closed Won.
+      Used to aggregate expected revenue by time period.
+    related:
+      - Opportunity
+      - Stage Name
+
+  - term: Connected App
+    definition: >-
+      A Salesforce application framework that enables external applications
+      to integrate with Salesforce using OAuth 2.0 for authentication and
+      authorization. Required for API access.
+    related:
+      - OAuth 2.0
+      - Authentication
+
+  - term: Organization (Org)
+    definition: >-
+      A specific Salesforce deployment or environment. Each org has a unique
+      instance URL (e.g., na1.salesforce.com), its own data, configuration,
+      and API limits.
+    aliases:
+      - Org
+      - Salesforce Org
+      - Environment
+
+categories:
+  - name: Data Model
+    description: Core Salesforce CRM objects and their relationships
+    terms:
+      - sObject
+      - Account
+      - Contact
+      - Lead
+      - Opportunity
+
+  - name: Sales Process
+    description: Terms describing the sales pipeline and deal management
+    terms:
+      - Stage Name
+      - Forecast Category
+      - Lead
+
+  - name: Query and Search
+    description: Data retrieval languages and mechanisms
+    terms:
+      - SOQL
+      - SOSL
+
+  - name: Integration
+    description: API types for integrating with Salesforce
+    terms:
+      - Bulk API
+      - Composite API
+      - Platform Event
+      - Change Data Capture
+      - Connected App

@@ -1,0 +1,48 @@
+{
+  "title": "SOQL Query Example",
+  "description": "Example SOQL query request and response for retrieving open opportunities from Salesforce",
+  "operation": "soqlQuery",
+  "method": "GET",
+  "path": "/query",
+  "request": {
+    "queryParameters": {
+      "q": "SELECT Id, Name, Amount, StageName, CloseDate, Account.Name FROM Opportunity WHERE IsClosed = false AND StageName != 'Closed Lost' ORDER BY Amount DESC LIMIT 10"
+    },
+    "headers": {
+      "Authorization": "Bearer {access_token}",
+      "Accept": "application/json"
+    }
+  },
+  "response": {
+    "statusCode": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "totalSize": 2,
+      "done": true,
+      "records": [
+        {
+          "Id": "006xx000003GYkJAAW",
+          "Name": "Acme Corp - Enterprise License Q4 2024",
+          "Amount": 125000,
+          "StageName": "Proposal/Price Quote",
+          "CloseDate": "2024-12-31",
+          "Account": {
+            "Name": "Acme Corporation"
+          }
+        },
+        {
+          "Id": "006xx000003GZlKBBX",
+          "Name": "TechStart Inc - Platform Expansion",
+          "Amount": 75000,
+          "StageName": "Negotiation/Review",
+          "CloseDate": "2024-11-30",
+          "Account": {
+            "Name": "TechStart Inc"
+          }
+        }
+      ]
+    }
+  }
+}
