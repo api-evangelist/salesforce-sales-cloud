@@ -32,9 +32,9 @@ apis:
         url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
       - type: Postman Collection
         url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
-      - type: Change Log
+      - type: ChangeLog
         url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
   - name: Salesforce SOAP API
     description: Comprehensive SOAP-based API for enterprise integrations with full CRUD operations on Salesforce objects. Uses WSDL files to define parameters for accessing data through the API.
@@ -52,7 +52,7 @@ apis:
         url: https://yourInstance.salesforce.com/services/wsdl/enterprise
       - type: Authentication
         url: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_login.htm
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_steps.htm
   - name: Bulk API 2.0
     description: Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST API. Supports CSV, JSON, and XML data formats.
@@ -68,7 +68,7 @@ apis:
         url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
       - type: Examples
         url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
       - type: OpenAPI
         url: openapi/salesforce-sales-cloud-bulk-api-openapi.yml
@@ -86,7 +86,7 @@ apis:
         url: https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm
       - type: WSDL
         url: https://yourInstance.salesforce.com/services/wsdl/metadata
-      - type: Change Log
+      - type: ChangeLog
         url: https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_rns.htm
   - name: Streaming API
     description: Push notification API using Bayeux protocol to receive near real-time updates when data changes in Salesforce. Enables event-driven integrations without polling.
@@ -162,7 +162,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/platform/graphql/guide/intro-graphql-api.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/platform/graphql/guide/get-started.html
       - type: Reference
         url: https://developer.salesforce.com/docs/platform/graphql/guide/requests-and-responses.html
@@ -198,7 +198,7 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/platform/pub-sub-api/guide/grpc-api.html
       - type: Reference
         url: https://developer.salesforce.com/docs/platform/pub-sub-api/guide/pub-sub-endpoints.html
@@ -232,13 +232,13 @@ apis:
     properties:
       - type: Documentation
         url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
-      - type: Getting Started
+      - type: GettingStarted
         url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
       - type: Reference
         url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
       - type: Examples
         url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
-      - type: Change Log
+      - type: ChangeLog
         url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
       - type: OpenAPI
         url: openapi/salesforce-sales-cloud-connect-api-openapi.yml
@@ -277,21 +277,21 @@ common:
     url: https://developer.salesforce.com/
   - type: Documentation
     url: https://developer.salesforce.com/docs
-  - type: Getting Started
+  - type: GettingStarted
     url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
   - type: Authentication
     url: https://help.salesforce.com/s/articleView?id=sf.remoteaccess_authenticate.htm
   - type: Blog
     url: https://developer.salesforce.com/blogs
-  - type: Status
+  - type: StatusPage
     url: https://status.salesforce.com/
   - type: Support
     url: https://help.salesforce.com/
-  - type: Terms of Service
+  - type: TermsOfService
     url: https://www.salesforce.com/company/legal/agreements/
-  - type: Privacy Policy
+  - type: PrivacyPolicy
     url: https://www.salesforce.com/company/privacy/
-  - type: GitHub Organization
+  - type: GitHubOrganization
     url: https://github.com/salesforce
   - type: Community
     url: https://trailhead.salesforce.com/en/trailblazercommunity
@@ -299,7 +299,7 @@ common:
     url: https://www.salesforce.com/products/sales-cloud/
   - type: Login
     url: https://login.salesforce.com/
-  - type: Sign Up
+  - type: SignUp
     url: https://developer.salesforce.com/signup
   - type: SDKs
     url: https://developer.salesforce.com/tools/sdk
@@ -313,7 +313,7 @@ common:
     url: https://developer.salesforce.com/docs/apis
   - type: Postman Collection
     url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
-  - type: Change Log
+  - type: ChangeLog
     url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
   - type: SOQL and SOSL Reference
     url: https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_sosl_intro.htm
