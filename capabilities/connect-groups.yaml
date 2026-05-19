@@ -1,0 +1,177 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Connect REST API — Groups
+  description: 'Salesforce Sales Cloud Salesforce Connect REST API — Groups. 3 operations. Lead operation: Salesforce Sales
+    Cloud List Chatter groups. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Groups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: connect-groups
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0/connect
+    description: Salesforce Sales Cloud Salesforce Connect REST API — Groups business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: chatter-groups
+      path: /chatter/groups
+      operations:
+      - name: listgroups
+        method: GET
+        description: Salesforce Sales Cloud List Chatter groups
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: pageSize
+          in: query
+          type: integer
+        - name: pageToken
+          in: query
+          type: string
+        - name: q
+          in: query
+          type: string
+          description: Search term to filter groups
+    - name: chatter-groups-groupId
+      path: /chatter/groups/{groupId}
+      operations:
+      - name: getgroup
+        method: GET
+        description: Salesforce Sales Cloud Get a Chatter group
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+    - name: chatter-groups-groupId-members
+      path: /chatter/groups/{groupId}/members
+      operations:
+      - name: getgroupmembers
+        method: GET
+        description: Salesforce Sales Cloud Get group members
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          required: true
+        - name: pageSize
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: connect-groups-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Connect REST API — Groups. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/chatter/groups
+      name: chatter-groups
+      description: REST surface for chatter-groups.
+      operations:
+      - method: GET
+        name: listgroups
+        description: Salesforce Sales Cloud List Chatter groups
+        call: connect-groups.listgroups
+        with:
+          pageSize: rest.pageSize
+          pageToken: rest.pageToken
+          q: rest.q
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/chatter/groups/{groupid}
+      name: chatter-groups-groupid
+      description: REST surface for chatter-groups-groupId.
+      operations:
+      - method: GET
+        name: getgroup
+        description: Salesforce Sales Cloud Get a Chatter group
+        call: connect-groups.getgroup
+        with:
+          groupId: rest.groupId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/chatter/groups/{groupid}/members
+      name: chatter-groups-groupid-members
+      description: REST surface for chatter-groups-groupId-members.
+      operations:
+      - method: GET
+        name: getgroupmembers
+        description: Salesforce Sales Cloud Get group members
+        call: connect-groups.getgroupmembers
+        with:
+          groupId: rest.groupId
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: connect-groups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Connect REST API — Groups. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-list-chatter
+      description: Salesforce Sales Cloud List Chatter groups
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-groups.listgroups
+      with:
+        pageSize: tools.pageSize
+        pageToken: tools.pageToken
+        q: tools.q
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-chatter
+      description: Salesforce Sales Cloud Get a Chatter group
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-groups.getgroup
+      with:
+        groupId: tools.groupId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-group
+      description: Salesforce Sales Cloud Get group members
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: connect-groups.getgroupmembers
+      with:
+        groupId: tools.groupId
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.

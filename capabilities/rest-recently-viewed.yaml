@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce REST API — Recently Viewed
+  description: 'Salesforce Sales Cloud Salesforce REST API — Recently Viewed. 1 operations. Lead operation: Salesforce Sales
+    Cloud Get recently viewed items. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Recently Viewed
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-recently-viewed
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Sales Cloud Salesforce REST API — Recently Viewed business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: recent
+      path: /recent
+      operations:
+      - name: getrecentlyvieweditems
+        method: GET
+        description: Salesforce Sales Cloud Get recently viewed items
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of items to return
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-recently-viewed-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce REST API — Recently Viewed. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/recent
+      name: recent
+      description: REST surface for recent.
+      operations:
+      - method: GET
+        name: getrecentlyvieweditems
+        description: Salesforce Sales Cloud Get recently viewed items
+        call: rest-recently-viewed.getrecentlyvieweditems
+        with:
+          limit: rest.limit
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-recently-viewed-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce REST API — Recently Viewed. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-get-recently
+      description: Salesforce Sales Cloud Get recently viewed items
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-recently-viewed.getrecentlyvieweditems
+      with:
+        limit: tools.limit
+      outputParameters:
+      - type: object
+        mapping: $.

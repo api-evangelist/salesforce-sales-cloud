@@ -1,0 +1,280 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce REST API — SObject Rows
+  description: 'Salesforce Sales Cloud Salesforce REST API — SObject Rows. 6 operations. Lead operation: Salesforce Sales
+    Cloud Create a new sObject record. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - SObject Rows
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-sobject-rows
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Sales Cloud Salesforce REST API — SObject Rows business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: sobjects-sObjectName
+      path: /sobjects/{sObjectName}
+      operations:
+      - name: createsobjectrecord
+        method: POST
+        description: Salesforce Sales Cloud Create a new sObject record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sobjects-sObjectName-fieldName-fieldValue
+      path: /sobjects/{sObjectName}/{fieldName}/{fieldValue}
+      operations:
+      - name: getsobjectrecordbyexternalid
+        method: GET
+        description: Salesforce Sales Cloud Get record by external ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fieldName
+          in: path
+          type: string
+          description: The API name of the external ID field
+          required: true
+        - name: fieldValue
+          in: path
+          type: string
+          description: The external ID value
+          required: true
+      - name: upsertsobjectrecordbyexternalid
+        method: PATCH
+        description: Salesforce Sales Cloud Upsert record by external ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fieldName
+          in: path
+          type: string
+          description: The API name of the external ID field
+          required: true
+        - name: fieldValue
+          in: path
+          type: string
+          description: The external ID value
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: sobjects-sObjectName-recordId
+      path: /sobjects/{sObjectName}/{recordId}
+      operations:
+      - name: getsobjectrecord
+        method: GET
+        description: Salesforce Sales Cloud Get an sObject record by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fields
+          in: query
+          type: string
+          description: Comma-separated list of field names to return
+      - name: updatesobjectrecord
+        method: PATCH
+        description: Salesforce Sales Cloud Update an sObject record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletesobjectrecord
+        method: DELETE
+        description: Salesforce Sales Cloud Delete an sObject record
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-sobject-rows-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce REST API — SObject Rows. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/sobjects/{sobjectname}
+      name: sobjects-sobjectname
+      description: REST surface for sobjects-sObjectName.
+      operations:
+      - method: POST
+        name: createsobjectrecord
+        description: Salesforce Sales Cloud Create a new sObject record
+        call: rest-sobject-rows.createsobjectrecord
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sobjects/{sobjectname}/{fieldname}/{fieldvalue}
+      name: sobjects-sobjectname-fieldname-fieldvalue
+      description: REST surface for sobjects-sObjectName-fieldName-fieldValue.
+      operations:
+      - method: GET
+        name: getsobjectrecordbyexternalid
+        description: Salesforce Sales Cloud Get record by external ID
+        call: rest-sobject-rows.getsobjectrecordbyexternalid
+        with:
+          fieldName: rest.fieldName
+          fieldValue: rest.fieldValue
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: upsertsobjectrecordbyexternalid
+        description: Salesforce Sales Cloud Upsert record by external ID
+        call: rest-sobject-rows.upsertsobjectrecordbyexternalid
+        with:
+          fieldName: rest.fieldName
+          fieldValue: rest.fieldValue
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sobjects/{sobjectname}/{recordid}
+      name: sobjects-sobjectname-recordid
+      description: REST surface for sobjects-sObjectName-recordId.
+      operations:
+      - method: GET
+        name: getsobjectrecord
+        description: Salesforce Sales Cloud Get an sObject record by ID
+        call: rest-sobject-rows.getsobjectrecord
+        with:
+          fields: rest.fields
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatesobjectrecord
+        description: Salesforce Sales Cloud Update an sObject record
+        call: rest-sobject-rows.updatesobjectrecord
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletesobjectrecord
+        description: Salesforce Sales Cloud Delete an sObject record
+        call: rest-sobject-rows.deletesobjectrecord
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-sobject-rows-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce REST API — SObject Rows. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-create-new
+      description: Salesforce Sales Cloud Create a new sObject record
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: rest-sobject-rows.createsobjectrecord
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-record
+      description: Salesforce Sales Cloud Get record by external ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-sobject-rows.getsobjectrecordbyexternalid
+      with:
+        fieldName: tools.fieldName
+        fieldValue: tools.fieldValue
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-upsert-record
+      description: Salesforce Sales Cloud Upsert record by external ID
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-sobject-rows.upsertsobjectrecordbyexternalid
+      with:
+        fieldName: tools.fieldName
+        fieldValue: tools.fieldValue
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-sobject
+      description: Salesforce Sales Cloud Get an sObject record by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-sobject-rows.getsobjectrecord
+      with:
+        fields: tools.fields
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-update-sobject
+      description: Salesforce Sales Cloud Update an sObject record
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: rest-sobject-rows.updatesobjectrecord
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-delete-sobject
+      description: Salesforce Sales Cloud Delete an sObject record
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: rest-sobject-rows.deletesobjectrecord
+      outputParameters:
+      - type: object
+        mapping: $.

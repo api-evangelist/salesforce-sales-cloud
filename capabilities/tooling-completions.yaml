@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Tooling API — Completions
+  description: 'Salesforce Sales Cloud Salesforce Tooling API — Completions. 1 operations. Lead operation: Salesforce Sales
+    Cloud Get Apex code completions. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Completions
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tooling-completions
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0/tooling
+    description: Salesforce Sales Cloud Salesforce Tooling API — Completions business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: completions
+      path: /completions
+      operations:
+      - name: getapexcompletions
+        method: GET
+        description: Salesforce Sales Cloud Get Apex code completions
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: type
+          in: query
+          type: string
+          description: The type of completions to return
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: tooling-completions-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Tooling API — Completions. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/completions
+      name: completions
+      description: REST surface for completions.
+      operations:
+      - method: GET
+        name: getapexcompletions
+        description: Salesforce Sales Cloud Get Apex code completions
+        call: tooling-completions.getapexcompletions
+        with:
+          type: rest.type
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tooling-completions-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Tooling API — Completions. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-get-apex
+      description: Salesforce Sales Cloud Get Apex code completions
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tooling-completions.getapexcompletions
+      with:
+        type: tools.type
+      outputParameters:
+      - type: object
+        mapping: $.

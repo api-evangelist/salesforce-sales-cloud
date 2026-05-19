@@ -1,0 +1,103 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce REST API — SObject Describe
+  description: 'Salesforce Sales Cloud Salesforce REST API — SObject Describe. 2 operations. Lead operation: Salesforce Sales
+    Cloud Describe an sObject. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - SObject Describe
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-sobject-describe
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Sales Cloud Salesforce REST API — SObject Describe business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: sobjects-sObjectName-describe
+      path: /sobjects/{sObjectName}/describe
+      operations:
+      - name: describesobject
+        method: GET
+        description: Salesforce Sales Cloud Describe an sObject
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: sobjects-sObjectName-describe-layouts
+      path: /sobjects/{sObjectName}/describe/layouts
+      operations:
+      - name: getsobjectlayouts
+        method: GET
+        description: Salesforce Sales Cloud Get sObject page layouts
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-sobject-describe-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce REST API — SObject Describe. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/sobjects/{sobjectname}/describe
+      name: sobjects-sobjectname-describe
+      description: REST surface for sobjects-sObjectName-describe.
+      operations:
+      - method: GET
+        name: describesobject
+        description: Salesforce Sales Cloud Describe an sObject
+        call: rest-sobject-describe.describesobject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sobjects/{sobjectname}/describe/layouts
+      name: sobjects-sobjectname-describe-layouts
+      description: REST surface for sobjects-sObjectName-describe-layouts.
+      operations:
+      - method: GET
+        name: getsobjectlayouts
+        description: Salesforce Sales Cloud Get sObject page layouts
+        call: rest-sobject-describe.getsobjectlayouts
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-sobject-describe-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce REST API — SObject Describe. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-describe-sobject
+      description: Salesforce Sales Cloud Describe an sObject
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-sobject-describe.describesobject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-sobject
+      description: Salesforce Sales Cloud Get sObject page layouts
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-sobject-describe.getsobjectlayouts
+      outputParameters:
+      - type: object
+        mapping: $.

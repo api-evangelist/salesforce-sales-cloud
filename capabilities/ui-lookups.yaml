@@ -1,0 +1,108 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce User Interface API — Lookups
+  description: 'Salesforce Sales Cloud Salesforce User Interface API — Lookups. 1 operations. Lead operation: Salesforce Sales
+    Cloud Search for lookup field values. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Lookups
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ui-lookups
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0/ui-api
+    description: Salesforce Sales Cloud Salesforce User Interface API — Lookups business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: lookups-objectApiName-fieldApiName-targetApiName
+      path: /lookups/{objectApiName}/{fieldApiName}/{targetApiName}
+      operations:
+      - name: lookupfieldsearch
+        method: GET
+        description: Salesforce Sales Cloud Search for lookup field values
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: objectApiName
+          in: path
+          type: string
+          required: true
+        - name: fieldApiName
+          in: path
+          type: string
+          required: true
+        - name: targetApiName
+          in: path
+          type: string
+          required: true
+        - name: q
+          in: query
+          type: string
+          description: Search string
+        - name: searchType
+          in: query
+          type: string
+        - name: pageSize
+          in: query
+          type: integer
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ui-lookups-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce User Interface API — Lookups. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/lookups/{objectapiname}/{fieldapiname}/{targetapiname}
+      name: lookups-objectapiname-fieldapiname-targetapiname
+      description: REST surface for lookups-objectApiName-fieldApiName-targetApiName.
+      operations:
+      - method: GET
+        name: lookupfieldsearch
+        description: Salesforce Sales Cloud Search for lookup field values
+        call: ui-lookups.lookupfieldsearch
+        with:
+          objectApiName: rest.objectApiName
+          fieldApiName: rest.fieldApiName
+          targetApiName: rest.targetApiName
+          q: rest.q
+          searchType: rest.searchType
+          pageSize: rest.pageSize
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ui-lookups-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce User Interface API — Lookups. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-search-lookup
+      description: Salesforce Sales Cloud Search for lookup field values
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ui-lookups.lookupfieldsearch
+      with:
+        objectApiName: tools.objectApiName
+        fieldApiName: tools.fieldApiName
+        targetApiName: tools.targetApiName
+        q: tools.q
+        searchType: tools.searchType
+        pageSize: tools.pageSize
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Tooling API — Tooling Query
+  description: 'Salesforce Sales Cloud Salesforce Tooling API — Tooling Query. 1 operations. Lead operation: Salesforce Sales
+    Cloud Execute a Tooling API SOQL query. Self-contained Naftiko capability covering one Salesforce Sales Cloud business
+    surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Tooling Query
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tooling-tooling-query
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0/tooling
+    description: Salesforce Sales Cloud Salesforce Tooling API — Tooling Query business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: query
+      path: /query
+      operations:
+      - name: executetoolingquery
+        method: GET
+        description: Salesforce Sales Cloud Execute a Tooling API SOQL query
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: q
+          in: query
+          type: string
+          description: The SOQL query string targeting Tooling API objects
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: tooling-tooling-query-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Tooling API — Tooling Query. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/query
+      name: query
+      description: REST surface for query.
+      operations:
+      - method: GET
+        name: executetoolingquery
+        description: Salesforce Sales Cloud Execute a Tooling API SOQL query
+        call: tooling-tooling-query.executetoolingquery
+        with:
+          q: rest.q
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: tooling-tooling-query-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Tooling API — Tooling Query. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-execute-tooling
+      description: Salesforce Sales Cloud Execute a Tooling API SOQL query
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: tooling-tooling-query.executetoolingquery
+      with:
+        q: tools.q
+      outputParameters:
+      - type: object
+        mapping: $.

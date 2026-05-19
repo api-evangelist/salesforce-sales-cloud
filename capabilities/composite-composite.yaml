@@ -1,0 +1,81 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Composite API — Composite
+  description: 'Salesforce Sales Cloud Salesforce Composite API — Composite. 1 operations. Lead operation: Salesforce Sales
+    Cloud Execute a composite request. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Composite
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: composite-composite
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Sales Cloud Salesforce Composite API — Composite business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: composite
+      path: /composite
+      operations:
+      - name: executecompositerequest
+        method: POST
+        description: Salesforce Sales Cloud Execute a composite request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: composite-composite-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Composite API — Composite. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/composite
+      name: composite
+      description: REST surface for composite.
+      operations:
+      - method: POST
+        name: executecompositerequest
+        description: Salesforce Sales Cloud Execute a composite request
+        call: composite-composite.executecompositerequest
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: composite-composite-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Composite API — Composite. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-execute-composite
+      description: Salesforce Sales Cloud Execute a composite request
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: composite-composite.executecompositerequest
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

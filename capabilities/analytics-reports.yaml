@@ -1,0 +1,237 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Analytics REST API — Reports
+  description: 'Salesforce Sales Cloud Salesforce Analytics REST API — Reports. 6 operations. Lead operation: Salesforce Sales
+    Cloud List reports. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Reports
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: analytics-reports
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0/analytics
+    description: Salesforce Sales Cloud Salesforce Analytics REST API — Reports business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: reports
+      path: /reports
+      operations:
+      - name: listreports
+        method: GET
+        description: Salesforce Sales Cloud List reports
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reports-reportId
+      path: /reports/{reportId}
+      operations:
+      - name: getreport
+        method: GET
+        description: Salesforce Sales Cloud Get report metadata
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatereport
+        method: PATCH
+        description: Salesforce Sales Cloud Update a report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletereport
+        method: DELETE
+        description: Salesforce Sales Cloud Delete a report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reports-reportId-describe
+      path: /reports/{reportId}/describe
+      operations:
+      - name: describereport
+        method: GET
+        description: Salesforce Sales Cloud Describe a report
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reports-reportId}?includeDetails=true
+      path: /reports/{reportId}?includeDetails=true
+      operations:
+      - name: executereportsync
+        method: POST
+        description: Salesforce Sales Cloud Run a report synchronously
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: analytics-reports-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Analytics REST API — Reports. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/reports
+      name: reports
+      description: REST surface for reports.
+      operations:
+      - method: GET
+        name: listreports
+        description: Salesforce Sales Cloud List reports
+        call: analytics-reports.listreports
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/{reportid}
+      name: reports-reportid
+      description: REST surface for reports-reportId.
+      operations:
+      - method: GET
+        name: getreport
+        description: Salesforce Sales Cloud Get report metadata
+        call: analytics-reports.getreport
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updatereport
+        description: Salesforce Sales Cloud Update a report
+        call: analytics-reports.updatereport
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletereport
+        description: Salesforce Sales Cloud Delete a report
+        call: analytics-reports.deletereport
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/{reportid}/describe
+      name: reports-reportid-describe
+      description: REST surface for reports-reportId-describe.
+      operations:
+      - method: GET
+        name: describereport
+        description: Salesforce Sales Cloud Describe a report
+        call: analytics-reports.describereport
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reports/reportid-includedetails-true
+      name: reports-reportid-includedetails-true
+      description: REST surface for reports-reportId}?includeDetails=true.
+      operations:
+      - method: POST
+        name: executereportsync
+        description: Salesforce Sales Cloud Run a report synchronously
+        call: analytics-reports.executereportsync
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: analytics-reports-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Analytics REST API — Reports. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-list-reports
+      description: Salesforce Sales Cloud List reports
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics-reports.listreports
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-report
+      description: Salesforce Sales Cloud Get report metadata
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics-reports.getreport
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-update-report
+      description: Salesforce Sales Cloud Update a report
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: analytics-reports.updatereport
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-delete-report
+      description: Salesforce Sales Cloud Delete a report
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: analytics-reports.deletereport
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-describe-report
+      description: Salesforce Sales Cloud Describe a report
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics-reports.describereport
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-run-report
+      description: Salesforce Sales Cloud Run a report synchronously
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: analytics-reports.executereportsync
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

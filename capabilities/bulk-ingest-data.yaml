@@ -1,0 +1,177 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Bulk API 2.0 — Ingest Data
+  description: 'Salesforce Sales Cloud Salesforce Bulk API 2.0 — Ingest Data. 4 operations. Lead operation: Salesforce Sales
+    Cloud Upload data for an ingest job. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Ingest Data
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bulk-ingest-data
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Sales Cloud Salesforce Bulk API 2.0 — Ingest Data business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: jobs-ingest-jobId-batches
+      path: /jobs/ingest/{jobId}/batches
+      operations:
+      - name: uploadingestjobdata
+        method: PUT
+        description: Salesforce Sales Cloud Upload data for an ingest job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: jobs-ingest-jobId-failedResults
+      path: /jobs/ingest/{jobId}/failedResults
+      operations:
+      - name: getingestjobfailedresults
+        method: GET
+        description: Salesforce Sales Cloud Get failed results for an ingest job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: jobs-ingest-jobId-successfulResults
+      path: /jobs/ingest/{jobId}/successfulResults
+      operations:
+      - name: getingestjobsuccessfulresults
+        method: GET
+        description: Salesforce Sales Cloud Get successful results for an ingest job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: jobs-ingest-jobId-unprocessedrecords
+      path: /jobs/ingest/{jobId}/unprocessedrecords
+      operations:
+      - name: getingestjobunprocessedrecords
+        method: GET
+        description: Salesforce Sales Cloud Get unprocessed records for an ingest job
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bulk-ingest-data-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Bulk API 2.0 — Ingest Data. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/jobs/ingest/{jobid}/batches
+      name: jobs-ingest-jobid-batches
+      description: REST surface for jobs-ingest-jobId-batches.
+      operations:
+      - method: PUT
+        name: uploadingestjobdata
+        description: Salesforce Sales Cloud Upload data for an ingest job
+        call: bulk-ingest-data.uploadingestjobdata
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jobs/ingest/{jobid}/failedresults
+      name: jobs-ingest-jobid-failedresults
+      description: REST surface for jobs-ingest-jobId-failedResults.
+      operations:
+      - method: GET
+        name: getingestjobfailedresults
+        description: Salesforce Sales Cloud Get failed results for an ingest job
+        call: bulk-ingest-data.getingestjobfailedresults
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jobs/ingest/{jobid}/successfulresults
+      name: jobs-ingest-jobid-successfulresults
+      description: REST surface for jobs-ingest-jobId-successfulResults.
+      operations:
+      - method: GET
+        name: getingestjobsuccessfulresults
+        description: Salesforce Sales Cloud Get successful results for an ingest job
+        call: bulk-ingest-data.getingestjobsuccessfulresults
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/jobs/ingest/{jobid}/unprocessedrecords
+      name: jobs-ingest-jobid-unprocessedrecords
+      description: REST surface for jobs-ingest-jobId-unprocessedrecords.
+      operations:
+      - method: GET
+        name: getingestjobunprocessedrecords
+        description: Salesforce Sales Cloud Get unprocessed records for an ingest job
+        call: bulk-ingest-data.getingestjobunprocessedrecords
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bulk-ingest-data-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Bulk API 2.0 — Ingest Data. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-upload-data
+      description: Salesforce Sales Cloud Upload data for an ingest job
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: bulk-ingest-data.uploadingestjobdata
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-failed
+      description: Salesforce Sales Cloud Get failed results for an ingest job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bulk-ingest-data.getingestjobfailedresults
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-successful
+      description: Salesforce Sales Cloud Get successful results for an ingest job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bulk-ingest-data.getingestjobsuccessfulresults
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-unprocessed
+      description: Salesforce Sales Cloud Get unprocessed records for an ingest job
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bulk-ingest-data.getingestjobunprocessedrecords
+      outputParameters:
+      - type: object
+        mapping: $.

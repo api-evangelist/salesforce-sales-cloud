@@ -1,0 +1,88 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Composite API — SObject Tree
+  description: 'Salesforce Sales Cloud Salesforce Composite API — SObject Tree. 1 operations. Lead operation: Salesforce Sales
+    Cloud Create an sObject tree. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - SObject Tree
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: composite-sobject-tree
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Sales Cloud Salesforce Composite API — SObject Tree business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: composite-tree-sObjectName
+      path: /composite/tree/{sObjectName}
+      operations:
+      - name: createsobjecttree
+        method: POST
+        description: Salesforce Sales Cloud Create an sObject tree
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: sObjectName
+          in: path
+          type: string
+          description: The API name of the root sObject type
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: composite-sobject-tree-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Composite API — SObject Tree. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/composite/tree/{sobjectname}
+      name: composite-tree-sobjectname
+      description: REST surface for composite-tree-sObjectName.
+      operations:
+      - method: POST
+        name: createsobjecttree
+        description: Salesforce Sales Cloud Create an sObject tree
+        call: composite-sobject-tree.createsobjecttree
+        with:
+          sObjectName: rest.sObjectName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: composite-sobject-tree-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Composite API — SObject Tree. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-create-sobject
+      description: Salesforce Sales Cloud Create an sObject tree
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: composite-sobject-tree.createsobjecttree
+      with:
+        sObjectName: tools.sObjectName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

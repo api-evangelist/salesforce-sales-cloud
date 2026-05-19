@@ -1,0 +1,127 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Change Data Capture API — Event Schema
+  description: 'Salesforce Sales Cloud Salesforce Change Data Capture API — Event Schema. 2 operations. Lead operation: Salesforce
+    Sales Cloud Get event schema by ID. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Event Schema
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: change-data-capture-event-schema
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Sales Cloud Salesforce Change Data Capture API — Event Schema business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: event-eventSchema-schemaId
+      path: /event/eventSchema/{schemaId}
+      operations:
+      - name: geteventschemabyid
+        method: GET
+        description: Salesforce Sales Cloud Get event schema by ID
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: schemaId
+          in: path
+          type: string
+          description: The schema ID from the change event message
+          required: true
+        - name: payloadFormat
+          in: query
+          type: string
+    - name: sobjects-changeEventName-eventSchema
+      path: /sobjects/{changeEventName}/eventSchema
+      operations:
+      - name: getchangeeventschema
+        method: GET
+        description: Salesforce Sales Cloud Get change event Avro schema
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: payloadFormat
+          in: query
+          type: string
+          description: The payload format for the schema
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: change-data-capture-event-schema-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Change Data Capture API — Event Schema. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/event/eventschema/{schemaid}
+      name: event-eventschema-schemaid
+      description: REST surface for event-eventSchema-schemaId.
+      operations:
+      - method: GET
+        name: geteventschemabyid
+        description: Salesforce Sales Cloud Get event schema by ID
+        call: change-data-capture-event-schema.geteventschemabyid
+        with:
+          schemaId: rest.schemaId
+          payloadFormat: rest.payloadFormat
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/sobjects/{changeeventname}/eventschema
+      name: sobjects-changeeventname-eventschema
+      description: REST surface for sobjects-changeEventName-eventSchema.
+      operations:
+      - method: GET
+        name: getchangeeventschema
+        description: Salesforce Sales Cloud Get change event Avro schema
+        call: change-data-capture-event-schema.getchangeeventschema
+        with:
+          payloadFormat: rest.payloadFormat
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: change-data-capture-event-schema-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Change Data Capture API — Event Schema. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-get-event
+      description: Salesforce Sales Cloud Get event schema by ID
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: change-data-capture-event-schema.geteventschemabyid
+      with:
+        schemaId: tools.schemaId
+        payloadFormat: tools.payloadFormat
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-get-change
+      description: Salesforce Sales Cloud Get change event Avro schema
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: change-data-capture-event-schema.getchangeeventschema
+      with:
+        payloadFormat: tools.payloadFormat
+      outputParameters:
+      - type: object
+        mapping: $.

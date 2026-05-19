@@ -1,0 +1,96 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce User Interface API — Record UI
+  description: 'Salesforce Sales Cloud Salesforce User Interface API — Record UI. 1 operations. Lead operation: Salesforce
+    Sales Cloud Get record UI data. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Record UI
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: ui-record-ui
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0/ui-api
+    description: Salesforce Sales Cloud Salesforce User Interface API — Record UI business capability. Self-contained, no
+      shared references.
+    resources:
+    - name: record-ui-recordIds
+      path: /record-ui/{recordIds}
+      operations:
+      - name: getrecordui
+        method: GET
+        description: Salesforce Sales Cloud Get record UI data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: recordIds
+          in: path
+          type: string
+          description: Comma-separated list of record IDs (up to 200)
+          required: true
+        - name: formFactor
+          in: query
+          type: string
+        - name: layoutTypes
+          in: query
+          type: string
+        - name: modes
+          in: query
+          type: string
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: ui-record-ui-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce User Interface API — Record UI. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/record-ui/{recordids}
+      name: record-ui-recordids
+      description: REST surface for record-ui-recordIds.
+      operations:
+      - method: GET
+        name: getrecordui
+        description: Salesforce Sales Cloud Get record UI data
+        call: ui-record-ui.getrecordui
+        with:
+          recordIds: rest.recordIds
+          formFactor: rest.formFactor
+          layoutTypes: rest.layoutTypes
+          modes: rest.modes
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: ui-record-ui-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce User Interface API — Record UI. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-get-record
+      description: Salesforce Sales Cloud Get record UI data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: ui-record-ui.getrecordui
+      with:
+        recordIds: tools.recordIds
+        formFactor: tools.formFactor
+        layoutTypes: tools.layoutTypes
+        modes: tools.modes
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,70 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce REST API — Themes
+  description: 'Salesforce Sales Cloud Salesforce REST API — Themes. 1 operations. Lead operation: Salesforce Sales Cloud
+    Get theme information. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Themes
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: rest-themes
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Sales Cloud Salesforce REST API — Themes business capability. Self-contained, no shared references.
+    resources:
+    - name: theme
+      path: /theme
+      operations:
+      - name: gettheme
+        method: GET
+        description: Salesforce Sales Cloud Get theme information
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: rest-themes-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce REST API — Themes. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/theme
+      name: theme
+      description: REST surface for theme.
+      operations:
+      - method: GET
+        name: gettheme
+        description: Salesforce Sales Cloud Get theme information
+        call: rest-themes.gettheme
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: rest-themes-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce REST API — Themes. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-get-theme
+      description: Salesforce Sales Cloud Get theme information
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: rest-themes.gettheme
+      outputParameters:
+      - type: object
+        mapping: $.

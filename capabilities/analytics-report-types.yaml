@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Analytics REST API — Report Types
+  description: 'Salesforce Sales Cloud Salesforce Analytics REST API — Report Types. 2 operations. Lead operation: Salesforce
+    Sales Cloud List available report types. Self-contained Naftiko capability covering one Salesforce Sales Cloud business
+    surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Report Types
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: analytics-report-types
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0/analytics
+    description: Salesforce Sales Cloud Salesforce Analytics REST API — Report Types business capability. Self-contained,
+      no shared references.
+    resources:
+    - name: reportTypes
+      path: /reportTypes
+      operations:
+      - name: listreporttypes
+        method: GET
+        description: Salesforce Sales Cloud List available report types
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: reportTypes-reportType
+      path: /reportTypes/{reportType}
+      operations:
+      - name: describereporttype
+        method: GET
+        description: Salesforce Sales Cloud Describe a report type
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: reportType
+          in: path
+          type: string
+          description: The API name of the report type
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: analytics-report-types-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Analytics REST API — Report Types. One Spectral-compliant
+      resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/reporttypes
+      name: reporttypes
+      description: REST surface for reportTypes.
+      operations:
+      - method: GET
+        name: listreporttypes
+        description: Salesforce Sales Cloud List available report types
+        call: analytics-report-types.listreporttypes
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/reporttypes/{reporttype}
+      name: reporttypes-reporttype
+      description: REST surface for reportTypes-reportType.
+      operations:
+      - method: GET
+        name: describereporttype
+        description: Salesforce Sales Cloud Describe a report type
+        call: analytics-report-types.describereporttype
+        with:
+          reportType: rest.reportType
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: analytics-report-types-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Analytics REST API — Report Types. One tool per consumed
+      operation, routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-list-available
+      description: Salesforce Sales Cloud List available report types
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics-report-types.listreporttypes
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: salesforce-sales-cloud-describe-report
+      description: Salesforce Sales Cloud Describe a report type
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: analytics-report-types.describereporttype
+      with:
+        reportType: tools.reportType
+      outputParameters:
+      - type: object
+        mapping: $.

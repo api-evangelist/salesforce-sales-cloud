@@ -1,0 +1,86 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Salesforce Sales Cloud Salesforce Bulk API 2.0 — Query Results
+  description: 'Salesforce Sales Cloud Salesforce Bulk API 2.0 — Query Results. 1 operations. Lead operation: Salesforce Sales
+    Cloud Get query job results. Self-contained Naftiko capability covering one Salesforce Sales Cloud business surface.'
+  tags:
+  - Salesforce Sales Cloud
+  - Query Results
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SALESFORCE_SALES_CLOUD_API_KEY: SALESFORCE_SALES_CLOUD_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: bulk-query-results
+    baseUri: https://{instance}.salesforce.com/services/data/v59.0
+    description: Salesforce Sales Cloud Salesforce Bulk API 2.0 — Query Results business capability. Self-contained, no shared
+      references.
+    resources:
+    - name: jobs-query-jobId-results
+      path: /jobs/query/{jobId}/results
+      operations:
+      - name: getqueryjobresults
+        method: GET
+        description: Salesforce Sales Cloud Get query job results
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: locator
+          in: query
+          type: string
+          description: Locator value for retrieving the next set of results
+        - name: maxRecords
+          in: query
+          type: integer
+          description: Maximum number of records to return per request
+    authentication:
+      type: bearer
+      token: '{{env.SALESFORCE_SALES_CLOUD_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: bulk-query-results-rest
+    port: 8080
+    description: REST adapter for Salesforce Sales Cloud Salesforce Bulk API 2.0 — Query Results. One Spectral-compliant resource
+      per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/jobs/query/{jobid}/results
+      name: jobs-query-jobid-results
+      description: REST surface for jobs-query-jobId-results.
+      operations:
+      - method: GET
+        name: getqueryjobresults
+        description: Salesforce Sales Cloud Get query job results
+        call: bulk-query-results.getqueryjobresults
+        with:
+          locator: rest.locator
+          maxRecords: rest.maxRecords
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: bulk-query-results-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Salesforce Sales Cloud Salesforce Bulk API 2.0 — Query Results. One tool per consumed operation,
+      routed inline through this capability's consumes block.
+    tools:
+    - name: salesforce-sales-cloud-get-query
+      description: Salesforce Sales Cloud Get query job results
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: bulk-query-results.getqueryjobresults
+      with:
+        locator: tools.locator
+        maxRecords: tools.maxRecords
+      outputParameters:
+      - type: object
+        mapping: $.
