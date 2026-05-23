@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompositeGraphResponse",
+  "title": "CompositeGraphResponse",
+  "type": "object",
+  "description": "Response from a composite graph request",
+  "properties": {
+    "graphs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "graphId": {
+            "type": "string"
+          },
+          "graphResponse": {
+            "type": "object",
+            "properties": {
+              "compositeResponse": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "body": {
+                      "description": "The response body"
+                    },
+                    "httpHeaders": {
+                      "type": "object"
+                    },
+                    "httpStatusCode": {
+                      "type": "integer"
+                    },
+                    "referenceId": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "isSuccessful": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

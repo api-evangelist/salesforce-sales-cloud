@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateRecordResult",
+  "title": "CreateRecordResult",
+  "type": "object",
+  "description": "Result from a create, update, or delete operation",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The ID of the created or affected record"
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether the operation succeeded"
+    },
+    "errors": {
+      "type": "array",
+      "description": "List of errors if the operation failed",
+      "items": {
+        "$ref": "#/components/schemas/ApiError"
+      }
+    }
+  }
+}

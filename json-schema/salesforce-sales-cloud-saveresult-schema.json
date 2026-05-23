@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SaveResult",
+  "title": "SaveResult",
+  "type": "object",
+  "description": "Result of a single record create, update, or delete operation",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "success": {
+      "type": "boolean"
+    },
+    "errors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ApiError"
+      }
+    }
+  }
+}

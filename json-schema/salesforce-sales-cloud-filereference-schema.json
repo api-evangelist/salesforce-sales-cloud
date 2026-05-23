@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FileReference",
+  "title": "FileReference",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "contentUrl": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "fileExtension": {
+      "type": "string"
+    },
+    "fileSize": {
+      "type": "integer"
+    },
+    "fileType": {
+      "type": "string"
+    },
+    "modifiedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "owner": {
+      "$ref": "#/components/schemas/UserSummary"
+    },
+    "title": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GraphQLError",
+  "title": "GraphQLError",
+  "type": "object",
+  "description": "A single GraphQL error",
+  "properties": {
+    "message": {
+      "type": "string",
+      "description": "Description of the error"
+    },
+    "locations": {
+      "type": "array",
+      "description": "Locations in the query where the error occurred",
+      "items": {
+        "type": "object",
+        "properties": {
+          "line": {
+            "type": "integer"
+          },
+          "column": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "path": {
+      "type": "array",
+      "description": "Path to the field that caused the error",
+      "items": {
+        "type": "string"
+      }
+    },
+    "extensions": {
+      "type": "object",
+      "description": "Additional error details",
+      "additionalProperties": true
+    }
+  }
+}

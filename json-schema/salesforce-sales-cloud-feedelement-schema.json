@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FeedElement",
+  "title": "FeedElement",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "body": {
+      "$ref": "#/components/schemas/MessageBody"
+    },
+    "capabilities": {
+      "type": "object",
+      "properties": {
+        "comments": {
+          "type": "object",
+          "properties": {
+            "total": {
+              "type": "integer"
+            }
+          }
+        },
+        "chatterLikes": {
+          "type": "object",
+          "properties": {
+            "total": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "actor": {
+      "$ref": "#/components/schemas/UserSummary"
+    },
+    "feedElementType": {
+      "type": "string",
+      "enum": [
+        "FeedItem",
+        "Bundle"
+      ]
+    },
+    "header": {
+      "type": "object",
+      "properties": {
+        "text": {
+          "type": "string"
+        }
+      }
+    },
+    "parent": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "type": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

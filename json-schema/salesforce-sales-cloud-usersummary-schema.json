@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/UserSummary",
+  "title": "UserSummary",
+  "type": "object",
+  "properties": {
+    "companyName": {
+      "type": "string",
+      "nullable": true
+    },
+    "displayName": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "photo": {
+      "type": "object",
+      "properties": {
+        "smallPhotoUrl": {
+          "type": "string"
+        },
+        "mediumPhotoUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "title": {
+      "type": "string",
+      "nullable": true
+    },
+    "type": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

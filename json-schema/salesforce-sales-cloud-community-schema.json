@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/Community",
+  "title": "Community",
+  "type": "object",
+  "properties": {
+    "allowChatterAccessWithoutLogin": {
+      "type": "boolean"
+    },
+    "allowMembersToFlag": {
+      "type": "boolean"
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "id": {
+      "type": "string"
+    },
+    "invitationsEnabled": {
+      "type": "boolean"
+    },
+    "knowledgeableEnabled": {
+      "type": "boolean"
+    },
+    "loginUrl": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "nicknameDisplayEnabled": {
+      "type": "boolean"
+    },
+    "privateMessagesEnabled": {
+      "type": "boolean"
+    },
+    "reputationEnabled": {
+      "type": "boolean"
+    },
+    "sendWelcomeEmail": {
+      "type": "boolean"
+    },
+    "siteAsContainerEnabled": {
+      "type": "boolean"
+    },
+    "siteUrl": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "Live",
+        "Inactive",
+        "UnderConstruction"
+      ]
+    },
+    "url": {
+      "type": "string"
+    },
+    "urlPathPrefix": {
+      "type": "string"
+    }
+  }
+}

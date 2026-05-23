@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChatterGroup",
+  "title": "ChatterGroup",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "memberCount": {
+      "type": "integer"
+    },
+    "myRole": {
+      "type": "string",
+      "enum": [
+        "GroupOwner",
+        "GroupManager",
+        "StandardMember",
+        "NotAMember"
+      ]
+    },
+    "visibility": {
+      "type": "string",
+      "enum": [
+        "PublicAccess",
+        "PrivateAccess",
+        "Unlisted"
+      ]
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

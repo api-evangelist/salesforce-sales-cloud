@@ -1,0 +1,223 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ObjectInfo",
+  "title": "ObjectInfo",
+  "type": "object",
+  "description": "Object metadata optimized for UI rendering",
+  "properties": {
+    "apiName": {
+      "type": "string"
+    },
+    "childRelationships": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "childObjectApiName": {
+            "type": "string"
+          },
+          "fieldName": {
+            "type": "string"
+          },
+          "junctionIdListNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "junctionReferenceTo": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "relationshipName": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "createable": {
+      "type": "boolean"
+    },
+    "custom": {
+      "type": "boolean"
+    },
+    "defaultRecordTypeId": {
+      "type": "string",
+      "nullable": true
+    },
+    "deletable": {
+      "type": "boolean"
+    },
+    "eTag": {
+      "type": "string"
+    },
+    "feedEnabled": {
+      "type": "boolean"
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "apiName": {
+            "type": "string"
+          },
+          "compound": {
+            "type": "boolean"
+          },
+          "compoundComponentName": {
+            "type": "string",
+            "nullable": true
+          },
+          "compoundFieldName": {
+            "type": "string",
+            "nullable": true
+          },
+          "controllerName": {
+            "type": "string",
+            "nullable": true
+          },
+          "controllingFields": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createable": {
+            "type": "boolean"
+          },
+          "custom": {
+            "type": "boolean"
+          },
+          "dataType": {
+            "type": "string"
+          },
+          "extraTypeInfo": {
+            "type": "string",
+            "nullable": true
+          },
+          "filterable": {
+            "type": "boolean"
+          },
+          "htmlFormatted": {
+            "type": "boolean"
+          },
+          "inlineHelpText": {
+            "type": "string",
+            "nullable": true
+          },
+          "label": {
+            "type": "string"
+          },
+          "length": {
+            "type": "integer"
+          },
+          "nameField": {
+            "type": "boolean"
+          },
+          "polymorphicForeignKey": {
+            "type": "boolean"
+          },
+          "precision": {
+            "type": "integer"
+          },
+          "reference": {
+            "type": "boolean"
+          },
+          "referenceTargetField": {
+            "type": "string",
+            "nullable": true
+          },
+          "referenceToInfos": {
+            "type": "array",
+            "items": {
+              "type": "object"
+            }
+          },
+          "relationshipName": {
+            "type": "string",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "scale": {
+            "type": "integer"
+          },
+          "searchPrefilterable": {
+            "type": "boolean"
+          },
+          "sortable": {
+            "type": "boolean"
+          },
+          "unique": {
+            "type": "boolean"
+          },
+          "updateable": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "keyPrefix": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "labelPlural": {
+      "type": "string"
+    },
+    "layoutable": {
+      "type": "boolean"
+    },
+    "mruEnabled": {
+      "type": "boolean"
+    },
+    "queryable": {
+      "type": "boolean"
+    },
+    "recordTypeInfos": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "available": {
+            "type": "boolean"
+          },
+          "defaultRecordTypeMapping": {
+            "type": "boolean"
+          },
+          "master": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          },
+          "recordTypeId": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "searchable": {
+      "type": "boolean"
+    },
+    "themeInfo": {
+      "type": "object",
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "iconUrl": {
+          "type": "string"
+        }
+      }
+    },
+    "updateable": {
+      "type": "boolean"
+    }
+  }
+}

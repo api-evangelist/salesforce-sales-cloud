@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateQueryJobRequest",
+  "title": "CreateQueryJobRequest",
+  "type": "object",
+  "description": "Request body for creating a new query job",
+  "required": [
+    "operation",
+    "query"
+  ],
+  "properties": {
+    "operation": {
+      "type": "string",
+      "description": "The operation type",
+      "enum": [
+        "query",
+        "queryAll"
+      ]
+    },
+    "query": {
+      "type": "string",
+      "description": "The SOQL query string"
+    },
+    "columnDelimiter": {
+      "type": "string",
+      "description": "The column delimiter for the result CSV",
+      "enum": [
+        "BACKQUOTE",
+        "CARET",
+        "COMMA",
+        "PIPE",
+        "SEMICOLON",
+        "TAB"
+      ],
+      "default": "COMMA"
+    },
+    "lineEnding": {
+      "type": "string",
+      "description": "The line ending for the result CSV",
+      "enum": [
+        "LF",
+        "CRLF"
+      ],
+      "default": "LF"
+    }
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportListItem",
+  "title": "ReportListItem",
+  "type": "object",
+  "description": "Summary information about a report",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "describeUrl": {
+      "type": "string"
+    },
+    "instancesUrl": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportMetadata",
+  "title": "ReportMetadata",
+  "type": "object",
+  "description": "Metadata describing a report configuration",
+  "properties": {
+    "aggregates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "chart": {
+      "type": "object",
+      "nullable": true
+    },
+    "crossFilters": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "currency": {
+      "type": "string",
+      "nullable": true
+    },
+    "description": {
+      "type": "string",
+      "nullable": true
+    },
+    "detailColumns": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "developerName": {
+      "type": "string"
+    },
+    "division": {
+      "type": "string",
+      "nullable": true
+    },
+    "folderId": {
+      "type": "string"
+    },
+    "groupingsAcross": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateGranularity": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "sortAggregate": {
+            "type": "string",
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "groupingsDown": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "dateGranularity": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "sortAggregate": {
+            "type": "string",
+            "nullable": true
+          },
+          "sortOrder": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "hasDetailRows": {
+      "type": "boolean"
+    },
+    "hasRecordCount": {
+      "type": "boolean"
+    },
+    "historicalSnapshotDates": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "reportBooleanFilter": {
+      "type": "string",
+      "nullable": true
+    },
+    "reportFilters": {
+      "type": "array",
+      "items": {
+        "$ref": "#/components/schemas/ReportFilter"
+      }
+    },
+    "reportFormat": {
+      "type": "string",
+      "enum": [
+        "TABULAR",
+        "SUMMARY",
+        "MATRIX",
+        "MULTI_BLOCK"
+      ]
+    },
+    "reportType": {
+      "type": "object",
+      "properties": {
+        "label": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        }
+      }
+    },
+    "scope": {
+      "type": "string"
+    },
+    "sortBy": {
+      "type": "array",
+      "items": {
+        "type": "object"
+      }
+    },
+    "standardDateFilter": {
+      "type": "object",
+      "properties": {
+        "column": {
+          "type": "string"
+        },
+        "durationValue": {
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string",
+          "nullable": true
+        },
+        "startDate": {
+          "type": "string",
+          "nullable": true
+        }
+      }
+    }
+  }
+}

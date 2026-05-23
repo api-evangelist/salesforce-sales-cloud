@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/IngestJobInfo",
+  "title": "IngestJobInfo",
+  "type": "object",
+  "description": "Detailed information about an ingest job",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "The unique ID for the job"
+    },
+    "operation": {
+      "type": "string",
+      "enum": [
+        "insert",
+        "delete",
+        "hardDelete",
+        "update",
+        "upsert"
+      ]
+    },
+    "object": {
+      "type": "string",
+      "description": "The sObject type"
+    },
+    "createdById": {
+      "type": "string",
+      "description": "The ID of the user who created the job"
+    },
+    "createdDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "systemModstamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "state": {
+      "type": "string",
+      "description": "The current state of the job",
+      "enum": [
+        "Open",
+        "UploadComplete",
+        "InProgress",
+        "JobComplete",
+        "Aborted",
+        "Failed"
+      ]
+    },
+    "externalIdFieldName": {
+      "type": "string",
+      "description": "The external ID field for upsert operations"
+    },
+    "concurrencyMode": {
+      "type": "string",
+      "enum": [
+        "parallel"
+      ]
+    },
+    "contentType": {
+      "type": "string",
+      "enum": [
+        "CSV"
+      ]
+    },
+    "apiVersion": {
+      "type": "number",
+      "description": "The API version for the job"
+    },
+    "jobType": {
+      "type": "string",
+      "enum": [
+        "BigObjectIngest",
+        "Classic",
+        "V2Ingest"
+      ]
+    },
+    "contentUrl": {
+      "type": "string",
+      "description": "URL for uploading data"
+    },
+    "lineEnding": {
+      "type": "string"
+    },
+    "columnDelimiter": {
+      "type": "string"
+    },
+    "numberRecordsProcessed": {
+      "type": "integer",
+      "description": "Number of records processed"
+    },
+    "numberRecordsFailed": {
+      "type": "integer",
+      "description": "Number of records that failed"
+    },
+    "retries": {
+      "type": "integer"
+    },
+    "totalProcessingTime": {
+      "type": "integer",
+      "description": "Total processing time in milliseconds"
+    },
+    "apiActiveProcessingTime": {
+      "type": "integer"
+    },
+    "apexProcessingTime": {
+      "type": "integer"
+    }
+  }
+}

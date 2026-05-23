@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompositeGraphRequest",
+  "title": "CompositeGraphRequest",
+  "type": "object",
+  "description": "A composite graph request containing one or more graphs",
+  "required": [
+    "graphs"
+  ],
+  "properties": {
+    "graphs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "graphId",
+          "compositeRequest"
+        ],
+        "properties": {
+          "graphId": {
+            "type": "string",
+            "description": "Unique identifier for this graph"
+          },
+          "compositeRequest": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "method",
+                "url",
+                "referenceId"
+              ],
+              "properties": {
+                "body": {
+                  "description": "The request body"
+                },
+                "method": {
+                  "type": "string",
+                  "enum": [
+                    "GET",
+                    "POST",
+                    "PATCH",
+                    "PUT",
+                    "DELETE"
+                  ]
+                },
+                "referenceId": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

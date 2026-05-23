@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SObjectDescribeBrief",
+  "title": "SObjectDescribeBrief",
+  "type": "object",
+  "description": "Brief metadata description of an sObject",
+  "properties": {
+    "activateable": {
+      "type": "boolean"
+    },
+    "custom": {
+      "type": "boolean"
+    },
+    "customSetting": {
+      "type": "boolean"
+    },
+    "createable": {
+      "type": "boolean"
+    },
+    "deletable": {
+      "type": "boolean"
+    },
+    "deprecatedAndHidden": {
+      "type": "boolean"
+    },
+    "feedEnabled": {
+      "type": "boolean"
+    },
+    "hasSubtypes": {
+      "type": "boolean"
+    },
+    "isSubtype": {
+      "type": "boolean"
+    },
+    "keyPrefix": {
+      "type": "string",
+      "nullable": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "labelPlural": {
+      "type": "string"
+    },
+    "layoutable": {
+      "type": "boolean"
+    },
+    "mergeable": {
+      "type": "boolean"
+    },
+    "mruEnabled": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "queryable": {
+      "type": "boolean"
+    },
+    "replicateable": {
+      "type": "boolean"
+    },
+    "retrieveable": {
+      "type": "boolean"
+    },
+    "searchable": {
+      "type": "boolean"
+    },
+    "triggerable": {
+      "type": "boolean"
+    },
+    "undeletable": {
+      "type": "boolean"
+    },
+    "updateable": {
+      "type": "boolean"
+    },
+    "urls": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    }
+  }
+}

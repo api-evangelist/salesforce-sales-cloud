@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompositeBatchRequest",
+  "title": "CompositeBatchRequest",
+  "type": "object",
+  "description": "A batch of independent subrequests",
+  "required": [
+    "batchRequests"
+  ],
+  "properties": {
+    "haltOnError": {
+      "type": "boolean",
+      "default": false
+    },
+    "batchRequests": {
+      "type": "array",
+      "maxItems": 25,
+      "items": {
+        "type": "object",
+        "required": [
+          "method",
+          "url"
+        ],
+        "properties": {
+          "method": {
+            "type": "string",
+            "enum": [
+              "GET",
+              "POST",
+              "PATCH",
+              "PUT",
+              "DELETE"
+            ]
+          },
+          "url": {
+            "type": "string"
+          },
+          "richInput": {
+            "description": "The request body for the subrequest"
+          }
+        }
+      }
+    }
+  }
+}

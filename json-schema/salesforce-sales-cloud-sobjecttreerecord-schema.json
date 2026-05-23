@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/SObjectTreeRecord",
+  "title": "SObjectTreeRecord",
+  "type": "object",
+  "description": "An sObject tree record with optional nested child records",
+  "properties": {
+    "attributes": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "referenceId": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

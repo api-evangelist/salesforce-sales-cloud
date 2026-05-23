@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ReportResults",
+  "title": "ReportResults",
+  "type": "object",
+  "description": "Results from running a report",
+  "properties": {
+    "allData": {
+      "type": "boolean"
+    },
+    "factMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "aggregates": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": {
+                  "type": "string"
+                },
+                "value": {
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "rows": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "dataCells": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "label": {
+                        "type": "string"
+                      },
+                      "value": {
+                        "nullable": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "groupingsAcross": {
+      "type": "object"
+    },
+    "groupingsDown": {
+      "type": "object"
+    },
+    "hasDetailRows": {
+      "type": "boolean"
+    },
+    "reportExtendedMetadata": {
+      "type": "object"
+    },
+    "reportMetadata": {
+      "$ref": "#/components/schemas/ReportMetadata"
+    }
+  }
+}

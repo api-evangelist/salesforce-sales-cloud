@@ -1,0 +1,282 @@
+{
+  "provider": "Salesforce Sales Cloud",
+  "providerId": "salesforce-sales-cloud",
+  "kind": "json-structure",
+  "description": "Structural overview of the Salesforce Sales Cloud API surface; extracted from openapi/.",
+  "schemaCount": 9,
+  "operationCount": 24,
+  "schemas": [
+    {
+      "name": "SObjectDescribeBrief",
+      "type": "object",
+      "propertyCount": 24,
+      "required": []
+    },
+    {
+      "name": "SObjectDescribe",
+      "type": "object",
+      "propertyCount": 33,
+      "required": []
+    },
+    {
+      "name": "FieldDescribe",
+      "type": "object",
+      "propertyCount": 56,
+      "required": []
+    },
+    {
+      "name": "SObjectRecord",
+      "type": "object",
+      "propertyCount": 2,
+      "required": []
+    },
+    {
+      "name": "CreateRecordResult",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "QueryResult",
+      "type": "object",
+      "propertyCount": 4,
+      "required": []
+    },
+    {
+      "name": "SearchResult",
+      "type": "object",
+      "propertyCount": 1,
+      "required": []
+    },
+    {
+      "name": "ApiError",
+      "type": "object",
+      "propertyCount": 3,
+      "required": []
+    },
+    {
+      "name": "ErrorResponse",
+      "type": "array",
+      "propertyCount": 0,
+      "required": []
+    }
+  ],
+  "operations": [
+    {
+      "method": "GET",
+      "path": "/",
+      "operationId": "listAvailableResources",
+      "summary": "Salesforce Sales Cloud List available REST resources",
+      "tags": [
+        "Resources"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/limits",
+      "operationId": "getOrgLimits",
+      "summary": "Salesforce Sales Cloud Get organization limits",
+      "tags": [
+        "Limits"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sobjects",
+      "operationId": "listSObjects",
+      "summary": "Salesforce Sales Cloud List available sObjects",
+      "tags": [
+        "SObject"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sobjects/{sObjectName}",
+      "operationId": "getSObjectBasicInfo",
+      "summary": "Salesforce Sales Cloud Get sObject basic information",
+      "tags": [
+        "SObject"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/sobjects/{sObjectName}",
+      "operationId": "createSObjectRecord",
+      "summary": "Salesforce Sales Cloud Create a new sObject record",
+      "tags": [
+        "SObject Rows"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sobjects/{sObjectName}/describe",
+      "operationId": "describeSObject",
+      "summary": "Salesforce Sales Cloud Describe an sObject",
+      "tags": [
+        "SObject Describe"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sobjects/{sObjectName}/{recordId}",
+      "operationId": "getSObjectRecord",
+      "summary": "Salesforce Sales Cloud Get an sObject record by ID",
+      "tags": [
+        "SObject Rows"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/sobjects/{sObjectName}/{recordId}",
+      "operationId": "deleteSObjectRecord",
+      "summary": "Salesforce Sales Cloud Delete an sObject record",
+      "tags": [
+        "SObject Rows"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/sobjects/{sObjectName}/{recordId}",
+      "operationId": "updateSObjectRecord",
+      "summary": "Salesforce Sales Cloud Update an sObject record",
+      "tags": [
+        "SObject Rows"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sobjects/{sObjectName}/{fieldName}/{fieldValue}",
+      "operationId": "getSObjectRecordByExternalId",
+      "summary": "Salesforce Sales Cloud Get record by external ID",
+      "tags": [
+        "SObject Rows"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/sobjects/{sObjectName}/{fieldName}/{fieldValue}",
+      "operationId": "upsertSObjectRecordByExternalId",
+      "summary": "Salesforce Sales Cloud Upsert record by external ID",
+      "tags": [
+        "SObject Rows"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/sobjects/{sObjectName}/describe/layouts",
+      "operationId": "getSObjectLayouts",
+      "summary": "Salesforce Sales Cloud Get sObject page layouts",
+      "tags": [
+        "SObject Describe"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/composite/sobjects",
+      "operationId": "createSObjectCollection",
+      "summary": "Salesforce Sales Cloud Create multiple sObject records",
+      "tags": [
+        "SObject Collections"
+      ]
+    },
+    {
+      "method": "DELETE",
+      "path": "/composite/sobjects",
+      "operationId": "deleteSObjectCollection",
+      "summary": "Salesforce Sales Cloud Delete multiple sObject records",
+      "tags": [
+        "SObject Collections"
+      ]
+    },
+    {
+      "method": "PATCH",
+      "path": "/composite/sobjects",
+      "operationId": "updateSObjectCollection",
+      "summary": "Salesforce Sales Cloud Update multiple sObject records",
+      "tags": [
+        "SObject Collections"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/query",
+      "operationId": "executeSOQLQuery",
+      "summary": "Salesforce Sales Cloud Execute a SOQL query",
+      "tags": [
+        "Query"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/queryAll",
+      "operationId": "executeSOQLQueryAll",
+      "summary": "Salesforce Sales Cloud Execute a SOQL query including deleted records",
+      "tags": [
+        "Query"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/query/{queryLocator}",
+      "operationId": "getNextQueryResults",
+      "summary": "Salesforce Sales Cloud Get next batch of query results",
+      "tags": [
+        "Query"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/search",
+      "operationId": "executeSOSLSearch",
+      "summary": "Salesforce Sales Cloud Execute a SOSL search",
+      "tags": [
+        "Search"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/recent",
+      "operationId": "getRecentlyViewedItems",
+      "summary": "Salesforce Sales Cloud Get recently viewed items",
+      "tags": [
+        "Recently Viewed"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/tabs",
+      "operationId": "getTabs",
+      "summary": "Salesforce Sales Cloud Get available tabs",
+      "tags": [
+        "Tabs"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/theme",
+      "operationId": "getTheme",
+      "summary": "Salesforce Sales Cloud Get theme information",
+      "tags": [
+        "Themes"
+      ]
+    },
+    {
+      "method": "GET",
+      "path": "/process/approvals",
+      "operationId": "getProcessApprovals",
+      "summary": "Salesforce Sales Cloud Get pending process approvals",
+      "tags": [
+        "Process Approvals"
+      ]
+    },
+    {
+      "method": "POST",
+      "path": "/process/approvals",
+      "operationId": "submitProcessApproval",
+      "summary": "Salesforce Sales Cloud Submit a process approval request",
+      "tags": [
+        "Process Approvals"
+      ]
+    }
+  ]
+}

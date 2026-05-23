@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/PicklistValue",
+  "title": "PicklistValue",
+  "type": "object",
+  "properties": {
+    "attributes": {
+      "type": "object",
+      "nullable": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "validFor": {
+      "type": "array",
+      "items": {
+        "type": "integer"
+      },
+      "description": "Indices of controlling field values for which this value is valid"
+    },
+    "value": {
+      "type": "string"
+    }
+  }
+}

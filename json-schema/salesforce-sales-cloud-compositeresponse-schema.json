@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompositeResponse",
+  "title": "CompositeResponse",
+  "type": "object",
+  "description": "Response from a composite request",
+  "properties": {
+    "compositeResponse": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "body": {
+            "description": "The response body"
+          },
+          "httpHeaders": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "httpStatusCode": {
+            "type": "integer"
+          },
+          "referenceId": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

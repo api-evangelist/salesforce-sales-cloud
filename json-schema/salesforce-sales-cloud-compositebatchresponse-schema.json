@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CompositeBatchResponse",
+  "title": "CompositeBatchResponse",
+  "type": "object",
+  "description": "Response from a composite batch request",
+  "properties": {
+    "hasErrors": {
+      "type": "boolean"
+    },
+    "results": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "statusCode": {
+            "type": "integer"
+          },
+          "result": {
+            "description": "The subrequest result"
+          }
+        }
+      }
+    }
+  }
+}

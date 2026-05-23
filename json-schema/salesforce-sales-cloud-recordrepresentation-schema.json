@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/RecordRepresentation",
+  "title": "RecordRepresentation",
+  "type": "object",
+  "description": "A record with field values and UI metadata",
+  "properties": {
+    "apiName": {
+      "type": "string",
+      "description": "The sObject API name"
+    },
+    "childRelationships": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "eTag": {
+      "type": "string"
+    },
+    "fields": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "properties": {
+          "displayValue": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        }
+      }
+    },
+    "id": {
+      "type": "string"
+    },
+    "lastModifiedById": {
+      "type": "string"
+    },
+    "lastModifiedDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "recordTypeId": {
+      "type": "string",
+      "nullable": true
+    },
+    "recordTypeInfo": {
+      "type": "object",
+      "nullable": true,
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "defaultRecordTypeMapping": {
+          "type": "boolean"
+        },
+        "master": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "recordTypeId": {
+          "type": "string"
+        }
+      }
+    },
+    "systemModstamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "weakEtag": {
+      "type": "integer"
+    }
+  }
+}

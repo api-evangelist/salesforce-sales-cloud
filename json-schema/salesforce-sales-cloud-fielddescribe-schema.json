@@ -1,0 +1,231 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FieldDescribe",
+  "title": "FieldDescribe",
+  "type": "object",
+  "description": "Metadata description of a single field on an sObject",
+  "properties": {
+    "aggregatable": {
+      "type": "boolean"
+    },
+    "autoNumber": {
+      "type": "boolean"
+    },
+    "byteLength": {
+      "type": "integer"
+    },
+    "calculated": {
+      "type": "boolean"
+    },
+    "calculatedFormula": {
+      "type": "string",
+      "nullable": true
+    },
+    "cascadeDelete": {
+      "type": "boolean"
+    },
+    "caseSensitive": {
+      "type": "boolean"
+    },
+    "compoundFieldName": {
+      "type": "string",
+      "nullable": true
+    },
+    "controllerName": {
+      "type": "string",
+      "nullable": true
+    },
+    "createable": {
+      "type": "boolean"
+    },
+    "custom": {
+      "type": "boolean"
+    },
+    "defaultValue": {
+      "nullable": true
+    },
+    "defaultValueFormula": {
+      "type": "string",
+      "nullable": true
+    },
+    "defaultedOnCreate": {
+      "type": "boolean"
+    },
+    "dependentPicklist": {
+      "type": "boolean"
+    },
+    "deprecatedAndHidden": {
+      "type": "boolean"
+    },
+    "digits": {
+      "type": "integer"
+    },
+    "displayLocationInDecimal": {
+      "type": "boolean"
+    },
+    "encrypted": {
+      "type": "boolean"
+    },
+    "externalId": {
+      "type": "boolean"
+    },
+    "extraTypeInfo": {
+      "type": "string",
+      "nullable": true
+    },
+    "filterable": {
+      "type": "boolean"
+    },
+    "filteredLookupInfo": {
+      "type": "object",
+      "nullable": true
+    },
+    "formulaTreatNullNumberAsZero": {
+      "type": "boolean"
+    },
+    "groupable": {
+      "type": "boolean"
+    },
+    "highScaleNumber": {
+      "type": "boolean"
+    },
+    "htmlFormatted": {
+      "type": "boolean"
+    },
+    "idLookup": {
+      "type": "boolean"
+    },
+    "inlineHelpText": {
+      "type": "string",
+      "nullable": true
+    },
+    "label": {
+      "type": "string"
+    },
+    "length": {
+      "type": "integer"
+    },
+    "mask": {
+      "type": "string",
+      "nullable": true
+    },
+    "maskType": {
+      "type": "string",
+      "nullable": true
+    },
+    "name": {
+      "type": "string"
+    },
+    "nameField": {
+      "type": "boolean"
+    },
+    "namePointing": {
+      "type": "boolean"
+    },
+    "nillable": {
+      "type": "boolean"
+    },
+    "permissionable": {
+      "type": "boolean"
+    },
+    "picklistValues": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "defaultValue": {
+            "type": "boolean"
+          },
+          "label": {
+            "type": "string"
+          },
+          "validFor": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "polymorphicForeignKey": {
+      "type": "boolean"
+    },
+    "precision": {
+      "type": "integer"
+    },
+    "queryByDistance": {
+      "type": "boolean"
+    },
+    "referenceTargetField": {
+      "type": "string",
+      "nullable": true
+    },
+    "referenceTo": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "relationshipName": {
+      "type": "string",
+      "nullable": true
+    },
+    "relationshipOrder": {
+      "type": "integer",
+      "nullable": true
+    },
+    "restrictedDelete": {
+      "type": "boolean"
+    },
+    "restrictedPicklist": {
+      "type": "boolean"
+    },
+    "scale": {
+      "type": "integer"
+    },
+    "searchPrefilterable": {
+      "type": "boolean"
+    },
+    "soapType": {
+      "type": "string"
+    },
+    "sortable": {
+      "type": "boolean"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "id",
+        "boolean",
+        "currency",
+        "date",
+        "datetime",
+        "double",
+        "email",
+        "int",
+        "multipicklist",
+        "percent",
+        "phone",
+        "picklist",
+        "reference",
+        "string",
+        "textarea",
+        "url"
+      ]
+    },
+    "unique": {
+      "type": "boolean"
+    },
+    "updateable": {
+      "type": "boolean"
+    },
+    "writeRequiresMasterRead": {
+      "type": "boolean"
+    }
+  }
+}

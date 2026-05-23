@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/ChangeEventMessage",
+  "title": "ChangeEventMessage",
+  "type": "object",
+  "description": "Structure of a change data capture event message. Note that events are delivered via CometD streaming or Pub/Sub API, not REST. This schema documents the message format for reference.",
+  "properties": {
+    "schema": {
+      "type": "string",
+      "description": "The Avro schema ID for the event"
+    },
+    "payload": {
+      "type": "object",
+      "properties": {
+        "ChangeEventHeader": {
+          "type": "object",
+          "properties": {
+            "entityName": {
+              "type": "string",
+              "description": "The sObject type that was changed"
+            },
+            "recordIds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of record IDs affected"
+            },
+            "changeType": {
+              "type": "string",
+              "description": "The type of change",
+              "enum": [
+                "CREATE",
+                "UPDATE",
+                "DELETE",
+                "UNDELETE",
+                "GAP_CREATE",
+                "GAP_UPDATE",
+                "GAP_DELETE",
+                "GAP_UNDELETE",
+                "GAP_OVERFLOW"
+              ]
+            },
+            "changedFields": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "description": "List of field names that were changed (UPDATE only)"
+            },
+            "changeOrigin": {
+              "type": "string"
+            },
+            "commitTimestamp": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The timestamp of the commit in milliseconds"
+            },
+            "commitNumber": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "commitUser": {
+              "type": "string",
+              "description": "The ID of the user who made the change"
+            },
+            "sequenceNumber": {
+              "type": "integer"
+            },
+            "transactionKey": {
+              "type": "string",
+              "description": "Unique key for the transaction"
+            }
+          }
+        }
+      },
+      "additionalProperties": true
+    },
+    "event": {
+      "type": "object",
+      "properties": {
+        "replayId": {
+          "type": "integer",
+          "description": "The replay ID for resuming event consumption"
+        }
+      }
+    }
+  }
+}

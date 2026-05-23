@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/CreateIngestJobRequest",
+  "title": "CreateIngestJobRequest",
+  "type": "object",
+  "description": "Request body for creating a new ingest job",
+  "required": [
+    "object",
+    "operation"
+  ],
+  "properties": {
+    "assignmentRuleId": {
+      "type": "string",
+      "description": "The ID of an assignment rule to apply during the operation"
+    },
+    "columnDelimiter": {
+      "type": "string",
+      "description": "The column delimiter used in the CSV data",
+      "enum": [
+        "BACKQUOTE",
+        "CARET",
+        "COMMA",
+        "PIPE",
+        "SEMICOLON",
+        "TAB"
+      ],
+      "default": "COMMA"
+    },
+    "contentType": {
+      "type": "string",
+      "description": "The content type of the data",
+      "enum": [
+        "CSV"
+      ],
+      "default": "CSV"
+    },
+    "externalIdFieldName": {
+      "type": "string",
+      "description": "The external ID field name for upsert operations"
+    },
+    "lineEnding": {
+      "type": "string",
+      "description": "The line ending used in the CSV data",
+      "enum": [
+        "LF",
+        "CRLF"
+      ],
+      "default": "LF"
+    },
+    "object": {
+      "type": "string",
+      "description": "The sObject type for the job (e.g., Account, Contact)"
+    },
+    "operation": {
+      "type": "string",
+      "description": "The operation to perform",
+      "enum": [
+        "insert",
+        "delete",
+        "hardDelete",
+        "update",
+        "upsert"
+      ]
+    }
+  }
+}

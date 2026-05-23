@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/GraphQLRequest",
+  "title": "GraphQLRequest",
+  "type": "object",
+  "description": "A GraphQL request payload",
+  "required": [
+    "query"
+  ],
+  "properties": {
+    "query": {
+      "type": "string",
+      "description": "The GraphQL query or mutation string",
+      "example": "{\n  uiapi {\n    query {\n      Account(first: 10) {\n        edges {\n          node {\n            Id\n            Name { value }\n            Industry { value }\n          }\n        }\n      }\n    }\n  }\n}\n"
+    },
+    "variables": {
+      "type": "object",
+      "description": "Variables referenced in the query",
+      "additionalProperties": true
+    },
+    "operationName": {
+      "type": "string",
+      "description": "Name of the operation to execute if the query contains multiple operations"
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/FeedElementInput",
+  "title": "FeedElementInput",
+  "type": "object",
+  "required": [
+    "body",
+    "feedElementType",
+    "subjectId"
+  ],
+  "properties": {
+    "body": {
+      "$ref": "#/components/schemas/MessageBody"
+    },
+    "feedElementType": {
+      "type": "string",
+      "enum": [
+        "FeedItem"
+      ]
+    },
+    "subjectId": {
+      "type": "string",
+      "description": "The ID of the parent record, user, or group"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "#/components/schemas/DashboardListItem",
+  "title": "DashboardListItem",
+  "type": "object",
+  "description": "Summary information about a dashboard",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "statusUrl": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "folderId": {
+      "type": "string"
+    },
+    "folderName": {
+      "type": "string"
+    }
+  }
+}
