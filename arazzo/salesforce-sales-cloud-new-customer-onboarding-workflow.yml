@@ -1,0 +1,122 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud New Customer Onboarding
+  summary: Create an Account, attach a primary Contact, then open an Opportunity against it.
+  description: >-
+    The canonical Sales Cloud land flow. The workflow creates a new Account
+    sObject record, creates a Contact record linked to that Account through the
+    AccountId field, and then opens an Opportunity tied to the same Account so a
+    deal can be tracked from day one. Every step spells out its request inline,
+    including the inline OAuth bearer Authorization header, so the flow can be
+    read and executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: new-customer-onboarding
+  summary: Create Account, then Contact, then Opportunity in one chained flow.
+  description: >-
+    Chains three create operations against the SObject Rows resource. Each
+    create returns the new record id, which is fed forward so the Contact and
+    Opportunity are correctly associated with the parent Account.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - accountName
+    - contactLastName
+    - opportunityName
+    - opportunityCloseDate
+    - opportunityStage
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      accountName:
+        type: string
+        description: Name of the Account to create.
+      contactLastName:
+        type: string
+        description: Last name of the primary Contact (required on Contact).
+      contactFirstName:
+        type: string
+        description: First name of the primary Contact.
+      contactEmail:
+        type: string
+        description: Email address for the primary Contact.
+      opportunityName:
+        type: string
+        description: Name of the Opportunity to open.
+      opportunityCloseDate:
+        type: string
+        description: Close date for the Opportunity (YYYY-MM-DD).
+      opportunityStage:
+        type: string
+        description: Stage name for the Opportunity (e.g. "Prospecting").
+  steps:
+  - stepId: createAccount
+    description: Create the Account record that anchors the customer relationship.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Account
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.accountName
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      accountId: $response.body#/id
+  - stepId: createContact
+    description: Create the primary Contact and link it to the new Account.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Contact
+    requestBody:
+      contentType: application/json
+      payload:
+        LastName: $inputs.contactLastName
+        FirstName: $inputs.contactFirstName
+        Email: $inputs.contactEmail
+        AccountId: $steps.createAccount.outputs.accountId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/id
+  - stepId: createOpportunity
+    description: Open an Opportunity against the new Account to track the deal.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Opportunity
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.opportunityName
+        AccountId: $steps.createAccount.outputs.accountId
+        CloseDate: $inputs.opportunityCloseDate
+        StageName: $inputs.opportunityStage
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      opportunityId: $response.body#/id
+  outputs:
+    accountId: $steps.createAccount.outputs.accountId
+    contactId: $steps.createContact.outputs.contactId
+    opportunityId: $steps.createOpportunity.outputs.opportunityId

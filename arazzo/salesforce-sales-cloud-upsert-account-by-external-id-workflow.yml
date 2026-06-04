@@ -1,0 +1,109 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Upsert Account By External ID
+  summary: Upsert an Account on an external ID field, then attach a Contact to it.
+  description: >-
+    An idempotent integration pattern over the SObject Rows resource. The
+    workflow upserts an Account using an external ID field — creating it if the
+    key is new (201) or updating it if the key already exists (200) — then
+    creates a Contact linked to the resulting Account. The upsert step branches
+    on the documented status codes. Every step inlines its request and the OAuth
+    bearer Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: upsert-account-by-external-id
+  summary: Upsert an Account by external ID and attach a Contact.
+  description: >-
+    Upserts an Account keyed on an external ID field, captures the resulting
+    record id, and creates a Contact tied to it. Handles both the created (201)
+    and updated (200) upsert outcomes.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - externalIdField
+    - externalIdValue
+    - accountName
+    - contactLastName
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      externalIdField:
+        type: string
+        description: API name of the external ID field on Account (e.g. ExtRef__c).
+      externalIdValue:
+        type: string
+        description: The external ID value to upsert against.
+      accountName:
+        type: string
+        description: Account Name to set on create or update.
+      contactLastName:
+        type: string
+        description: Last name of the Contact to attach (required on Contact).
+      contactEmail:
+        type: string
+        description: Email of the Contact to attach.
+  steps:
+  - stepId: upsertAccount
+    description: Upsert the Account by external ID, creating or updating as needed.
+    operationId: upsertSObjectRecordByExternalId
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Account
+    - name: fieldName
+      in: path
+      value: $inputs.externalIdField
+    - name: fieldValue
+      in: path
+      value: $inputs.externalIdValue
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.accountName
+    successCriteria:
+    - condition: $statusCode == 200 || $statusCode == 201
+    outputs:
+      accountId: $response.body#/id
+    onSuccess:
+    - name: accountCreated
+      type: goto
+      stepId: createContact
+      criteria:
+      - condition: $statusCode == 201
+    - name: accountUpdated
+      type: goto
+      stepId: createContact
+      criteria:
+      - condition: $statusCode == 200
+  - stepId: createContact
+    description: Create a Contact linked to the upserted Account.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Contact
+    requestBody:
+      contentType: application/json
+      payload:
+        LastName: $inputs.contactLastName
+        Email: $inputs.contactEmail
+        AccountId: $steps.upsertAccount.outputs.accountId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/id
+  outputs:
+    accountId: $steps.upsertAccount.outputs.accountId
+    contactId: $steps.createContact.outputs.contactId

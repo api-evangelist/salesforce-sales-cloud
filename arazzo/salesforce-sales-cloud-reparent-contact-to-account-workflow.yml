@@ -1,0 +1,112 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Reparent Contact To Account
+  summary: Look up a Contact and a target Account by SOQL, then move the Contact under that Account.
+  description: >-
+    A relationship-repair pattern over the Query and SObject Rows resources. The
+    workflow queries for a Contact by email and for a target Account by name,
+    branches when either is missing, and when both resolve patches the Contact's
+    AccountId to reparent it under the target Account. Every step inlines its
+    request and the OAuth bearer Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: reparent-contact-to-account
+  summary: Resolve a Contact and target Account, then update the Contact's AccountId.
+  description: >-
+    Queries for the Contact and the target Account, then patches the Contact so
+    its AccountId points at the resolved Account. Ends early if either lookup
+    returns no record.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - contactEmail
+    - targetAccountName
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      contactEmail:
+        type: string
+        description: Email of the Contact to reparent.
+      targetAccountName:
+        type: string
+        description: Name of the Account to move the Contact under.
+  steps:
+  - stepId: findContact
+    description: Query for the Contact by email.
+    operationId: executeSOQLQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: "SELECT Id FROM Contact WHERE Email = '$inputs.contactEmail' LIMIT 1"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalSize: $response.body#/totalSize
+      contactId: $response.body#/records/0/Id
+    onSuccess:
+    - name: contactMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.totalSize == 0
+        type: jsonpath
+  - stepId: findAccount
+    description: Query for the target Account by name.
+    operationId: executeSOQLQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: "SELECT Id FROM Account WHERE Name = '$inputs.targetAccountName' LIMIT 1"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalSize: $response.body#/totalSize
+      accountId: $response.body#/records/0/Id
+    onSuccess:
+    - name: accountFound
+      type: goto
+      stepId: reparentContact
+      criteria:
+      - context: $response.body
+        condition: $.totalSize > 0
+        type: jsonpath
+    - name: accountMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.totalSize == 0
+        type: jsonpath
+  - stepId: reparentContact
+    description: Patch the Contact's AccountId to the resolved target Account.
+    operationId: updateSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Contact
+    - name: recordId
+      in: path
+      value: $steps.findContact.outputs.contactId
+    requestBody:
+      contentType: application/json
+      payload:
+        AccountId: $steps.findAccount.outputs.accountId
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    contactId: $steps.findContact.outputs.contactId
+    newAccountId: $steps.findAccount.outputs.accountId

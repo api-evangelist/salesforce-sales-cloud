@@ -1,0 +1,108 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Close Opportunity Won
+  summary: Move an Opportunity to Closed Won, then read it back and log a follow-up Task.
+  description: >-
+    A deal-closing pattern over the SObject Rows resource. The workflow patches
+    an Opportunity to a Closed Won stage with an amount, reads the record back to
+    confirm the new stage, and logs a follow-up Task referencing the Opportunity
+    so the win is actioned. Every step inlines its request and the OAuth bearer
+    Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: close-opportunity-won
+  summary: Update an Opportunity to Closed Won, verify, and log a follow-up Task.
+  description: >-
+    Patches the Opportunity stage and amount, retrieves it to confirm the stage,
+    then creates a Task linked to the Opportunity through WhatId.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - opportunityId
+    - closedStage
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      opportunityId:
+        type: string
+        description: Id of the Opportunity to close.
+      closedStage:
+        type: string
+        description: The Closed Won stage name configured in the org.
+      amount:
+        type: number
+        description: Final deal amount to stamp on the Opportunity.
+      followUpSubject:
+        type: string
+        description: Subject of the follow-up Task to log on the won deal.
+        default: Kick off won deal
+  steps:
+  - stepId: closeOpportunity
+    description: Patch the Opportunity to the Closed Won stage with the final amount.
+    operationId: updateSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Opportunity
+    - name: recordId
+      in: path
+      value: $inputs.opportunityId
+    requestBody:
+      contentType: application/json
+      payload:
+        StageName: $inputs.closedStage
+        Amount: $inputs.amount
+    successCriteria:
+    - condition: $statusCode == 204
+  - stepId: verifyOpportunity
+    description: Read the Opportunity back to confirm the stage advanced.
+    operationId: getSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Opportunity
+    - name: recordId
+      in: path
+      value: $inputs.opportunityId
+    - name: fields
+      in: query
+      value: Id,Name,StageName,Amount
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      stageName: $response.body#/StageName
+  - stepId: logFollowUp
+    description: Log a follow-up Task linked to the won Opportunity.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Task
+    requestBody:
+      contentType: application/json
+      payload:
+        Subject: $inputs.followUpSubject
+        Status: Not Started
+        WhatId: $inputs.opportunityId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      taskId: $response.body#/id
+  outputs:
+    finalStage: $steps.verifyOpportunity.outputs.stageName
+    taskId: $steps.logFollowUp.outputs.taskId

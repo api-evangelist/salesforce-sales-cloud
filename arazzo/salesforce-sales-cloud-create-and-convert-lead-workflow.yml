@@ -1,0 +1,164 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Create And Convert Lead
+  summary: Capture a Lead, then realize the conversion by creating Account, Contact, and Opportunity records.
+  description: >-
+    Sales Cloud exposes no dedicated Lead conversion operation in this REST
+    description, so the canonical "create lead then convert" pattern is adapted
+    using the SObject Rows resource. The workflow captures the Lead, then
+    materializes the three records a conversion produces — an Account, a Contact
+    linked to it, and an Opportunity — and finally stamps the Lead as converted
+    by updating its Status. Every step inlines its request and OAuth bearer
+    Authorization header so the flow reads end to end.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: create-and-convert-lead
+  summary: Create a Lead, then create the Account/Contact/Opportunity it converts into.
+  description: >-
+    Adapts Lead conversion by chaining record creates. The Lead is captured
+    first; its details seed an Account, Contact, and Opportunity, then the Lead
+    record is updated to a converted Status to close the loop.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - leadLastName
+    - leadCompany
+    - convertedStatus
+    - opportunityCloseDate
+    - opportunityStage
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      leadLastName:
+        type: string
+        description: Last name of the Lead (required on Lead).
+      leadFirstName:
+        type: string
+        description: First name of the Lead.
+      leadCompany:
+        type: string
+        description: Company on the Lead (required) and used as the Account Name.
+      leadEmail:
+        type: string
+        description: Email address of the Lead.
+      convertedStatus:
+        type: string
+        description: A Lead Status value flagged as converted in the org.
+      opportunityCloseDate:
+        type: string
+        description: Close date for the resulting Opportunity (YYYY-MM-DD).
+      opportunityStage:
+        type: string
+        description: Stage name for the resulting Opportunity.
+  steps:
+  - stepId: createLead
+    description: Capture the inbound Lead record.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Lead
+    requestBody:
+      contentType: application/json
+      payload:
+        LastName: $inputs.leadLastName
+        FirstName: $inputs.leadFirstName
+        Company: $inputs.leadCompany
+        Email: $inputs.leadEmail
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      leadId: $response.body#/id
+  - stepId: createAccount
+    description: Create the Account the Lead converts into, named after the Lead company.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Account
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.leadCompany
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      accountId: $response.body#/id
+  - stepId: createContact
+    description: Create the converted Contact linked to the new Account.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Contact
+    requestBody:
+      contentType: application/json
+      payload:
+        LastName: $inputs.leadLastName
+        FirstName: $inputs.leadFirstName
+        Email: $inputs.leadEmail
+        AccountId: $steps.createAccount.outputs.accountId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      contactId: $response.body#/id
+  - stepId: createOpportunity
+    description: Open the Opportunity that the converted Lead produces.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Opportunity
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.leadCompany
+        AccountId: $steps.createAccount.outputs.accountId
+        CloseDate: $inputs.opportunityCloseDate
+        StageName: $inputs.opportunityStage
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      opportunityId: $response.body#/id
+  - stepId: markLeadConverted
+    description: Update the Lead Status to a converted value to close the loop.
+    operationId: updateSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Lead
+    - name: recordId
+      in: path
+      value: $steps.createLead.outputs.leadId
+    requestBody:
+      contentType: application/json
+      payload:
+        Status: $inputs.convertedStatus
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    leadId: $steps.createLead.outputs.leadId
+    accountId: $steps.createAccount.outputs.accountId
+    contactId: $steps.createContact.outputs.contactId
+    opportunityId: $steps.createOpportunity.outputs.opportunityId

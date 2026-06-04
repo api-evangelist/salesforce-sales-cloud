@@ -1,0 +1,80 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Delete Stale Lead
+  summary: Find an unconverted Lead by email via SOQL, then delete the matched record.
+  description: >-
+    A cleanup pattern over the Query and SObject Rows resources. The workflow
+    queries for an unconverted Lead by email, branches on whether one was found,
+    and when matched deletes the Lead by id. When nothing matches the workflow
+    ends without a delete. Every step inlines its request and the OAuth bearer
+    Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: delete-stale-lead
+  summary: Locate an unconverted Lead and delete it.
+  description: >-
+    Runs a SOQL query for an unconverted Lead by email, then deletes the matched
+    record. Ends without a delete when no Lead matches.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - leadEmail
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      leadEmail:
+        type: string
+        description: Email of the Lead to match in the SOQL WHERE clause.
+  steps:
+  - stepId: findLead
+    description: Query for an unconverted Lead by email.
+    operationId: executeSOQLQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: "SELECT Id FROM Lead WHERE Email = '$inputs.leadEmail' AND IsConverted = false LIMIT 1"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalSize: $response.body#/totalSize
+      leadId: $response.body#/records/0/Id
+    onSuccess:
+    - name: leadFound
+      type: goto
+      stepId: deleteLead
+      criteria:
+      - context: $response.body
+        condition: $.totalSize > 0
+        type: jsonpath
+    - name: leadMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.totalSize == 0
+        type: jsonpath
+  - stepId: deleteLead
+    description: Delete the matched Lead by id.
+    operationId: deleteSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Lead
+    - name: recordId
+      in: path
+      value: $steps.findLead.outputs.leadId
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    deletedLeadId: $steps.findLead.outputs.leadId

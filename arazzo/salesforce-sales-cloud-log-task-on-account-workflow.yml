@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Log Task On Account
+  summary: Find an Account by SOQL, then create a follow-up Task linked to it.
+  description: >-
+    An activity-logging pattern over the Query and SObject Rows resources. The
+    workflow queries for an Account by name, branches on whether it was found,
+    and when matched creates a Task sObject whose WhatId points at the Account so
+    the activity appears on the Account timeline. Every step inlines its request
+    and the OAuth bearer Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: log-task-on-account
+  summary: Locate an Account and log a follow-up Task against it.
+  description: >-
+    Runs a SOQL query for an Account, then creates a Task linked through WhatId
+    to the matched Account. Ends without a write when no Account matches.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - accountName
+    - taskSubject
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      accountName:
+        type: string
+        description: Account Name to match in the SOQL WHERE clause.
+      taskSubject:
+        type: string
+        description: Subject line of the Task to create.
+      taskStatus:
+        type: string
+        description: Status of the Task (e.g. "Not Started").
+        default: Not Started
+      taskPriority:
+        type: string
+        description: Priority of the Task (e.g. "Normal").
+        default: Normal
+      activityDate:
+        type: string
+        description: Due date of the Task (YYYY-MM-DD).
+  steps:
+  - stepId: findAccount
+    description: Query for the Account by name.
+    operationId: executeSOQLQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: "SELECT Id FROM Account WHERE Name = '$inputs.accountName' LIMIT 1"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalSize: $response.body#/totalSize
+      accountId: $response.body#/records/0/Id
+    onSuccess:
+    - name: accountFound
+      type: goto
+      stepId: createTask
+      criteria:
+      - context: $response.body
+        condition: $.totalSize > 0
+        type: jsonpath
+    - name: accountMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.totalSize == 0
+        type: jsonpath
+  - stepId: createTask
+    description: Create the Task linked to the matched Account via WhatId.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Task
+    requestBody:
+      contentType: application/json
+      payload:
+        Subject: $inputs.taskSubject
+        Status: $inputs.taskStatus
+        Priority: $inputs.taskPriority
+        ActivityDate: $inputs.activityDate
+        WhatId: $steps.findAccount.outputs.accountId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      taskId: $response.body#/id
+  outputs:
+    accountId: $steps.findAccount.outputs.accountId
+    taskId: $steps.createTask.outputs.taskId

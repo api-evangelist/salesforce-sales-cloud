@@ -1,0 +1,99 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Submit Opportunity For Approval
+  summary: Create an Opportunity, then submit that record into its approval process.
+  description: >-
+    A deal-governance pattern that chains the SObject Rows resource with the
+    Process Approvals resource. The workflow creates an Opportunity and then
+    submits the new record for approval, passing its id as the approval
+    contextId. Every step inlines its request and the OAuth bearer Authorization
+    header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: submit-opportunity-for-approval
+  summary: Create an Opportunity and submit it for approval.
+  description: >-
+    Creates an Opportunity tied to an Account, then submits the new record into
+    its approval process with an optional comment.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - accountId
+    - opportunityName
+    - closeDate
+    - stageName
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      accountId:
+        type: string
+        description: Id of the Account the Opportunity belongs to.
+      opportunityName:
+        type: string
+        description: Name of the Opportunity to create.
+      closeDate:
+        type: string
+        description: Close date for the Opportunity (YYYY-MM-DD).
+      stageName:
+        type: string
+        description: Stage name for the Opportunity.
+      amount:
+        type: number
+        description: Deal amount on the Opportunity.
+      approvalComment:
+        type: string
+        description: Comment to include with the approval submission.
+        default: Submitted for approval via workflow.
+  steps:
+  - stepId: createOpportunity
+    description: Create the Opportunity that needs approval.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Opportunity
+    requestBody:
+      contentType: application/json
+      payload:
+        Name: $inputs.opportunityName
+        AccountId: $inputs.accountId
+        CloseDate: $inputs.closeDate
+        StageName: $inputs.stageName
+        Amount: $inputs.amount
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      opportunityId: $response.body#/id
+  - stepId: submitForApproval
+    description: Submit the new Opportunity into its approval process.
+    operationId: submitProcessApproval
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    requestBody:
+      contentType: application/json
+      payload:
+        requests:
+        - actionType: Submit
+          contextId: $steps.createOpportunity.outputs.opportunityId
+          comments: $inputs.approvalComment
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      instanceId: $response.body#/0/instanceId
+      instanceStatus: $response.body#/0/instanceStatus
+      success: $response.body#/0/success
+  outputs:
+    opportunityId: $steps.createOpportunity.outputs.opportunityId
+    approvalInstanceId: $steps.submitForApproval.outputs.instanceId
+    approvalStatus: $steps.submitForApproval.outputs.instanceStatus

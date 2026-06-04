@@ -1,0 +1,103 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Schedule Event With Contact
+  summary: Find a Contact by email, then create a calendar Event linked to that Contact.
+  description: >-
+    A meeting-scheduling pattern over the Query and SObject Rows resources. The
+    workflow looks up a Contact by email, branches on whether it was found, and
+    when matched creates an Event sObject whose WhoId points at the Contact so
+    the meeting appears on that person's activity timeline. Every step inlines
+    its request and the OAuth bearer Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: schedule-event-with-contact
+  summary: Locate a Contact by email and schedule an Event with them.
+  description: >-
+    Queries for a Contact by email, then creates an Event linked through WhoId
+    to the matched Contact. Ends without a write when no Contact matches.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - contactEmail
+    - eventSubject
+    - startDateTime
+    - endDateTime
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      contactEmail:
+        type: string
+        description: Email of the Contact to match in the SOQL WHERE clause.
+      eventSubject:
+        type: string
+        description: Subject line of the Event to create.
+      startDateTime:
+        type: string
+        description: Event start date-time (ISO 8601).
+      endDateTime:
+        type: string
+        description: Event end date-time (ISO 8601).
+      location:
+        type: string
+        description: Optional meeting location.
+  steps:
+  - stepId: findContact
+    description: Query for the Contact by email.
+    operationId: executeSOQLQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: "SELECT Id FROM Contact WHERE Email = '$inputs.contactEmail' LIMIT 1"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalSize: $response.body#/totalSize
+      contactId: $response.body#/records/0/Id
+    onSuccess:
+    - name: contactFound
+      type: goto
+      stepId: createEvent
+      criteria:
+      - context: $response.body
+        condition: $.totalSize > 0
+        type: jsonpath
+    - name: contactMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.totalSize == 0
+        type: jsonpath
+  - stepId: createEvent
+    description: Create the Event linked to the matched Contact via WhoId.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Event
+    requestBody:
+      contentType: application/json
+      payload:
+        Subject: $inputs.eventSubject
+        StartDateTime: $inputs.startDateTime
+        EndDateTime: $inputs.endDateTime
+        Location: $inputs.location
+        WhoId: $steps.findContact.outputs.contactId
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      eventId: $response.body#/id
+  outputs:
+    contactId: $steps.findContact.outputs.contactId
+    eventId: $steps.createEvent.outputs.eventId

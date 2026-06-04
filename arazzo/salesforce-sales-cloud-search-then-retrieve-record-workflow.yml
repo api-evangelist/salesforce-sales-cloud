@@ -1,0 +1,93 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Search Then Retrieve Record
+  summary: Run a SOSL search across objects, then fetch the full record for the top hit.
+  description: >-
+    A find-and-expand pattern over the Search and SObject Rows resources. The
+    workflow runs a SOSL search to find matching records across objects,
+    branches on whether anything matched, and when it did retrieves the complete
+    record for the first hit by its id and object type. Every step inlines its
+    request and the OAuth bearer Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: search-then-retrieve-record
+  summary: SOSL search for records, then retrieve the top match in full.
+  description: >-
+    Executes a SOSL search and, when a record is returned, fetches the full
+    record for the first searchRecords entry using the supplied object type.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - searchString
+    - sObjectName
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      searchString:
+        type: string
+        description: The SOSL search string (e.g. FIND {Acme} IN ALL FIELDS RETURNING Account(Id)).
+      sObjectName:
+        type: string
+        description: The object type of the expected top hit (e.g. Account).
+      fields:
+        type: string
+        description: Comma-separated list of fields to return on retrieval.
+        default: Id,Name
+  steps:
+  - stepId: search
+    description: Run the SOSL search across objects.
+    operationId: executeSOSLSearch
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: $inputs.searchString
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      topHitId: $response.body#/searchRecords/0/Id
+    onSuccess:
+    - name: hitFound
+      type: goto
+      stepId: retrieveRecord
+      criteria:
+      - context: $response.body
+        condition: $.searchRecords.length > 0
+        type: jsonpath
+    - name: noHit
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.searchRecords.length == 0
+        type: jsonpath
+  - stepId: retrieveRecord
+    description: Fetch the full record for the top search hit.
+    operationId: getSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: $inputs.sObjectName
+    - name: recordId
+      in: path
+      value: $steps.search.outputs.topHitId
+    - name: fields
+      in: query
+      value: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      record: $response.body
+  outputs:
+    topHitId: $steps.search.outputs.topHitId
+    record: $steps.retrieveRecord.outputs.record

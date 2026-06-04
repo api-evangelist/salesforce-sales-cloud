@@ -1,0 +1,88 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Query Then Update Account
+  summary: Find an Account with a SOQL query, then patch the matched record's fields.
+  description: >-
+    A read-modify pattern over the Query and SObject Rows resources. The
+    workflow runs a SOQL query to locate an Account by name, branches on whether
+    a record was returned, and when a match exists patches that record with the
+    supplied field values. When no record matches, the workflow ends without a
+    write. Every step inlines its request and OAuth bearer Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: query-then-update-account
+  summary: Locate an Account via SOQL and update it when found.
+  description: >-
+    Executes a SOQL query for an Account by name, extracts the first matching
+    record id, and patches that Account. Branches to an end state when the
+    query returns no records.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - accountName
+    - updates
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      accountName:
+        type: string
+        description: Account Name to match in the SOQL WHERE clause.
+      updates:
+        type: object
+        description: Map of Account field name/value pairs to patch onto the match.
+  steps:
+  - stepId: findAccount
+    description: Run a SOQL query to locate the Account by name.
+    operationId: executeSOQLQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: "SELECT Id, Name FROM Account WHERE Name = '$inputs.accountName' LIMIT 1"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalSize: $response.body#/totalSize
+      matchedAccountId: $response.body#/records/0/Id
+    onSuccess:
+    - name: accountFound
+      type: goto
+      stepId: updateAccount
+      criteria:
+      - context: $response.body
+        condition: $.totalSize > 0
+        type: jsonpath
+    - name: accountMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.totalSize == 0
+        type: jsonpath
+  - stepId: updateAccount
+    description: Patch the matched Account with the supplied field values.
+    operationId: updateSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: Account
+    - name: recordId
+      in: path
+      value: $steps.findAccount.outputs.matchedAccountId
+    requestBody:
+      contentType: application/json
+      payload: $inputs.updates
+    successCriteria:
+    - condition: $statusCode == 204
+  outputs:
+    matchedAccountId: $steps.findAccount.outputs.matchedAccountId

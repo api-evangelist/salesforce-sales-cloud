@@ -1,0 +1,101 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Account 360 Enrichment
+  summary: Resolve an Account by name, then pull its related Contacts and open Opportunities.
+  description: >-
+    A read-fan-out pattern over the Query and SObject Rows resources that builds
+    an account-360 view. The workflow queries for an Account by name, branches
+    when none is found, then uses the resolved Account id to query its related
+    Contacts and its open Opportunities. Every step inlines its request and the
+    OAuth bearer Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: account-360-enrichment
+  summary: Resolve an Account, then fetch its Contacts and open Opportunities.
+  description: >-
+    Queries for an Account by name, then runs two related SOQL queries keyed on
+    the Account id to gather Contacts and open Opportunities.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - accountName
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      accountName:
+        type: string
+        description: Account Name to resolve in the SOQL WHERE clause.
+      openStageFilter:
+        type: string
+        description: Stage value treated as "closed" to exclude from open Opportunities.
+        default: Closed Won
+  steps:
+  - stepId: resolveAccount
+    description: Query for the Account by name.
+    operationId: executeSOQLQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: "SELECT Id, Name FROM Account WHERE Name = '$inputs.accountName' LIMIT 1"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      totalSize: $response.body#/totalSize
+      accountId: $response.body#/records/0/Id
+    onSuccess:
+    - name: accountFound
+      type: goto
+      stepId: getContacts
+      criteria:
+      - context: $response.body
+        condition: $.totalSize > 0
+        type: jsonpath
+    - name: accountMissing
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.totalSize == 0
+        type: jsonpath
+  - stepId: getContacts
+    description: Query the Account's related Contacts by AccountId.
+    operationId: executeSOQLQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: "SELECT Id, FirstName, LastName, Email FROM Contact WHERE AccountId = '$steps.resolveAccount.outputs.accountId'"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      contactCount: $response.body#/totalSize
+      contacts: $response.body#/records
+  - stepId: getOpenOpportunities
+    description: Query the Account's open Opportunities by AccountId.
+    operationId: executeSOQLQuery
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: q
+      in: query
+      value: "SELECT Id, Name, StageName, Amount FROM Opportunity WHERE AccountId = '$steps.resolveAccount.outputs.accountId' AND StageName != '$inputs.openStageFilter'"
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      opportunityCount: $response.body#/totalSize
+      opportunities: $response.body#/records
+  outputs:
+    accountId: $steps.resolveAccount.outputs.accountId
+    contacts: $steps.getContacts.outputs.contacts
+    opportunities: $steps.getOpenOpportunities.outputs.opportunities

@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: Salesforce Sales Cloud Describe Then Create Record
+  summary: Describe an sObject to confirm it is creatable, then create a record of that type.
+  description: >-
+    A metadata-aware create pattern over the SObject Describe and SObject Rows
+    resources. The workflow describes the target sObject to confirm the type
+    exists and is createable, then creates a record of that type with the
+    supplied field values. Every step inlines its request and the OAuth bearer
+    Authorization header.
+  version: 1.0.0
+sourceDescriptions:
+- name: restApi
+  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  type: openapi
+workflows:
+- workflowId: describe-then-create-record
+  summary: Describe an sObject, then create a record of that type.
+  description: >-
+    Calls the describe endpoint for the sObject to read its metadata, then
+    creates a record using the supplied field map.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - sObjectName
+    - fields
+    properties:
+      accessToken:
+        type: string
+        description: OAuth 2.0 access token used as the Bearer credential.
+      sObjectName:
+        type: string
+        description: API name of the sObject to describe and create (e.g. Contact).
+      fields:
+        type: object
+        description: Map of field name/value pairs for the new record.
+  steps:
+  - stepId: describeObject
+    description: Describe the target sObject to confirm it exists and is createable.
+    operationId: describeSObject
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: $inputs.sObjectName
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      createable: $response.body#/createable
+      label: $response.body#/label
+  - stepId: createRecord
+    description: Create a record of the described sObject type.
+    operationId: createSObjectRecord
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: sObjectName
+      in: path
+      value: $inputs.sObjectName
+    requestBody:
+      contentType: application/json
+      payload: $inputs.fields
+    successCriteria:
+    - condition: $statusCode == 201
+    outputs:
+      recordId: $response.body#/id
+      success: $response.body#/success
+  outputs:
+    objectLabel: $steps.describeObject.outputs.label
+    recordId: $steps.createRecord.outputs.recordId
