@@ -1,0 +1,3318 @@
+{
+  "info": {
+    "_postman_id": "6c846081-16ad-49cc-a450-cd8167a9b4db",
+    "name": "Salesforce Sales Cloud Salesforce Bulk API 2.0",
+    "description": "Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST API. Supports ingest (insert, update, upsert, delete) and query operations on large volumes of records using CSV data format. Designed for ETL workflows and mass data operations.\n\nContact Support:\n Name: Salesforce Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:15:17.000Z",
+    "updatedAt": "2026-06-05T15:15:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6c846081-16ad-49cc-a450-cd8167a9b4db"
+  },
+  "item": [
+    {
+      "name": "jobs",
+      "item": [
+        {
+          "name": "ingest",
+          "item": [
+            {
+              "name": "{jobId}",
+              "item": [
+                {
+                  "name": "batches",
+                  "item": [
+                    {
+                      "name": "Salesforce Sales Cloud Upload data for an ingest job",
+                      "id": "b0910298-d3b9-4709-bcde-0f7ab9c104e2",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "text/csv"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "<string>"
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId/batches",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId",
+                            "batches"
+                          ],
+                          "variable": [
+                            {
+                              "id": "81853370-c10d-4e43-ad83-dd3bcf548a6f",
+                              "key": "jobId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the bulk job"
+                            }
+                          ]
+                        },
+                        "description": "Uploads CSV data for an ingest job. The job must be in the Open state. You can upload data in multiple requests, each up to 150 MB. The CSV data must include a header row with field API names."
+                      },
+                      "response": [
+                        {
+                          "id": "7f4b541a-596c-4ed0-a7ad-77ebc5c408d0",
+                          "name": "Data uploaded successfully",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "text/csv"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<string>"
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/batches",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "batches"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-7f4b541a-596c-4ed0-a7ad-77ebc5c408d0"
+                        },
+                        {
+                          "id": "8a463be6-81fc-4195-bd7e-6ba0fbcbb923",
+                          "name": "Invalid request parameters or malformed request body",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "text/csv"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<string>"
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/batches",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "batches"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-8a463be6-81fc-4195-bd7e-6ba0fbcbb923"
+                        },
+                        {
+                          "id": "6f861bf2-9c88-4d8f-a101-762acfcae4ad",
+                          "name": "Authentication failed or access token is invalid",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "text/csv"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<string>"
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/batches",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "batches"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-6f861bf2-9c88-4d8f-a101-762acfcae4ad"
+                        },
+                        {
+                          "id": "918df018-bd33-4412-a802-3391143b68ea",
+                          "name": "The specified job was not found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "text/csv"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "<string>"
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/batches",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "batches"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-918df018-bd33-4412-a802-3391143b68ea"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-b0910298-d3b9-4709-bcde-0f7ab9c104e2"
+                    }
+                  ],
+                  "id": "a4d8ebd2-176b-4e9c-82fb-5bb67ebfdcf6",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-a4d8ebd2-176b-4e9c-82fb-5bb67ebfdcf6"
+                },
+                {
+                  "name": "successfulResults",
+                  "item": [
+                    {
+                      "name": "Salesforce Sales Cloud Get successful results for an ingest job",
+                      "id": "6d5d3a05-ebbe-44de-a5d2-b31a6484aa69",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/csv"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId/successfulResults",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId",
+                            "successfulResults"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ba75a977-7e5a-4394-9e23-b4dd9810d886",
+                              "key": "jobId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the bulk job"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a list of successfully processed records for a completed ingest job. Results are returned in CSV format."
+                      },
+                      "response": [
+                        {
+                          "id": "0a9c8ee7-a298-4fa6-9324-5031eedd19c3",
+                          "name": "Successfully retrieved successful results",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/csv"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/successfulResults",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "successfulResults"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/csv"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-0a9c8ee7-a298-4fa6-9324-5031eedd19c3"
+                        },
+                        {
+                          "id": "1e619872-dfe2-44c8-9c95-7225cbe4f290",
+                          "name": "Authentication failed or access token is invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/successfulResults",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "successfulResults"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-1e619872-dfe2-44c8-9c95-7225cbe4f290"
+                        },
+                        {
+                          "id": "9d27def6-03e9-470b-a1cc-f3397ba99054",
+                          "name": "The specified job was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/successfulResults",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "successfulResults"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-9d27def6-03e9-470b-a1cc-f3397ba99054"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-6d5d3a05-ebbe-44de-a5d2-b31a6484aa69"
+                    }
+                  ],
+                  "id": "48edca18-c080-435f-b3b6-40f60b0f6b50",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-48edca18-c080-435f-b3b6-40f60b0f6b50"
+                },
+                {
+                  "name": "failedResults",
+                  "item": [
+                    {
+                      "name": "Salesforce Sales Cloud Get failed results for an ingest job",
+                      "id": "fca2c20b-5129-4485-9b48-916dec9ee9a3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/csv"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId/failedResults",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId",
+                            "failedResults"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5443175b-35ad-4e8d-9a56-78ae7d94594a",
+                              "key": "jobId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the bulk job"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a list of failed records for a completed ingest job. Results are returned in CSV format and include error information for each failed record."
+                      },
+                      "response": [
+                        {
+                          "id": "9a5fa6e2-b536-478c-bb50-7d82a549a927",
+                          "name": "Successfully retrieved failed results",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/csv"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/failedResults",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "failedResults"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/csv"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-9a5fa6e2-b536-478c-bb50-7d82a549a927"
+                        },
+                        {
+                          "id": "f326ee64-ca19-4829-8e32-e1380cd33515",
+                          "name": "Authentication failed or access token is invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/failedResults",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "failedResults"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-f326ee64-ca19-4829-8e32-e1380cd33515"
+                        },
+                        {
+                          "id": "9d359a3d-3b3a-45a2-a701-87c982e0ab1f",
+                          "name": "The specified job was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/failedResults",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "failedResults"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-9d359a3d-3b3a-45a2-a701-87c982e0ab1f"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-fca2c20b-5129-4485-9b48-916dec9ee9a3"
+                    }
+                  ],
+                  "id": "756bb696-6195-4f1d-b5eb-b2356b3c9e69",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-756bb696-6195-4f1d-b5eb-b2356b3c9e69"
+                },
+                {
+                  "name": "unprocessedrecords",
+                  "item": [
+                    {
+                      "name": "Salesforce Sales Cloud Get unprocessed records for an ingest job",
+                      "id": "9169450a-c5db-4f46-982e-e8a84a822547",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/csv"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId/unprocessedrecords",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId",
+                            "unprocessedrecords"
+                          ],
+                          "variable": [
+                            {
+                              "id": "f77b3b8a-0185-4808-a050-80301508feb3",
+                              "key": "jobId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the bulk job"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves a list of unprocessed records for a completed ingest job. These are records that were not processed due to the job being aborted or hitting limits."
+                      },
+                      "response": [
+                        {
+                          "id": "7d84113b-4ddb-4ef4-ba11-d6c468dc0a59",
+                          "name": "Successfully retrieved unprocessed records",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/csv"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/unprocessedrecords",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "unprocessedrecords"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/csv"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-7d84113b-4ddb-4ef4-ba11-d6c468dc0a59"
+                        },
+                        {
+                          "id": "a013b0d8-2742-46e6-bd6e-5595d9c84b27",
+                          "name": "Authentication failed or access token is invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/unprocessedrecords",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "unprocessedrecords"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-a013b0d8-2742-46e6-bd6e-5595d9c84b27"
+                        },
+                        {
+                          "id": "c72d3a5f-c9dd-4b29-8db2-fb02768579e3",
+                          "name": "The specified job was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/ingest/:jobId/unprocessedrecords",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "ingest",
+                                ":jobId",
+                                "unprocessedrecords"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-c72d3a5f-c9dd-4b29-8db2-fb02768579e3"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-9169450a-c5db-4f46-982e-e8a84a822547"
+                    }
+                  ],
+                  "id": "d5f623f5-25ee-47f7-8ef5-1fb4039bf85f",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-d5f623f5-25ee-47f7-8ef5-1fb4039bf85f"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Get ingest job information",
+                  "id": "7bef73af-c66b-436e-8ddc-d9e42a13d516",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "ingest",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9e0a3abd-ab59-430a-92ee-a0671ca03b2b",
+                          "key": "jobId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the bulk job"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves detailed information about an ingest job, including its current state, number of records processed, and any errors."
+                  },
+                  "response": [
+                    {
+                      "id": "267f3445-c4df-4167-bceb-9eaf9e9c0794",
+                      "name": "Successfully retrieved ingest job information",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"operation\": \"upsert\",\n  \"object\": \"<string>\",\n  \"createdById\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"systemModstamp\": \"<dateTime>\",\n  \"state\": \"UploadComplete\",\n  \"externalIdFieldName\": \"<string>\",\n  \"concurrencyMode\": \"parallel\",\n  \"contentType\": \"CSV\",\n  \"apiVersion\": \"<number>\",\n  \"jobType\": \"BigObjectIngest\",\n  \"contentUrl\": \"<string>\",\n  \"lineEnding\": \"<string>\",\n  \"columnDelimiter\": \"<string>\",\n  \"numberRecordsProcessed\": \"<integer>\",\n  \"numberRecordsFailed\": \"<integer>\",\n  \"retries\": \"<integer>\",\n  \"totalProcessingTime\": \"<integer>\",\n  \"apiActiveProcessingTime\": \"<integer>\",\n  \"apexProcessingTime\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-267f3445-c4df-4167-bceb-9eaf9e9c0794"
+                    },
+                    {
+                      "id": "d7f96184-1185-4cb1-bc6d-0afee3989ce7",
+                      "name": "Authentication failed or access token is invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-d7f96184-1185-4cb1-bc6d-0afee3989ce7"
+                    },
+                    {
+                      "id": "99d57790-915a-47b4-bcf2-62fd5a85b1f5",
+                      "name": "The specified job was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-99d57790-915a-47b4-bcf2-62fd5a85b1f5"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-7bef73af-c66b-436e-8ddc-d9e42a13d516"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Close, abort, or delete an ingest job",
+                  "id": "c563bd9f-087a-448a-820d-9766347ad5fe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"UploadComplete\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "ingest",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0dda426d-2392-4eed-be73-c2e5498986f3",
+                          "key": "jobId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the bulk job"
+                        }
+                      ]
+                    },
+                    "description": "Updates the state of an ingest job. Set the state to UploadComplete to close the job and begin processing, or Aborted to abort the job. A job must be closed before Salesforce processes the uploaded data."
+                  },
+                  "response": [
+                    {
+                      "id": "c15761a9-03b5-4127-9fb3-624eb0e4b526",
+                      "name": "Job state updated successfully",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"UploadComplete\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"operation\": \"upsert\",\n  \"object\": \"<string>\",\n  \"createdById\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"systemModstamp\": \"<dateTime>\",\n  \"state\": \"UploadComplete\",\n  \"externalIdFieldName\": \"<string>\",\n  \"concurrencyMode\": \"parallel\",\n  \"contentType\": \"CSV\",\n  \"apiVersion\": \"<number>\",\n  \"jobType\": \"BigObjectIngest\",\n  \"contentUrl\": \"<string>\",\n  \"lineEnding\": \"<string>\",\n  \"columnDelimiter\": \"<string>\",\n  \"numberRecordsProcessed\": \"<integer>\",\n  \"numberRecordsFailed\": \"<integer>\",\n  \"retries\": \"<integer>\",\n  \"totalProcessingTime\": \"<integer>\",\n  \"apiActiveProcessingTime\": \"<integer>\",\n  \"apexProcessingTime\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-c15761a9-03b5-4127-9fb3-624eb0e4b526"
+                    },
+                    {
+                      "id": "d348c897-c7ed-4c9c-b5c1-a49f840590e9",
+                      "name": "Invalid request parameters or malformed request body",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"UploadComplete\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-d348c897-c7ed-4c9c-b5c1-a49f840590e9"
+                    },
+                    {
+                      "id": "60230c2f-5090-4f86-8c6c-ac6c6aba1141",
+                      "name": "Authentication failed or access token is invalid",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"UploadComplete\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-60230c2f-5090-4f86-8c6c-ac6c6aba1141"
+                    },
+                    {
+                      "id": "76fa0eee-1f7a-49b7-a02f-65cc0dcd114b",
+                      "name": "The specified job was not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"UploadComplete\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-76fa0eee-1f7a-49b7-a02f-65cc0dcd114b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-c563bd9f-087a-448a-820d-9766347ad5fe"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Delete an ingest job",
+                  "id": "7842c3aa-a6c5-4866-976c-5e8d3e915863",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "ingest",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "16634c9a-6b37-4761-8e3a-9076a16492f1",
+                          "key": "jobId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the bulk job"
+                        }
+                      ]
+                    },
+                    "description": "Deletes an ingest job. The job must be in a terminal state (JobComplete, Aborted, or Failed) before it can be deleted."
+                  },
+                  "response": [
+                    {
+                      "id": "410c72f1-c4d3-4a09-962c-3f66e71476c4",
+                      "name": "Job deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-410c72f1-c4d3-4a09-962c-3f66e71476c4"
+                    },
+                    {
+                      "id": "e87a6a82-7b3e-4e21-96cf-3823584724bf",
+                      "name": "Authentication failed or access token is invalid",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-e87a6a82-7b3e-4e21-96cf-3823584724bf"
+                    },
+                    {
+                      "id": "a67599f2-a35f-4390-8164-01e3c67ec4b8",
+                      "name": "The specified job was not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/ingest/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "ingest",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-a67599f2-a35f-4390-8164-01e3c67ec4b8"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-7842c3aa-a6c5-4866-976c-5e8d3e915863"
+                }
+              ],
+              "id": "4e48ec3f-3bb9-4a5d-a136-25598099573a",
+              "createdAt": "2026-06-05T15:15:17.000Z",
+              "updatedAt": "2026-06-05T15:15:17.000Z",
+              "uid": "35240-4e48ec3f-3bb9-4a5d-a136-25598099573a"
+            },
+            {
+              "name": "Salesforce Sales Cloud List all ingest jobs",
+              "id": "7a20b9ed-cf36-4ca9-8c30-601629cff216",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs/ingest?isPkChunkingEnabled=<boolean>&jobType=BigObjectIngest&concurrencyMode=parallel&queryLocator=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs",
+                    "ingest"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by PK Chunking enabled status",
+                      "key": "isPkChunkingEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Filter by job type",
+                      "key": "jobType",
+                      "value": "BigObjectIngest"
+                    },
+                    {
+                      "description": "Filter by concurrency mode",
+                      "key": "concurrencyMode",
+                      "value": "parallel"
+                    },
+                    {
+                      "description": "Query locator for paginating through results",
+                      "key": "queryLocator",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves all ingest jobs in the org. Results include jobs that have been opened, those in progress, and completed jobs in all states."
+              },
+              "response": [
+                {
+                  "id": "441278ad-3042-42bb-9598-05df6c0699c1",
+                  "name": "Successfully retrieved list of ingest jobs",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/ingest?isPkChunkingEnabled=<boolean>&jobType=BigObjectIngest&concurrencyMode=parallel&queryLocator=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "ingest"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by PK Chunking enabled status",
+                          "key": "isPkChunkingEnabled",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Filter by job type",
+                          "key": "jobType",
+                          "value": "BigObjectIngest"
+                        },
+                        {
+                          "description": "Filter by concurrency mode",
+                          "key": "concurrencyMode",
+                          "value": "parallel"
+                        },
+                        {
+                          "description": "Query locator for paginating through results",
+                          "key": "queryLocator",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"done\": \"<boolean>\",\n  \"nextRecordsUrl\": \"<string>\",\n  \"records\": [\n    {\n      \"id\": \"<string>\",\n      \"operation\": \"upsert\",\n      \"object\": \"<string>\",\n      \"createdById\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"systemModstamp\": \"<dateTime>\",\n      \"state\": \"JobComplete\",\n      \"externalIdFieldName\": \"<string>\",\n      \"concurrencyMode\": \"parallel\",\n      \"contentType\": \"CSV\",\n      \"apiVersion\": \"<number>\",\n      \"jobType\": \"V2Ingest\",\n      \"contentUrl\": \"<string>\",\n      \"lineEnding\": \"<string>\",\n      \"columnDelimiter\": \"<string>\",\n      \"numberRecordsProcessed\": \"<integer>\",\n      \"numberRecordsFailed\": \"<integer>\",\n      \"retries\": \"<integer>\",\n      \"totalProcessingTime\": \"<integer>\",\n      \"apiActiveProcessingTime\": \"<integer>\",\n      \"apexProcessingTime\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"operation\": \"hardDelete\",\n      \"object\": \"<string>\",\n      \"createdById\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"systemModstamp\": \"<dateTime>\",\n      \"state\": \"JobComplete\",\n      \"externalIdFieldName\": \"<string>\",\n      \"concurrencyMode\": \"parallel\",\n      \"contentType\": \"CSV\",\n      \"apiVersion\": \"<number>\",\n      \"jobType\": \"BigObjectIngest\",\n      \"contentUrl\": \"<string>\",\n      \"lineEnding\": \"<string>\",\n      \"columnDelimiter\": \"<string>\",\n      \"numberRecordsProcessed\": \"<integer>\",\n      \"numberRecordsFailed\": \"<integer>\",\n      \"retries\": \"<integer>\",\n      \"totalProcessingTime\": \"<integer>\",\n      \"apiActiveProcessingTime\": \"<integer>\",\n      \"apexProcessingTime\": \"<integer>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-441278ad-3042-42bb-9598-05df6c0699c1"
+                },
+                {
+                  "id": "2d7c9e83-514c-4f6f-b15c-a6474c4202f8",
+                  "name": "Authentication failed or access token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/ingest?isPkChunkingEnabled=<boolean>&jobType=BigObjectIngest&concurrencyMode=parallel&queryLocator=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "ingest"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by PK Chunking enabled status",
+                          "key": "isPkChunkingEnabled",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Filter by job type",
+                          "key": "jobType",
+                          "value": "BigObjectIngest"
+                        },
+                        {
+                          "description": "Filter by concurrency mode",
+                          "key": "concurrencyMode",
+                          "value": "parallel"
+                        },
+                        {
+                          "description": "Query locator for paginating through results",
+                          "key": "queryLocator",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-2d7c9e83-514c-4f6f-b15c-a6474c4202f8"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:17.000Z",
+              "updatedAt": "2026-06-05T15:15:17.000Z",
+              "uid": "35240-7a20b9ed-cf36-4ca9-8c30-601629cff216"
+            },
+            {
+              "name": "Salesforce Sales Cloud Create an ingest job",
+              "id": "029f4611-2cf9-464c-a925-ff5237f716fb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"object\": \"<string>\",\n  \"operation\": \"update\",\n  \"assignmentRuleId\": \"<string>\",\n  \"columnDelimiter\": \"COMMA\",\n  \"contentType\": \"CSV\",\n  \"externalIdFieldName\": \"<string>\",\n  \"lineEnding\": \"LF\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/jobs/ingest",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs",
+                    "ingest"
+                  ]
+                },
+                "description": "Creates a new ingest job for bulk insert, update, upsert, or delete operations. After creating the job, upload CSV data using the job ID, then close the job to begin processing."
+              },
+              "response": [
+                {
+                  "id": "32a0475a-188a-46e7-ba20-4a34ef7dc5d4",
+                  "name": "Ingest job created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"object\": \"<string>\",\n  \"operation\": \"update\",\n  \"assignmentRuleId\": \"<string>\",\n  \"columnDelimiter\": \"COMMA\",\n  \"contentType\": \"CSV\",\n  \"externalIdFieldName\": \"<string>\",\n  \"lineEnding\": \"LF\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/ingest",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "ingest"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"operation\": \"upsert\",\n  \"object\": \"<string>\",\n  \"createdById\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"systemModstamp\": \"<dateTime>\",\n  \"state\": \"UploadComplete\",\n  \"externalIdFieldName\": \"<string>\",\n  \"concurrencyMode\": \"parallel\",\n  \"contentType\": \"CSV\",\n  \"apiVersion\": \"<number>\",\n  \"jobType\": \"BigObjectIngest\",\n  \"contentUrl\": \"<string>\",\n  \"lineEnding\": \"<string>\",\n  \"columnDelimiter\": \"<string>\",\n  \"numberRecordsProcessed\": \"<integer>\",\n  \"numberRecordsFailed\": \"<integer>\",\n  \"retries\": \"<integer>\",\n  \"totalProcessingTime\": \"<integer>\",\n  \"apiActiveProcessingTime\": \"<integer>\",\n  \"apexProcessingTime\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-32a0475a-188a-46e7-ba20-4a34ef7dc5d4"
+                },
+                {
+                  "id": "f15ca223-8eaf-4adb-b7d5-829902341af0",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"object\": \"<string>\",\n  \"operation\": \"update\",\n  \"assignmentRuleId\": \"<string>\",\n  \"columnDelimiter\": \"COMMA\",\n  \"contentType\": \"CSV\",\n  \"externalIdFieldName\": \"<string>\",\n  \"lineEnding\": \"LF\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/ingest",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "ingest"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-f15ca223-8eaf-4adb-b7d5-829902341af0"
+                },
+                {
+                  "id": "65620a00-088e-4d92-939c-9f48e64b538b",
+                  "name": "Authentication failed or access token is invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"object\": \"<string>\",\n  \"operation\": \"update\",\n  \"assignmentRuleId\": \"<string>\",\n  \"columnDelimiter\": \"COMMA\",\n  \"contentType\": \"CSV\",\n  \"externalIdFieldName\": \"<string>\",\n  \"lineEnding\": \"LF\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/ingest",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "ingest"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-65620a00-088e-4d92-939c-9f48e64b538b"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:17.000Z",
+              "updatedAt": "2026-06-05T15:15:17.000Z",
+              "uid": "35240-029f4611-2cf9-464c-a925-ff5237f716fb"
+            }
+          ],
+          "id": "b437060d-5114-491a-984b-15ffed76c596",
+          "createdAt": "2026-06-05T15:15:17.000Z",
+          "updatedAt": "2026-06-05T15:15:17.000Z",
+          "uid": "35240-b437060d-5114-491a-984b-15ffed76c596"
+        },
+        {
+          "name": "query",
+          "item": [
+            {
+              "name": "{jobId}",
+              "item": [
+                {
+                  "name": "results",
+                  "item": [
+                    {
+                      "name": "Salesforce Sales Cloud Get query job results",
+                      "id": "472327a4-545d-46c0-aff3-76feaab7603e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/csv"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId/results?locator=<string>&maxRecords=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId",
+                            "results"
+                          ],
+                          "query": [
+                            {
+                              "description": "Locator value for retrieving the next set of results",
+                              "key": "locator",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Maximum number of records to return per request",
+                              "key": "maxRecords",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "ac3d1a7a-5fdb-4dac-a0d6-d528a403dce1",
+                              "key": "jobId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the bulk job"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the results of a completed query job in CSV format. Use the locator and maxRecords parameters to paginate through large result sets."
+                      },
+                      "response": [
+                        {
+                          "id": "de230498-581b-4b39-81cf-9f4fe077c37b",
+                          "name": "Successfully retrieved query results",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "text/csv"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/query/:jobId/results?locator=<string>&maxRecords=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "query",
+                                ":jobId",
+                                "results"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Locator value for retrieving the next set of results",
+                                  "key": "locator",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of records to return per request",
+                                  "key": "maxRecords",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "text/csv"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Locator value for the next set of results (null if no more)",
+                                "type": "text/plain"
+                              },
+                              "key": "Sforce-Locator",
+                              "value": "<string>"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "Number of records in this result set",
+                                "type": "text/plain"
+                              },
+                              "key": "Sforce-NumberOfRecords",
+                              "value": "<integer>"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "<string>",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-de230498-581b-4b39-81cf-9f4fe077c37b"
+                        },
+                        {
+                          "id": "3fbe013c-b43a-44e6-932b-0d5a0f6af6db",
+                          "name": "Authentication failed or access token is invalid",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/query/:jobId/results?locator=<string>&maxRecords=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "query",
+                                ":jobId",
+                                "results"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Locator value for retrieving the next set of results",
+                                  "key": "locator",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of records to return per request",
+                                  "key": "maxRecords",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-3fbe013c-b43a-44e6-932b-0d5a0f6af6db"
+                        },
+                        {
+                          "id": "8174f227-47c6-4aa4-81aa-377e5090c9c8",
+                          "name": "The specified job was not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/jobs/query/:jobId/results?locator=<string>&maxRecords=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "jobs",
+                                "query",
+                                ":jobId",
+                                "results"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Locator value for retrieving the next set of results",
+                                  "key": "locator",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Maximum number of records to return per request",
+                                  "key": "maxRecords",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "jobId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:17.000Z",
+                          "updatedAt": "2026-06-05T15:15:17.000Z",
+                          "uid": "35240-8174f227-47c6-4aa4-81aa-377e5090c9c8"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-472327a4-545d-46c0-aff3-76feaab7603e"
+                    }
+                  ],
+                  "id": "a5a75f97-ffc3-4734-8588-ac87013af796",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-a5a75f97-ffc3-4734-8588-ac87013af796"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Get query job information",
+                  "id": "f905d95a-8d47-4d85-80e9-06537a1f9c9b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/query/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "query",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "98a184d1-5e18-4b11-9c79-b30f2b39bd88",
+                          "key": "jobId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the bulk job"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves detailed information about a query job including its current state, number of records processed, and the SOQL query."
+                  },
+                  "response": [
+                    {
+                      "id": "4d693252-ebf8-4e9c-ab22-c03c1ad4c6e7",
+                      "name": "Successfully retrieved query job information",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"operation\": \"query\",\n  \"object\": \"<string>\",\n  \"createdById\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"systemModstamp\": \"<dateTime>\",\n  \"state\": \"JobComplete\",\n  \"concurrencyMode\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"apiVersion\": \"<number>\",\n  \"jobType\": \"<string>\",\n  \"lineEnding\": \"<string>\",\n  \"columnDelimiter\": \"<string>\",\n  \"numberRecordsProcessed\": \"<integer>\",\n  \"retries\": \"<integer>\",\n  \"totalProcessingTime\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-4d693252-ebf8-4e9c-ab22-c03c1ad4c6e7"
+                    },
+                    {
+                      "id": "87904b5a-9f5c-4b86-9939-82e8c2ac1c46",
+                      "name": "Authentication failed or access token is invalid",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-87904b5a-9f5c-4b86-9939-82e8c2ac1c46"
+                    },
+                    {
+                      "id": "8f403c03-d3dc-430f-ac2c-d39e9a2f94ce",
+                      "name": "The specified job was not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-8f403c03-d3dc-430f-ac2c-d39e9a2f94ce"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-f905d95a-8d47-4d85-80e9-06537a1f9c9b"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Abort a query job",
+                  "id": "6d57e4db-ea91-4833-ae94-d9751bba7f24",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"state\": \"Aborted\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/query/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "query",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c0f10b79-961b-4e82-8f36-939b0b0a39e0",
+                          "key": "jobId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the bulk job"
+                        }
+                      ]
+                    },
+                    "description": "Aborts a query job. Only jobs that have not yet completed can be aborted."
+                  },
+                  "response": [
+                    {
+                      "id": "b302b334-37a6-4150-a044-4a880614a660",
+                      "name": "Query job aborted successfully",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"Aborted\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"operation\": \"query\",\n  \"object\": \"<string>\",\n  \"createdById\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"systemModstamp\": \"<dateTime>\",\n  \"state\": \"JobComplete\",\n  \"concurrencyMode\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"apiVersion\": \"<number>\",\n  \"jobType\": \"<string>\",\n  \"lineEnding\": \"<string>\",\n  \"columnDelimiter\": \"<string>\",\n  \"numberRecordsProcessed\": \"<integer>\",\n  \"retries\": \"<integer>\",\n  \"totalProcessingTime\": \"<integer>\"\n}",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-b302b334-37a6-4150-a044-4a880614a660"
+                    },
+                    {
+                      "id": "06d47400-2b0e-4882-bdb3-0b32c1465c2f",
+                      "name": "Authentication failed or access token is invalid",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"Aborted\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-06d47400-2b0e-4882-bdb3-0b32c1465c2f"
+                    },
+                    {
+                      "id": "5bfe0326-772a-4f27-9cbf-2c6bf07d04d2",
+                      "name": "The specified job was not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"state\": \"Aborted\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-5bfe0326-772a-4f27-9cbf-2c6bf07d04d2"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-6d57e4db-ea91-4833-ae94-d9751bba7f24"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Delete a query job",
+                  "id": "3426b4a7-a824-4b27-a172-315660fee0d6",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/query/:jobId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "query",
+                        ":jobId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6c83c775-e90e-4cfe-9b0b-f77c6eaaaff1",
+                          "key": "jobId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the bulk job"
+                        }
+                      ]
+                    },
+                    "description": "Deletes a query job. The job must be in a terminal state before it can be deleted."
+                  },
+                  "response": [
+                    {
+                      "id": "f5f784a4-d35d-4f4e-9a8b-6c7183af1258",
+                      "name": "Query job deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-f5f784a4-d35d-4f4e-9a8b-6c7183af1258"
+                    },
+                    {
+                      "id": "e78e3b13-f010-41be-929a-f8ca01a2b484",
+                      "name": "Authentication failed or access token is invalid",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-e78e3b13-f010-41be-929a-f8ca01a2b484"
+                    },
+                    {
+                      "id": "5f8f5f12-8f3d-4fed-bd4f-366228812d4c",
+                      "name": "The specified job was not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/jobs/query/:jobId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "jobs",
+                            "query",
+                            ":jobId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "jobId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:17.000Z",
+                      "updatedAt": "2026-06-05T15:15:17.000Z",
+                      "uid": "35240-5f8f5f12-8f3d-4fed-bd4f-366228812d4c"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-3426b4a7-a824-4b27-a172-315660fee0d6"
+                }
+              ],
+              "id": "1a2fcb11-ce6d-4cb1-bd34-b6cae384ad9e",
+              "createdAt": "2026-06-05T15:15:17.000Z",
+              "updatedAt": "2026-06-05T15:15:17.000Z",
+              "uid": "35240-1a2fcb11-ce6d-4cb1-bd34-b6cae384ad9e"
+            },
+            {
+              "name": "Salesforce Sales Cloud List all query jobs",
+              "id": "7c490656-dfd0-4e2c-8cda-d89eb1810c7b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/jobs/query?isPkChunkingEnabled=<boolean>&jobType=Classic&queryLocator=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs",
+                    "query"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter by PK Chunking enabled status",
+                      "key": "isPkChunkingEnabled",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "description": "Filter by job type",
+                      "key": "jobType",
+                      "value": "Classic"
+                    },
+                    {
+                      "description": "Query locator for paginating through results",
+                      "key": "queryLocator",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Retrieves all query jobs in the org. Results include jobs in all states including completed, failed, and aborted jobs."
+              },
+              "response": [
+                {
+                  "id": "28e7f4ce-de6e-4e80-b920-0748d0aa4c3c",
+                  "name": "Successfully retrieved list of query jobs",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/query?isPkChunkingEnabled=<boolean>&jobType=Classic&queryLocator=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "query"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by PK Chunking enabled status",
+                          "key": "isPkChunkingEnabled",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Filter by job type",
+                          "key": "jobType",
+                          "value": "Classic"
+                        },
+                        {
+                          "description": "Query locator for paginating through results",
+                          "key": "queryLocator",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"done\": \"<boolean>\",\n  \"nextRecordsUrl\": \"<string>\",\n  \"records\": [\n    {\n      \"id\": \"<string>\",\n      \"operation\": \"queryAll\",\n      \"object\": \"<string>\",\n      \"createdById\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"systemModstamp\": \"<dateTime>\",\n      \"state\": \"Aborted\",\n      \"concurrencyMode\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"apiVersion\": \"<number>\",\n      \"jobType\": \"<string>\",\n      \"lineEnding\": \"<string>\",\n      \"columnDelimiter\": \"<string>\",\n      \"numberRecordsProcessed\": \"<integer>\",\n      \"retries\": \"<integer>\",\n      \"totalProcessingTime\": \"<integer>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"operation\": \"query\",\n      \"object\": \"<string>\",\n      \"createdById\": \"<string>\",\n      \"createdDate\": \"<dateTime>\",\n      \"systemModstamp\": \"<dateTime>\",\n      \"state\": \"JobComplete\",\n      \"concurrencyMode\": \"<string>\",\n      \"contentType\": \"<string>\",\n      \"apiVersion\": \"<number>\",\n      \"jobType\": \"<string>\",\n      \"lineEnding\": \"<string>\",\n      \"columnDelimiter\": \"<string>\",\n      \"numberRecordsProcessed\": \"<integer>\",\n      \"retries\": \"<integer>\",\n      \"totalProcessingTime\": \"<integer>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-28e7f4ce-de6e-4e80-b920-0748d0aa4c3c"
+                },
+                {
+                  "id": "08fac97f-141e-40bb-8f8c-e2b134a628ec",
+                  "name": "Authentication failed or access token is invalid",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/query?isPkChunkingEnabled=<boolean>&jobType=Classic&queryLocator=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "query"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter by PK Chunking enabled status",
+                          "key": "isPkChunkingEnabled",
+                          "value": "<boolean>"
+                        },
+                        {
+                          "description": "Filter by job type",
+                          "key": "jobType",
+                          "value": "Classic"
+                        },
+                        {
+                          "description": "Query locator for paginating through results",
+                          "key": "queryLocator",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-08fac97f-141e-40bb-8f8c-e2b134a628ec"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:17.000Z",
+              "updatedAt": "2026-06-05T15:15:17.000Z",
+              "uid": "35240-7c490656-dfd0-4e2c-8cda-d89eb1810c7b"
+            },
+            {
+              "name": "Salesforce Sales Cloud Create a query job",
+              "id": "06f192fc-149d-46bb-963c-cbe2e8bd2865",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operation\": \"queryAll\",\n  \"query\": \"<string>\",\n  \"columnDelimiter\": \"COMMA\",\n  \"lineEnding\": \"LF\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/jobs/query",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "jobs",
+                    "query"
+                  ]
+                },
+                "description": "Creates a new query job to extract data from Salesforce using SOQL. The query runs asynchronously and results can be retrieved when the job completes."
+              },
+              "response": [
+                {
+                  "id": "b1871502-7dca-47aa-b50d-34cf021f94c8",
+                  "name": "Query job created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"operation\": \"queryAll\",\n  \"query\": \"<string>\",\n  \"columnDelimiter\": \"COMMA\",\n  \"lineEnding\": \"LF\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "query"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"operation\": \"query\",\n  \"object\": \"<string>\",\n  \"createdById\": \"<string>\",\n  \"createdDate\": \"<dateTime>\",\n  \"systemModstamp\": \"<dateTime>\",\n  \"state\": \"JobComplete\",\n  \"concurrencyMode\": \"<string>\",\n  \"contentType\": \"<string>\",\n  \"apiVersion\": \"<number>\",\n  \"jobType\": \"<string>\",\n  \"lineEnding\": \"<string>\",\n  \"columnDelimiter\": \"<string>\",\n  \"numberRecordsProcessed\": \"<integer>\",\n  \"retries\": \"<integer>\",\n  \"totalProcessingTime\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-b1871502-7dca-47aa-b50d-34cf021f94c8"
+                },
+                {
+                  "id": "5f3aac4d-dfd9-474b-b4f9-c47e3aa4bbfb",
+                  "name": "Invalid request parameters or malformed request body",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"operation\": \"queryAll\",\n  \"query\": \"<string>\",\n  \"columnDelimiter\": \"COMMA\",\n  \"lineEnding\": \"LF\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "query"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-5f3aac4d-dfd9-474b-b4f9-c47e3aa4bbfb"
+                },
+                {
+                  "id": "58df3f99-6faa-495e-98b9-80be7dbc322c",
+                  "name": "Authentication failed or access token is invalid",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"operation\": \"queryAll\",\n  \"query\": \"<string>\",\n  \"columnDelimiter\": \"COMMA\",\n  \"lineEnding\": \"LF\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/jobs/query",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "jobs",
+                        "query"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:17.000Z",
+                  "updatedAt": "2026-06-05T15:15:17.000Z",
+                  "uid": "35240-58df3f99-6faa-495e-98b9-80be7dbc322c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:17.000Z",
+              "updatedAt": "2026-06-05T15:15:17.000Z",
+              "uid": "35240-06f192fc-149d-46bb-963c-cbe2e8bd2865"
+            }
+          ],
+          "id": "c55265ca-adb1-47ea-8156-6452a261194f",
+          "createdAt": "2026-06-05T15:15:17.000Z",
+          "updatedAt": "2026-06-05T15:15:17.000Z",
+          "uid": "35240-c55265ca-adb1-47ea-8156-6452a261194f"
+        }
+      ],
+      "id": "a29aee4b-b3fc-4f91-b853-2288908ed871",
+      "createdAt": "2026-06-05T15:15:17.000Z",
+      "updatedAt": "2026-06-05T15:15:17.000Z",
+      "uid": "35240-a29aee4b-b3fc-4f91-b853-2288908ed871"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "instance",
+      "value": "yourInstance"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0"
+    }
+  ]
+}

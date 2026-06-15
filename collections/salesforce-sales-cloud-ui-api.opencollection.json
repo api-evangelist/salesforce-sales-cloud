@@ -1,0 +1,390 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce User Interface API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get a record with UI metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/records/:recordId",
+            "params": [
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 18-character Salesforce record ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of field API names to return"
+              },
+              {
+                "name": "layoutTypes",
+                "value": "",
+                "type": "query",
+                "description": "Layout type to determine which fields to return"
+              },
+              {
+                "name": "modes",
+                "value": "",
+                "type": "query",
+                "description": "The mode for the layout"
+              },
+              {
+                "name": "optionalFields",
+                "value": "",
+                "type": "query",
+                "description": "Optional fields returned if accessible"
+              }
+            ]
+          },
+          "docs": "Retrieves a record with field values and UI metadata. Specify the fields to return or use a layout mode to get the fields appropriate for a specific page layout. Returned data respects field-level security."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/records/:recordId",
+            "params": [
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 18-character Salesforce record ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified record. Only include fields that need to be changed. Returns the updated record with UI metadata."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/records/:recordId",
+            "params": [
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 18-character Salesforce record ID"
+              }
+            ]
+          },
+          "docs": "Deletes the specified record."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/records",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new record. Returns the created record with UI metadata and the new record ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Record UI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get record UI data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/record-ui/:recordIds",
+            "params": [
+              {
+                "name": "recordIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of record IDs (up to 200)"
+              },
+              {
+                "name": "formFactor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "layoutTypes",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modes",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns layout information, field metadata, and record data for one or more records in a single response. This is the most efficient way to get everything needed to render a record detail page."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Layouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get record layout metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/layout/:objectApiName",
+            "params": [
+              {
+                "name": "objectApiName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject"
+              },
+              {
+                "name": "layoutType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recordTypeId",
+                "value": "",
+                "type": "query",
+                "description": "The record type ID for record-type-specific layouts"
+              }
+            ]
+          },
+          "docs": "Returns layout metadata for the specified sObject including sections, fields, and their arrangement on the page. Respects record type and profile-based layout assignments."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Object Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get object metadata for UI",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/object-info/:objectApiName",
+            "params": [
+              {
+                "name": "objectApiName",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns metadata about the specified sObject optimized for UI rendering, including field metadata, record type info, child relationships, and theme information."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Picklist Values",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get picklist values for all fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/object-info/:objectApiName/picklist-values/:recordTypeId",
+            "params": [
+              {
+                "name": "objectApiName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recordTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The record type ID (use 012000000000000AAA for master)"
+              }
+            ]
+          },
+          "docs": "Returns the picklist values for all picklist fields on the specified object, filtered by record type. Includes dependent picklist controlling field information."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get picklist values for a specific field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/object-info/:objectApiName/picklist-values/:recordTypeId/:fieldApiName",
+            "params": [
+              {
+                "name": "objectApiName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recordTypeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldApiName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the picklist field"
+              }
+            ]
+          },
+          "docs": "Returns the picklist values for the specified picklist field, filtered by record type."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "List Views",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get list view records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/list-ui/:listViewId",
+            "params": [
+              {
+                "name": "listViewId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns records and metadata for the specified list view, including column definitions, sort information, and filtered records."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Lookups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Search for lookup field values",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/ui-api/lookups/:objectApiName/:fieldApiName/:targetApiName",
+            "params": [
+              {
+                "name": "objectApiName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldApiName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "targetApiName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search string"
+              },
+              {
+                "name": "searchType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Searches for records to populate a lookup field, filtered by the lookup filter criteria configured for the field."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

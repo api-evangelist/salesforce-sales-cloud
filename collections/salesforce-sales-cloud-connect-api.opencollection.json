@@ -1,0 +1,360 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Connect REST API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Communities",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List communities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/communities"
+          },
+          "docs": "Returns a list of communities (Experience Cloud sites) available to the current user. Includes community name, URL, status, and description."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get news feed for current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/feeds/news/me/feed-elements",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "Number of items per page (default 25, max 100)"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query",
+                "description": "Token for the next page of results"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for feed elements"
+              }
+            ]
+          },
+          "docs": "Returns the news feed for the current user. The news feed includes updates from people and records the user follows, groups the user belongs to, and the user's own posts."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get feed for a specific record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/feeds/record/:recordId/feed-elements",
+            "params": [
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the record"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the feed associated with the specified record. The record feed includes posts, comments, and tracked changes for the record."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Feed Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Post a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/feed-elements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new feed element (post) on a user profile, group, or record feed. Supports text posts, link posts, and content posts with attachments."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/feed-elements/:feedElementId",
+            "params": [
+              {
+                "name": "feedElementId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the feed element"
+              }
+            ]
+          },
+          "docs": "Returns the specified feed element including its body, comments, likes, and metadata."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/feed-elements/:feedElementId",
+            "params": [
+              {
+                "name": "feedElementId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified feed element. Only the author or an admin can delete a feed element."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get comments on a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/feed-elements/:feedElementId/capabilities/comments/items",
+            "params": [
+              {
+                "name": "feedElementId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all comments on the specified feed element, paginated."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Post a comment on a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/feed-elements/:feedElementId/capabilities/comments/items",
+            "params": [
+              {
+                "name": "feedElementId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new comment on the specified feed element."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Groups",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List Chatter groups",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/groups",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search term to filter groups"
+              }
+            ]
+          },
+          "docs": "Returns a list of Chatter groups visible to the current user. Includes public groups, private groups the user is a member of, and unlisted groups the user has access to."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get a Chatter group",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/groups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about the specified Chatter group including member count, description, and the current user's membership status."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get group members",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/groups/:groupId/members",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of members in the specified Chatter group."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get current user information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/users/me"
+          },
+          "docs": "Returns detailed information about the current user including profile, photo, and Chatter activity."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get user information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/chatter/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Returns detailed information about the specified user including profile, photo, and Chatter statistics."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get files owned by current user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/connect/files/users/me",
+            "params": [
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "pageToken",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns a list of files owned by the current user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,595 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce REST API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "client_credentials",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Resources",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List available REST resources",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/"
+          },
+          "docs": "Lists the available REST API resources for the specified API version, including resource name and URI for each resource."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Limits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get organization limits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/limits"
+          },
+          "docs": "Lists information about limits in your org. For each limit, this resource returns the maximum allocation and the remaining allocation based on usage. This resource is available in REST API version 29.0 and later."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SObject",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List available sObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects"
+          },
+          "docs": "Lists the available objects and their metadata for your organization's data. Provides the name, label, custom status, keyPrefix, and URLs for each object."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get sObject basic information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:sObjectName",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              }
+            ]
+          },
+          "docs": "Describes the individual metadata for the specified object. Returns metadata about the object including default field values, and child relationships."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SObject Rows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create a new sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:sObjectName",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new record for the specified sObject. The request body contains the field values for the new record in JSON format."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get an sObject record by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce record ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of field names to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a record for the specified sObject using the record ID. Optionally, specify the fields to return using the fields parameter to limit the response size."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update an sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce record ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an individual record for the specified sObject. Provide field values in the request body as JSON."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete an sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce record ID"
+              }
+            ]
+          },
+          "docs": "Deletes a record for the specified sObject using the record ID."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get record by external ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:sObjectName/:fieldName/:fieldValue",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "fieldName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the external ID field"
+              },
+              {
+                "name": "fieldValue",
+                "value": "",
+                "type": "path",
+                "description": "The external ID value"
+              }
+            ]
+          },
+          "docs": "Retrieves a record using an external ID field. If the external ID is not unique, a 300 response with multiple matching records is returned."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Upsert record by external ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:sObjectName/:fieldName/:fieldValue",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "fieldName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the external ID field"
+              },
+              {
+                "name": "fieldValue",
+                "value": "",
+                "type": "path",
+                "description": "The external ID value"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates (upserts) a record using an external ID field. If the external ID is not matched, a new record is created. If the external ID is matched, the existing record is updated."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SObject Describe",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Describe an sObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:sObjectName/describe",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              }
+            ]
+          },
+          "docs": "Completely describes the individual metadata at all levels for the specified object. Returns metadata including fields, child relationships, record type mappings, and other object-level attributes."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get sObject page layouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:sObjectName/describe/layouts",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              }
+            ]
+          },
+          "docs": "Returns a list of layouts and descriptions, including for publisher actions, for the specified sObject."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "SObject Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create multiple sObject records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/composite/sobjects",
+            "params": [
+              {
+                "name": "allOrNone",
+                "value": "",
+                "type": "query",
+                "description": "If true, all records must succeed or all fail"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates up to 200 records in a single request. The request body contains an array of sObject records to create. All records must be of the same sObject type."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update multiple sObject records",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/composite/sobjects",
+            "params": [
+              {
+                "name": "allOrNone",
+                "value": "",
+                "type": "query",
+                "description": "If true, all records must succeed or all fail"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates up to 200 records in a single request. Each record must include an Id field and the sObject type."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete multiple sObject records",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/composite/sobjects",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of record IDs to delete"
+              },
+              {
+                "name": "allOrNone",
+                "value": "",
+                "type": "query",
+                "description": "If true, all records must succeed or all fail"
+              }
+            ]
+          },
+          "docs": "Deletes up to 200 records in a single request. Specify the record IDs as a comma-separated list in the ids query parameter."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Execute a SOQL query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/query",
+            "params": [
+              {
+                "name": "q",
+                "value": "SELECT Id, Name FROM Account LIMIT 10",
+                "type": "query",
+                "description": "The SOQL query string"
+              }
+            ]
+          },
+          "docs": "Executes the specified SOQL query string and returns the results. If the query results are too large, the response contains the first batch of results and a query identifier to retrieve the remaining results."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Execute a SOQL query including deleted records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/queryAll",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The SOQL query string"
+              }
+            ]
+          },
+          "docs": "Executes the specified SOQL query, including results from deleted and archived records. This is useful for querying against soft-deleted records in the Recycle Bin."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get next batch of query results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/query/:queryLocator",
+            "params": [
+              {
+                "name": "queryLocator",
+                "value": "",
+                "type": "path",
+                "description": "The query locator returned from a previous query response"
+              }
+            ]
+          },
+          "docs": "Retrieves the next batch of query results using the query locator returned from a previous query request. Use this endpoint to paginate through large result sets."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Execute a SOSL search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "FIND {Acme} IN ALL FIELDS RETURNING Account(Id, Name)",
+                "type": "query",
+                "description": "The SOSL search string"
+              }
+            ]
+          },
+          "docs": "Executes the specified SOSL search string and returns matching records. SOSL searches are optimized for text-based searching across multiple objects simultaneously."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recently Viewed",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get recently viewed items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/recent",
+            "params": [
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of items to return"
+              }
+            ]
+          },
+          "docs": "Gets the most recently accessed items that were viewed or referenced by the current user. Items are returned for every object type that the user has recently accessed."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tabs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get available tabs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tabs"
+          },
+          "docs": "Returns a list of all tabs available to the current user, including custom tabs and standard tabs. Includes tab metadata such as icon URLs, colors, and whether the tab is custom."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Themes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get theme information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/theme"
+          },
+          "docs": "Returns information about the theme and branding for the current org including icon URLs and colors for standard and custom objects."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Process Approvals",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get pending process approvals",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/process/approvals"
+          },
+          "docs": "Returns a list of all approval processes and their current state. Available in API version 30.0 and later."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Submit a process approval request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/process/approvals",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submits a particular record for approval, approves or rejects an approval request, or processes bulk approval requests."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

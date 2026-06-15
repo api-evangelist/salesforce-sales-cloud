@@ -1,0 +1,1633 @@
+{
+  "info": {
+    "_postman_id": "8598ff29-348c-4f56-a0a2-9fecb2447f87",
+    "name": "Salesforce Sales Cloud Salesforce Composite API",
+    "description": "Executes a series of REST API requests in a single call, reducing round trips between client and server. Supports composite requests with inter-request references, composite batches for independent subrequests, composite graphs for complex multi-step operations, and sObject tree for hierarchical record creation.\n\nContact Support:\n Name: Salesforce Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:15:22.000Z",
+    "updatedAt": "2026-06-05T15:15:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8598ff29-348c-4f56-a0a2-9fecb2447f87"
+  },
+  "item": [
+    {
+      "name": "composite",
+      "item": [
+        {
+          "name": "batch",
+          "item": [
+            {
+              "name": "Salesforce Sales Cloud Execute a composite batch request",
+              "id": "0f95cad2-30a1-4d16-9a82-0be49e6a2bb5",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"batchRequests\": [\n    {\n      \"method\": \"PUT\",\n      \"url\": \"<string>\",\n      \"richInput\": {\n        \"description\": \"The request body for the subrequest\"\n      }\n    },\n    {\n      \"method\": \"DELETE\",\n      \"url\": \"<string>\",\n      \"richInput\": {\n        \"description\": \"The request body for the subrequest\"\n      }\n    }\n  ],\n  \"haltOnError\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/composite/batch",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "composite",
+                    "batch"
+                  ]
+                },
+                "description": "Executes up to 25 subrequests in a single request. Subrequests are independent and do not share context or reference each other. Each subrequest counts against rate limits. The response includes the status code and result for each subrequest."
+              },
+              "response": [
+                {
+                  "id": "89c8bc42-928d-4bf1-85ca-695a72e45389",
+                  "name": "Batch request executed successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"batchRequests\": [\n    {\n      \"method\": \"PUT\",\n      \"url\": \"<string>\",\n      \"richInput\": {\n        \"description\": \"The request body for the subrequest\"\n      }\n    },\n    {\n      \"method\": \"DELETE\",\n      \"url\": \"<string>\",\n      \"richInput\": {\n        \"description\": \"The request body for the subrequest\"\n      }\n    }\n  ],\n  \"haltOnError\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/batch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "batch"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"hasErrors\": \"<boolean>\",\n  \"results\": [\n    {\n      \"statusCode\": \"<integer>\",\n      \"result\": {\n        \"description\": \"The subrequest result\"\n      }\n    },\n    {\n      \"statusCode\": \"<integer>\",\n      \"result\": {\n        \"description\": \"The subrequest result\"\n      }\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-89c8bc42-928d-4bf1-85ca-695a72e45389"
+                },
+                {
+                  "id": "b4e65cfe-c978-4d04-8492-c2ea6fbb6e51",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"batchRequests\": [\n    {\n      \"method\": \"PUT\",\n      \"url\": \"<string>\",\n      \"richInput\": {\n        \"description\": \"The request body for the subrequest\"\n      }\n    },\n    {\n      \"method\": \"DELETE\",\n      \"url\": \"<string>\",\n      \"richInput\": {\n        \"description\": \"The request body for the subrequest\"\n      }\n    }\n  ],\n  \"haltOnError\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/batch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "batch"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-b4e65cfe-c978-4d04-8492-c2ea6fbb6e51"
+                },
+                {
+                  "id": "77549a76-471e-421f-a87a-f6893996631d",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"batchRequests\": [\n    {\n      \"method\": \"PUT\",\n      \"url\": \"<string>\",\n      \"richInput\": {\n        \"description\": \"The request body for the subrequest\"\n      }\n    },\n    {\n      \"method\": \"DELETE\",\n      \"url\": \"<string>\",\n      \"richInput\": {\n        \"description\": \"The request body for the subrequest\"\n      }\n    }\n  ],\n  \"haltOnError\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/batch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "batch"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-77549a76-471e-421f-a87a-f6893996631d"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:23.000Z",
+              "updatedAt": "2026-06-05T15:15:23.000Z",
+              "uid": "35240-0f95cad2-30a1-4d16-9a82-0be49e6a2bb5"
+            }
+          ],
+          "id": "20f23d5c-73a1-4930-8fdd-b01a8d4292ad",
+          "createdAt": "2026-06-05T15:15:23.000Z",
+          "updatedAt": "2026-06-05T15:15:23.000Z",
+          "uid": "35240-20f23d5c-73a1-4930-8fdd-b01a8d4292ad"
+        },
+        {
+          "name": "graph",
+          "item": [
+            {
+              "name": "Salesforce Sales Cloud Execute a composite graph request",
+              "id": "1cad25ab-221f-4775-8f15-aab17e5117a2",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"GET\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        },\n        {\n          \"method\": \"PATCH\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        }\n      ]\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"PUT\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        },\n        {\n          \"method\": \"PATCH\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/composite/graph",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "composite",
+                    "graph"
+                  ]
+                },
+                "description": "Executes one or more composite graphs. Each graph consists of a series of composite subrequests that can reference each other. Graphs are independent of each other and can succeed or fail independently. Available in API version 50.0 and later."
+              },
+              "response": [
+                {
+                  "id": "2b089a3e-90bf-4994-a326-b58f577deb2d",
+                  "name": "Graph request executed successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"GET\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        },\n        {\n          \"method\": \"PATCH\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        }\n      ]\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"PUT\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        },\n        {\n          \"method\": \"PATCH\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/graph",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "graph"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"<string>\",\n      \"graphResponse\": {\n        \"compositeResponse\": [\n          {\n            \"body\": {\n              \"description\": \"The response body\"\n            },\n            \"httpHeaders\": {},\n            \"httpStatusCode\": \"<integer>\",\n            \"referenceId\": \"<string>\"\n          },\n          {\n            \"body\": {\n              \"description\": \"The response body\"\n            },\n            \"httpHeaders\": {},\n            \"httpStatusCode\": \"<integer>\",\n            \"referenceId\": \"<string>\"\n          }\n        ]\n      },\n      \"isSuccessful\": \"<boolean>\"\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"graphResponse\": {\n        \"compositeResponse\": [\n          {\n            \"body\": {\n              \"description\": \"The response body\"\n            },\n            \"httpHeaders\": {},\n            \"httpStatusCode\": \"<integer>\",\n            \"referenceId\": \"<string>\"\n          },\n          {\n            \"body\": {\n              \"description\": \"The response body\"\n            },\n            \"httpHeaders\": {},\n            \"httpStatusCode\": \"<integer>\",\n            \"referenceId\": \"<string>\"\n          }\n        ]\n      },\n      \"isSuccessful\": \"<boolean>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-2b089a3e-90bf-4994-a326-b58f577deb2d"
+                },
+                {
+                  "id": "38a83388-86ba-4b59-85de-6c248b4be4b1",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"GET\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        },\n        {\n          \"method\": \"PATCH\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        }\n      ]\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"PUT\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        },\n        {\n          \"method\": \"PATCH\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/graph",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "graph"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-38a83388-86ba-4b59-85de-6c248b4be4b1"
+                },
+                {
+                  "id": "9aa8f3e5-a3e4-491d-81ba-ce7740fcfba8",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"GET\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        },\n        {\n          \"method\": \"PATCH\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        }\n      ]\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"PUT\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        },\n        {\n          \"method\": \"PATCH\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {\n            \"description\": \"The request body\"\n          }\n        }\n      ]\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/graph",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "graph"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-9aa8f3e5-a3e4-491d-81ba-ce7740fcfba8"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:23.000Z",
+              "updatedAt": "2026-06-05T15:15:23.000Z",
+              "uid": "35240-1cad25ab-221f-4775-8f15-aab17e5117a2"
+            }
+          ],
+          "id": "ebf291c5-3851-4deb-bb18-50c473ee0fde",
+          "createdAt": "2026-06-05T15:15:23.000Z",
+          "updatedAt": "2026-06-05T15:15:23.000Z",
+          "uid": "35240-ebf291c5-3851-4deb-bb18-50c473ee0fde"
+        },
+        {
+          "name": "tree",
+          "item": [
+            {
+              "name": "{sObjectName}",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Create an sObject tree",
+                  "id": "e3395891-0ef8-48c8-ad45-fdec0bdee803",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"records\": [\n    {\n      \"attributes\": {\n        \"type\": \"<string>\",\n        \"referenceId\": \"<string>\"\n      },\n      \"deserunt4\": 67081666\n    },\n    {\n      \"attributes\": {\n        \"type\": \"<string>\",\n        \"referenceId\": \"<string>\"\n      },\n      \"dolore_f\": \"magna in labore\",\n      \"commodo6\": \"fugiat magna exercitation\",\n      \"Lorem_5b\": 67822544.64535278\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/tree/:sObjectName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "tree",
+                        ":sObjectName"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c033c752-71ce-4aa5-a21c-583ae22362b1",
+                          "key": "sObjectName",
+                          "value": "<string>",
+                          "description": "(Required) The API name of the root sObject type"
+                        }
+                      ]
+                    },
+                    "description": "Creates one or more sObject trees with root records of the specified type. An sObject tree is a collection of nested, parent-child records with a single root record. Use this to create a parent record with related child records in a single request."
+                  },
+                  "response": [
+                    {
+                      "id": "a54248e3-edfc-43ec-83fd-279fbcdff288",
+                      "name": "Tree records created successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"records\": [\n    {\n      \"attributes\": {\n        \"type\": \"<string>\",\n        \"referenceId\": \"<string>\"\n      },\n      \"deserunt4\": 67081666\n    },\n    {\n      \"attributes\": {\n        \"type\": \"<string>\",\n        \"referenceId\": \"<string>\"\n      },\n      \"dolore_f\": \"magna in labore\",\n      \"commodo6\": \"fugiat magna exercitation\",\n      \"Lorem_5b\": 67822544.64535278\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/composite/tree/:sObjectName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "composite",
+                            "tree",
+                            ":sObjectName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"hasErrors\": \"<boolean>\",\n  \"results\": [\n    {\n      \"id\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"errors\": [\n        {\n          \"statusCode\": \"<string>\",\n          \"message\": \"<string>\",\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"statusCode\": \"<string>\",\n          \"message\": \"<string>\",\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    },\n    {\n      \"id\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"errors\": [\n        {\n          \"statusCode\": \"<string>\",\n          \"message\": \"<string>\",\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        },\n        {\n          \"statusCode\": \"<string>\",\n          \"message\": \"<string>\",\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ]\n        }\n      ]\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:15:23.000Z",
+                      "updatedAt": "2026-06-05T15:15:23.000Z",
+                      "uid": "35240-a54248e3-edfc-43ec-83fd-279fbcdff288"
+                    },
+                    {
+                      "id": "99ab4d22-475c-4d54-9ef7-1e4fb36befc2",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"records\": [\n    {\n      \"attributes\": {\n        \"type\": \"<string>\",\n        \"referenceId\": \"<string>\"\n      },\n      \"deserunt4\": 67081666\n    },\n    {\n      \"attributes\": {\n        \"type\": \"<string>\",\n        \"referenceId\": \"<string>\"\n      },\n      \"dolore_f\": \"magna in labore\",\n      \"commodo6\": \"fugiat magna exercitation\",\n      \"Lorem_5b\": 67822544.64535278\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/composite/tree/:sObjectName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "composite",
+                            "tree",
+                            ":sObjectName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:23.000Z",
+                      "updatedAt": "2026-06-05T15:15:23.000Z",
+                      "uid": "35240-99ab4d22-475c-4d54-9ef7-1e4fb36befc2"
+                    },
+                    {
+                      "id": "d464499b-26e5-4749-91b7-2bd4263965af",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"records\": [\n    {\n      \"attributes\": {\n        \"type\": \"<string>\",\n        \"referenceId\": \"<string>\"\n      },\n      \"deserunt4\": 67081666\n    },\n    {\n      \"attributes\": {\n        \"type\": \"<string>\",\n        \"referenceId\": \"<string>\"\n      },\n      \"dolore_f\": \"magna in labore\",\n      \"commodo6\": \"fugiat magna exercitation\",\n      \"Lorem_5b\": 67822544.64535278\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/composite/tree/:sObjectName",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "composite",
+                            "tree",
+                            ":sObjectName"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:23.000Z",
+                      "updatedAt": "2026-06-05T15:15:23.000Z",
+                      "uid": "35240-d464499b-26e5-4749-91b7-2bd4263965af"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-e3395891-0ef8-48c8-ad45-fdec0bdee803"
+                }
+              ],
+              "id": "3c007687-15fd-45e8-b0a1-3115fc2da505",
+              "createdAt": "2026-06-05T15:15:23.000Z",
+              "updatedAt": "2026-06-05T15:15:23.000Z",
+              "uid": "35240-3c007687-15fd-45e8-b0a1-3115fc2da505"
+            }
+          ],
+          "id": "ddab24e7-9fe0-4b17-8e26-70f326accef1",
+          "createdAt": "2026-06-05T15:15:23.000Z",
+          "updatedAt": "2026-06-05T15:15:23.000Z",
+          "uid": "35240-ddab24e7-9fe0-4b17-8e26-70f326accef1"
+        },
+        {
+          "name": "sobjects",
+          "item": [
+            {
+              "name": "Salesforce Sales Cloud Create a collection of sObject records",
+              "id": "5f272f61-033f-450f-86c8-0689cacda2c6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allOrNone\": false,\n  \"records\": [\n    {\n      \"minimc6\": 72169560.53904107,\n      \"adipisicing52\": \"reprehenderit et cupidatat dolor\",\n      \"occaecat0\": -36964226\n    },\n    {\n      \"sunt4\": \"dolore aliquip labore\",\n      \"ullamco6ec\": 50705743.31114045,\n      \"occaecatf8\": -12642935\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/composite/sobjects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "composite",
+                    "sobjects"
+                  ]
+                },
+                "description": "Creates up to 200 records of the same or different sObject types in a single request. Returns individual success/failure results for each record."
+              },
+              "response": [
+                {
+                  "id": "22af91cb-33ce-4810-9a56-44f63975b582",
+                  "name": "Collection operation results",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allOrNone\": false,\n  \"records\": [\n    {\n      \"minimc6\": 72169560.53904107,\n      \"adipisicing52\": \"reprehenderit et cupidatat dolor\",\n      \"occaecat0\": -36964226\n    },\n    {\n      \"sunt4\": \"dolore aliquip labore\",\n      \"ullamco6ec\": 50705743.31114045,\n      \"occaecatf8\": -12642935\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/sobjects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "sobjects"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"success\": \"<boolean>\",\n    \"errors\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"success\": \"<boolean>\",\n    \"errors\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-22af91cb-33ce-4810-9a56-44f63975b582"
+                },
+                {
+                  "id": "c3d6dff4-c33b-4e53-a39b-30ae4754ae20",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allOrNone\": false,\n  \"records\": [\n    {\n      \"minimc6\": 72169560.53904107,\n      \"adipisicing52\": \"reprehenderit et cupidatat dolor\",\n      \"occaecat0\": -36964226\n    },\n    {\n      \"sunt4\": \"dolore aliquip labore\",\n      \"ullamco6ec\": 50705743.31114045,\n      \"occaecatf8\": -12642935\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/sobjects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "sobjects"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-c3d6dff4-c33b-4e53-a39b-30ae4754ae20"
+                },
+                {
+                  "id": "bff34816-f282-40e4-8d11-3693fa0ded10",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allOrNone\": false,\n  \"records\": [\n    {\n      \"minimc6\": 72169560.53904107,\n      \"adipisicing52\": \"reprehenderit et cupidatat dolor\",\n      \"occaecat0\": -36964226\n    },\n    {\n      \"sunt4\": \"dolore aliquip labore\",\n      \"ullamco6ec\": 50705743.31114045,\n      \"occaecatf8\": -12642935\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/sobjects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "sobjects"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-bff34816-f282-40e4-8d11-3693fa0ded10"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:23.000Z",
+              "updatedAt": "2026-06-05T15:15:23.000Z",
+              "uid": "35240-5f272f61-033f-450f-86c8-0689cacda2c6"
+            },
+            {
+              "name": "Salesforce Sales Cloud Update a collection of sObject records",
+              "id": "fbc1cffc-1613-4201-ad04-50e771e02238",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"allOrNone\": false,\n  \"records\": [\n    {\n      \"minimc6\": 72169560.53904107,\n      \"adipisicing52\": \"reprehenderit et cupidatat dolor\",\n      \"occaecat0\": -36964226\n    },\n    {\n      \"sunt4\": \"dolore aliquip labore\",\n      \"ullamco6ec\": 50705743.31114045,\n      \"occaecatf8\": -12642935\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/composite/sobjects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "composite",
+                    "sobjects"
+                  ]
+                },
+                "description": "Updates up to 200 records in a single request. Each record must include the Id field and sObject type."
+              },
+              "response": [
+                {
+                  "id": "72a24dc6-1cd2-4636-b71f-361ac190adbe",
+                  "name": "Collection update results",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allOrNone\": false,\n  \"records\": [\n    {\n      \"minimc6\": 72169560.53904107,\n      \"adipisicing52\": \"reprehenderit et cupidatat dolor\",\n      \"occaecat0\": -36964226\n    },\n    {\n      \"sunt4\": \"dolore aliquip labore\",\n      \"ullamco6ec\": 50705743.31114045,\n      \"occaecatf8\": -12642935\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/sobjects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "sobjects"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"success\": \"<boolean>\",\n    \"errors\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"success\": \"<boolean>\",\n    \"errors\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-72a24dc6-1cd2-4636-b71f-361ac190adbe"
+                },
+                {
+                  "id": "29f542ae-3acd-415a-a337-1ed3bb739be6",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allOrNone\": false,\n  \"records\": [\n    {\n      \"minimc6\": 72169560.53904107,\n      \"adipisicing52\": \"reprehenderit et cupidatat dolor\",\n      \"occaecat0\": -36964226\n    },\n    {\n      \"sunt4\": \"dolore aliquip labore\",\n      \"ullamco6ec\": 50705743.31114045,\n      \"occaecatf8\": -12642935\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/sobjects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "sobjects"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-29f542ae-3acd-415a-a337-1ed3bb739be6"
+                },
+                {
+                  "id": "bf524bc4-3fc5-4919-9c98-f69e7eec8d3b",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"allOrNone\": false,\n  \"records\": [\n    {\n      \"minimc6\": 72169560.53904107,\n      \"adipisicing52\": \"reprehenderit et cupidatat dolor\",\n      \"occaecat0\": -36964226\n    },\n    {\n      \"sunt4\": \"dolore aliquip labore\",\n      \"ullamco6ec\": 50705743.31114045,\n      \"occaecatf8\": -12642935\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/sobjects",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "sobjects"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-bf524bc4-3fc5-4919-9c98-f69e7eec8d3b"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:23.000Z",
+              "updatedAt": "2026-06-05T15:15:23.000Z",
+              "uid": "35240-fbc1cffc-1613-4201-ad04-50e771e02238"
+            },
+            {
+              "name": "Salesforce Sales Cloud Delete a collection of sObject records",
+              "id": "3e5d4c52-c579-452e-b00e-d7551494b816",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/composite/sobjects?ids=<string>&allOrNone=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "composite",
+                    "sobjects"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Comma-separated list of record IDs to delete",
+                      "key": "ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "allOrNone",
+                      "value": "false"
+                    }
+                  ]
+                },
+                "description": "Deletes up to 200 records in a single request. Record IDs are passed as a comma-separated list in the ids query parameter."
+              },
+              "response": [
+                {
+                  "id": "3bf39323-1c95-40c7-b4f3-478491e8b7f3",
+                  "name": "Collection delete results",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/sobjects?ids=<string>&allOrNone=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "sobjects"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Comma-separated list of record IDs to delete",
+                          "key": "ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "allOrNone",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"success\": \"<boolean>\",\n    \"errors\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  },\n  {\n    \"id\": \"<string>\",\n    \"success\": \"<boolean>\",\n    \"errors\": [\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      {\n        \"statusCode\": \"<string>\",\n        \"message\": \"<string>\",\n        \"fields\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      }\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-3bf39323-1c95-40c7-b4f3-478491e8b7f3"
+                },
+                {
+                  "id": "949d87ef-9396-425d-a470-a25c04b6822e",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/sobjects?ids=<string>&allOrNone=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "sobjects"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Comma-separated list of record IDs to delete",
+                          "key": "ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "allOrNone",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-949d87ef-9396-425d-a470-a25c04b6822e"
+                },
+                {
+                  "id": "324942bf-fd8c-4669-9b66-2e35cf6a0c27",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/composite/sobjects?ids=<string>&allOrNone=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "composite",
+                        "sobjects"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Comma-separated list of record IDs to delete",
+                          "key": "ids",
+                          "value": "<string>"
+                        },
+                        {
+                          "key": "allOrNone",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:23.000Z",
+                  "updatedAt": "2026-06-05T15:15:23.000Z",
+                  "uid": "35240-324942bf-fd8c-4669-9b66-2e35cf6a0c27"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:23.000Z",
+              "updatedAt": "2026-06-05T15:15:23.000Z",
+              "uid": "35240-3e5d4c52-c579-452e-b00e-d7551494b816"
+            }
+          ],
+          "id": "3e083e2e-14b7-4d26-a6bc-0fb5de8b5a8b",
+          "createdAt": "2026-06-05T15:15:23.000Z",
+          "updatedAt": "2026-06-05T15:15:23.000Z",
+          "uid": "35240-3e083e2e-14b7-4d26-a6bc-0fb5de8b5a8b"
+        },
+        {
+          "name": "Salesforce Sales Cloud Execute a composite request",
+          "id": "45e8fbd9-f3cb-4800-b2a1-6e2682ee32ee",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"POST\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {\n        \"description\": \"The request body for the subrequest\"\n      },\n      \"httpHeaders\": {\n        \"sit7e7\": \"<string>\",\n        \"dolore_\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"PUT\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {\n        \"description\": \"The request body for the subrequest\"\n      },\n      \"httpHeaders\": {\n        \"sedc\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/composite",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "composite"
+              ]
+            },
+            "description": "Executes a series of REST API requests in a single call. Each request can reference the results of previous requests via referenceId, enabling dependent operations. Supports up to 25 subrequests per composite call. If allOrNone is true, all subrequests are rolled back on any failure."
+          },
+          "response": [
+            {
+              "id": "fab65409-0c0b-46d8-a7fb-5086eb1f2baf",
+              "name": "Composite request executed successfully",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"POST\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {\n        \"description\": \"The request body for the subrequest\"\n      },\n      \"httpHeaders\": {\n        \"sit7e7\": \"<string>\",\n        \"dolore_\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"PUT\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {\n        \"description\": \"The request body for the subrequest\"\n      },\n      \"httpHeaders\": {\n        \"sedc\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/composite",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "composite"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"compositeResponse\": [\n    {\n      \"body\": {\n        \"description\": \"The response body\"\n      },\n      \"httpHeaders\": {\n        \"mollitff\": \"<string>\",\n        \"in_71\": \"<string>\"\n      },\n      \"httpStatusCode\": \"<integer>\",\n      \"referenceId\": \"<string>\"\n    },\n    {\n      \"body\": {\n        \"description\": \"The response body\"\n      },\n      \"httpHeaders\": {\n        \"culpa_ff6\": \"<string>\",\n        \"do2f9\": \"<string>\",\n        \"dolor_2\": \"<string>\"\n      },\n      \"httpStatusCode\": \"<integer>\",\n      \"referenceId\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:15:23.000Z",
+              "updatedAt": "2026-06-05T15:15:23.000Z",
+              "uid": "35240-fab65409-0c0b-46d8-a7fb-5086eb1f2baf"
+            },
+            {
+              "id": "49f9a465-1d2e-4f64-a743-5a17f6867572",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"POST\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {\n        \"description\": \"The request body for the subrequest\"\n      },\n      \"httpHeaders\": {\n        \"sit7e7\": \"<string>\",\n        \"dolore_\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"PUT\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {\n        \"description\": \"The request body for the subrequest\"\n      },\n      \"httpHeaders\": {\n        \"sedc\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/composite",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "composite"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:23.000Z",
+              "updatedAt": "2026-06-05T15:15:23.000Z",
+              "uid": "35240-49f9a465-1d2e-4f64-a743-5a17f6867572"
+            },
+            {
+              "id": "8cd8e956-de93-4f0e-b357-efc1c5765736",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"POST\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {\n        \"description\": \"The request body for the subrequest\"\n      },\n      \"httpHeaders\": {\n        \"sit7e7\": \"<string>\",\n        \"dolore_\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"PUT\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {\n        \"description\": \"The request body for the subrequest\"\n      },\n      \"httpHeaders\": {\n        \"sedc\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/composite",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "composite"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:23.000Z",
+              "updatedAt": "2026-06-05T15:15:23.000Z",
+              "uid": "35240-8cd8e956-de93-4f0e-b357-efc1c5765736"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:23.000Z",
+          "updatedAt": "2026-06-05T15:15:23.000Z",
+          "uid": "35240-45e8fbd9-f3cb-4800-b2a1-6e2682ee32ee"
+        }
+      ],
+      "id": "01108102-a828-4cc7-9c5c-644e9ad474a4",
+      "createdAt": "2026-06-05T15:15:23.000Z",
+      "updatedAt": "2026-06-05T15:15:23.000Z",
+      "uid": "35240-01108102-a828-4cc7-9c5c-644e9ad474a4"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "instance",
+      "value": "yourInstance"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0"
+    }
+  ]
+}

@@ -1,0 +1,352 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports"
+          },
+          "docs": "Returns a list of recently used reports. Each report in the list includes the report ID, name, URL, and description."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get report metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ]
+          },
+          "docs": "Retrieves report metadata, including report type, format, groupings, filters, and summary fields for the specified report."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates report metadata including filters, groupings, and other settings. Only report properties included in the request body are updated."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ]
+          },
+          "docs": "Deletes the specified report. The report must not be currently in use by a dashboard component."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Describe a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId/describe",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed metadata about a report including the report type metadata, grouping column information, summary field information, and extended metadata. This information can be used to build dynamic report filter UIs."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Run a report synchronously",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId?includeDetails=true",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs a report synchronously and returns the report results. Optionally apply dynamic filters, aggregates, and groupings. Use includeDetails query parameter to include detail rows."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Report Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List report instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId/instances",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ]
+          },
+          "docs": "Returns a list of instances for the specified report that have been run asynchronously. Each instance includes the status and completion date."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Run a report asynchronously",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId/instances",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs a report asynchronously. Returns the report instance ID which can be used to retrieve the results when the report has finished running."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get report instance results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId/instances/:instanceId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              },
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report instance"
+              }
+            ]
+          },
+          "docs": "Retrieves the results of an asynchronous report run using the instance ID. If the report is still running, the status is returned instead of results."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Report Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List available report types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reportTypes"
+          },
+          "docs": "Returns a list of report types available in the org. Each report type includes its label and API name."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Describe a report type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reportTypes/:reportType",
+            "params": [
+              {
+                "name": "reportType",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the report type"
+              }
+            ]
+          },
+          "docs": "Returns metadata about the specified report type including available fields, groupable fields, and filterable fields."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dashboards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List dashboards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards"
+          },
+          "docs": "Returns a list of recently used dashboards. Each dashboard in the list includes the dashboard ID, name, URL, and folder information."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get dashboard metadata and results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards/:dashboardId",
+            "params": [
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce dashboard ID"
+              }
+            ]
+          },
+          "docs": "Returns the metadata and cached results for the specified dashboard, including component data, status, and filter information."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Refresh a dashboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards/:dashboardId",
+            "params": [
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce dashboard ID"
+              }
+            ]
+          },
+          "docs": "Refreshes the specified dashboard by re-running all component reports. Dashboard refresh requests are limited to 200 per hour."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a dashboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards/:dashboardId",
+            "params": [
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce dashboard ID"
+              }
+            ]
+          },
+          "docs": "Deletes the specified dashboard."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get dashboard refresh status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards/:dashboardId/status",
+            "params": [
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce dashboard ID"
+              }
+            ]
+          },
+          "docs": "Returns the status of the most recent refresh for the specified dashboard, including component-level status information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

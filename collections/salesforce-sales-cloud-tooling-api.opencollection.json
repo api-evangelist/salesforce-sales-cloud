@@ -1,0 +1,308 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Tooling API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tooling SObjects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List available Tooling API sObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/sobjects"
+          },
+          "docs": "Lists all available Tooling API sObjects and their metadata, including ApexClass, ApexTrigger, ApexComponent, ApexPage, ApexLog, MetadataContainer, and other developer-focused objects."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get Tooling sObject basic information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/sobjects/:sObjectName",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              }
+            ]
+          },
+          "docs": "Retrieves basic metadata for the specified Tooling API sObject, including default field values and recently accessed records."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create a Tooling sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/sobjects/:sObjectName",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new record for the specified Tooling API sObject. For example, creating an ApexClass record will create and compile a new Apex class in the org."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get a Tooling sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The Salesforce record ID"
+              }
+            ]
+          },
+          "docs": "Retrieves a Tooling API record by its ID. For example, retrieve an ApexClass record to get its source code, metadata, and compilation status."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update a Tooling sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The Salesforce record ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing Tooling API record. For example, updating an ApexClass record will update and recompile the Apex class."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a Tooling sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The Salesforce record ID"
+              }
+            ]
+          },
+          "docs": "Deletes a Tooling API record by its ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tooling SObject Describe",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Describe a Tooling sObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/sobjects/:sObjectName/describe",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              }
+            ]
+          },
+          "docs": "Completely describes the individual metadata for the specified Tooling API sObject, including all fields, child relationships, and other metadata attributes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Tooling Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Execute a Tooling API SOQL query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/query",
+            "params": [
+              {
+                "name": "q",
+                "value": "SELECT Id, Name, Body FROM ApexClass WHERE NamespacePrefix = null",
+                "type": "query",
+                "description": "The SOQL query string targeting Tooling API objects"
+              }
+            ]
+          },
+          "docs": "Executes a SOQL query against Tooling API objects. Use this to query ApexClass, ApexTrigger, ApexLog, ApexTestQueueItem, and other Tooling API sObjects."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Completions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get Apex code completions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/completions",
+            "params": [
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of completions to return"
+              }
+            ]
+          },
+          "docs": "Returns code completions for Apex system type information. Useful for building IDE-like features for Salesforce development tools."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Execute Anonymous",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Execute anonymous Apex code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/executeAnonymous",
+            "params": [
+              {
+                "name": "anonymousBody",
+                "value": "",
+                "type": "query",
+                "description": "The Apex code to execute"
+              }
+            ]
+          },
+          "docs": "Executes a block of anonymous Apex code. The code does not need to be part of an Apex class. Returns compilation and execution results, including any debug log output."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Run Tests",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Run Apex tests asynchronously",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/runTestsAsynchronous",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs one or more Apex test methods asynchronously. Returns the test run ID which can be used to check status and retrieve results."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Run Apex tests synchronously",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/tooling/runTestsSynchronous",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs specified Apex tests synchronously and returns the results inline. Best for small numbers of tests that complete quickly."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

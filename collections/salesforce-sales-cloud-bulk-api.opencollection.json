@@ -1,0 +1,381 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Bulk API 2.0",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ingest Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List all ingest jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/ingest",
+            "params": [
+              {
+                "name": "isPkChunkingEnabled",
+                "value": "",
+                "type": "query",
+                "description": "Filter by PK Chunking enabled status"
+              },
+              {
+                "name": "jobType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job type"
+              },
+              {
+                "name": "concurrencyMode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by concurrency mode"
+              },
+              {
+                "name": "queryLocator",
+                "value": "",
+                "type": "query",
+                "description": "Query locator for paginating through results"
+              }
+            ]
+          },
+          "docs": "Retrieves all ingest jobs in the org. Results include jobs that have been opened, those in progress, and completed jobs in all states."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/ingest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ingest job for bulk insert, update, upsert, or delete operations. After creating the job, upload CSV data using the job ID, then close the job to begin processing."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get ingest job information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/ingest/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about an ingest job, including its current state, number of records processed, and any errors."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Close, abort, or delete an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/ingest/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the state of an ingest job. Set the state to UploadComplete to close the job and begin processing, or Aborted to abort the job. A job must be closed before Salesforce processes the uploaded data."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/ingest/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Deletes an ingest job. The job must be in a terminal state (JobComplete, Aborted, or Failed) before it can be deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Ingest Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Upload data for an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/ingest/:jobId/batches",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Uploads CSV data for an ingest job. The job must be in the Open state. You can upload data in multiple requests, each up to 150 MB. The CSV data must include a header row with field API names."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get successful results for an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/ingest/:jobId/successfulResults",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of successfully processed records for a completed ingest job. Results are returned in CSV format."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get failed results for an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/ingest/:jobId/failedResults",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of failed records for a completed ingest job. Results are returned in CSV format and include error information for each failed record."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get unprocessed records for an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/ingest/:jobId/unprocessedrecords",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Retrieves a list of unprocessed records for a completed ingest job. These are records that were not processed due to the job being aborted or hitting limits."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List all query jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/query",
+            "params": [
+              {
+                "name": "isPkChunkingEnabled",
+                "value": "",
+                "type": "query",
+                "description": "Filter by PK Chunking enabled status"
+              },
+              {
+                "name": "jobType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job type"
+              },
+              {
+                "name": "queryLocator",
+                "value": "",
+                "type": "query",
+                "description": "Query locator for paginating through results"
+              }
+            ]
+          },
+          "docs": "Retrieves all query jobs in the org. Results include jobs in all states including completed, failed, and aborted jobs."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create a query job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new query job to extract data from Salesforce using SOQL. The query runs asynchronously and results can be retrieved when the job completes."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get query job information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/query/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a query job including its current state, number of records processed, and the SOQL query."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Abort a query job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/query/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Aborts a query job. Only jobs that have not yet completed can be aborted."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a query job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/query/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Deletes a query job. The job must be in a terminal state before it can be deleted."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get query job results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/jobs/query/:jobId/results",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              },
+              {
+                "name": "locator",
+                "value": "",
+                "type": "query",
+                "description": "Locator value for retrieving the next set of results"
+              },
+              {
+                "name": "maxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per request"
+              }
+            ]
+          },
+          "docs": "Retrieves the results of a completed query job in CSV format. Use the locator and maxRecords parameters to paginate through large result sets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

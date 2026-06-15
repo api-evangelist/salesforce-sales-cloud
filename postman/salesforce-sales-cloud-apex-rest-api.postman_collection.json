@@ -1,0 +1,1662 @@
+{
+  "info": {
+    "_postman_id": "72b70163-0bb7-4dbd-9f60-ec847e514713",
+    "name": "Salesforce Sales Cloud Salesforce Apex REST API",
+    "description": "Create custom REST endpoints in Salesforce using Apex classes annotated with @RestResource. Supports OAuth 2.0 authentication and JSON and XML request and response formats. Custom Apex REST endpoints are accessed under the /services/apexrest/ URL namespace. Each endpoint is defined by an Apex class with @HttpGet, @HttpPost, @HttpPatch, @HttpPut, and @HttpDelete annotated methods.\n\nContact Support:\n Name: Salesforce Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:16:14.000Z",
+    "updatedAt": "2026-06-05T15:16:14.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-72b70163-0bb7-4dbd-9f60-ec847e514713"
+  },
+  "item": [
+    {
+      "name": "{resourcePath}",
+      "item": [
+        {
+          "name": "Salesforce Sales Cloud GET request to a custom Apex REST endpoint",
+          "id": "02215f61-4a3c-46ef-bc2e-b5d3dc405e38",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:resourcePath",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":resourcePath"
+              ],
+              "variable": [
+                {
+                  "id": "94c22c59-89cb-4f2d-a55d-5b0c5d7888a8",
+                  "key": "resourcePath",
+                  "value": "<string>",
+                  "description": "(Required) The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+                }
+              ]
+            },
+            "description": "Executes the @HttpGet annotated method on the Apex class mapped to the specified resource path. The resource path is defined by the urlMapping property of the @RestResource annotation on the Apex class. Response format depends on the Apex class implementation."
+          },
+          "response": [
+            {
+              "id": "8e6fae58-2e0f-4365-9bba-02baebdb0f0b",
+              "name": "Successful response from the custom endpoint",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"description\": \"Response structure defined by the Apex REST class\"\n}",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-8e6fae58-2e0f-4365-9bba-02baebdb0f0b"
+            },
+            {
+              "id": "8e437bbc-ba7d-44e9-9e28-cfcf6871cdb3",
+              "name": "Invalid request parameters or body",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-8e437bbc-ba7d-44e9-9e28-cfcf6871cdb3"
+            },
+            {
+              "id": "ee71f3ee-5cc9-43e9-b048-d0d9c8e1a377",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-ee71f3ee-5cc9-43e9-b048-d0d9c8e1a377"
+            },
+            {
+              "id": "f698dac1-2461-4455-b681-9799c73d7743",
+              "name": "Resource or endpoint not found",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-f698dac1-2461-4455-b681-9799c73d7743"
+            },
+            {
+              "id": "7500d5aa-99ee-47b1-b8b9-f20ce969c643",
+              "name": "Unhandled Apex exception or internal server error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-7500d5aa-99ee-47b1-b8b9-f20ce969c643"
+            }
+          ],
+          "createdAt": "2026-06-05T15:16:15.000Z",
+          "updatedAt": "2026-06-05T15:16:15.000Z",
+          "uid": "35240-02215f61-4a3c-46ef-bc2e-b5d3dc405e38"
+        },
+        {
+          "name": "Salesforce Sales Cloud POST request to a custom Apex REST endpoint",
+          "id": "0a3ec522-6e3d-4475-9a21-22f0a1c9056f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:resourcePath",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":resourcePath"
+              ],
+              "variable": [
+                {
+                  "id": "9dc93b95-b817-41e8-aebd-79e94ee98f28",
+                  "key": "resourcePath",
+                  "value": "<string>",
+                  "description": "(Required) The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+                }
+              ]
+            },
+            "description": "Executes the @HttpPost annotated method on the Apex class mapped to the specified resource path. The request body is deserialized into the method's parameters."
+          },
+          "response": [
+            {
+              "id": "109fd3d0-445f-4dc1-849d-199df5e701df",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"description\": \"Response structure defined by the Apex REST class\"\n}",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-109fd3d0-445f-4dc1-849d-199df5e701df"
+            },
+            {
+              "id": "ad58cf4f-8f3b-4e87-9189-8004d5acde64",
+              "name": "Resource created",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"description\": \"Response structure defined by the Apex REST class\"\n}",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-ad58cf4f-8f3b-4e87-9189-8004d5acde64"
+            },
+            {
+              "id": "a3e536c5-2f82-4a75-845b-bd3f6758b99e",
+              "name": "Invalid request parameters or body",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-a3e536c5-2f82-4a75-845b-bd3f6758b99e"
+            },
+            {
+              "id": "726f7305-f362-496a-8136-400cc3293734",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-726f7305-f362-496a-8136-400cc3293734"
+            },
+            {
+              "id": "bdab4370-541c-4972-b9e8-af5934b861b1",
+              "name": "Unhandled Apex exception or internal server error",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-bdab4370-541c-4972-b9e8-af5934b861b1"
+            }
+          ],
+          "createdAt": "2026-06-05T15:16:15.000Z",
+          "updatedAt": "2026-06-05T15:16:15.000Z",
+          "uid": "35240-0a3ec522-6e3d-4475-9a21-22f0a1c9056f"
+        },
+        {
+          "name": "Salesforce Sales Cloud PATCH request to a custom Apex REST endpoint",
+          "id": "6694dd3d-effb-467c-88e7-2be002c1b49a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:resourcePath",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":resourcePath"
+              ],
+              "variable": [
+                {
+                  "id": "77b544f9-ffbb-49d1-ade1-552ab7453684",
+                  "key": "resourcePath",
+                  "value": "<string>",
+                  "description": "(Required) The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+                }
+              ]
+            },
+            "description": "Executes the @HttpPatch annotated method on the Apex class mapped to the specified resource path. Typically used for partial updates."
+          },
+          "response": [
+            {
+              "id": "2d226af3-a3d0-41d7-b892-fa150af70142",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"description\": \"Response structure defined by the Apex REST class\"\n}",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-2d226af3-a3d0-41d7-b892-fa150af70142"
+            },
+            {
+              "id": "e37ee592-292a-4e16-95b9-efbf4a7cbaf1",
+              "name": "Invalid request parameters or body",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-e37ee592-292a-4e16-95b9-efbf4a7cbaf1"
+            },
+            {
+              "id": "498954ae-0ff7-4605-b725-d94fff616e62",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-498954ae-0ff7-4605-b725-d94fff616e62"
+            },
+            {
+              "id": "0d91b9d5-c5c4-4030-8cee-bcfe20d1acc8",
+              "name": "Resource or endpoint not found",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-0d91b9d5-c5c4-4030-8cee-bcfe20d1acc8"
+            },
+            {
+              "id": "66fe613f-8926-42a5-bcc0-a66fdd91d357",
+              "name": "Unhandled Apex exception or internal server error",
+              "originalRequest": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-66fe613f-8926-42a5-bcc0-a66fdd91d357"
+            }
+          ],
+          "createdAt": "2026-06-05T15:16:15.000Z",
+          "updatedAt": "2026-06-05T15:16:15.000Z",
+          "uid": "35240-6694dd3d-effb-467c-88e7-2be002c1b49a"
+        },
+        {
+          "name": "Salesforce Sales Cloud PUT request to a custom Apex REST endpoint",
+          "id": "7a89e5e7-5f92-4c3d-9a1c-e821736b201a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/:resourcePath",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":resourcePath"
+              ],
+              "variable": [
+                {
+                  "id": "a749d419-90b2-4508-a720-650bbb359c53",
+                  "key": "resourcePath",
+                  "value": "<string>",
+                  "description": "(Required) The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+                }
+              ]
+            },
+            "description": "Executes the @HttpPut annotated method on the Apex class mapped to the specified resource path. Typically used for full replacements or upserts."
+          },
+          "response": [
+            {
+              "id": "2e46e45d-2d4c-4eff-bc2b-fbb9ebec8085",
+              "name": "Successful response",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"description\": \"Response structure defined by the Apex REST class\"\n}",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-2e46e45d-2d4c-4eff-bc2b-fbb9ebec8085"
+            },
+            {
+              "id": "ec7635db-37ae-468d-b100-28f7958a3bb9",
+              "name": "Resource created",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"description\": \"Response structure defined by the Apex REST class\"\n}",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-ec7635db-37ae-468d-b100-28f7958a3bb9"
+            },
+            {
+              "id": "e616b709-cf32-4557-9dc7-3ca2d5163ec2",
+              "name": "Invalid request parameters or body",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-e616b709-cf32-4557-9dc7-3ca2d5163ec2"
+            },
+            {
+              "id": "8a21fe3d-1fb0-4615-a7bb-d040c62c57a9",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-8a21fe3d-1fb0-4615-a7bb-d040c62c57a9"
+            },
+            {
+              "id": "23c8b849-6085-4cf2-831d-b0f4a37b421a",
+              "name": "Unhandled Apex exception or internal server error",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"Request body defined by the Apex REST class\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-23c8b849-6085-4cf2-831d-b0f4a37b421a"
+            }
+          ],
+          "createdAt": "2026-06-05T15:16:15.000Z",
+          "updatedAt": "2026-06-05T15:16:15.000Z",
+          "uid": "35240-7a89e5e7-5f92-4c3d-9a1c-e821736b201a"
+        },
+        {
+          "name": "Salesforce Sales Cloud DELETE request to a custom Apex REST endpoint",
+          "id": "d6e2fb68-a146-4518-9405-5d65718ccc40",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/:resourcePath",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ":resourcePath"
+              ],
+              "variable": [
+                {
+                  "id": "92b9e0b7-5819-4479-9a93-63300748c0fe",
+                  "key": "resourcePath",
+                  "value": "<string>",
+                  "description": "(Required) The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+                }
+              ]
+            },
+            "description": "Executes the @HttpDelete annotated method on the Apex class mapped to the specified resource path. The record to delete is typically identified by a query parameter or path segment."
+          },
+          "response": [
+            {
+              "id": "2909467a-8cb0-4ace-8aee-19522bcc07fa",
+              "name": "Resource deleted successfully",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-2909467a-8cb0-4ace-8aee-19522bcc07fa"
+            },
+            {
+              "id": "316d5366-3f3d-4d12-95b5-a90dcac26358",
+              "name": "Resource deleted, no content",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-316d5366-3f3d-4d12-95b5-a90dcac26358"
+            },
+            {
+              "id": "ab7c0b33-fd1f-4e8e-9a23-633dfd04cbf8",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-ab7c0b33-fd1f-4e8e-9a23-633dfd04cbf8"
+            },
+            {
+              "id": "80b3e8f2-95fa-4911-b99d-5b48b569ef2f",
+              "name": "Resource or endpoint not found",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-80b3e8f2-95fa-4911-b99d-5b48b569ef2f"
+            },
+            {
+              "id": "415a3467-9d02-427e-b8ec-2b6f59885c86",
+              "name": "Unhandled Apex exception or internal server error",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/:resourcePath",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ":resourcePath"
+                  ],
+                  "variable": [
+                    {
+                      "key": "resourcePath"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:15.000Z",
+              "updatedAt": "2026-06-05T15:16:15.000Z",
+              "uid": "35240-415a3467-9d02-427e-b8ec-2b6f59885c86"
+            }
+          ],
+          "createdAt": "2026-06-05T15:16:15.000Z",
+          "updatedAt": "2026-06-05T15:16:15.000Z",
+          "uid": "35240-d6e2fb68-a146-4518-9405-5d65718ccc40"
+        }
+      ],
+      "id": "21fc0401-9fae-4b10-b542-4ede2379ed0a",
+      "createdAt": "2026-06-05T15:16:15.000Z",
+      "updatedAt": "2026-06-05T15:16:15.000Z",
+      "uid": "35240-21fc0401-9fae-4b10-b542-4ede2379ed0a"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "instance",
+      "value": "yourInstance"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{instance}}.salesforce.com/services/apexrest"
+    }
+  ]
+}

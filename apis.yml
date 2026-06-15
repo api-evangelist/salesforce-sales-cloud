@@ -1,5 +1,6 @@
 name: Salesforce Sales Cloud
-description: Enterprise CRM platform providing sales automation, customer relationship management, and business intelligence
+description: >-
+  Enterprise CRM platform providing sales automation, customer relationship management, and business intelligence
   capabilities through REST and SOAP APIs.
 image: https://www.salesforce.com/content/dam/web/en_us/www/images/salesforce-logo.svg
 url: https://www.salesforce.com/products/sales-cloud/overview/
@@ -14,7 +15,8 @@ tags:
 - Sales
 apis:
 - name: Salesforce REST API
-  description: Primary REST API for accessing Salesforce data including accounts, contacts, leads, opportunities, and custom
+  description: >-
+    Primary REST API for accessing Salesforce data including accounts, contacts, leads, opportunities, and custom
     objects. Supports JSON and XML formats with a lightweight request and response framework.
   image: https://www.salesforce.com/content/dam/web/en_us/www/images/salesforce-logo.svg
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
@@ -31,39 +33,17 @@ apis:
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-rest-api-openapi.yml
   - type: Authentication
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
   - type: Postman Collection
     url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
   - type: GettingStarted
     url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
   - type: ChangeLog
     url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
-  - type: NaftikoCapability
-    url: capabilities/rest-limits.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-process-approvals.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-query.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-recently-viewed.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-resources.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-sobject.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-sobject-collections.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-sobject-describe.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-sobject-rows.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-search.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-tabs.yaml
-  - type: NaftikoCapability
-    url: capabilities/rest-themes.yaml
 - name: Salesforce SOAP API
-  description: Comprehensive SOAP-based API for enterprise integrations with full CRUD operations on Salesforce objects. Uses
+  description: >-
+    Comprehensive SOAP-based API for enterprise integrations with full CRUD operations on Salesforce objects. Uses
     WSDL files to define parameters for accessing data through the API.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/
   baseURL: https://yourInstance.salesforce.com/services/Soap/u/59.0
@@ -82,8 +62,9 @@ apis:
   - type: GettingStarted
     url: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_steps.htm
 - name: Bulk API 2.0
-  description: Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than
-    REST API. Supports CSV, JSON, and XML data formats.
+  description: >-
+    Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST
+    API. Supports CSV, JSON, and XML data formats.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/jobs/ingest
   tags:
@@ -100,16 +81,9 @@ apis:
     url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-bulk-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/bulk-ingest-data.yaml
-  - type: NaftikoCapability
-    url: capabilities/bulk-ingest-jobs.yaml
-  - type: NaftikoCapability
-    url: capabilities/bulk-query-jobs.yaml
-  - type: NaftikoCapability
-    url: capabilities/bulk-query-results.yaml
 - name: Metadata API
-  description: API for retrieving, deploying, creating, updating, or deleting customization information such as custom object
+  description: >-
+    API for retrieving, deploying, creating, updating, or deleting customization information such as custom object
     definitions and page layouts. Essential for managing org configuration and deployment workflows.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/
   baseURL: https://yourInstance.salesforce.com/services/Soap/m/59.0
@@ -126,7 +100,8 @@ apis:
   - type: ChangeLog
     url: https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_rns.htm
 - name: Streaming API
-  description: Push notification API using Bayeux protocol to receive near real-time updates when data changes in Salesforce.
+  description: >-
+    Push notification API using Bayeux protocol to receive near real-time updates when data changes in Salesforce.
     Enables event-driven integrations without polling.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/
   baseURL: https://yourInstance.salesforce.com/cometd/59.0
@@ -139,9 +114,11 @@ apis:
   - type: Documentation
     url: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/intro_stream.htm
   - type: Examples
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/code_sample_java_client_intro.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/code_sample_java_client_intro.htm
 - name: Platform Events API
-  description: Event-driven architecture API for publishing and subscribing to custom events for app integration. Supports
+  description: >-
+    Event-driven architecture API for publishing and subscribing to custom events for app integration. Supports
     defining custom event channels with schema for loosely coupled systems.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/sobjects
@@ -152,17 +129,16 @@ apis:
   - Pub/Sub
   properties:
   - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_intro.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_intro.htm
   - type: Guide
-    url: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_publish_api.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_publish_api.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-platform-events-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/platform-events-event-schema.yaml
-  - type: NaftikoCapability
-    url: capabilities/platform-events-platform-events.yaml
 - name: Analytics REST API
-  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into
+  description: >-
+    Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into
     custom applications and automating report generation.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/analytics
@@ -173,19 +149,13 @@ apis:
   - Reports
   properties:
   - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-analytics-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/analytics-dashboards.yaml
-  - type: NaftikoCapability
-    url: capabilities/analytics-report-instances.yaml
-  - type: NaftikoCapability
-    url: capabilities/analytics-report-types.yaml
-  - type: NaftikoCapability
-    url: capabilities/analytics-reports.yaml
 - name: Salesforce Composite API
-  description: Executes a series of REST API requests in a single call, reducing round trips between client and server. Supports
+  description: >-
+    Executes a series of REST API requests in a single call, reducing round trips between client and server. Supports
     composite batches, composite requests, and composite graphs for complex multi-step operations.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/composite
@@ -200,21 +170,13 @@ apis:
   - type: Reference
     url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_composite.htm
   - type: Guide
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_graph_introduction.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_graph_introduction.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-composite-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/composite-composite.yaml
-  - type: NaftikoCapability
-    url: capabilities/composite-composite-batch.yaml
-  - type: NaftikoCapability
-    url: capabilities/composite-composite-graph.yaml
-  - type: NaftikoCapability
-    url: capabilities/composite-sobject-collections.yaml
-  - type: NaftikoCapability
-    url: capabilities/composite-sobject-tree.yaml
 - name: Salesforce GraphQL API
-  description: Query Salesforce data using GraphQL, allowing clients to request exactly the fields they need in a single request.
+  description: >-
+    Query Salesforce data using GraphQL, allowing clients to request exactly the fields they need in a single request.
     Reduces payload size and supports aggregation across object relationships.
   humanURL: https://developer.salesforce.com/docs/platform/graphql/overview
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/graphql
@@ -232,10 +194,11 @@ apis:
     url: https://developer.salesforce.com/docs/platform/graphql/guide/requests-and-responses.html
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-graphql-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/graphql-graphql.yaml
+  - url: graphql/salesforce-sales-cloud-graphql.md
+    type: GraphQL
 - name: Salesforce Tooling API
-  description: Build custom development tools for Salesforce applications by accessing metadata about Apex classes, triggers,
+  description: >-
+    Build custom development tools for Salesforce applications by accessing metadata about Apex classes, triggers,
     Visualforce pages, and other development artifacts. Supports both REST and SOAP interfaces.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/tooling
@@ -250,24 +213,14 @@ apis:
   - type: Reference
     url: https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
   - type: Examples
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-tooling-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/tooling-completions.yaml
-  - type: NaftikoCapability
-    url: capabilities/tooling-execute-anonymous.yaml
-  - type: NaftikoCapability
-    url: capabilities/tooling-run-tests.yaml
-  - type: NaftikoCapability
-    url: capabilities/tooling-tooling-query.yaml
-  - type: NaftikoCapability
-    url: capabilities/tooling-tooling-sobject-describe.yaml
-  - type: NaftikoCapability
-    url: capabilities/tooling-tooling-sobjects.yaml
 - name: Salesforce Pub/Sub API
-  description: gRPC-based API for publishing and subscribing to platform events, change data capture events, and real-time
-    event monitoring events. Uses Apache Avro format for efficient binary event message delivery over HTTP/2.
+  description: >-
+    gRPC-based API for publishing and subscribing to platform events, change data capture events, and real-time event
+    monitoring events. Uses Apache Avro format for efficient binary event message delivery over HTTP/2.
   humanURL: https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html
   baseURL: https://yourInstance.salesforce.com
   tags:
@@ -283,8 +236,9 @@ apis:
   - type: Reference
     url: https://developer.salesforce.com/docs/platform/pub-sub-api/guide/pub-sub-endpoints.html
 - name: Salesforce Change Data Capture API
-  description: Receive near-real-time notifications of changes to Salesforce records including creates, updates, deletes,
-    and undeletes. Enables synchronization of external data stores with Salesforce data.
+  description: >-
+    Receive near-real-time notifications of changes to Salesforce records including creates, updates, deletes, and
+    undeletes. Enables synchronization of external data stores with Salesforce data.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0
   tags:
@@ -298,15 +252,13 @@ apis:
   - type: Guide
     url: https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
   - type: Reference
-    url: https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-change-data-capture-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/change-data-capture-change-events.yaml
-  - type: NaftikoCapability
-    url: capabilities/change-data-capture-event-schema.yaml
 - name: Salesforce Connect REST API
-  description: Integrate mobile apps, intranet sites, and third-party web applications with Salesforce, including access to
+  description: >-
+    Integrate mobile apps, intranet sites, and third-party web applications with Salesforce, including access to
     Chatter feeds, groups, users, and collaboration features.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/connect
@@ -328,21 +280,10 @@ apis:
     url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-connect-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/connect-communities.yaml
-  - type: NaftikoCapability
-    url: capabilities/connect-feed-items.yaml
-  - type: NaftikoCapability
-    url: capabilities/connect-feeds.yaml
-  - type: NaftikoCapability
-    url: capabilities/connect-files.yaml
-  - type: NaftikoCapability
-    url: capabilities/connect-groups.yaml
-  - type: NaftikoCapability
-    url: capabilities/connect-users.yaml
 - name: Salesforce User Interface API
-  description: Build custom user interfaces for Salesforce data using the same API that powers Lightning Experience. Returns
-    data and metadata in a single response with layout, picklist, and field-level security awareness.
+  description: >-
+    Build custom user interfaces for Salesforce data using the same API that powers Lightning Experience. Returns data
+    and metadata in a single response with layout, picklist, and field-level security awareness.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/ui-api
   tags:
@@ -357,22 +298,9 @@ apis:
     url: https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-ui-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/ui-layouts.yaml
-  - type: NaftikoCapability
-    url: capabilities/ui-list-views.yaml
-  - type: NaftikoCapability
-    url: capabilities/ui-lookups.yaml
-  - type: NaftikoCapability
-    url: capabilities/ui-object-info.yaml
-  - type: NaftikoCapability
-    url: capabilities/ui-picklist-values.yaml
-  - type: NaftikoCapability
-    url: capabilities/ui-record-ui.yaml
-  - type: NaftikoCapability
-    url: capabilities/ui-records.yaml
 - name: Salesforce Apex REST API
-  description: Create custom REST endpoints in Salesforce using Apex classes annotated with REST resource annotations. Supports
+  description: >-
+    Create custom REST endpoints in Salesforce using Apex classes annotated with REST resource annotations. Supports
     OAuth 2.0 authentication and JSON and XML request and response formats.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
   baseURL: https://yourInstance.salesforce.com/services/apexrest
@@ -386,9 +314,9 @@ apis:
     url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-apex-rest-api-openapi.yml
-  - type: NaftikoCapability
-    url: capabilities/apex-rest-custom-endpoints.yaml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/salesforce-sales-cloud/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
@@ -483,7 +411,8 @@ common:
 - type: Trailhead Learning
   url: https://trailhead.salesforce.com/en/content/learn/modules/api_basics
 - type: API Limits
-  url: https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_api.htm
+  url: >-
+    https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_api.htm
 - type: API Library
   url: https://developer.salesforce.com/docs/apis
 - type: Postman Collection

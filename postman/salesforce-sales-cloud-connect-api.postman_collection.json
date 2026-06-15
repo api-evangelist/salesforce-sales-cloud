@@ -1,0 +1,2876 @@
+{
+  "info": {
+    "_postman_id": "f064c58c-7214-41be-abe9-9748061418ac",
+    "name": "Salesforce Sales Cloud Salesforce Connect REST API",
+    "description": "Integrate mobile apps, intranet sites, and third-party web applications with Salesforce. Provides access to Chatter feeds, groups, users, files, and collaboration features. Responses are localized, structured for presentation, and can be filtered to contain only what the app needs.\n\nContact Support:\n Name: Salesforce Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:16:01.000Z",
+    "updatedAt": "2026-06-05T15:16:01.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f064c58c-7214-41be-abe9-9748061418ac"
+  },
+  "item": [
+    {
+      "name": "communities",
+      "item": [
+        {
+          "name": "Salesforce Sales Cloud List communities",
+          "id": "d46f3a7d-2d0d-450b-9fb6-2b342cacd14d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/communities",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "communities"
+              ]
+            },
+            "description": "Returns a list of communities (Experience Cloud sites) available to the current user. Includes community name, URL, status, and description."
+          },
+          "response": [
+            {
+              "id": "3d953326-5dda-4d2b-915d-7c865af97e11",
+              "name": "Successfully retrieved communities",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/communities",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "communities"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"communities\": [\n    {\n      \"allowChatterAccessWithoutLogin\": \"<boolean>\",\n      \"allowMembersToFlag\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"invitationsEnabled\": \"<boolean>\",\n      \"knowledgeableEnabled\": \"<boolean>\",\n      \"loginUrl\": \"<string>\",\n      \"name\": \"<string>\",\n      \"nicknameDisplayEnabled\": \"<boolean>\",\n      \"privateMessagesEnabled\": \"<boolean>\",\n      \"reputationEnabled\": \"<boolean>\",\n      \"sendWelcomeEmail\": \"<boolean>\",\n      \"siteAsContainerEnabled\": \"<boolean>\",\n      \"siteUrl\": \"<string>\",\n      \"status\": \"Live\",\n      \"url\": \"<string>\",\n      \"urlPathPrefix\": \"<string>\"\n    },\n    {\n      \"allowChatterAccessWithoutLogin\": \"<boolean>\",\n      \"allowMembersToFlag\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"invitationsEnabled\": \"<boolean>\",\n      \"knowledgeableEnabled\": \"<boolean>\",\n      \"loginUrl\": \"<string>\",\n      \"name\": \"<string>\",\n      \"nicknameDisplayEnabled\": \"<boolean>\",\n      \"privateMessagesEnabled\": \"<boolean>\",\n      \"reputationEnabled\": \"<boolean>\",\n      \"sendWelcomeEmail\": \"<boolean>\",\n      \"siteAsContainerEnabled\": \"<boolean>\",\n      \"siteUrl\": \"<string>\",\n      \"status\": \"Live\",\n      \"url\": \"<string>\",\n      \"urlPathPrefix\": \"<string>\"\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-3d953326-5dda-4d2b-915d-7c865af97e11"
+            },
+            {
+              "id": "9b1bcca5-49a4-4e8e-87e3-3195567b289e",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/communities",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "communities"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-9b1bcca5-49a4-4e8e-87e3-3195567b289e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:16:01.000Z",
+          "updatedAt": "2026-06-05T15:16:01.000Z",
+          "uid": "35240-d46f3a7d-2d0d-450b-9fb6-2b342cacd14d"
+        }
+      ],
+      "id": "64020694-54c0-451d-9149-754719889df3",
+      "createdAt": "2026-06-05T15:16:01.000Z",
+      "updatedAt": "2026-06-05T15:16:01.000Z",
+      "uid": "35240-64020694-54c0-451d-9149-754719889df3"
+    },
+    {
+      "name": "chatter",
+      "item": [
+        {
+          "name": "feeds",
+          "item": [
+            {
+              "name": "news",
+              "item": [
+                {
+                  "name": "me",
+                  "item": [
+                    {
+                      "name": "feed-elements",
+                      "item": [
+                        {
+                          "name": "Salesforce Sales Cloud Get news feed for current user",
+                          "id": "f99b0648-3727-4795-a7a6-a97bf99196ef",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/chatter/feeds/news/me/feed-elements?pageSize=25&pageToken=<string>&sort=LastModifiedDateDesc",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chatter",
+                                "feeds",
+                                "news",
+                                "me",
+                                "feed-elements"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Number of items per page (default 25, max 100)",
+                                  "key": "pageSize",
+                                  "value": "25"
+                                },
+                                {
+                                  "description": "Token for the next page of results",
+                                  "key": "pageToken",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "Sort order for feed elements",
+                                  "key": "sort",
+                                  "value": "LastModifiedDateDesc"
+                                }
+                              ]
+                            },
+                            "description": "Returns the news feed for the current user. The news feed includes updates from people and records the user follows, groups the user belongs to, and the user's own posts."
+                          },
+                          "response": [
+                            {
+                              "id": "d0cf33a1-b6bd-4395-b500-5455467ce332",
+                              "name": "Successfully retrieved news feed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/chatter/feeds/news/me/feed-elements?pageSize=25&pageToken=<string>&sort=LastModifiedDateDesc",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "chatter",
+                                    "feeds",
+                                    "news",
+                                    "me",
+                                    "feed-elements"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of items per page (default 25, max 100)",
+                                      "key": "pageSize",
+                                      "value": "25"
+                                    },
+                                    {
+                                      "description": "Token for the next page of results",
+                                      "key": "pageToken",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort order for feed elements",
+                                      "key": "sort",
+                                      "value": "LastModifiedDateDesc"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"elements\": [\n    {\n      \"id\": \"<string>\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Text\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"type\": \"Text\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      },\n      \"capabilities\": {\n        \"comments\": {\n          \"total\": \"<integer>\"\n        },\n        \"chatterLikes\": {\n          \"total\": \"<integer>\"\n        }\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"actor\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      \"feedElementType\": \"FeedItem\",\n      \"header\": {\n        \"text\": \"<string>\"\n      },\n      \"parent\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"type\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Mention\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"type\": \"Link\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      },\n      \"capabilities\": {\n        \"comments\": {\n          \"total\": \"<integer>\"\n        },\n        \"chatterLikes\": {\n          \"total\": \"<integer>\"\n        }\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"actor\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      \"feedElementType\": \"FeedItem\",\n      \"header\": {\n        \"text\": \"<string>\"\n      },\n      \"parent\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"type\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"nextPageUrl\": \"<string>\",\n  \"updatesUrl\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:16:01.000Z",
+                              "updatedAt": "2026-06-05T15:16:01.000Z",
+                              "uid": "35240-d0cf33a1-b6bd-4395-b500-5455467ce332"
+                            },
+                            {
+                              "id": "e2b6e326-c6a0-47eb-974d-9e73aac3b204",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/chatter/feeds/news/me/feed-elements?pageSize=25&pageToken=<string>&sort=LastModifiedDateDesc",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "chatter",
+                                    "feeds",
+                                    "news",
+                                    "me",
+                                    "feed-elements"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "Number of items per page (default 25, max 100)",
+                                      "key": "pageSize",
+                                      "value": "25"
+                                    },
+                                    {
+                                      "description": "Token for the next page of results",
+                                      "key": "pageToken",
+                                      "value": "<string>"
+                                    },
+                                    {
+                                      "description": "Sort order for feed elements",
+                                      "key": "sort",
+                                      "value": "LastModifiedDateDesc"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-06-05T15:16:01.000Z",
+                              "updatedAt": "2026-06-05T15:16:01.000Z",
+                              "uid": "35240-e2b6e326-c6a0-47eb-974d-9e73aac3b204"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:16:01.000Z",
+                          "updatedAt": "2026-06-05T15:16:01.000Z",
+                          "uid": "35240-f99b0648-3727-4795-a7a6-a97bf99196ef"
+                        }
+                      ],
+                      "id": "1afdee55-ee92-46f9-ab8f-238b3a9c5282",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-1afdee55-ee92-46f9-ab8f-238b3a9c5282"
+                    }
+                  ],
+                  "id": "b663107d-e4e2-4424-a605-646b96b09845",
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-b663107d-e4e2-4424-a605-646b96b09845"
+                }
+              ],
+              "id": "2ee36c13-69d6-40bc-893b-f36445a0d3ff",
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-2ee36c13-69d6-40bc-893b-f36445a0d3ff"
+            },
+            {
+              "name": "record",
+              "item": [
+                {
+                  "name": "{recordId}",
+                  "item": [
+                    {
+                      "name": "feed-elements",
+                      "item": [
+                        {
+                          "name": "Salesforce Sales Cloud Get feed for a specific record",
+                          "id": "0ccf6f69-5e77-4b8e-8f3e-4de7e8df135d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/chatter/feeds/record/:recordId/feed-elements?pageSize=25&pageToken=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chatter",
+                                "feeds",
+                                "record",
+                                ":recordId",
+                                "feed-elements"
+                              ],
+                              "query": [
+                                {
+                                  "key": "pageSize",
+                                  "value": "25"
+                                },
+                                {
+                                  "key": "pageToken",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "61a4a490-8084-4428-9037-c4d8bbe604a1",
+                                  "key": "recordId",
+                                  "value": "<string>",
+                                  "description": "(Required) The ID of the record"
+                                }
+                              ]
+                            },
+                            "description": "Returns the feed associated with the specified record. The record feed includes posts, comments, and tracked changes for the record."
+                          },
+                          "response": [
+                            {
+                              "id": "aaca0c53-3bad-4bfe-acd4-b6fb9ffa597d",
+                              "name": "Successfully retrieved record feed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/chatter/feeds/record/:recordId/feed-elements?pageSize=25&pageToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "chatter",
+                                    "feeds",
+                                    "record",
+                                    ":recordId",
+                                    "feed-elements"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageSize",
+                                      "value": "25"
+                                    },
+                                    {
+                                      "key": "pageToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "recordId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"elements\": [\n    {\n      \"id\": \"<string>\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Text\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"type\": \"Text\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      },\n      \"capabilities\": {\n        \"comments\": {\n          \"total\": \"<integer>\"\n        },\n        \"chatterLikes\": {\n          \"total\": \"<integer>\"\n        }\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"actor\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      \"feedElementType\": \"FeedItem\",\n      \"header\": {\n        \"text\": \"<string>\"\n      },\n      \"parent\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"type\": \"<string>\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Mention\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"type\": \"Link\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      },\n      \"capabilities\": {\n        \"comments\": {\n          \"total\": \"<integer>\"\n        },\n        \"chatterLikes\": {\n          \"total\": \"<integer>\"\n        }\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"actor\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      \"feedElementType\": \"FeedItem\",\n      \"header\": {\n        \"text\": \"<string>\"\n      },\n      \"parent\": {\n        \"id\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      \"type\": \"<string>\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"nextPageUrl\": \"<string>\",\n  \"updatesUrl\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:16:01.000Z",
+                              "updatedAt": "2026-06-05T15:16:01.000Z",
+                              "uid": "35240-aaca0c53-3bad-4bfe-acd4-b6fb9ffa597d"
+                            },
+                            {
+                              "id": "f2af9264-920f-4d5e-916c-cf8f5e4f0786",
+                              "name": "Authentication failed",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/chatter/feeds/record/:recordId/feed-elements?pageSize=25&pageToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "chatter",
+                                    "feeds",
+                                    "record",
+                                    ":recordId",
+                                    "feed-elements"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageSize",
+                                      "value": "25"
+                                    },
+                                    {
+                                      "key": "pageToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "recordId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-06-05T15:16:01.000Z",
+                              "updatedAt": "2026-06-05T15:16:01.000Z",
+                              "uid": "35240-f2af9264-920f-4d5e-916c-cf8f5e4f0786"
+                            },
+                            {
+                              "id": "5132fc7f-a890-4dd9-86ef-26f9f67ca497",
+                              "name": "Resource not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: oauth2",
+                                    "key": "Authorization",
+                                    "value": "<token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/chatter/feeds/record/:recordId/feed-elements?pageSize=25&pageToken=<string>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "chatter",
+                                    "feeds",
+                                    "record",
+                                    ":recordId",
+                                    "feed-elements"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageSize",
+                                      "value": "25"
+                                    },
+                                    {
+                                      "key": "pageToken",
+                                      "value": "<string>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "recordId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                              "createdAt": "2026-06-05T15:16:01.000Z",
+                              "updatedAt": "2026-06-05T15:16:01.000Z",
+                              "uid": "35240-5132fc7f-a890-4dd9-86ef-26f9f67ca497"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:16:01.000Z",
+                          "updatedAt": "2026-06-05T15:16:01.000Z",
+                          "uid": "35240-0ccf6f69-5e77-4b8e-8f3e-4de7e8df135d"
+                        }
+                      ],
+                      "id": "f3386d7c-3a93-4e06-a54a-d9995cc0dd1a",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-f3386d7c-3a93-4e06-a54a-d9995cc0dd1a"
+                    }
+                  ],
+                  "id": "632b8a07-7eb7-4df0-9022-0716a08abc21",
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-632b8a07-7eb7-4df0-9022-0716a08abc21"
+                }
+              ],
+              "id": "e3bb7b54-5007-4a16-ae45-d6a0a154bd94",
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-e3bb7b54-5007-4a16-ae45-d6a0a154bd94"
+            }
+          ],
+          "id": "4ab2f999-e175-42a5-ad76-b9951fc6d00c",
+          "createdAt": "2026-06-05T15:16:01.000Z",
+          "updatedAt": "2026-06-05T15:16:01.000Z",
+          "uid": "35240-4ab2f999-e175-42a5-ad76-b9951fc6d00c"
+        },
+        {
+          "name": "feed-elements",
+          "item": [
+            {
+              "name": "{feedElementId}",
+              "item": [
+                {
+                  "name": "capabilities",
+                  "item": [
+                    {
+                      "name": "comments",
+                      "item": [
+                        {
+                          "name": "items",
+                          "item": [
+                            {
+                              "name": "Salesforce Sales Cloud Get comments on a feed element",
+                              "id": "715a5a40-03b0-467b-92b1-7f3c3098d6ac",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId/capabilities/comments/items?pageSize=25",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "chatter",
+                                    "feed-elements",
+                                    ":feedElementId",
+                                    "capabilities",
+                                    "comments",
+                                    "items"
+                                  ],
+                                  "query": [
+                                    {
+                                      "key": "pageSize",
+                                      "value": "25"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "916340e1-6b0d-4ea6-9788-d5cde20cd244",
+                                      "key": "feedElementId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Returns all comments on the specified feed element, paginated."
+                              },
+                              "response": [
+                                {
+                                  "id": "0716036f-6c1c-41be-84b9-461611c6fc9a",
+                                  "name": "Successfully retrieved comments",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId/capabilities/comments/items?pageSize=25",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "chatter",
+                                        "feed-elements",
+                                        ":feedElementId",
+                                        "capabilities",
+                                        "comments",
+                                        "items"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "25"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "feedElementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"comments\": [\n    {\n      \"id\": \"<string>\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Link\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"type\": \"Link\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"user\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Mention\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"type\": \"Mention\",\n            \"text\": \"<string>\",\n            \"id\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ]\n      },\n      \"createdDate\": \"<dateTime>\",\n      \"user\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    }\n  ],\n  \"total\": \"<integer>\"\n}",
+                                  "createdAt": "2026-06-05T15:16:01.000Z",
+                                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                                  "uid": "35240-0716036f-6c1c-41be-84b9-461611c6fc9a"
+                                },
+                                {
+                                  "id": "a45338e3-e0b3-4bf9-9286-b7b27130b140",
+                                  "name": "Authentication failed",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId/capabilities/comments/items?pageSize=25",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "chatter",
+                                        "feed-elements",
+                                        ":feedElementId",
+                                        "capabilities",
+                                        "comments",
+                                        "items"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "25"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "feedElementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                                  "createdAt": "2026-06-05T15:16:01.000Z",
+                                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                                  "uid": "35240-a45338e3-e0b3-4bf9-9286-b7b27130b140"
+                                },
+                                {
+                                  "id": "908881fa-70a6-43c0-a0f5-d54190dc34e4",
+                                  "name": "Resource not found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId/capabilities/comments/items?pageSize=25",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "chatter",
+                                        "feed-elements",
+                                        ":feedElementId",
+                                        "capabilities",
+                                        "comments",
+                                        "items"
+                                      ],
+                                      "query": [
+                                        {
+                                          "key": "pageSize",
+                                          "value": "25"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "feedElementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                                  "createdAt": "2026-06-05T15:16:01.000Z",
+                                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                                  "uid": "35240-908881fa-70a6-43c0-a0f5-d54190dc34e4"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:16:01.000Z",
+                              "updatedAt": "2026-06-05T15:16:01.000Z",
+                              "uid": "35240-715a5a40-03b0-467b-92b1-7f3c3098d6ac"
+                            },
+                            {
+                              "name": "Salesforce Sales Cloud Post a comment on a feed element",
+                              "id": "cccf7e39-6e17-4e17-bf70-a5df95946d7c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Mention\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Link\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId/capabilities/comments/items",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "chatter",
+                                    "feed-elements",
+                                    ":feedElementId",
+                                    "capabilities",
+                                    "comments",
+                                    "items"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "acf4942f-7550-4aef-b0cc-6ee03d60e36d",
+                                      "key": "feedElementId",
+                                      "value": "<string>",
+                                      "description": "(Required) "
+                                    }
+                                  ]
+                                },
+                                "description": "Creates a new comment on the specified feed element."
+                              },
+                              "response": [
+                                {
+                                  "id": "e5f619f1-4ce9-407f-a571-a8412e821c44",
+                                  "name": "Comment created",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Mention\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Link\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId/capabilities/comments/items",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "chatter",
+                                        "feed-elements",
+                                        ":feedElementId",
+                                        "capabilities",
+                                        "comments",
+                                        "items"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "feedElementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Created",
+                                  "code": 201,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"id\": \"<string>\",\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Mention\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Hashtag\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"createdDate\": \"<dateTime>\",\n  \"user\": {\n    \"companyName\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"photo\": {\n      \"smallPhotoUrl\": \"<string>\",\n      \"mediumPhotoUrl\": \"<string>\"\n    },\n    \"title\": \"<string>\",\n    \"type\": \"<string>\",\n    \"url\": \"<string>\"\n  }\n}",
+                                  "createdAt": "2026-06-05T15:16:01.000Z",
+                                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                                  "uid": "35240-e5f619f1-4ce9-407f-a571-a8412e821c44"
+                                },
+                                {
+                                  "id": "bab16da8-9fcf-4a49-abd2-bc76ded84653",
+                                  "name": "Invalid request",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Mention\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Link\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId/capabilities/comments/items",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "chatter",
+                                        "feed-elements",
+                                        ":feedElementId",
+                                        "capabilities",
+                                        "comments",
+                                        "items"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "feedElementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                                  "createdAt": "2026-06-05T15:16:01.000Z",
+                                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                                  "uid": "35240-bab16da8-9fcf-4a49-abd2-bc76ded84653"
+                                },
+                                {
+                                  "id": "b0da2527-3897-4142-a9d2-fa1525a08668",
+                                  "name": "Authentication failed",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: oauth2",
+                                        "key": "Authorization",
+                                        "value": "<token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "raw",
+                                      "raw": "{\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Mention\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Link\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  }\n}",
+                                      "options": {
+                                        "raw": {
+                                          "headerFamily": "json",
+                                          "language": "json"
+                                        }
+                                      }
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId/capabilities/comments/items",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "chatter",
+                                        "feed-elements",
+                                        ":feedElementId",
+                                        "capabilities",
+                                        "comments",
+                                        "items"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "feedElementId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                                  "createdAt": "2026-06-05T15:16:01.000Z",
+                                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                                  "uid": "35240-b0da2527-3897-4142-a9d2-fa1525a08668"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:16:01.000Z",
+                              "updatedAt": "2026-06-05T15:16:01.000Z",
+                              "uid": "35240-cccf7e39-6e17-4e17-bf70-a5df95946d7c"
+                            }
+                          ],
+                          "id": "87b58b81-da3c-446f-be98-71e827be77d9",
+                          "createdAt": "2026-06-05T15:16:01.000Z",
+                          "updatedAt": "2026-06-05T15:16:01.000Z",
+                          "uid": "35240-87b58b81-da3c-446f-be98-71e827be77d9"
+                        }
+                      ],
+                      "id": "83983244-844d-4264-b991-bfcbec6465e0",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-83983244-844d-4264-b991-bfcbec6465e0"
+                    }
+                  ],
+                  "id": "b1e0d1ef-5217-4539-8452-d126b9e144c0",
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-b1e0d1ef-5217-4539-8452-d126b9e144c0"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Get a feed element",
+                  "id": "eb88b9f9-9f1e-4cba-9743-eeb247381f0b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "feed-elements",
+                        ":feedElementId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "d1da0d9f-e0f9-4aaa-97f3-ad84b895fc26",
+                          "key": "feedElementId",
+                          "value": "<string>",
+                          "description": "(Required) The ID of the feed element"
+                        }
+                      ]
+                    },
+                    "description": "Returns the specified feed element including its body, comments, likes, and metadata."
+                  },
+                  "response": [
+                    {
+                      "id": "8d2b1636-5e83-4052-b1ea-d5ea6a63a684",
+                      "name": "Successfully retrieved feed element",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "feed-elements",
+                            ":feedElementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "feedElementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Hashtag\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Link\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"capabilities\": {\n    \"comments\": {\n      \"total\": \"<integer>\"\n    },\n    \"chatterLikes\": {\n      \"total\": \"<integer>\"\n    }\n  },\n  \"createdDate\": \"<dateTime>\",\n  \"actor\": {\n    \"companyName\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"photo\": {\n      \"smallPhotoUrl\": \"<string>\",\n      \"mediumPhotoUrl\": \"<string>\"\n    },\n    \"title\": \"<string>\",\n    \"type\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"feedElementType\": \"Bundle\",\n  \"header\": {\n    \"text\": \"<string>\"\n  },\n  \"parent\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"type\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-8d2b1636-5e83-4052-b1ea-d5ea6a63a684"
+                    },
+                    {
+                      "id": "f3ce0bf5-137e-4277-bfd1-9017152b1711",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "feed-elements",
+                            ":feedElementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "feedElementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-f3ce0bf5-137e-4277-bfd1-9017152b1711"
+                    },
+                    {
+                      "id": "01d257ec-94f1-4fc0-a8bf-fe1abe868f01",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "feed-elements",
+                            ":feedElementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "feedElementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-01d257ec-94f1-4fc0-a8bf-fe1abe868f01"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-eb88b9f9-9f1e-4cba-9743-eeb247381f0b"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Delete a feed element",
+                  "id": "d4e7d444-df8c-4208-bd60-762970b492fd",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "feed-elements",
+                        ":feedElementId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "86c52951-3ee8-4bd9-8a29-16c00a78c05e",
+                          "key": "feedElementId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Deletes the specified feed element. Only the author or an admin can delete a feed element."
+                  },
+                  "response": [
+                    {
+                      "id": "b14d256e-cbd3-4b04-a901-7260de82f035",
+                      "name": "Feed element deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "feed-elements",
+                            ":feedElementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "feedElementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-b14d256e-cbd3-4b04-a901-7260de82f035"
+                    },
+                    {
+                      "id": "926a8a6a-0850-4188-8dab-73b155276854",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "feed-elements",
+                            ":feedElementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "feedElementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-926a8a6a-0850-4188-8dab-73b155276854"
+                    },
+                    {
+                      "id": "23c4c175-6ae1-477b-bdf1-9ce1cc34e3f1",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/feed-elements/:feedElementId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "feed-elements",
+                            ":feedElementId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "feedElementId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-23c4c175-6ae1-477b-bdf1-9ce1cc34e3f1"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-d4e7d444-df8c-4208-bd60-762970b492fd"
+                }
+              ],
+              "id": "2c89d702-52ce-43d8-8f2f-023178afdefb",
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-2c89d702-52ce-43d8-8f2f-023178afdefb"
+            },
+            {
+              "name": "Salesforce Sales Cloud Post a feed element",
+              "id": "432fe61b-5229-4470-b65b-08a41ebb6220",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Mention\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Hashtag\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"feedElementType\": \"FeedItem\",\n  \"subjectId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/chatter/feed-elements",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chatter",
+                    "feed-elements"
+                  ]
+                },
+                "description": "Creates a new feed element (post) on a user profile, group, or record feed. Supports text posts, link posts, and content posts with attachments."
+              },
+              "response": [
+                {
+                  "id": "788bedad-08f9-4b70-a84d-3d63ad7fb3b8",
+                  "name": "Feed element created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Mention\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Hashtag\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"feedElementType\": \"FeedItem\",\n  \"subjectId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/feed-elements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "feed-elements"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Hashtag\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Link\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"capabilities\": {\n    \"comments\": {\n      \"total\": \"<integer>\"\n    },\n    \"chatterLikes\": {\n      \"total\": \"<integer>\"\n    }\n  },\n  \"createdDate\": \"<dateTime>\",\n  \"actor\": {\n    \"companyName\": \"<string>\",\n    \"displayName\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"photo\": {\n      \"smallPhotoUrl\": \"<string>\",\n      \"mediumPhotoUrl\": \"<string>\"\n    },\n    \"title\": \"<string>\",\n    \"type\": \"<string>\",\n    \"url\": \"<string>\"\n  },\n  \"feedElementType\": \"Bundle\",\n  \"header\": {\n    \"text\": \"<string>\"\n  },\n  \"parent\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"type\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-788bedad-08f9-4b70-a84d-3d63ad7fb3b8"
+                },
+                {
+                  "id": "8b412c43-e689-42af-b531-d37cb9dab4ab",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Mention\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Hashtag\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"feedElementType\": \"FeedItem\",\n  \"subjectId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/feed-elements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "feed-elements"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-8b412c43-e689-42af-b531-d37cb9dab4ab"
+                },
+                {
+                  "id": "6e7bc89d-5b54-4b87-82a9-805144e2cd80",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"body\": {\n    \"messageSegments\": [\n      {\n        \"type\": \"Mention\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      {\n        \"type\": \"Hashtag\",\n        \"text\": \"<string>\",\n        \"id\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    ]\n  },\n  \"feedElementType\": \"FeedItem\",\n  \"subjectId\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/feed-elements",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "feed-elements"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-6e7bc89d-5b54-4b87-82a9-805144e2cd80"
+                }
+              ],
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-432fe61b-5229-4470-b65b-08a41ebb6220"
+            }
+          ],
+          "id": "69f28ef7-119d-4f64-bb52-997a2a9ed407",
+          "createdAt": "2026-06-05T15:16:01.000Z",
+          "updatedAt": "2026-06-05T15:16:01.000Z",
+          "uid": "35240-69f28ef7-119d-4f64-bb52-997a2a9ed407"
+        },
+        {
+          "name": "groups",
+          "item": [
+            {
+              "name": "{groupId}",
+              "item": [
+                {
+                  "name": "members",
+                  "item": [
+                    {
+                      "name": "Salesforce Sales Cloud Get group members",
+                      "id": "0df67633-5cea-40bc-b1fc-c972a4a5612d",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/groups/:groupId/members?pageSize=25",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "groups",
+                            ":groupId",
+                            "members"
+                          ],
+                          "query": [
+                            {
+                              "key": "pageSize",
+                              "value": "25"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "248c1b90-05de-49c6-ab71-96c9bf5781fd",
+                              "key": "groupId",
+                              "value": "<string>",
+                              "description": "(Required) "
+                            }
+                          ]
+                        },
+                        "description": "Returns a list of members in the specified Chatter group."
+                      },
+                      "response": [
+                        {
+                          "id": "1717f47e-8df2-4d43-9cbd-8ee6a17a5940",
+                          "name": "Successfully retrieved group members",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/chatter/groups/:groupId/members?pageSize=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chatter",
+                                "groups",
+                                ":groupId",
+                                "members"
+                              ],
+                              "query": [
+                                {
+                                  "key": "pageSize",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"members\": [\n    {\n      \"id\": \"<string>\",\n      \"role\": \"<string>\",\n      \"user\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"role\": \"<string>\",\n      \"user\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      }\n    }\n  ],\n  \"totalMemberCount\": \"<integer>\"\n}",
+                          "createdAt": "2026-06-05T15:16:01.000Z",
+                          "updatedAt": "2026-06-05T15:16:01.000Z",
+                          "uid": "35240-1717f47e-8df2-4d43-9cbd-8ee6a17a5940"
+                        },
+                        {
+                          "id": "32b463ee-353e-47f7-8496-6d5dd623934d",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/chatter/groups/:groupId/members?pageSize=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chatter",
+                                "groups",
+                                ":groupId",
+                                "members"
+                              ],
+                              "query": [
+                                {
+                                  "key": "pageSize",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:16:01.000Z",
+                          "updatedAt": "2026-06-05T15:16:01.000Z",
+                          "uid": "35240-32b463ee-353e-47f7-8496-6d5dd623934d"
+                        },
+                        {
+                          "id": "30c2ed3c-9818-4553-8601-d71c5877375d",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/chatter/groups/:groupId/members?pageSize=25",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "chatter",
+                                "groups",
+                                ":groupId",
+                                "members"
+                              ],
+                              "query": [
+                                {
+                                  "key": "pageSize",
+                                  "value": "25"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "groupId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:16:01.000Z",
+                          "updatedAt": "2026-06-05T15:16:01.000Z",
+                          "uid": "35240-30c2ed3c-9818-4553-8601-d71c5877375d"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-0df67633-5cea-40bc-b1fc-c972a4a5612d"
+                    }
+                  ],
+                  "id": "6386ab69-4177-4750-ad94-bf23d79a26b3",
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-6386ab69-4177-4750-ad94-bf23d79a26b3"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Get a Chatter group",
+                  "id": "9c6ab8dc-02d0-4174-a15c-edc3f4a6a22a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/groups/:groupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "groups",
+                        ":groupId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "738dc69b-f30b-4b6f-9015-5d2fe2dd58d7",
+                          "key": "groupId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns detailed information about the specified Chatter group including member count, description, and the current user's membership status."
+                  },
+                  "response": [
+                    {
+                      "id": "cd4deab9-cb8b-4c37-8e24-59e33aa796da",
+                      "name": "Successfully retrieved group",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"memberCount\": \"<integer>\",\n  \"myRole\": \"GroupOwner\",\n  \"visibility\": \"PrivateAccess\",\n  \"url\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-cd4deab9-cb8b-4c37-8e24-59e33aa796da"
+                    },
+                    {
+                      "id": "1aafc567-927b-4135-acba-b62a028a077b",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-1aafc567-927b-4135-acba-b62a028a077b"
+                    },
+                    {
+                      "id": "ef70b3a5-3b23-4a17-ac8a-eff5a7e69c9a",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/groups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "groups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-ef70b3a5-3b23-4a17-ac8a-eff5a7e69c9a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-9c6ab8dc-02d0-4174-a15c-edc3f4a6a22a"
+                }
+              ],
+              "id": "7fa09a58-414d-47d3-bb1a-c29b1ce80ea9",
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-7fa09a58-414d-47d3-bb1a-c29b1ce80ea9"
+            },
+            {
+              "name": "Salesforce Sales Cloud List Chatter groups",
+              "id": "c3dd71e7-298f-4513-b7d4-8605a993cb83",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/chatter/groups?pageSize=25&pageToken=<string>&q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "chatter",
+                    "groups"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Search term to filter groups",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Returns a list of Chatter groups visible to the current user. Includes public groups, private groups the user is a member of, and unlisted groups the user has access to."
+              },
+              "response": [
+                {
+                  "id": "d200ff54-87b0-470b-a32e-7603a944a6d6",
+                  "name": "Successfully retrieved groups",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/groups?pageSize=25&pageToken=<string>&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "groups"
+                      ],
+                      "query": [
+                        {
+                          "key": "pageSize",
+                          "value": "25"
+                        },
+                        {
+                          "key": "pageToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Search term to filter groups",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"groups\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"memberCount\": \"<integer>\",\n      \"myRole\": \"GroupManager\",\n      \"visibility\": \"Unlisted\",\n      \"url\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"memberCount\": \"<integer>\",\n      \"myRole\": \"NotAMember\",\n      \"visibility\": \"PublicAccess\",\n      \"url\": \"<string>\"\n    }\n  ],\n  \"nextPageUrl\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-d200ff54-87b0-470b-a32e-7603a944a6d6"
+                },
+                {
+                  "id": "900123b2-5b67-4eb2-be71-11233f8ec79c",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/groups?pageSize=25&pageToken=<string>&q=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "groups"
+                      ],
+                      "query": [
+                        {
+                          "key": "pageSize",
+                          "value": "25"
+                        },
+                        {
+                          "key": "pageToken",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Search term to filter groups",
+                          "key": "q",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-900123b2-5b67-4eb2-be71-11233f8ec79c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-c3dd71e7-298f-4513-b7d4-8605a993cb83"
+            }
+          ],
+          "id": "af0dcd4a-237e-4f82-9fc4-6e0e5bdad396",
+          "createdAt": "2026-06-05T15:16:01.000Z",
+          "updatedAt": "2026-06-05T15:16:01.000Z",
+          "uid": "35240-af0dcd4a-237e-4f82-9fc4-6e0e5bdad396"
+        },
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "me",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get current user information",
+                  "id": "2b2e92be-32f6-44d2-b0c5-fb89e638ccdc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/users/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "users",
+                        "me"
+                      ]
+                    },
+                    "description": "Returns detailed information about the current user including profile, photo, and Chatter activity."
+                  },
+                  "response": [
+                    {
+                      "id": "70eda579-afac-4af1-b6be-ed094ff9020a",
+                      "name": "Successfully retrieved current user",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/users/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "users",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"aboutMe\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"followersCount\": \"<integer>\",\n  \"followingCounts\": {\n    \"people\": \"<integer>\",\n    \"records\": \"<integer>\",\n    \"total\": \"<integer>\"\n  },\n  \"groupCount\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"lastName\": \"<string>\",\n  \"name\": \"<string>\",\n  \"photo\": {\n    \"smallPhotoUrl\": \"<string>\",\n    \"mediumPhotoUrl\": \"<string>\",\n    \"largePhotoUrl\": \"<string>\"\n  },\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-70eda579-afac-4af1-b6be-ed094ff9020a"
+                    },
+                    {
+                      "id": "fb5fd1bf-0cb9-4378-8c8c-2d55931f3d8b",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/users/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "users",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-fb5fd1bf-0cb9-4378-8c8c-2d55931f3d8b"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-2b2e92be-32f6-44d2-b0c5-fb89e638ccdc"
+                }
+              ],
+              "id": "b3bae435-0c24-483d-848a-86901a3b44ee",
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-b3bae435-0c24-483d-848a-86901a3b44ee"
+            },
+            {
+              "name": "{userId}",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get user information",
+                  "id": "78175905-811a-47ca-9569-5b9037bc6f68",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/chatter/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "chatter",
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "034e05ca-34e0-4378-aa5e-82d191173f7f",
+                          "key": "userId",
+                          "value": "<string>",
+                          "description": "(Required) "
+                        }
+                      ]
+                    },
+                    "description": "Returns detailed information about the specified user including profile, photo, and Chatter statistics."
+                  },
+                  "response": [
+                    {
+                      "id": "c9fa2a75-ea7a-42c2-9f6f-d5d6b9c10ee1",
+                      "name": "Successfully retrieved user",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"aboutMe\": \"<string>\",\n  \"companyName\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"email\": \"<string>\",\n  \"firstName\": \"<string>\",\n  \"followersCount\": \"<integer>\",\n  \"followingCounts\": {\n    \"people\": \"<integer>\",\n    \"records\": \"<integer>\",\n    \"total\": \"<integer>\"\n  },\n  \"groupCount\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"isActive\": \"<boolean>\",\n  \"lastName\": \"<string>\",\n  \"name\": \"<string>\",\n  \"photo\": {\n    \"smallPhotoUrl\": \"<string>\",\n    \"mediumPhotoUrl\": \"<string>\",\n    \"largePhotoUrl\": \"<string>\"\n  },\n  \"title\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\",\n  \"username\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-c9fa2a75-ea7a-42c2-9f6f-d5d6b9c10ee1"
+                    },
+                    {
+                      "id": "1ba4012e-5bc4-493d-a325-fcd231a5e298",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-1ba4012e-5bc4-493d-a325-fcd231a5e298"
+                    },
+                    {
+                      "id": "839e9612-25fb-4720-acd7-dc87010736b0",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/chatter/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "chatter",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-839e9612-25fb-4720-acd7-dc87010736b0"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-78175905-811a-47ca-9569-5b9037bc6f68"
+                }
+              ],
+              "id": "c0303182-f157-4b1c-9e82-7579356de8f9",
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-c0303182-f157-4b1c-9e82-7579356de8f9"
+            }
+          ],
+          "id": "078a0860-3eaf-4b12-a812-f62678cefa3d",
+          "createdAt": "2026-06-05T15:16:01.000Z",
+          "updatedAt": "2026-06-05T15:16:01.000Z",
+          "uid": "35240-078a0860-3eaf-4b12-a812-f62678cefa3d"
+        }
+      ],
+      "id": "f2416dec-805e-467d-a61a-1f73255c146d",
+      "createdAt": "2026-06-05T15:16:01.000Z",
+      "updatedAt": "2026-06-05T15:16:01.000Z",
+      "uid": "35240-f2416dec-805e-467d-a61a-1f73255c146d"
+    },
+    {
+      "name": "files",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "me",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get files owned by current user",
+                  "id": "fd8120f5-ef43-420b-9c0a-ecf097f8bbdf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/files/users/me?pageSize=25&pageToken=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "files",
+                        "users",
+                        "me"
+                      ],
+                      "query": [
+                        {
+                          "key": "pageSize",
+                          "value": "25"
+                        },
+                        {
+                          "key": "pageToken",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of files owned by the current user."
+                  },
+                  "response": [
+                    {
+                      "id": "d83db3b8-d23a-4e46-b935-481156fabcb1",
+                      "name": "Successfully retrieved files",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/users/me?pageSize=25&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            "users",
+                            "me"
+                          ],
+                          "query": [
+                            {
+                              "key": "pageSize",
+                              "value": "25"
+                            },
+                            {
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"files\": [\n    {\n      \"id\": \"<string>\",\n      \"contentUrl\": \"<string>\",\n      \"description\": \"<string>\",\n      \"fileExtension\": \"<string>\",\n      \"fileSize\": \"<integer>\",\n      \"fileType\": \"<string>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"owner\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      \"title\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"contentUrl\": \"<string>\",\n      \"description\": \"<string>\",\n      \"fileExtension\": \"<string>\",\n      \"fileSize\": \"<integer>\",\n      \"fileType\": \"<string>\",\n      \"modifiedDate\": \"<dateTime>\",\n      \"owner\": {\n        \"companyName\": \"<string>\",\n        \"displayName\": \"<string>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"<string>\",\n          \"mediumPhotoUrl\": \"<string>\"\n        },\n        \"title\": \"<string>\",\n        \"type\": \"<string>\",\n        \"url\": \"<string>\"\n      },\n      \"title\": \"<string>\"\n    }\n  ],\n  \"nextPageUrl\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-d83db3b8-d23a-4e46-b935-481156fabcb1"
+                    },
+                    {
+                      "id": "3039db66-c974-41ca-a74a-82ef6c767d0f",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/files/users/me?pageSize=25&pageToken=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "files",
+                            "users",
+                            "me"
+                          ],
+                          "query": [
+                            {
+                              "key": "pageSize",
+                              "value": "25"
+                            },
+                            {
+                              "key": "pageToken",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:16:01.000Z",
+                      "updatedAt": "2026-06-05T15:16:01.000Z",
+                      "uid": "35240-3039db66-c974-41ca-a74a-82ef6c767d0f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:16:01.000Z",
+                  "updatedAt": "2026-06-05T15:16:01.000Z",
+                  "uid": "35240-fd8120f5-ef43-420b-9c0a-ecf097f8bbdf"
+                }
+              ],
+              "id": "cb02cdc2-6db3-4d20-83fa-6e5b2504c7a0",
+              "createdAt": "2026-06-05T15:16:01.000Z",
+              "updatedAt": "2026-06-05T15:16:01.000Z",
+              "uid": "35240-cb02cdc2-6db3-4d20-83fa-6e5b2504c7a0"
+            }
+          ],
+          "id": "32c051d7-468b-40ba-8dbc-fc729e21dc50",
+          "createdAt": "2026-06-05T15:16:01.000Z",
+          "updatedAt": "2026-06-05T15:16:01.000Z",
+          "uid": "35240-32c051d7-468b-40ba-8dbc-fc729e21dc50"
+        }
+      ],
+      "id": "25446302-0745-4a7f-a93f-ea183ce2762b",
+      "createdAt": "2026-06-05T15:16:01.000Z",
+      "updatedAt": "2026-06-05T15:16:01.000Z",
+      "uid": "35240-25446302-0745-4a7f-a93f-ea183ce2762b"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api chatter_api",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "instance",
+      "value": "yourInstance"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/connect"
+    }
+  ]
+}

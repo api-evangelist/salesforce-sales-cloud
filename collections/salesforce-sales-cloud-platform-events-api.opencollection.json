@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Platform Events API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Platform Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Describe a platform event",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:eventApiName",
+            "params": [
+              {
+                "name": "eventApiName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the platform event (e.g., Order_Event__e)"
+              }
+            ]
+          },
+          "docs": "Retrieves metadata about the specified platform event including its fields, label, and API name. The event API name uses the __e suffix (e.g., Order_Event__e)."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Publish a platform event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:eventApiName",
+            "params": [
+              {
+                "name": "eventApiName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the platform event (e.g., Order_Event__e)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publishes a single platform event message by inserting an sObject record for the event type. The event API name uses the __e suffix. Include the event's custom fields in the request body."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get full platform event metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:eventApiName/describe",
+            "params": [
+              {
+                "name": "eventApiName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the platform event (e.g., Order_Event__e)"
+              }
+            ]
+          },
+          "docs": "Retrieves complete metadata about the specified platform event including all fields, their types, lengths, and other attributes."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Event Schema",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get platform event schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:eventApiName/eventSchema",
+            "params": [
+              {
+                "name": "eventApiName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the platform event (e.g., Order_Event__e)"
+              },
+              {
+                "name": "payloadFormat",
+                "value": "",
+                "type": "query",
+                "description": "The payload format for the schema"
+              }
+            ]
+          },
+          "docs": "Retrieves the Apache Avro schema for the specified platform event. The schema describes the event's fields and their types in Avro format, used by the Pub/Sub API for binary event encoding."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get event schema by schema ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/event/eventSchema/:schemaId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "The schema ID from the event message"
+              },
+              {
+                "name": "payloadFormat",
+                "value": "",
+                "type": "query",
+                "description": "The payload format"
+              }
+            ]
+          },
+          "docs": "Retrieves the event schema using the schema ID provided in an event message. This endpoint supports both platform events and change data capture events."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

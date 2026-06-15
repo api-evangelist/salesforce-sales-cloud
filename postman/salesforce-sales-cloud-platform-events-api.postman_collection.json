@@ -1,0 +1,1156 @@
+{
+  "info": {
+    "_postman_id": "0e976f64-cf58-47cf-a075-61d83d1c89bd",
+    "name": "Salesforce Sales Cloud Salesforce Platform Events API",
+    "description": "Event-driven architecture API for publishing and subscribing to custom platform events for app integration. Publish events using standard sObject REST endpoints. Define custom event channels with schema for loosely coupled systems. Platform events use the sObject API name with the __e suffix.\n\nContact Support:\n Name: Salesforce Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:15:18.000Z",
+    "updatedAt": "2026-06-05T15:15:18.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0e976f64-cf58-47cf-a075-61d83d1c89bd"
+  },
+  "item": [
+    {
+      "name": "sobjects",
+      "item": [
+        {
+          "name": "{eventApiName}",
+          "item": [
+            {
+              "name": "describe",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get full platform event metadata",
+                  "id": "5616db5f-2888-4f35-8e2f-2122bb275cfc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:eventApiName/describe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":eventApiName",
+                        "describe"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2b6c427d-5eb1-40d7-9729-6d0514a0cc95",
+                          "key": "eventApiName",
+                          "value": "<string>",
+                          "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves complete metadata about the specified platform event including all fields, their types, lengths, and other attributes."
+                  },
+                  "response": [
+                    {
+                      "id": "ff4f94b5-973b-4981-a827-15038a9dbe8a",
+                      "name": "Successfully retrieved full event metadata",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:eventApiName/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":eventApiName",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventApiName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-06-05T15:15:19.000Z",
+                      "updatedAt": "2026-06-05T15:15:19.000Z",
+                      "uid": "35240-ff4f94b5-973b-4981-a827-15038a9dbe8a"
+                    },
+                    {
+                      "id": "cd188c3d-e12f-4b68-b327-3411eeab419f",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:eventApiName/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":eventApiName",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventApiName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:19.000Z",
+                      "updatedAt": "2026-06-05T15:15:19.000Z",
+                      "uid": "35240-cd188c3d-e12f-4b68-b327-3411eeab419f"
+                    },
+                    {
+                      "id": "e88a08d5-c21f-4cdc-aec0-c54cfcc85465",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:eventApiName/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":eventApiName",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventApiName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:19.000Z",
+                      "updatedAt": "2026-06-05T15:15:19.000Z",
+                      "uid": "35240-e88a08d5-c21f-4cdc-aec0-c54cfcc85465"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:19.000Z",
+                  "updatedAt": "2026-06-05T15:15:19.000Z",
+                  "uid": "35240-5616db5f-2888-4f35-8e2f-2122bb275cfc"
+                }
+              ],
+              "id": "71b0a6a0-5791-4527-932b-7f4be7a3b640",
+              "createdAt": "2026-06-05T15:15:19.000Z",
+              "updatedAt": "2026-06-05T15:15:19.000Z",
+              "uid": "35240-71b0a6a0-5791-4527-932b-7f4be7a3b640"
+            },
+            {
+              "name": "eventSchema",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get platform event schema",
+                  "id": "a5884a01-754c-4b09-829e-b41e6f3f2294",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:eventApiName/eventSchema?payloadFormat=COMPACT",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":eventApiName",
+                        "eventSchema"
+                      ],
+                      "query": [
+                        {
+                          "description": "The payload format for the schema",
+                          "key": "payloadFormat",
+                          "value": "COMPACT"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e702910f-f71f-44e4-ac61-7351252c9ea3",
+                          "key": "eventApiName",
+                          "value": "<string>",
+                          "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the Apache Avro schema for the specified platform event. The schema describes the event's fields and their types in Avro format, used by the Pub/Sub API for binary event encoding."
+                  },
+                  "response": [
+                    {
+                      "id": "7bd40e33-c0eb-4a2e-b978-a30f1e8929e3",
+                      "name": "Successfully retrieved event schema",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:eventApiName/eventSchema?payloadFormat=COMPACT",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":eventApiName",
+                            "eventSchema"
+                          ],
+                          "query": [
+                            {
+                              "description": "The payload format for the schema",
+                              "key": "payloadFormat",
+                              "value": "COMPACT"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventApiName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:15:19.000Z",
+                      "updatedAt": "2026-06-05T15:15:19.000Z",
+                      "uid": "35240-7bd40e33-c0eb-4a2e-b978-a30f1e8929e3"
+                    },
+                    {
+                      "id": "bec9e67d-caf5-436a-8fcb-feb198795a61",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:eventApiName/eventSchema?payloadFormat=COMPACT",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":eventApiName",
+                            "eventSchema"
+                          ],
+                          "query": [
+                            {
+                              "description": "The payload format for the schema",
+                              "key": "payloadFormat",
+                              "value": "COMPACT"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventApiName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:19.000Z",
+                      "updatedAt": "2026-06-05T15:15:19.000Z",
+                      "uid": "35240-bec9e67d-caf5-436a-8fcb-feb198795a61"
+                    },
+                    {
+                      "id": "111abb9f-297f-433c-9cb7-527aa808ddde",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:eventApiName/eventSchema?payloadFormat=COMPACT",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":eventApiName",
+                            "eventSchema"
+                          ],
+                          "query": [
+                            {
+                              "description": "The payload format for the schema",
+                              "key": "payloadFormat",
+                              "value": "COMPACT"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "eventApiName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:19.000Z",
+                      "updatedAt": "2026-06-05T15:15:19.000Z",
+                      "uid": "35240-111abb9f-297f-433c-9cb7-527aa808ddde"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:19.000Z",
+                  "updatedAt": "2026-06-05T15:15:19.000Z",
+                  "uid": "35240-a5884a01-754c-4b09-829e-b41e6f3f2294"
+                }
+              ],
+              "id": "e12c87c0-14f5-4718-9d64-312b37e35fe0",
+              "createdAt": "2026-06-05T15:15:19.000Z",
+              "updatedAt": "2026-06-05T15:15:19.000Z",
+              "uid": "35240-e12c87c0-14f5-4718-9d64-312b37e35fe0"
+            },
+            {
+              "name": "Salesforce Sales Cloud Describe a platform event",
+              "id": "e1c69fb6-3a4b-4890-8545-619677084546",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sobjects/:eventApiName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sobjects",
+                    ":eventApiName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "9ffdcd18-2f84-4fab-a84c-aaef42df97d3",
+                      "key": "eventApiName",
+                      "value": "<string>",
+                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                    }
+                  ]
+                },
+                "description": "Retrieves metadata about the specified platform event including its fields, label, and API name. The event API name uses the __e suffix (e.g., Order_Event__e)."
+              },
+              "response": [
+                {
+                  "id": "83c56b22-354a-47d8-bae7-23835b186a71",
+                  "name": "Successfully retrieved event metadata",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:eventApiName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":eventApiName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventApiName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"objectDescribe\": {\n    \"name\": \"<string>\",\n    \"label\": \"<string>\",\n    \"custom\": \"<boolean>\",\n    \"fields\": [\n      {\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"type\": \"<string>\",\n        \"length\": \"<integer>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"type\": \"<string>\",\n        \"length\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-06-05T15:15:19.000Z",
+                  "updatedAt": "2026-06-05T15:15:19.000Z",
+                  "uid": "35240-83c56b22-354a-47d8-bae7-23835b186a71"
+                },
+                {
+                  "id": "158a6cc4-d3d7-4382-8caa-4888fcb00ea3",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:eventApiName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":eventApiName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventApiName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:19.000Z",
+                  "updatedAt": "2026-06-05T15:15:19.000Z",
+                  "uid": "35240-158a6cc4-d3d7-4382-8caa-4888fcb00ea3"
+                },
+                {
+                  "id": "3d397e81-6759-45fd-864d-f1a8d2dc3a93",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:eventApiName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":eventApiName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventApiName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:19.000Z",
+                  "updatedAt": "2026-06-05T15:15:19.000Z",
+                  "uid": "35240-3d397e81-6759-45fd-864d-f1a8d2dc3a93"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:19.000Z",
+              "updatedAt": "2026-06-05T15:15:19.000Z",
+              "uid": "35240-e1c69fb6-3a4b-4890-8545-619677084546"
+            },
+            {
+              "name": "Salesforce Sales Cloud Publish a platform event",
+              "id": "c387b390-e092-4d70-80a0-095a2d8f44aa",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"exb\": 72930029.134168\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sobjects/:eventApiName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sobjects",
+                    ":eventApiName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "fbea237f-e0ce-4b4b-9ec7-57f51b783b49",
+                      "key": "eventApiName",
+                      "value": "<string>",
+                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                    }
+                  ]
+                },
+                "description": "Publishes a single platform event message by inserting an sObject record for the event type. The event API name uses the __e suffix. Include the event's custom fields in the request body."
+              },
+              "response": [
+                {
+                  "id": "acd2341b-5965-405d-a18d-b639533f2954",
+                  "name": "Event published successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"exb\": 72930029.134168\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:eventApiName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":eventApiName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventApiName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"success\": \"<boolean>\",\n  \"errors\": [\n    {\n      \"statusCode\": \"<string>\",\n      \"message\": \"<string>\",\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"statusCode\": \"<string>\",\n      \"message\": \"<string>\",\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:15:19.000Z",
+                  "updatedAt": "2026-06-05T15:15:19.000Z",
+                  "uid": "35240-acd2341b-5965-405d-a18d-b639533f2954"
+                },
+                {
+                  "id": "f48b946b-ae5b-4e95-b281-98577f3e5c32",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"exb\": 72930029.134168\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:eventApiName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":eventApiName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventApiName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:19.000Z",
+                  "updatedAt": "2026-06-05T15:15:19.000Z",
+                  "uid": "35240-f48b946b-ae5b-4e95-b281-98577f3e5c32"
+                },
+                {
+                  "id": "5d7ef35e-72bb-4cbf-bea1-c9a57e260e01",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"exb\": 72930029.134168\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:eventApiName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":eventApiName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "eventApiName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:19.000Z",
+                  "updatedAt": "2026-06-05T15:15:19.000Z",
+                  "uid": "35240-5d7ef35e-72bb-4cbf-bea1-c9a57e260e01"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:19.000Z",
+              "updatedAt": "2026-06-05T15:15:19.000Z",
+              "uid": "35240-c387b390-e092-4d70-80a0-095a2d8f44aa"
+            }
+          ],
+          "id": "3d2d23cc-806a-4a84-b4dc-d3a2ce479103",
+          "createdAt": "2026-06-05T15:15:19.000Z",
+          "updatedAt": "2026-06-05T15:15:19.000Z",
+          "uid": "35240-3d2d23cc-806a-4a84-b4dc-d3a2ce479103"
+        }
+      ],
+      "id": "342f31f2-8133-415b-ba4f-a7461db842e3",
+      "createdAt": "2026-06-05T15:15:19.000Z",
+      "updatedAt": "2026-06-05T15:15:19.000Z",
+      "uid": "35240-342f31f2-8133-415b-ba4f-a7461db842e3"
+    },
+    {
+      "name": "event",
+      "item": [
+        {
+          "name": "eventSchema",
+          "item": [
+            {
+              "name": "{schemaId}",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get event schema by schema ID",
+                  "id": "a9d720cf-1253-4282-b1b6-4c9e608ba6fa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/event/eventSchema/:schemaId?payloadFormat=COMPACT",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "event",
+                        "eventSchema",
+                        ":schemaId"
+                      ],
+                      "query": [
+                        {
+                          "description": "The payload format",
+                          "key": "payloadFormat",
+                          "value": "COMPACT"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "822c35d5-161d-4c08-b235-9699ebebc132",
+                          "key": "schemaId",
+                          "value": "<string>",
+                          "description": "(Required) The schema ID from the event message"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the event schema using the schema ID provided in an event message. This endpoint supports both platform events and change data capture events."
+                  },
+                  "response": [
+                    {
+                      "id": "3d0d42c1-fd24-47e3-beef-ae731c727a88",
+                      "name": "Successfully retrieved event schema",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event/eventSchema/:schemaId?payloadFormat=COMPACT",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event",
+                            "eventSchema",
+                            ":schemaId"
+                          ],
+                          "query": [
+                            {
+                              "description": "The payload format",
+                              "key": "payloadFormat",
+                              "value": "COMPACT"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "schemaId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-06-05T15:15:19.000Z",
+                      "updatedAt": "2026-06-05T15:15:19.000Z",
+                      "uid": "35240-3d0d42c1-fd24-47e3-beef-ae731c727a88"
+                    },
+                    {
+                      "id": "fbdf281e-f045-4e17-9926-54c91d91bca5",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event/eventSchema/:schemaId?payloadFormat=COMPACT",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event",
+                            "eventSchema",
+                            ":schemaId"
+                          ],
+                          "query": [
+                            {
+                              "description": "The payload format",
+                              "key": "payloadFormat",
+                              "value": "COMPACT"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "schemaId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:19.000Z",
+                      "updatedAt": "2026-06-05T15:15:19.000Z",
+                      "uid": "35240-fbdf281e-f045-4e17-9926-54c91d91bca5"
+                    },
+                    {
+                      "id": "e29b866b-c00b-4f5d-b78e-d6fe47db9608",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event/eventSchema/:schemaId?payloadFormat=COMPACT",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event",
+                            "eventSchema",
+                            ":schemaId"
+                          ],
+                          "query": [
+                            {
+                              "description": "The payload format",
+                              "key": "payloadFormat",
+                              "value": "COMPACT"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "schemaId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:19.000Z",
+                      "updatedAt": "2026-06-05T15:15:19.000Z",
+                      "uid": "35240-e29b866b-c00b-4f5d-b78e-d6fe47db9608"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:19.000Z",
+                  "updatedAt": "2026-06-05T15:15:19.000Z",
+                  "uid": "35240-a9d720cf-1253-4282-b1b6-4c9e608ba6fa"
+                }
+              ],
+              "id": "c4a47535-15cc-4967-b440-e715ece58434",
+              "createdAt": "2026-06-05T15:15:19.000Z",
+              "updatedAt": "2026-06-05T15:15:19.000Z",
+              "uid": "35240-c4a47535-15cc-4967-b440-e715ece58434"
+            }
+          ],
+          "id": "daaab2df-4455-4562-ad9c-c08316602833",
+          "createdAt": "2026-06-05T15:15:19.000Z",
+          "updatedAt": "2026-06-05T15:15:19.000Z",
+          "uid": "35240-daaab2df-4455-4562-ad9c-c08316602833"
+        }
+      ],
+      "id": "6a4ac419-9b6d-4dd0-81b2-6bef6d536b7f",
+      "createdAt": "2026-06-05T15:15:19.000Z",
+      "updatedAt": "2026-06-05T15:15:19.000Z",
+      "uid": "35240-6a4ac419-9b6d-4dd0-81b2-6bef6d536b7f"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "instance",
+      "value": "yourInstance"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0"
+    }
+  ]
+}

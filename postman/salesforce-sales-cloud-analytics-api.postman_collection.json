@@ -1,0 +1,3180 @@
+{
+  "info": {
+    "_postman_id": "1a87e2c9-90ac-404d-a86f-13791eaf2ea3",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST API",
+    "description": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:15:19.000Z",
+    "updatedAt": "2026-06-05T15:15:20.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-1a87e2c9-90ac-404d-a86f-13791eaf2ea3"
+  },
+  "item": [
+    {
+      "name": "reports",
+      "item": [
+        {
+          "name": "{reportId}",
+          "item": [
+            {
+              "name": "describe",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Describe a report",
+                  "id": "b158420b-604f-4ef9-8aee-3ab07c9a1c01",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId/describe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId",
+                        "describe"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c019ac50-f40f-420d-8e49-e9f41a07395a",
+                          "key": "reportId",
+                          "value": "<string>",
+                          "description": "(Required) The 15 or 18 character Salesforce report ID"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves detailed metadata about a report including the report type metadata, grouping column information, summary field information, and extended metadata. This information can be used to build dynamic report filter UIs."
+                  },
+                  "response": [
+                    {
+                      "id": "b60cdcc5-ca81-4907-b16d-1dd1f1def944",
+                      "name": "Successfully retrieved report description",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"reportExtendedMetadata\": {},\n  \"reportMetadata\": {},\n  \"reportTypeMetadata\": {}\n}",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-b60cdcc5-ca81-4907-b16d-1dd1f1def944"
+                    },
+                    {
+                      "id": "343e6aa0-0b57-4c55-bb47-d4e4cb6b7886",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-343e6aa0-0b57-4c55-bb47-d4e4cb6b7886"
+                    },
+                    {
+                      "id": "2c051f92-dfe8-4ba5-a7a9-53758d5c363f",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-2c051f92-dfe8-4ba5-a7a9-53758d5c363f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-b158420b-604f-4ef9-8aee-3ab07c9a1c01"
+                }
+              ],
+              "id": "d7c7fb71-a047-498d-be8e-426f470fe1af",
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-d7c7fb71-a047-498d-be8e-426f470fe1af"
+            },
+            {
+              "name": "instances",
+              "item": [
+                {
+                  "name": "{instanceId}",
+                  "item": [
+                    {
+                      "name": "Salesforce Sales Cloud Get report instance results",
+                      "id": "e3b8ef23-5535-4c50-b1c6-0dde43036304",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/instances/:instanceId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "instances",
+                            ":instanceId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7e3b2903-61e2-4c0e-8c85-a864c41f15c1",
+                              "key": "reportId",
+                              "value": "<string>",
+                              "description": "(Required) The 15 or 18 character Salesforce report ID"
+                            },
+                            {
+                              "id": "7ec3770e-4df1-4992-8e2b-c0ac752ec34e",
+                              "key": "instanceId",
+                              "value": "<string>",
+                              "description": "(Required) The ID of the report instance"
+                            }
+                          ]
+                        },
+                        "description": "Retrieves the results of an asynchronous report run using the instance ID. If the report is still running, the status is returned instead of results."
+                      },
+                      "response": [
+                        {
+                          "id": "da9c4f3a-59f5-4f03-94ef-15166d26c770",
+                          "name": "Successfully retrieved report instance results",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reports/:reportId/instances/:instanceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reports",
+                                ":reportId",
+                                "instances",
+                                ":instanceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reportId"
+                                },
+                                {
+                                  "key": "instanceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"allData\": \"<boolean>\",\n  \"factMap\": {\n    \"laborum_41\": {\n      \"aggregates\": [\n        {\n          \"label\": \"<string>\",\n          \"value\": {\n            \"nullable\": true\n          }\n        },\n        {\n          \"label\": \"<string>\",\n          \"value\": {\n            \"nullable\": true\n          }\n        }\n      ],\n      \"rows\": [\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"<string>\",\n              \"value\": {\n                \"nullable\": true\n              }\n            },\n            {\n              \"label\": \"<string>\",\n              \"value\": {\n                \"nullable\": true\n              }\n            }\n          ]\n        },\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"<string>\",\n              \"value\": {\n                \"nullable\": true\n              }\n            },\n            {\n              \"label\": \"<string>\",\n              \"value\": {\n                \"nullable\": true\n              }\n            }\n          ]\n        }\n      ]\n    }\n  },\n  \"groupingsAcross\": {},\n  \"groupingsDown\": {},\n  \"hasDetailRows\": \"<boolean>\",\n  \"reportExtendedMetadata\": {},\n  \"reportMetadata\": {\n    \"aggregates\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"chart\": {},\n    \"currency\": \"<string>\",\n    \"description\": \"<string>\",\n    \"detailColumns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"developerName\": \"<string>\",\n    \"division\": \"<string>\",\n    \"folderId\": \"<string>\",\n    \"groupingsAcross\": [\n      {\n        \"dateGranularity\": \"<string>\",\n        \"name\": \"<string>\",\n        \"sortAggregate\": \"<string>\",\n        \"sortOrder\": \"<string>\"\n      },\n      {\n        \"dateGranularity\": \"<string>\",\n        \"name\": \"<string>\",\n        \"sortAggregate\": \"<string>\",\n        \"sortOrder\": \"<string>\"\n      }\n    ],\n    \"groupingsDown\": [\n      {\n        \"dateGranularity\": \"<string>\",\n        \"name\": \"<string>\",\n        \"sortAggregate\": \"<string>\",\n        \"sortOrder\": \"<string>\"\n      },\n      {\n        \"dateGranularity\": \"<string>\",\n        \"name\": \"<string>\",\n        \"sortAggregate\": \"<string>\",\n        \"sortOrder\": \"<string>\"\n      }\n    ],\n    \"hasDetailRows\": \"<boolean>\",\n    \"hasRecordCount\": \"<boolean>\",\n    \"historicalSnapshotDates\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"reportBooleanFilter\": \"<string>\",\n    \"reportFilters\": [\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"notEqual\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"lessOrEqual\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"reportFormat\": \"TABULAR\",\n    \"reportType\": {\n      \"label\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"scope\": \"<string>\",\n    \"standardDateFilter\": {\n      \"column\": \"<string>\",\n      \"durationValue\": \"<string>\",\n      \"endDate\": \"<string>\",\n      \"startDate\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-06-05T15:15:20.000Z",
+                          "updatedAt": "2026-06-05T15:15:20.000Z",
+                          "uid": "35240-da9c4f3a-59f5-4f03-94ef-15166d26c770"
+                        },
+                        {
+                          "id": "9985cc25-8909-4ae8-aa01-2f034c26b702",
+                          "name": "Authentication failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reports/:reportId/instances/:instanceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reports",
+                                ":reportId",
+                                "instances",
+                                ":instanceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reportId"
+                                },
+                                {
+                                  "key": "instanceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:20.000Z",
+                          "updatedAt": "2026-06-05T15:15:20.000Z",
+                          "uid": "35240-9985cc25-8909-4ae8-aa01-2f034c26b702"
+                        },
+                        {
+                          "id": "3e4ed556-f53f-4903-a5f0-ad77ed6e6440",
+                          "name": "Resource not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: oauth2",
+                                "key": "Authorization",
+                                "value": "<token>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/reports/:reportId/instances/:instanceId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "reports",
+                                ":reportId",
+                                "instances",
+                                ":instanceId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "reportId"
+                                },
+                                {
+                                  "key": "instanceId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-06-05T15:15:20.000Z",
+                          "updatedAt": "2026-06-05T15:15:20.000Z",
+                          "uid": "35240-3e4ed556-f53f-4903-a5f0-ad77ed6e6440"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-e3b8ef23-5535-4c50-b1c6-0dde43036304"
+                    }
+                  ],
+                  "id": "afcecffe-c67a-4a03-86c4-5d9541cf77fc",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-afcecffe-c67a-4a03-86c4-5d9541cf77fc"
+                },
+                {
+                  "name": "Salesforce Sales Cloud List report instances",
+                  "id": "6a8cdff9-b044-48f2-8635-b29614fdc554",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId/instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId",
+                        "instances"
+                      ],
+                      "variable": [
+                        {
+                          "id": "6571f7a4-46b1-4b74-9456-77cc8f128e8c",
+                          "key": "reportId",
+                          "value": "<string>",
+                          "description": "(Required) The 15 or 18 character Salesforce report ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns a list of instances for the specified report that have been run asynchronously. Each instance includes the status and completion date."
+                  },
+                  "response": [
+                    {
+                      "id": "4be7feb8-4495-41c9-ac64-bc000fed74e9",
+                      "name": "Successfully retrieved report instances",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/instances",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "instances"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"completionDate\": \"<dateTime>\",\n    \"id\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"requestDate\": \"<dateTime>\",\n    \"status\": \"Error\",\n    \"url\": \"<string>\"\n  },\n  {\n    \"completionDate\": \"<dateTime>\",\n    \"id\": \"<string>\",\n    \"ownerId\": \"<string>\",\n    \"requestDate\": \"<dateTime>\",\n    \"status\": \"New\",\n    \"url\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-4be7feb8-4495-41c9-ac64-bc000fed74e9"
+                    },
+                    {
+                      "id": "65512ee5-7e7b-4c46-b5fb-6751e557e780",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/instances",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "instances"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-65512ee5-7e7b-4c46-b5fb-6751e557e780"
+                    },
+                    {
+                      "id": "31190380-c077-4bd5-884b-f351d0ca1047",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/instances",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "instances"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-31190380-c077-4bd5-884b-f351d0ca1047"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-6a8cdff9-b044-48f2-8635-b29614fdc554"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Run a report asynchronously",
+                  "id": "2c09abb9-3960-4c4a-83ca-82214ff2f3d4",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportMetadata\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId/instances",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId",
+                        "instances"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0a19ee77-4067-4f20-b7b2-25573cd3b777",
+                          "key": "reportId",
+                          "value": "<string>",
+                          "description": "(Required) The 15 or 18 character Salesforce report ID"
+                        }
+                      ]
+                    },
+                    "description": "Runs a report asynchronously. Returns the report instance ID which can be used to retrieve the results when the report has finished running."
+                  },
+                  "response": [
+                    {
+                      "id": "5f44e94c-fcd3-4d7a-8aab-8321bfe38c6d",
+                      "name": "Report execution started",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reportMetadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/instances",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "instances"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"completionDate\": \"<dateTime>\",\n  \"id\": \"<string>\",\n  \"ownerId\": \"<string>\",\n  \"requestDate\": \"<dateTime>\",\n  \"status\": \"Error\",\n  \"url\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-5f44e94c-fcd3-4d7a-8aab-8321bfe38c6d"
+                    },
+                    {
+                      "id": "7e3de777-8714-4d6d-a60f-165415848a9e",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reportMetadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/instances",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "instances"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-7e3de777-8714-4d6d-a60f-165415848a9e"
+                    },
+                    {
+                      "id": "148034ac-2917-43ae-aef1-97b346a6cf39",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"reportMetadata\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/reports/:reportId/instances",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "reports",
+                            ":reportId",
+                            "instances"
+                          ],
+                          "variable": [
+                            {
+                              "key": "reportId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-148034ac-2917-43ae-aef1-97b346a6cf39"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-2c09abb9-3960-4c4a-83ca-82214ff2f3d4"
+                }
+              ],
+              "id": "13ea56df-28f4-4407-b992-43904b4a3e79",
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-13ea56df-28f4-4407-b992-43904b4a3e79"
+            },
+            {
+              "name": "Salesforce Sales Cloud Get report metadata",
+              "id": "7ab1579b-70a3-4858-966d-c2f77559c074",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports/:reportId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "61f567a4-b3e8-4963-ad6f-e7df1ba97c8f",
+                      "key": "reportId",
+                      "value": "<string>",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    }
+                  ]
+                },
+                "description": "Retrieves report metadata, including report type, format, groupings, filters, and summary fields for the specified report."
+              },
+              "response": [
+                {
+                  "id": "cf8f251b-4efa-4183-985e-fea32fdbe74e",
+                  "name": "Successfully retrieved report metadata",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"aggregates\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"chart\": {},\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"detailColumns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"developerName\": \"<string>\",\n  \"division\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"groupingsAcross\": [\n    {\n      \"dateGranularity\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sortAggregate\": \"<string>\",\n      \"sortOrder\": \"<string>\"\n    },\n    {\n      \"dateGranularity\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sortAggregate\": \"<string>\",\n      \"sortOrder\": \"<string>\"\n    }\n  ],\n  \"groupingsDown\": [\n    {\n      \"dateGranularity\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sortAggregate\": \"<string>\",\n      \"sortOrder\": \"<string>\"\n    },\n    {\n      \"dateGranularity\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sortAggregate\": \"<string>\",\n      \"sortOrder\": \"<string>\"\n    }\n  ],\n  \"hasDetailRows\": \"<boolean>\",\n  \"hasRecordCount\": \"<boolean>\",\n  \"historicalSnapshotDates\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"reportBooleanFilter\": \"<string>\",\n  \"reportFilters\": [\n    {\n      \"column\": \"<string>\",\n      \"filterType\": \"<string>\",\n      \"isRunPageEditable\": \"<boolean>\",\n      \"operator\": \"includes\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"filterType\": \"<string>\",\n      \"isRunPageEditable\": \"<boolean>\",\n      \"operator\": \"notEqual\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reportFormat\": \"MULTI_BLOCK\",\n  \"reportType\": {\n    \"label\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"scope\": \"<string>\",\n  \"standardDateFilter\": {\n    \"column\": \"<string>\",\n    \"durationValue\": \"<string>\",\n    \"endDate\": \"<string>\",\n    \"startDate\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-cf8f251b-4efa-4183-985e-fea32fdbe74e"
+                },
+                {
+                  "id": "cb4aa5b7-b5ca-45fc-8bfd-b2694e271fc1",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-cb4aa5b7-b5ca-45fc-8bfd-b2694e271fc1"
+                },
+                {
+                  "id": "022ba81e-bc53-43b0-8512-93b26dacabe4",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-022ba81e-bc53-43b0-8512-93b26dacabe4"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-7ab1579b-70a3-4858-966d-c2f77559c074"
+            },
+            {
+              "name": "Salesforce Sales Cloud Update a report",
+              "id": "4719a14f-f584-48f1-b5d0-d2effe9f7e0e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PATCH",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"qui_8eb\": -72315346.14043093,\n    \"commodo_d2c\": \"sunt adipisicing\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reports/:reportId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "ad449870-0afc-40bf-84c8-9559e2476e0a",
+                      "key": "reportId",
+                      "value": "<string>",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    }
+                  ]
+                },
+                "description": "Updates report metadata including filters, groupings, and other settings. Only report properties included in the request body are updated."
+              },
+              "response": [
+                {
+                  "id": "6366a472-263e-4a93-a2ea-85c5bd75fbfd",
+                  "name": "Report updated successfully",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportMetadata\": {\n    \"qui_8eb\": -72315346.14043093,\n    \"commodo_d2c\": \"sunt adipisicing\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"aggregates\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"chart\": {},\n  \"currency\": \"<string>\",\n  \"description\": \"<string>\",\n  \"detailColumns\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"developerName\": \"<string>\",\n  \"division\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"groupingsAcross\": [\n    {\n      \"dateGranularity\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sortAggregate\": \"<string>\",\n      \"sortOrder\": \"<string>\"\n    },\n    {\n      \"dateGranularity\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sortAggregate\": \"<string>\",\n      \"sortOrder\": \"<string>\"\n    }\n  ],\n  \"groupingsDown\": [\n    {\n      \"dateGranularity\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sortAggregate\": \"<string>\",\n      \"sortOrder\": \"<string>\"\n    },\n    {\n      \"dateGranularity\": \"<string>\",\n      \"name\": \"<string>\",\n      \"sortAggregate\": \"<string>\",\n      \"sortOrder\": \"<string>\"\n    }\n  ],\n  \"hasDetailRows\": \"<boolean>\",\n  \"hasRecordCount\": \"<boolean>\",\n  \"historicalSnapshotDates\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"reportBooleanFilter\": \"<string>\",\n  \"reportFilters\": [\n    {\n      \"column\": \"<string>\",\n      \"filterType\": \"<string>\",\n      \"isRunPageEditable\": \"<boolean>\",\n      \"operator\": \"includes\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"filterType\": \"<string>\",\n      \"isRunPageEditable\": \"<boolean>\",\n      \"operator\": \"notEqual\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reportFormat\": \"MULTI_BLOCK\",\n  \"reportType\": {\n    \"label\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  \"scope\": \"<string>\",\n  \"standardDateFilter\": {\n    \"column\": \"<string>\",\n    \"durationValue\": \"<string>\",\n    \"endDate\": \"<string>\",\n    \"startDate\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-6366a472-263e-4a93-a2ea-85c5bd75fbfd"
+                },
+                {
+                  "id": "759bde6b-316a-45e1-b042-12a148402b53",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportMetadata\": {\n    \"qui_8eb\": -72315346.14043093,\n    \"commodo_d2c\": \"sunt adipisicing\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-759bde6b-316a-45e1-b042-12a148402b53"
+                },
+                {
+                  "id": "aeaa59e7-6fc7-44ac-9b95-414641b604fa",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportMetadata\": {\n    \"qui_8eb\": -72315346.14043093,\n    \"commodo_d2c\": \"sunt adipisicing\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-aeaa59e7-6fc7-44ac-9b95-414641b604fa"
+                },
+                {
+                  "id": "74d4c789-fce3-475e-91af-0c47fd2adc7c",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportMetadata\": {\n    \"qui_8eb\": -72315346.14043093,\n    \"commodo_d2c\": \"sunt adipisicing\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-74d4c789-fce3-475e-91af-0c47fd2adc7c"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-4719a14f-f584-48f1-b5d0-d2effe9f7e0e"
+            },
+            {
+              "name": "Salesforce Sales Cloud Delete a report",
+              "id": "b9b0b15c-2d24-4b1e-b3ad-8ee129e74336",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports/:reportId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "cf8d8b9c-bb7f-446e-ae21-b8a290317069",
+                      "key": "reportId",
+                      "value": "<string>",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    }
+                  ]
+                },
+                "description": "Deletes the specified report. The report must not be currently in use by a dashboard component."
+              },
+              "response": [
+                {
+                  "id": "7bc45041-b32d-4087-b811-802e0ac0bc49",
+                  "name": "Report deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-7bc45041-b32d-4087-b811-802e0ac0bc49"
+                },
+                {
+                  "id": "b6049bb8-6620-430b-95ba-e7c54cece9ea",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-b6049bb8-6620-430b-95ba-e7c54cece9ea"
+                },
+                {
+                  "id": "98dcb80a-265e-4291-99a4-5b8558023967",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/:reportId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        ":reportId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-98dcb80a-265e-4291-99a4-5b8558023967"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-b9b0b15c-2d24-4b1e-b3ad-8ee129e74336"
+            }
+          ],
+          "id": "40e24fd4-06f2-4581-8324-cdea17eb5374",
+          "createdAt": "2026-06-05T15:15:20.000Z",
+          "updatedAt": "2026-06-05T15:15:20.000Z",
+          "uid": "35240-40e24fd4-06f2-4581-8324-cdea17eb5374"
+        },
+        {
+          "name": "{reportId}?includeDetails=true",
+          "item": [
+            {
+              "name": "Salesforce Sales Cloud Run a report synchronously",
+              "id": "618700ef-8c60-4249-9be5-a88f290b4e8c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"excludes\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"lessThan\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/reports/{{reportId}}?includeDetails=true",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports",
+                    "{{reportId}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "includeDetails",
+                      "value": "true"
+                    }
+                  ]
+                },
+                "description": "Runs a report synchronously and returns the report results. Optionally apply dynamic filters, aggregates, and groupings. Use includeDetails query parameter to include detail rows."
+              },
+              "response": [
+                {
+                  "id": "c50fa376-41d8-4cde-a575-89aae6090d13",
+                  "name": "Report executed successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"excludes\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"lessThan\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/{{reportId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        "{{reportId}}"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"allData\": \"<boolean>\",\n  \"factMap\": {\n    \"laborum_41\": {\n      \"aggregates\": [\n        {\n          \"label\": \"<string>\",\n          \"value\": {\n            \"nullable\": true\n          }\n        },\n        {\n          \"label\": \"<string>\",\n          \"value\": {\n            \"nullable\": true\n          }\n        }\n      ],\n      \"rows\": [\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"<string>\",\n              \"value\": {\n                \"nullable\": true\n              }\n            },\n            {\n              \"label\": \"<string>\",\n              \"value\": {\n                \"nullable\": true\n              }\n            }\n          ]\n        },\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"<string>\",\n              \"value\": {\n                \"nullable\": true\n              }\n            },\n            {\n              \"label\": \"<string>\",\n              \"value\": {\n                \"nullable\": true\n              }\n            }\n          ]\n        }\n      ]\n    }\n  },\n  \"groupingsAcross\": {},\n  \"groupingsDown\": {},\n  \"hasDetailRows\": \"<boolean>\",\n  \"reportExtendedMetadata\": {},\n  \"reportMetadata\": {\n    \"aggregates\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"chart\": {},\n    \"currency\": \"<string>\",\n    \"description\": \"<string>\",\n    \"detailColumns\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"developerName\": \"<string>\",\n    \"division\": \"<string>\",\n    \"folderId\": \"<string>\",\n    \"groupingsAcross\": [\n      {\n        \"dateGranularity\": \"<string>\",\n        \"name\": \"<string>\",\n        \"sortAggregate\": \"<string>\",\n        \"sortOrder\": \"<string>\"\n      },\n      {\n        \"dateGranularity\": \"<string>\",\n        \"name\": \"<string>\",\n        \"sortAggregate\": \"<string>\",\n        \"sortOrder\": \"<string>\"\n      }\n    ],\n    \"groupingsDown\": [\n      {\n        \"dateGranularity\": \"<string>\",\n        \"name\": \"<string>\",\n        \"sortAggregate\": \"<string>\",\n        \"sortOrder\": \"<string>\"\n      },\n      {\n        \"dateGranularity\": \"<string>\",\n        \"name\": \"<string>\",\n        \"sortAggregate\": \"<string>\",\n        \"sortOrder\": \"<string>\"\n      }\n    ],\n    \"hasDetailRows\": \"<boolean>\",\n    \"hasRecordCount\": \"<boolean>\",\n    \"historicalSnapshotDates\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"reportBooleanFilter\": \"<string>\",\n    \"reportFilters\": [\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"notEqual\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"lessOrEqual\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"reportFormat\": \"TABULAR\",\n    \"reportType\": {\n      \"label\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    \"scope\": \"<string>\",\n    \"standardDateFilter\": {\n      \"column\": \"<string>\",\n      \"durationValue\": \"<string>\",\n      \"endDate\": \"<string>\",\n      \"startDate\": \"<string>\"\n    }\n  }\n}",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-c50fa376-41d8-4cde-a575-89aae6090d13"
+                },
+                {
+                  "id": "78d8dcf7-4aa6-4237-b4fa-ff20194c3d07",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"excludes\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"lessThan\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/{{reportId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        "{{reportId}}"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-78d8dcf7-4aa6-4237-b4fa-ff20194c3d07"
+                },
+                {
+                  "id": "6609f1b5-2f03-406b-b93b-bf7a0c282a62",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"excludes\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"lessThan\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/{{reportId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        "{{reportId}}"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-6609f1b5-2f03-406b-b93b-bf7a0c282a62"
+                },
+                {
+                  "id": "6ecb5154-6fea-4e91-b2fd-f8f367d650ea",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"excludes\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"lessThan\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/reports/{{reportId}}",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reports",
+                        "{{reportId}}"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-6ecb5154-6fea-4e91-b2fd-f8f367d650ea"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-618700ef-8c60-4249-9be5-a88f290b4e8c"
+            }
+          ],
+          "id": "64359a0b-1bb2-4d55-aea7-cc36cf60d6b3",
+          "createdAt": "2026-06-05T15:15:20.000Z",
+          "updatedAt": "2026-06-05T15:15:20.000Z",
+          "uid": "35240-64359a0b-1bb2-4d55-aea7-cc36cf60d6b3"
+        },
+        {
+          "name": "Salesforce Sales Cloud List reports",
+          "id": "f52edf30-d06c-47b9-83fb-dd387e7e1459",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reports",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reports"
+              ]
+            },
+            "description": "Returns a list of recently used reports. Each report in the list includes the report ID, name, URL, and description."
+          },
+          "response": [
+            {
+              "id": "e7af5057-7e27-4aab-8337-3c79e5462c82",
+              "name": "Successfully retrieved list of reports",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"url\": \"<string>\",\n    \"describeUrl\": \"<string>\",\n    \"instancesUrl\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"url\": \"<string>\",\n    \"describeUrl\": \"<string>\",\n    \"instancesUrl\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-e7af5057-7e27-4aab-8337-3c79e5462c82"
+            },
+            {
+              "id": "9a3d801b-3f25-4ad2-a495-230a194b3efd",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reports",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reports"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-9a3d801b-3f25-4ad2-a495-230a194b3efd"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:20.000Z",
+          "updatedAt": "2026-06-05T15:15:20.000Z",
+          "uid": "35240-f52edf30-d06c-47b9-83fb-dd387e7e1459"
+        }
+      ],
+      "id": "a794614e-399e-4a2f-a2fc-1853f7e6be13",
+      "createdAt": "2026-06-05T15:15:20.000Z",
+      "updatedAt": "2026-06-05T15:15:20.000Z",
+      "uid": "35240-a794614e-399e-4a2f-a2fc-1853f7e6be13"
+    },
+    {
+      "name": "reportTypes",
+      "item": [
+        {
+          "name": "{reportType}",
+          "item": [
+            {
+              "name": "Salesforce Sales Cloud Describe a report type",
+              "id": "effa5a05-f07c-45a9-a76f-49a4db1ab201",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reportTypes/:reportType",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reportTypes",
+                    ":reportType"
+                  ],
+                  "variable": [
+                    {
+                      "id": "16e95ba7-78b7-45e5-bc92-2645437efbf3",
+                      "key": "reportType",
+                      "value": "<string>",
+                      "description": "(Required) The API name of the report type"
+                    }
+                  ]
+                },
+                "description": "Returns metadata about the specified report type including available fields, groupable fields, and filterable fields."
+              },
+              "response": [
+                {
+                  "id": "cda30d27-975a-4e57-b54f-21de351b0d0c",
+                  "name": "Successfully retrieved report type description",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reportTypes/:reportType",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reportTypes",
+                        ":reportType"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportType"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-cda30d27-975a-4e57-b54f-21de351b0d0c"
+                },
+                {
+                  "id": "2132bbaa-dfd6-4b21-850f-7cf190710d69",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reportTypes/:reportType",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reportTypes",
+                        ":reportType"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportType"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-2132bbaa-dfd6-4b21-850f-7cf190710d69"
+                },
+                {
+                  "id": "e615fe42-5b2e-4ef4-8a4e-40b5f56460b5",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/reportTypes/:reportType",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "reportTypes",
+                        ":reportType"
+                      ],
+                      "variable": [
+                        {
+                          "key": "reportType"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-e615fe42-5b2e-4ef4-8a4e-40b5f56460b5"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-effa5a05-f07c-45a9-a76f-49a4db1ab201"
+            }
+          ],
+          "id": "2b2f91f3-5b09-4439-9b17-7a12919dc088",
+          "createdAt": "2026-06-05T15:15:20.000Z",
+          "updatedAt": "2026-06-05T15:15:20.000Z",
+          "uid": "35240-2b2f91f3-5b09-4439-9b17-7a12919dc088"
+        },
+        {
+          "name": "Salesforce Sales Cloud List available report types",
+          "id": "0fab14c0-65fa-445e-acd4-6a80c57942c1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/reportTypes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "reportTypes"
+              ]
+            },
+            "description": "Returns a list of report types available in the org. Each report type includes its label and API name."
+          },
+          "response": [
+            {
+              "id": "08a931a1-eb3e-4fe8-b44b-236561b276ac",
+              "name": "Successfully retrieved report types",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reportTypes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reportTypes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"label\": \"<string>\",\n    \"type\": \"<string>\"\n  },\n  {\n    \"label\": \"<string>\",\n    \"type\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-08a931a1-eb3e-4fe8-b44b-236561b276ac"
+            },
+            {
+              "id": "cd926fd0-2203-4305-9902-73d60c3fcb44",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/reportTypes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "reportTypes"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-cd926fd0-2203-4305-9902-73d60c3fcb44"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:20.000Z",
+          "updatedAt": "2026-06-05T15:15:20.000Z",
+          "uid": "35240-0fab14c0-65fa-445e-acd4-6a80c57942c1"
+        }
+      ],
+      "id": "156dd7df-0a69-43d4-a7ed-801e770e177f",
+      "createdAt": "2026-06-05T15:15:20.000Z",
+      "updatedAt": "2026-06-05T15:15:20.000Z",
+      "uid": "35240-156dd7df-0a69-43d4-a7ed-801e770e177f"
+    },
+    {
+      "name": "dashboards",
+      "item": [
+        {
+          "name": "{dashboardId}",
+          "item": [
+            {
+              "name": "status",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get dashboard refresh status",
+                  "id": "f71c6bd5-5a4b-4063-b304-76240be169fe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId/status",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId",
+                        "status"
+                      ],
+                      "variable": [
+                        {
+                          "id": "26459097-c933-4e62-9c89-cffed385529a",
+                          "key": "dashboardId",
+                          "value": "<string>",
+                          "description": "(Required) The 15 or 18 character Salesforce dashboard ID"
+                        }
+                      ]
+                    },
+                    "description": "Returns the status of the most recent refresh for the specified dashboard, including component-level status information."
+                  },
+                  "response": [
+                    {
+                      "id": "f9b61fe8-eadb-464a-9d51-2567c2c32dde",
+                      "name": "Successfully retrieved dashboard status",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dashboards/:dashboardId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dashboards",
+                            ":dashboardId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dashboardId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"componentStatus\": [\n    {\n      \"componentId\": \"<string>\",\n      \"refreshDate\": \"<dateTime>\",\n      \"refreshStatus\": \"<string>\"\n    },\n    {\n      \"componentId\": \"<string>\",\n      \"refreshDate\": \"<dateTime>\",\n      \"refreshStatus\": \"<string>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-f9b61fe8-eadb-464a-9d51-2567c2c32dde"
+                    },
+                    {
+                      "id": "b558b167-e133-4a2c-b0ae-be265c2b57ac",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dashboards/:dashboardId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dashboards",
+                            ":dashboardId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dashboardId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-b558b167-e133-4a2c-b0ae-be265c2b57ac"
+                    },
+                    {
+                      "id": "b1db872d-9da0-45fb-b771-934db8f05f00",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/dashboards/:dashboardId/status",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "dashboards",
+                            ":dashboardId",
+                            "status"
+                          ],
+                          "variable": [
+                            {
+                              "key": "dashboardId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:20.000Z",
+                      "updatedAt": "2026-06-05T15:15:20.000Z",
+                      "uid": "35240-b1db872d-9da0-45fb-b771-934db8f05f00"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-f71c6bd5-5a4b-4063-b304-76240be169fe"
+                }
+              ],
+              "id": "719db5ac-bdec-429d-9dbd-fe95b705f5a2",
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-719db5ac-bdec-429d-9dbd-fe95b705f5a2"
+            },
+            {
+              "name": "Salesforce Sales Cloud Get dashboard metadata and results",
+              "id": "4f0487fc-f801-4e46-989d-608068f73125",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dashboards",
+                    ":dashboardId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "549b6489-3f04-405c-a1cf-293d682af500",
+                      "key": "dashboardId",
+                      "value": "<string>",
+                      "description": "(Required) The 15 or 18 character Salesforce dashboard ID"
+                    }
+                  ]
+                },
+                "description": "Returns the metadata and cached results for the specified dashboard, including component data, status, and filter information."
+              },
+              "response": [
+                {
+                  "id": "48c1d408-e1e4-4218-a05f-4b321f6abeda",
+                  "name": "Successfully retrieved dashboard",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dashboardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"folderName\": \"<string>\",\n  \"runningUser\": {\n    \"displayName\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"components\": [\n    {\n      \"componentData\": {},\n      \"footer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"id\": \"<string>\",\n      \"reportId\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"componentData\": {},\n      \"footer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"id\": \"<string>\",\n      \"reportId\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-48c1d408-e1e4-4218-a05f-4b321f6abeda"
+                },
+                {
+                  "id": "e83e3f5f-7ba9-4604-a686-965f27f194b9",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dashboardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-e83e3f5f-7ba9-4604-a686-965f27f194b9"
+                },
+                {
+                  "id": "b60243c5-9e51-4b81-91e4-a92aecfb3e3e",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dashboardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-b60243c5-9e51-4b81-91e4-a92aecfb3e3e"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-4f0487fc-f801-4e46-989d-608068f73125"
+            },
+            {
+              "name": "Salesforce Sales Cloud Refresh a dashboard",
+              "id": "a7962d76-155d-440a-a415-8fa73d961a1e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dashboards",
+                    ":dashboardId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "1292b409-d4e7-40e2-adf1-3c6126261fe0",
+                      "key": "dashboardId",
+                      "value": "<string>",
+                      "description": "(Required) The 15 or 18 character Salesforce dashboard ID"
+                    }
+                  ]
+                },
+                "description": "Refreshes the specified dashboard by re-running all component reports. Dashboard refresh requests are limited to 200 per hour."
+              },
+              "response": [
+                {
+                  "id": "d779f357-a90c-491b-b801-7c7abffdcfb6",
+                  "name": "Dashboard refreshed successfully",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dashboardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"folderId\": \"<string>\",\n  \"folderName\": \"<string>\",\n  \"runningUser\": {\n    \"displayName\": \"<string>\",\n    \"id\": \"<string>\"\n  },\n  \"components\": [\n    {\n      \"componentData\": {},\n      \"footer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"id\": \"<string>\",\n      \"reportId\": \"<string>\",\n      \"type\": \"<string>\"\n    },\n    {\n      \"componentData\": {},\n      \"footer\": \"<string>\",\n      \"header\": \"<string>\",\n      \"id\": \"<string>\",\n      \"reportId\": \"<string>\",\n      \"type\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-d779f357-a90c-491b-b801-7c7abffdcfb6"
+                },
+                {
+                  "id": "46024f97-e12d-42b2-b355-ee53bbf64b0f",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dashboardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-46024f97-e12d-42b2-b355-ee53bbf64b0f"
+                },
+                {
+                  "id": "27e0200e-0716-4a64-84bf-36e3c50733f7",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dashboardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-27e0200e-0716-4a64-84bf-36e3c50733f7"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-a7962d76-155d-440a-a415-8fa73d961a1e"
+            },
+            {
+              "name": "Salesforce Sales Cloud Delete a dashboard",
+              "id": "7746969d-e951-453e-a152-f959dd6cf484",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dashboards",
+                    ":dashboardId"
+                  ],
+                  "variable": [
+                    {
+                      "id": "315952be-75d2-4d5e-98e2-d02674bdca28",
+                      "key": "dashboardId",
+                      "value": "<string>",
+                      "description": "(Required) The 15 or 18 character Salesforce dashboard ID"
+                    }
+                  ]
+                },
+                "description": "Deletes the specified dashboard."
+              },
+              "response": [
+                {
+                  "id": "27948d56-a87f-4643-9c4a-c738d5734d73",
+                  "name": "Dashboard deleted successfully",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dashboardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "No Content",
+                  "code": 204,
+                  "_postman_previewlanguage": "text",
+                  "header": [],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": null,
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-27948d56-a87f-4643-9c4a-c738d5734d73"
+                },
+                {
+                  "id": "1f00f0f4-e486-4f4f-b329-116155465c81",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dashboardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-1f00f0f4-e486-4f4f-b329-116155465c81"
+                },
+                {
+                  "id": "e621804a-523f-4307-b55c-899ae0546930",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/dashboards/:dashboardId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "dashboards",
+                        ":dashboardId"
+                      ],
+                      "variable": [
+                        {
+                          "key": "dashboardId"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:20.000Z",
+                  "updatedAt": "2026-06-05T15:15:20.000Z",
+                  "uid": "35240-e621804a-523f-4307-b55c-899ae0546930"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-7746969d-e951-453e-a152-f959dd6cf484"
+            }
+          ],
+          "id": "d7adf59a-3f51-44bb-a7d8-110e93dbe7c7",
+          "createdAt": "2026-06-05T15:15:20.000Z",
+          "updatedAt": "2026-06-05T15:15:20.000Z",
+          "uid": "35240-d7adf59a-3f51-44bb-a7d8-110e93dbe7c7"
+        },
+        {
+          "name": "Salesforce Sales Cloud List dashboards",
+          "id": "e622e3d2-4268-4151-953b-27b763b84a03",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dashboards",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dashboards"
+              ]
+            },
+            "description": "Returns a list of recently used dashboards. Each dashboard in the list includes the dashboard ID, name, URL, and folder information."
+          },
+          "response": [
+            {
+              "id": "863c27d0-d5d4-408c-a55e-feac1563e536",
+              "name": "Successfully retrieved list of dashboards",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dashboards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dashboards"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"dashboards\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"statusUrl\": \"<string>\",\n      \"url\": \"<string>\",\n      \"folderId\": \"<string>\",\n      \"folderName\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"statusUrl\": \"<string>\",\n      \"url\": \"<string>\",\n      \"folderId\": \"<string>\",\n      \"folderName\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-863c27d0-d5d4-408c-a55e-feac1563e536"
+            },
+            {
+              "id": "046771c5-accc-477b-8d4d-8e09b0ecbeb8",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dashboards",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dashboards"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+              "createdAt": "2026-06-05T15:15:20.000Z",
+              "updatedAt": "2026-06-05T15:15:20.000Z",
+              "uid": "35240-046771c5-accc-477b-8d4d-8e09b0ecbeb8"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:20.000Z",
+          "updatedAt": "2026-06-05T15:15:20.000Z",
+          "uid": "35240-e622e3d2-4268-4151-953b-27b763b84a03"
+        }
+      ],
+      "id": "8fa90370-dda2-4bd7-a92e-2df9297dc8bc",
+      "createdAt": "2026-06-05T15:15:20.000Z",
+      "updatedAt": "2026-06-05T15:15:20.000Z",
+      "uid": "35240-8fa90370-dda2-4bd7-a92e-2df9297dc8bc"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "instance",
+      "value": "yourInstance"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/analytics"
+    },
+    {
+      "key": "reportId",
+      "value": "<string>"
+    }
+  ]
+}

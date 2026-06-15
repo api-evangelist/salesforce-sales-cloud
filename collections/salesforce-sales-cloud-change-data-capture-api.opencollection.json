@@ -1,0 +1,125 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Change Data Capture API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Change Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Describe a change event object",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:changeEventName",
+            "params": [
+              {
+                "name": "changeEventName",
+                "value": "",
+                "type": "path",
+                "description": "The change event API name (e.g., AccountChangeEvent for Account, Contact__ChangeEvent for a custom object)"
+              }
+            ]
+          },
+          "docs": "Retrieves metadata about a change event object. For standard objects, the change event name follows the pattern {ObjectName}ChangeEvent (e.g., AccountChangeEvent). For custom objects, the pattern is {ObjectName}__ChangeEvent."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get full change event metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:changeEventName/describe",
+            "params": [
+              {
+                "name": "changeEventName",
+                "value": "",
+                "type": "path",
+                "description": "The change event API name (e.g., AccountChangeEvent for Account, Contact__ChangeEvent for a custom object)"
+              }
+            ]
+          },
+          "docs": "Returns complete metadata for a change event type including all header and changed fields. The change event header contains the changeType (CREATE, UPDATE, DELETE, UNDELETE), changedFields, commitTimestamp, transactionKey, and other metadata."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Event Schema",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get change event Avro schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/sobjects/:changeEventName/eventSchema",
+            "params": [
+              {
+                "name": "changeEventName",
+                "value": "",
+                "type": "path",
+                "description": "The change event API name (e.g., AccountChangeEvent for Account, Contact__ChangeEvent for a custom object)"
+              },
+              {
+                "name": "payloadFormat",
+                "value": "",
+                "type": "query",
+                "description": "The payload format for the schema"
+              }
+            ]
+          },
+          "docs": "Retrieves the Apache Avro schema for the specified change event. The schema defines the event message structure including header fields and object-specific data fields."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get event schema by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/event/eventSchema/:schemaId",
+            "params": [
+              {
+                "name": "schemaId",
+                "value": "",
+                "type": "path",
+                "description": "The schema ID from the change event message"
+              },
+              {
+                "name": "payloadFormat",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieves an event schema using the schema ID provided in a change event message. Useful when dynamically processing change events and needing to resolve the schema at runtime."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,2453 @@
+{
+  "info": {
+    "_postman_id": "a81e155d-e03c-4a15-a1b7-746e5604808c",
+    "name": "Salesforce Sales Cloud Salesforce Tooling API",
+    "description": "Build custom development tools for Salesforce applications by accessing metadata about Apex classes, triggers, Visualforce pages, and other development artifacts. Provides REST endpoints for querying, creating, updating, and deleting tooling objects such as ApexClass, ApexTrigger, ApexLog, ApexTestQueueItem, and MetadataContainer.\n\nContact Support:\n Name: Salesforce Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:15:28.000Z",
+    "updatedAt": "2026-06-05T15:15:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a81e155d-e03c-4a15-a1b7-746e5604808c"
+  },
+  "item": [
+    {
+      "name": "sobjects",
+      "item": [
+        {
+          "name": "{sObjectName}",
+          "item": [
+            {
+              "name": "describe",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Describe a Tooling sObject",
+                  "id": "7f5a33f1-4b51-4e53-adf0-be1a0645d564",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName/describe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName",
+                        "describe"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9044d1e3-900e-49ee-8846-72be8e58c3fa",
+                          "key": "sObjectName",
+                          "value": "<string>",
+                          "description": "(Required) The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+                        }
+                      ]
+                    },
+                    "description": "Completely describes the individual metadata for the specified Tooling API sObject, including all fields, child relationships, and other metadata attributes."
+                  },
+                  "response": [
+                    {
+                      "id": "c8b7884d-5fa7-4165-afb1-4143e6cb5204",
+                      "name": "Successfully retrieved sObject describe",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-c8b7884d-5fa7-4165-afb1-4143e6cb5204"
+                    },
+                    {
+                      "id": "b8c47507-4f6a-4a3a-a1ee-340eb8a8abb0",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-b8c47507-4f6a-4a3a-a1ee-340eb8a8abb0"
+                    },
+                    {
+                      "id": "e97f1010-da85-47e1-bf4b-fb9fd1eaba0f",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-e97f1010-da85-47e1-bf4b-fb9fd1eaba0f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-7f5a33f1-4b51-4e53-adf0-be1a0645d564"
+                }
+              ],
+              "id": "89176edf-564c-4cb3-b2e2-8619fd37557b",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-89176edf-564c-4cb3-b2e2-8619fd37557b"
+            },
+            {
+              "name": "{recordId}",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get a Tooling sObject record",
+                  "id": "30dd1b2c-2233-45aa-ba63-114721913120",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName",
+                        ":recordId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4f4cdee5-d4d7-453b-8754-79a3fd14de0b",
+                          "key": "sObjectName",
+                          "value": "<string>",
+                          "description": "(Required) The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+                        },
+                        {
+                          "id": "582e7632-e6c1-4c78-abe1-7295c8fd127c",
+                          "key": "recordId",
+                          "value": "<string>",
+                          "description": "(Required) The Salesforce record ID"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves a Tooling API record by its ID. For example, retrieve an ApexClass record to get its source code, metadata, and compilation status."
+                  },
+                  "response": [
+                    {
+                      "id": "229d7e76-2beb-41bf-8d86-b43d13aa9937",
+                      "name": "Successfully retrieved record",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-229d7e76-2beb-41bf-8d86-b43d13aa9937"
+                    },
+                    {
+                      "id": "1a228130-cd05-4425-b113-a3959e5cb87d",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-1a228130-cd05-4425-b113-a3959e5cb87d"
+                    },
+                    {
+                      "id": "60d0a54e-87d7-4da7-8c17-001e29d5ef22",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-60d0a54e-87d7-4da7-8c17-001e29d5ef22"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-30dd1b2c-2233-45aa-ba63-114721913120"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Update a Tooling sObject record",
+                  "id": "af329fed-56ca-4df5-a7d4-7b57db25866b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName",
+                        ":recordId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0e59fda7-b5bb-4c59-b903-96adf051b8c3",
+                          "key": "sObjectName",
+                          "value": "<string>",
+                          "description": "(Required) The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+                        },
+                        {
+                          "id": "4cce4fc2-44b5-4966-991b-d2208a05d1ba",
+                          "key": "recordId",
+                          "value": "<string>",
+                          "description": "(Required) The Salesforce record ID"
+                        }
+                      ]
+                    },
+                    "description": "Updates an existing Tooling API record. For example, updating an ApexClass record will update and recompile the Apex class."
+                  },
+                  "response": [
+                    {
+                      "id": "4e93fb1f-f957-4960-87da-ef92ed51342c",
+                      "name": "Record updated successfully",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-4e93fb1f-f957-4960-87da-ef92ed51342c"
+                    },
+                    {
+                      "id": "27f209e9-ac72-4ab3-bf58-e2b3e8e0c8c0",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-27f209e9-ac72-4ab3-bf58-e2b3e8e0c8c0"
+                    },
+                    {
+                      "id": "a6d48415-1922-476a-b98b-0a881de02097",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-a6d48415-1922-476a-b98b-0a881de02097"
+                    },
+                    {
+                      "id": "d88d7cb0-8966-482f-b7d3-66792d6ed10a",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-d88d7cb0-8966-482f-b7d3-66792d6ed10a"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-af329fed-56ca-4df5-a7d4-7b57db25866b"
+                },
+                {
+                  "name": "Salesforce Sales Cloud Delete a Tooling sObject record",
+                  "id": "d9c2e353-bc6d-460e-a177-4c35318c01ed",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName",
+                        ":recordId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4ea39307-924c-4fdb-9e31-a34bd2d3e11b",
+                          "key": "sObjectName",
+                          "value": "<string>",
+                          "description": "(Required) The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+                        },
+                        {
+                          "id": "aeade82f-797b-45a6-b5ff-1db63265b865",
+                          "key": "recordId",
+                          "value": "<string>",
+                          "description": "(Required) The Salesforce record ID"
+                        }
+                      ]
+                    },
+                    "description": "Deletes a Tooling API record by its ID."
+                  },
+                  "response": [
+                    {
+                      "id": "d9c96ee4-a716-408d-a77c-4bf7d4700214",
+                      "name": "Record deleted successfully",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-d9c96ee4-a716-408d-a77c-4bf7d4700214"
+                    },
+                    {
+                      "id": "966fdb91-f4e5-43e0-afd2-60586b85e71e",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-966fdb91-f4e5-43e0-afd2-60586b85e71e"
+                    },
+                    {
+                      "id": "9f0a7deb-5756-4ce0-8fe5-90f5d2960e1f",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:sObjectName/:recordId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":sObjectName",
+                            ":recordId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "sObjectName"
+                            },
+                            {
+                              "key": "recordId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:28.000Z",
+                      "updatedAt": "2026-06-05T15:15:28.000Z",
+                      "uid": "35240-9f0a7deb-5756-4ce0-8fe5-90f5d2960e1f"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-d9c2e353-bc6d-460e-a177-4c35318c01ed"
+                }
+              ],
+              "id": "a25fc3fa-3deb-40c7-aa30-ecdad0b9d4fb",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-a25fc3fa-3deb-40c7-aa30-ecdad0b9d4fb"
+            },
+            {
+              "name": "Salesforce Sales Cloud Get Tooling sObject basic information",
+              "id": "1f0d6765-8bbe-4745-8caf-491478b333e9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sobjects/:sObjectName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sobjects",
+                    ":sObjectName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "12ca39ce-bf29-4bd2-81b1-f91547b55228",
+                      "key": "sObjectName",
+                      "value": "<string>",
+                      "description": "(Required) The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+                    }
+                  ]
+                },
+                "description": "Retrieves basic metadata for the specified Tooling API sObject, including default field values and recently accessed records."
+              },
+              "response": [
+                {
+                  "id": "14d81b7d-1ca1-4835-b397-42556b994c77",
+                  "name": "Successfully retrieved sObject info",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sObjectName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{}",
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-14d81b7d-1ca1-4835-b397-42556b994c77"
+                },
+                {
+                  "id": "973ee756-fc04-491f-a971-1ee1781f981b",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sObjectName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-973ee756-fc04-491f-a971-1ee1781f981b"
+                },
+                {
+                  "id": "8703b3c5-9dc9-493d-95f2-094d490d16fe",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sObjectName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-8703b3c5-9dc9-493d-95f2-094d490d16fe"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-1f0d6765-8bbe-4745-8caf-491478b333e9"
+            },
+            {
+              "name": "Salesforce Sales Cloud Create a Tooling sObject record",
+              "id": "258d7f8f-3c14-408d-ba9e-3a1d18cbd08c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/sobjects/:sObjectName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sobjects",
+                    ":sObjectName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "844db9db-676e-425a-96ad-0af7e45683f3",
+                      "key": "sObjectName",
+                      "value": "<string>",
+                      "description": "(Required) The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+                    }
+                  ]
+                },
+                "description": "Creates a new record for the specified Tooling API sObject. For example, creating an ApexClass record will create and compile a new Apex class in the org."
+              },
+              "response": [
+                {
+                  "id": "472aa0a0-ea71-4c62-8a68-a9407429cc2b",
+                  "name": "Record created successfully",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sObjectName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"success\": \"<boolean>\",\n  \"errors\": [\n    {\n      \"statusCode\": \"<string>\",\n      \"message\": \"<string>\",\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"statusCode\": \"<string>\",\n      \"message\": \"<string>\",\n      \"fields\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-472aa0a0-ea71-4c62-8a68-a9407429cc2b"
+                },
+                {
+                  "id": "ddfd6846-3a5c-4f48-9cc5-c34ad6dcfb7f",
+                  "name": "Invalid request",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sObjectName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-ddfd6846-3a5c-4f48-9cc5-c34ad6dcfb7f"
+                },
+                {
+                  "id": "c2d2e82b-9240-4b89-b913-e531419cad27",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"Duis_cfd\": 62462503,\n  \"consectetur_f76\": 13744080\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:sObjectName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":sObjectName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "sObjectName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:28.000Z",
+                  "updatedAt": "2026-06-05T15:15:28.000Z",
+                  "uid": "35240-c2d2e82b-9240-4b89-b913-e531419cad27"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-258d7f8f-3c14-408d-ba9e-3a1d18cbd08c"
+            }
+          ],
+          "id": "9559b840-269f-49b0-91ec-57dda515a22f",
+          "createdAt": "2026-06-05T15:15:28.000Z",
+          "updatedAt": "2026-06-05T15:15:28.000Z",
+          "uid": "35240-9559b840-269f-49b0-91ec-57dda515a22f"
+        },
+        {
+          "name": "Salesforce Sales Cloud List available Tooling API sObjects",
+          "id": "aa056edd-c1e3-47e9-b986-df72c23122ab",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/sobjects",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "sobjects"
+              ]
+            },
+            "description": "Lists all available Tooling API sObjects and their metadata, including ApexClass, ApexTrigger, ApexComponent, ApexPage, ApexLog, MetadataContainer, and other developer-focused objects."
+          },
+          "response": [
+            {
+              "id": "b737ccea-e4bc-4066-a374-eab1d8cc53e5",
+              "name": "Successfully retrieved list of Tooling sObjects",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sobjects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sobjects"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"encoding\": \"<string>\",\n  \"maxBatchSize\": \"<integer>\",\n  \"sobjects\": [\n    {\n      \"activateable\": \"<boolean>\",\n      \"custom\": \"<boolean>\",\n      \"label\": \"<string>\",\n      \"name\": \"<string>\",\n      \"queryable\": \"<boolean>\",\n      \"urls\": {\n        \"irure7a\": \"<string>\"\n      }\n    },\n    {\n      \"activateable\": \"<boolean>\",\n      \"custom\": \"<boolean>\",\n      \"label\": \"<string>\",\n      \"name\": \"<string>\",\n      \"queryable\": \"<boolean>\",\n      \"urls\": {\n        \"commodo1\": \"<string>\",\n        \"sint_ae\": \"<string>\",\n        \"mollit_0\": \"<string>\",\n        \"sed_9d7\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-b737ccea-e4bc-4066-a374-eab1d8cc53e5"
+            },
+            {
+              "id": "8838bb9c-01c9-4a8a-9488-f3000fe3bfed",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sobjects",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sobjects"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-8838bb9c-01c9-4a8a-9488-f3000fe3bfed"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:28.000Z",
+          "updatedAt": "2026-06-05T15:15:28.000Z",
+          "uid": "35240-aa056edd-c1e3-47e9-b986-df72c23122ab"
+        }
+      ],
+      "id": "87eb070b-fe89-45ef-9e5c-6bbc2b78e647",
+      "createdAt": "2026-06-05T15:15:28.000Z",
+      "updatedAt": "2026-06-05T15:15:28.000Z",
+      "uid": "35240-87eb070b-fe89-45ef-9e5c-6bbc2b78e647"
+    },
+    {
+      "name": "query",
+      "item": [
+        {
+          "name": "Salesforce Sales Cloud Execute a Tooling API SOQL query",
+          "id": "8108c57c-4596-4284-95e1-03bd417978ab",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/query?q=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "query"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The SOQL query string targeting Tooling API objects",
+                  "key": "q",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Executes a SOQL query against Tooling API objects. Use this to query ApexClass, ApexTrigger, ApexLog, ApexTestQueueItem, and other Tooling API sObjects."
+          },
+          "response": [
+            {
+              "id": "4fd3752c-90ca-451f-8162-620a4222d719",
+              "name": "Query executed successfully",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/query?q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SOQL query string targeting Tooling API objects",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"totalSize\": \"<integer>\",\n  \"done\": \"<boolean>\",\n  \"nextRecordsUrl\": \"<string>\",\n  \"records\": [\n    {\n      \"labore_296\": 70289676,\n      \"occaecat_7a6\": false\n    },\n    {\n      \"quisc7\": 17033525,\n      \"pariatur37\": 61289173.130294204\n    }\n  ]\n}",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-4fd3752c-90ca-451f-8162-620a4222d719"
+            },
+            {
+              "id": "f7df475d-dc88-4ef7-99cb-f9e0f52cdd02",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/query?q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SOQL query string targeting Tooling API objects",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-f7df475d-dc88-4ef7-99cb-f9e0f52cdd02"
+            },
+            {
+              "id": "aa1fb36e-ae7b-4f3e-bcd3-689fa490b24d",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/query?q=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "query"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The SOQL query string targeting Tooling API objects",
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-aa1fb36e-ae7b-4f3e-bcd3-689fa490b24d"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:28.000Z",
+          "updatedAt": "2026-06-05T15:15:28.000Z",
+          "uid": "35240-8108c57c-4596-4284-95e1-03bd417978ab"
+        }
+      ],
+      "id": "87f1cc70-3400-4746-8746-be3b22026392",
+      "createdAt": "2026-06-05T15:15:28.000Z",
+      "updatedAt": "2026-06-05T15:15:28.000Z",
+      "uid": "35240-87f1cc70-3400-4746-8746-be3b22026392"
+    },
+    {
+      "name": "completions",
+      "item": [
+        {
+          "name": "Salesforce Sales Cloud Get Apex code completions",
+          "id": "d8e2e024-58a6-4ce5-b63e-28918acce037",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/completions?type=apex",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "completions"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The type of completions to return",
+                  "key": "type",
+                  "value": "apex"
+                }
+              ]
+            },
+            "description": "Returns code completions for Apex system type information. Useful for building IDE-like features for Salesforce development tools."
+          },
+          "response": [
+            {
+              "id": "80e73784-1af2-4e0f-8cac-a0529ddd8143",
+              "name": "Successfully retrieved completions",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/completions?type=apex",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "completions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The type of completions to return",
+                      "key": "type",
+                      "value": "apex"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"publicDeclarations\": {\n    \"tempora8\": 24795219,\n    \"id__\": true\n  }\n}",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-80e73784-1af2-4e0f-8cac-a0529ddd8143"
+            },
+            {
+              "id": "23fa31ca-65fc-4820-b414-c70df41d6ecc",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/completions?type=apex",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "completions"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The type of completions to return",
+                      "key": "type",
+                      "value": "apex"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-23fa31ca-65fc-4820-b414-c70df41d6ecc"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:28.000Z",
+          "updatedAt": "2026-06-05T15:15:28.000Z",
+          "uid": "35240-d8e2e024-58a6-4ce5-b63e-28918acce037"
+        }
+      ],
+      "id": "41569382-641c-4472-9503-33523c049abd",
+      "createdAt": "2026-06-05T15:15:28.000Z",
+      "updatedAt": "2026-06-05T15:15:28.000Z",
+      "uid": "35240-41569382-641c-4472-9503-33523c049abd"
+    },
+    {
+      "name": "executeAnonymous",
+      "item": [
+        {
+          "name": "Salesforce Sales Cloud Execute anonymous Apex code",
+          "id": "e98187c1-9374-4b20-a9f6-5bc7d4162c3a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/executeAnonymous?anonymousBody=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "executeAnonymous"
+              ],
+              "query": [
+                {
+                  "description": "(Required) The Apex code to execute",
+                  "key": "anonymousBody",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Executes a block of anonymous Apex code. The code does not need to be part of an Apex class. Returns compilation and execution results, including any debug log output."
+          },
+          "response": [
+            {
+              "id": "835e6be3-dd35-4df0-b227-70c0b7a6afce",
+              "name": "Apex code executed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/executeAnonymous?anonymousBody=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "executeAnonymous"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Apex code to execute",
+                      "key": "anonymousBody",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"compiled\": \"<boolean>\",\n  \"compileProblem\": \"<string>\",\n  \"exceptionMessage\": \"<string>\",\n  \"exceptionStackTrace\": \"<string>\",\n  \"line\": \"<integer>\",\n  \"column\": \"<integer>\",\n  \"success\": \"<boolean>\"\n}",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-835e6be3-dd35-4df0-b227-70c0b7a6afce"
+            },
+            {
+              "id": "2b210e01-b04c-4bdc-899b-1fb581e93f0d",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/executeAnonymous?anonymousBody=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "executeAnonymous"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) The Apex code to execute",
+                      "key": "anonymousBody",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-2b210e01-b04c-4bdc-899b-1fb581e93f0d"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:28.000Z",
+          "updatedAt": "2026-06-05T15:15:28.000Z",
+          "uid": "35240-e98187c1-9374-4b20-a9f6-5bc7d4162c3a"
+        }
+      ],
+      "id": "af991e12-f554-4be1-bf7a-4a7b17d6612a",
+      "createdAt": "2026-06-05T15:15:28.000Z",
+      "updatedAt": "2026-06-05T15:15:28.000Z",
+      "uid": "35240-af991e12-f554-4be1-bf7a-4a7b17d6612a"
+    },
+    {
+      "name": "runTestsAsynchronous",
+      "item": [
+        {
+          "name": "Salesforce Sales Cloud Run Apex tests asynchronously",
+          "id": "9b416e05-594f-40d3-976a-f79c8764189c",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"classids\": \"<string>\",\n  \"suiteids\": \"<string>\",\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"RunAllTestsInOrg\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/runTestsAsynchronous",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "runTestsAsynchronous"
+              ]
+            },
+            "description": "Runs one or more Apex test methods asynchronously. Returns the test run ID which can be used to check status and retrieve results."
+          },
+          "response": [
+            {
+              "id": "c8795379-ea22-42dc-8832-ac136b231a82",
+              "name": "Test run initiated",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"classids\": \"<string>\",\n  \"suiteids\": \"<string>\",\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"RunAllTestsInOrg\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/runTestsAsynchronous",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runTestsAsynchronous"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-c8795379-ea22-42dc-8832-ac136b231a82"
+            },
+            {
+              "id": "32ca13e4-3d66-4e9f-99d4-c22c4cd56796",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"classids\": \"<string>\",\n  \"suiteids\": \"<string>\",\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"RunAllTestsInOrg\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/runTestsAsynchronous",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runTestsAsynchronous"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-32ca13e4-3d66-4e9f-99d4-c22c4cd56796"
+            },
+            {
+              "id": "a5986e58-2b8a-487b-a812-520282b420f3",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"classids\": \"<string>\",\n  \"suiteids\": \"<string>\",\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"RunAllTestsInOrg\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/runTestsAsynchronous",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runTestsAsynchronous"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-a5986e58-2b8a-487b-a812-520282b420f3"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:28.000Z",
+          "updatedAt": "2026-06-05T15:15:28.000Z",
+          "uid": "35240-9b416e05-594f-40d3-976a-f79c8764189c"
+        }
+      ],
+      "id": "664107ec-e5cd-4c82-be2c-077a2902bd36",
+      "createdAt": "2026-06-05T15:15:28.000Z",
+      "updatedAt": "2026-06-05T15:15:28.000Z",
+      "uid": "35240-664107ec-e5cd-4c82-be2c-077a2902bd36"
+    },
+    {
+      "name": "runTestsSynchronous",
+      "item": [
+        {
+          "name": "Salesforce Sales Cloud Run Apex tests synchronously",
+          "id": "6059075f-4640-497a-aed1-c01a03e544b5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"RunSpecifiedTests\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/runTestsSynchronous",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "runTestsSynchronous"
+              ]
+            },
+            "description": "Runs specified Apex tests synchronously and returns the results inline. Best for small numbers of tests that complete quickly."
+          },
+          "response": [
+            {
+              "id": "f57b0c60-bd2d-4c1d-b61e-f79fb02cfb8f",
+              "name": "Test execution completed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"RunSpecifiedTests\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/runTestsSynchronous",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runTestsSynchronous"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"numFailures\": \"<integer>\",\n  \"numTestsRun\": \"<integer>\",\n  \"totalTime\": \"<number>\"\n}",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-f57b0c60-bd2d-4c1d-b61e-f79fb02cfb8f"
+            },
+            {
+              "id": "9a5b2eaf-f0a8-4c1f-83bc-961835f6ce9e",
+              "name": "Invalid request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"RunSpecifiedTests\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/runTestsSynchronous",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runTestsSynchronous"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-9a5b2eaf-f0a8-4c1f-83bc-961835f6ce9e"
+            },
+            {
+              "id": "ecf0d073-d6dc-46a3-9796-b06fcc5e458e",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: oauth2",
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"RunSpecifiedTests\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/runTestsSynchronous",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "runTestsSynchronous"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "[\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  {\n    \"statusCode\": \"<string>\",\n    \"message\": \"<string>\",\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  }\n]",
+              "createdAt": "2026-06-05T15:15:28.000Z",
+              "updatedAt": "2026-06-05T15:15:28.000Z",
+              "uid": "35240-ecf0d073-d6dc-46a3-9796-b06fcc5e458e"
+            }
+          ],
+          "createdAt": "2026-06-05T15:15:28.000Z",
+          "updatedAt": "2026-06-05T15:15:28.000Z",
+          "uid": "35240-6059075f-4640-497a-aed1-c01a03e544b5"
+        }
+      ],
+      "id": "d8d388fd-2db6-4f8e-b855-c28668d4da64",
+      "createdAt": "2026-06-05T15:15:28.000Z",
+      "updatedAt": "2026-06-05T15:15:28.000Z",
+      "uid": "35240-d8d388fd-2db6-4f8e-b855-c28668d4da64"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "instance",
+      "value": "yourInstance"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/tooling"
+    }
+  ]
+}

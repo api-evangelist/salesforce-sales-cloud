@@ -1,0 +1,912 @@
+{
+  "info": {
+    "_postman_id": "e22e2369-9f93-4fbf-908c-6712d8798fbf",
+    "name": "Salesforce Sales Cloud Salesforce Change Data Capture API",
+    "description": "Receive near-real-time notifications of changes to Salesforce records including creates, updates, deletes, and undeletes. Enables synchronization of external data stores with Salesforce data. Uses REST endpoints for schema retrieval and configuration, with event delivery via CometD streaming or Pub/Sub API.\n\nContact Support:\n Name: Salesforce Developer Support",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:15:29.000Z",
+    "updatedAt": "2026-06-05T15:15:29.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e22e2369-9f93-4fbf-908c-6712d8798fbf"
+  },
+  "item": [
+    {
+      "name": "sobjects",
+      "item": [
+        {
+          "name": "{changeEventName}",
+          "item": [
+            {
+              "name": "describe",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get full change event metadata",
+                  "id": "67b13d47-1444-4c4a-abe2-56667dee03b7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:changeEventName/describe",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":changeEventName",
+                        "describe"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fed6d5d1-a077-4998-aa90-3a58fabfa5b0",
+                          "key": "changeEventName",
+                          "value": "<string>",
+                          "description": "(Required) The change event API name (e.g., AccountChangeEvent for Account, Contact__ChangeEvent for a custom object)"
+                        }
+                      ]
+                    },
+                    "description": "Returns complete metadata for a change event type including all header and changed fields. The change event header contains the changeType (CREATE, UPDATE, DELETE, UNDELETE), changedFields, commitTimestamp, transactionKey, and other metadata."
+                  },
+                  "response": [
+                    {
+                      "id": "327b9201-936b-4ac0-8d73-e55052cf5b27",
+                      "name": "Successfully retrieved full metadata",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:changeEventName/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":changeEventName",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "changeEventName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-06-05T15:15:30.000Z",
+                      "updatedAt": "2026-06-05T15:15:30.000Z",
+                      "uid": "35240-327b9201-936b-4ac0-8d73-e55052cf5b27"
+                    },
+                    {
+                      "id": "f58aa335-177b-4bf3-b0ad-6df333afa274",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:changeEventName/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":changeEventName",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "changeEventName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:30.000Z",
+                      "updatedAt": "2026-06-05T15:15:30.000Z",
+                      "uid": "35240-f58aa335-177b-4bf3-b0ad-6df333afa274"
+                    },
+                    {
+                      "id": "97db785e-f73a-4442-bc6d-2933228101cc",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:changeEventName/describe",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":changeEventName",
+                            "describe"
+                          ],
+                          "variable": [
+                            {
+                              "key": "changeEventName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:30.000Z",
+                      "updatedAt": "2026-06-05T15:15:30.000Z",
+                      "uid": "35240-97db785e-f73a-4442-bc6d-2933228101cc"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:30.000Z",
+                  "updatedAt": "2026-06-05T15:15:30.000Z",
+                  "uid": "35240-67b13d47-1444-4c4a-abe2-56667dee03b7"
+                }
+              ],
+              "id": "6c04dada-8242-429b-acbc-619ff45a253e",
+              "createdAt": "2026-06-05T15:15:30.000Z",
+              "updatedAt": "2026-06-05T15:15:30.000Z",
+              "uid": "35240-6c04dada-8242-429b-acbc-619ff45a253e"
+            },
+            {
+              "name": "eventSchema",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get change event Avro schema",
+                  "id": "5b8638eb-0d5a-4caf-8bce-a872ceb9284b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:changeEventName/eventSchema?payloadFormat=EXPANDED",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":changeEventName",
+                        "eventSchema"
+                      ],
+                      "query": [
+                        {
+                          "description": "The payload format for the schema",
+                          "key": "payloadFormat",
+                          "value": "EXPANDED"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "5cc5b7e2-4ac7-4cf3-a657-33fd32904ac7",
+                          "key": "changeEventName",
+                          "value": "<string>",
+                          "description": "(Required) The change event API name (e.g., AccountChangeEvent for Account, Contact__ChangeEvent for a custom object)"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves the Apache Avro schema for the specified change event. The schema defines the event message structure including header fields and object-specific data fields."
+                  },
+                  "response": [
+                    {
+                      "id": "3c34990f-10b2-45a6-bff5-26260dd15f8c",
+                      "name": "Successfully retrieved event schema",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:changeEventName/eventSchema?payloadFormat=EXPANDED",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":changeEventName",
+                            "eventSchema"
+                          ],
+                          "query": [
+                            {
+                              "description": "The payload format for the schema",
+                              "key": "payloadFormat",
+                              "value": "EXPANDED"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "changeEventName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"namespace\": \"<string>\",\n  \"type\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:15:30.000Z",
+                      "updatedAt": "2026-06-05T15:15:30.000Z",
+                      "uid": "35240-3c34990f-10b2-45a6-bff5-26260dd15f8c"
+                    },
+                    {
+                      "id": "ecc2ec2f-b600-4613-a54f-e000949dd825",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:changeEventName/eventSchema?payloadFormat=EXPANDED",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":changeEventName",
+                            "eventSchema"
+                          ],
+                          "query": [
+                            {
+                              "description": "The payload format for the schema",
+                              "key": "payloadFormat",
+                              "value": "EXPANDED"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "changeEventName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:30.000Z",
+                      "updatedAt": "2026-06-05T15:15:30.000Z",
+                      "uid": "35240-ecc2ec2f-b600-4613-a54f-e000949dd825"
+                    },
+                    {
+                      "id": "6219665b-5b3b-4dfd-9bd3-124b50f34156",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/sobjects/:changeEventName/eventSchema?payloadFormat=EXPANDED",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "sobjects",
+                            ":changeEventName",
+                            "eventSchema"
+                          ],
+                          "query": [
+                            {
+                              "description": "The payload format for the schema",
+                              "key": "payloadFormat",
+                              "value": "EXPANDED"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "changeEventName"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:30.000Z",
+                      "updatedAt": "2026-06-05T15:15:30.000Z",
+                      "uid": "35240-6219665b-5b3b-4dfd-9bd3-124b50f34156"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:30.000Z",
+                  "updatedAt": "2026-06-05T15:15:30.000Z",
+                  "uid": "35240-5b8638eb-0d5a-4caf-8bce-a872ceb9284b"
+                }
+              ],
+              "id": "143da4e1-d443-4dcb-a6c9-5e062a383192",
+              "createdAt": "2026-06-05T15:15:30.000Z",
+              "updatedAt": "2026-06-05T15:15:30.000Z",
+              "uid": "35240-143da4e1-d443-4dcb-a6c9-5e062a383192"
+            },
+            {
+              "name": "Salesforce Sales Cloud Describe a change event object",
+              "id": "8aee2a08-58fe-4ffd-b454-fe88f70feded",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/sobjects/:changeEventName",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "sobjects",
+                    ":changeEventName"
+                  ],
+                  "variable": [
+                    {
+                      "id": "b82ad944-89ff-46d3-9893-37f3b4d90fd1",
+                      "key": "changeEventName",
+                      "value": "<string>",
+                      "description": "(Required) The change event API name (e.g., AccountChangeEvent for Account, Contact__ChangeEvent for a custom object)"
+                    }
+                  ]
+                },
+                "description": "Retrieves metadata about a change event object. For standard objects, the change event name follows the pattern {ObjectName}ChangeEvent (e.g., AccountChangeEvent). For custom objects, the pattern is {ObjectName}__ChangeEvent."
+              },
+              "response": [
+                {
+                  "id": "8d92f192-f66e-4e3a-b286-620d5144f8dc",
+                  "name": "Successfully retrieved change event metadata",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:changeEventName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":changeEventName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "changeEventName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"objectDescribe\": {\n    \"name\": \"<string>\",\n    \"label\": \"<string>\",\n    \"fields\": [\n      {\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"name\": \"<string>\",\n        \"label\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-06-05T15:15:30.000Z",
+                  "updatedAt": "2026-06-05T15:15:30.000Z",
+                  "uid": "35240-8d92f192-f66e-4e3a-b286-620d5144f8dc"
+                },
+                {
+                  "id": "2b40dff2-dee9-4686-94e4-b3e1f4d24441",
+                  "name": "Authentication failed",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:changeEventName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":changeEventName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "changeEventName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:30.000Z",
+                  "updatedAt": "2026-06-05T15:15:30.000Z",
+                  "uid": "35240-2b40dff2-dee9-4686-94e4-b3e1f4d24441"
+                },
+                {
+                  "id": "a7273b23-1753-4aa7-9829-d96d0a6f3a35",
+                  "name": "Resource not found",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: oauth2",
+                        "key": "Authorization",
+                        "value": "<token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/sobjects/:changeEventName",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "sobjects",
+                        ":changeEventName"
+                      ],
+                      "variable": [
+                        {
+                          "key": "changeEventName"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:15:30.000Z",
+                  "updatedAt": "2026-06-05T15:15:30.000Z",
+                  "uid": "35240-a7273b23-1753-4aa7-9829-d96d0a6f3a35"
+                }
+              ],
+              "createdAt": "2026-06-05T15:15:30.000Z",
+              "updatedAt": "2026-06-05T15:15:30.000Z",
+              "uid": "35240-8aee2a08-58fe-4ffd-b454-fe88f70feded"
+            }
+          ],
+          "id": "85e48ee0-dc17-4897-8f37-bef7a9025c07",
+          "createdAt": "2026-06-05T15:15:30.000Z",
+          "updatedAt": "2026-06-05T15:15:30.000Z",
+          "uid": "35240-85e48ee0-dc17-4897-8f37-bef7a9025c07"
+        }
+      ],
+      "id": "d7d870f1-8bee-4196-80f7-2332d4d1ad4e",
+      "createdAt": "2026-06-05T15:15:30.000Z",
+      "updatedAt": "2026-06-05T15:15:30.000Z",
+      "uid": "35240-d7d870f1-8bee-4196-80f7-2332d4d1ad4e"
+    },
+    {
+      "name": "event",
+      "item": [
+        {
+          "name": "eventSchema",
+          "item": [
+            {
+              "name": "{schemaId}",
+              "item": [
+                {
+                  "name": "Salesforce Sales Cloud Get event schema by ID",
+                  "id": "12ca6153-a1dd-48d0-a58b-be79a0891841",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/event/eventSchema/:schemaId?payloadFormat=EXPANDED",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "event",
+                        "eventSchema",
+                        ":schemaId"
+                      ],
+                      "query": [
+                        {
+                          "key": "payloadFormat",
+                          "value": "EXPANDED"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "63308494-067e-4c06-9206-0094df1d10d9",
+                          "key": "schemaId",
+                          "value": "<string>",
+                          "description": "(Required) The schema ID from the change event message"
+                        }
+                      ]
+                    },
+                    "description": "Retrieves an event schema using the schema ID provided in a change event message. Useful when dynamically processing change events and needing to resolve the schema at runtime."
+                  },
+                  "response": [
+                    {
+                      "id": "29a216a1-8946-45f8-a62f-a468605d1c77",
+                      "name": "Successfully retrieved schema",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event/eventSchema/:schemaId?payloadFormat=EXPANDED",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event",
+                            "eventSchema",
+                            ":schemaId"
+                          ],
+                          "query": [
+                            {
+                              "key": "payloadFormat",
+                              "value": "EXPANDED"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "schemaId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{}",
+                      "createdAt": "2026-06-05T15:15:30.000Z",
+                      "updatedAt": "2026-06-05T15:15:30.000Z",
+                      "uid": "35240-29a216a1-8946-45f8-a62f-a468605d1c77"
+                    },
+                    {
+                      "id": "bb6fbac7-882b-43de-ae5f-295209c7c04f",
+                      "name": "Authentication failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event/eventSchema/:schemaId?payloadFormat=EXPANDED",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event",
+                            "eventSchema",
+                            ":schemaId"
+                          ],
+                          "query": [
+                            {
+                              "key": "payloadFormat",
+                              "value": "EXPANDED"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "schemaId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:30.000Z",
+                      "updatedAt": "2026-06-05T15:15:30.000Z",
+                      "uid": "35240-bb6fbac7-882b-43de-ae5f-295209c7c04f"
+                    },
+                    {
+                      "id": "a49128ce-bcf5-45b4-86fa-de6a4f26f2c0",
+                      "name": "Resource not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: oauth2",
+                            "key": "Authorization",
+                            "value": "<token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/event/eventSchema/:schemaId?payloadFormat=EXPANDED",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "event",
+                            "eventSchema",
+                            ":schemaId"
+                          ],
+                          "query": [
+                            {
+                              "key": "payloadFormat",
+                              "value": "EXPANDED"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "schemaId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  },\n  {\n    \"errorCode\": \"<string>\",\n    \"message\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-06-05T15:15:30.000Z",
+                      "updatedAt": "2026-06-05T15:15:30.000Z",
+                      "uid": "35240-a49128ce-bcf5-45b4-86fa-de6a4f26f2c0"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:15:30.000Z",
+                  "updatedAt": "2026-06-05T15:15:30.000Z",
+                  "uid": "35240-12ca6153-a1dd-48d0-a58b-be79a0891841"
+                }
+              ],
+              "id": "6bd9214f-8f04-48d3-b3bc-023c0dfd4eee",
+              "createdAt": "2026-06-05T15:15:30.000Z",
+              "updatedAt": "2026-06-05T15:15:30.000Z",
+              "uid": "35240-6bd9214f-8f04-48d3-b3bc-023c0dfd4eee"
+            }
+          ],
+          "id": "4bb308d9-94bf-4f07-987e-e1dbd376b074",
+          "createdAt": "2026-06-05T15:15:30.000Z",
+          "updatedAt": "2026-06-05T15:15:30.000Z",
+          "uid": "35240-4bb308d9-94bf-4f07-987e-e1dbd376b074"
+        }
+      ],
+      "id": "9161d269-31ea-4796-bed6-436f8512e5ed",
+      "createdAt": "2026-06-05T15:15:30.000Z",
+      "updatedAt": "2026-06-05T15:15:30.000Z",
+      "uid": "35240-9161d269-31ea-4796-bed6-436f8512e5ed"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api",
+        "type": "string"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token",
+        "type": "string"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize",
+        "type": "string"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "instance",
+      "value": "yourInstance"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0"
+    }
+  ]
+}
