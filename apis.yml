@@ -35,7 +35,7 @@ apis:
   - type: Authentication
     url: >-
       https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
-  - type: Postman Collection
+  - type: PostmanCollection
     url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
   - type: GettingStarted
     url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
@@ -317,63 +317,60 @@ apis:
 common:
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/salesforce-sales-cloud/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/salesforce-sales-cloud-account-360-enrichment-workflow.yml
-    name: Salesforce Sales Cloud Account 360 Enrichment
-    summary: Resolve an Account by name, then pull its related Contacts and open Opportunities.
-  - url: arazzo/salesforce-sales-cloud-account-tree-with-contacts-workflow.yml
-    name: Salesforce Sales Cloud Account Tree With Contacts
-    summary: Create an Account and its child Contacts in one tree call, then read the Account back.
-  - url: arazzo/salesforce-sales-cloud-bulk-import-accounts-workflow.yml
-    name: Salesforce Sales Cloud Bulk Import Accounts
-    summary: Create a batch of Accounts in one collection call, then verify the count with SOQL.
-  - url: arazzo/salesforce-sales-cloud-close-opportunity-won-workflow.yml
-    name: Salesforce Sales Cloud Close Opportunity Won
-    summary: Move an Opportunity to Closed Won, then read it back and log a follow-up Task.
-  - url: arazzo/salesforce-sales-cloud-create-and-convert-lead-workflow.yml
-    name: Salesforce Sales Cloud Create And Convert Lead
-    summary: Capture a Lead, then realize the conversion by creating Account, Contact, and Opportunity records.
-  - url: arazzo/salesforce-sales-cloud-create-then-retrieve-contact-workflow.yml
-    name: Salesforce Sales Cloud Create Then Retrieve Contact
-    summary: Create a Contact, then read it back by id to confirm the persisted field values.
-  - url: arazzo/salesforce-sales-cloud-delete-stale-lead-workflow.yml
-    name: Salesforce Sales Cloud Delete Stale Lead
-    summary: Find an unconverted Lead by email via SOQL, then delete the matched record.
-  - url: arazzo/salesforce-sales-cloud-describe-then-create-record-workflow.yml
-    name: Salesforce Sales Cloud Describe Then Create Record
-    summary: Describe an sObject to confirm it is creatable, then create a record of that type.
-  - url: arazzo/salesforce-sales-cloud-log-task-on-account-workflow.yml
-    name: Salesforce Sales Cloud Log Task On Account
-    summary: Find an Account by SOQL, then create a follow-up Task linked to it.
-  - url: arazzo/salesforce-sales-cloud-new-customer-onboarding-workflow.yml
-    name: Salesforce Sales Cloud New Customer Onboarding
-    summary: Create an Account, attach a primary Contact, then open an Opportunity against it.
-  - url: arazzo/salesforce-sales-cloud-opportunity-with-contact-role-workflow.yml
-    name: Salesforce Sales Cloud Opportunity With Contact Role
-    summary: Open an Opportunity, then attach a Contact to it as an OpportunityContactRole.
-  - url: arazzo/salesforce-sales-cloud-paginated-soql-export-workflow.yml
-    name: Salesforce Sales Cloud Paginated SOQL Export
-    summary: Run a large SOQL query, then page to the next batch when the first is not complete.
-  - url: arazzo/salesforce-sales-cloud-query-then-update-account-workflow.yml
-    name: Salesforce Sales Cloud Query Then Update Account
-    summary: Find an Account with a SOQL query, then patch the matched record's fields.
-  - url: arazzo/salesforce-sales-cloud-reparent-contact-to-account-workflow.yml
-    name: Salesforce Sales Cloud Reparent Contact To Account
-    summary: Look up a Contact and a target Account by SOQL, then move the Contact under that Account.
-  - url: arazzo/salesforce-sales-cloud-schedule-event-with-contact-workflow.yml
-    name: Salesforce Sales Cloud Schedule Event With Contact
-    summary: Find a Contact by email, then create a calendar Event linked to that Contact.
-  - url: arazzo/salesforce-sales-cloud-search-then-retrieve-record-workflow.yml
-    name: Salesforce Sales Cloud Search Then Retrieve Record
-    summary: Run a SOSL search across objects, then fetch the full record for the top hit.
-  - url: arazzo/salesforce-sales-cloud-submit-opportunity-for-approval-workflow.yml
-    name: Salesforce Sales Cloud Submit Opportunity For Approval
-    summary: Create an Opportunity, then submit that record into its approval process.
-  - url: arazzo/salesforce-sales-cloud-upsert-account-by-external-id-workflow.yml
-    name: Salesforce Sales Cloud Upsert Account By External ID
-    summary: Upsert an Account on an external ID field, then attach a Contact to it.
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-account-360-enrichment-workflow.yml
+  name: Salesforce Sales Cloud Account 360 Enrichment
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-account-tree-with-contacts-workflow.yml
+  name: Salesforce Sales Cloud Account Tree With Contacts
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-bulk-import-accounts-workflow.yml
+  name: Salesforce Sales Cloud Bulk Import Accounts
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-close-opportunity-won-workflow.yml
+  name: Salesforce Sales Cloud Close Opportunity Won
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-create-and-convert-lead-workflow.yml
+  name: Salesforce Sales Cloud Create And Convert Lead
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-create-then-retrieve-contact-workflow.yml
+  name: Salesforce Sales Cloud Create Then Retrieve Contact
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-delete-stale-lead-workflow.yml
+  name: Salesforce Sales Cloud Delete Stale Lead
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-describe-then-create-record-workflow.yml
+  name: Salesforce Sales Cloud Describe Then Create Record
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-log-task-on-account-workflow.yml
+  name: Salesforce Sales Cloud Log Task On Account
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-new-customer-onboarding-workflow.yml
+  name: Salesforce Sales Cloud New Customer Onboarding
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-opportunity-with-contact-role-workflow.yml
+  name: Salesforce Sales Cloud Opportunity With Contact Role
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-paginated-soql-export-workflow.yml
+  name: Salesforce Sales Cloud Paginated SOQL Export
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-query-then-update-account-workflow.yml
+  name: Salesforce Sales Cloud Query Then Update Account
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-reparent-contact-to-account-workflow.yml
+  name: Salesforce Sales Cloud Reparent Contact To Account
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-schedule-event-with-contact-workflow.yml
+  name: Salesforce Sales Cloud Schedule Event With Contact
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-search-then-retrieve-record-workflow.yml
+  name: Salesforce Sales Cloud Search Then Retrieve Record
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-submit-opportunity-for-approval-workflow.yml
+  name: Salesforce Sales Cloud Submit Opportunity For Approval
+- type: Arazzo
+  url: arazzo/salesforce-sales-cloud-upsert-account-by-external-id-workflow.yml
+  name: Salesforce Sales Cloud Upsert Account By External ID
 - type: LinkedIn
   url: https://www.linkedin.com/showcase/salesforcesalescloud
 - type: Portal
@@ -402,11 +399,11 @@ common:
   url: https://www.salesforce.com/products/sales-cloud/
 - type: Login
   url: https://login.salesforce.com/
-- type: SignUp
+- type: Signup
   url: https://developer.salesforce.com/signup
 - type: SDKs
   url: https://developer.salesforce.com/tools/sdk
-- type: API Console
+- type: Console
   url: https://workbench.developerforce.com/
 - type: Trailhead Learning
   url: https://trailhead.salesforce.com/en/content/learn/modules/api_basics
@@ -415,39 +412,39 @@ common:
     https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_api.htm
 - type: API Library
   url: https://developer.salesforce.com/docs/apis
-- type: Postman Collection
+- type: PostmanCollection
   url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
 - type: ChangeLog
   url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
 - type: SOQL and SOSL Reference
   url: https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_sosl_intro.htm
-- type: JSON-LD Context
+- type: JSONLDContext
   url: json-ld/salesforce-sales-cloud-context.jsonld
-- type: Spectral Rules
+- type: SpectralRules
   url: rules/salesforce-sales-cloud-rules.yml
 - type: Capabilities
   url: capabilities/sales-pipeline-management.yaml
 - type: Vocabulary
   url: vocabulary/salesforce-sales-cloud-vocabulary.yml
-- type: JSON Schema
+- type: JSONSchema
   url: json-schema/salesforce-sales-cloud-account-schema.json
   title: Account Schema
-- type: JSON Schema
+- type: JSONSchema
   url: json-schema/salesforce-sales-cloud-contact-schema.json
   title: Contact Schema
-- type: JSON Schema
+- type: JSONSchema
   url: json-schema/salesforce-sales-cloud-lead-schema.json
   title: Lead Schema
-- type: JSON Schema
+- type: JSONSchema
   url: json-schema/salesforce-sales-cloud-opportunity-schema.json
   title: Opportunity Schema
-- type: JSON Schema
+- type: JSONSchema
   url: json-schema/salesforce-sales-cloud-task-schema.json
   title: Task Schema
-- type: JSON Schema
+- type: JSONSchema
   url: json-schema/salesforce-sales-cloud-case-schema.json
   title: Case Schema
-- type: JSON Schema
+- type: JSONSchema
   url: json-schema/salesforce-sales-cloud-campaign-schema.json
   title: Campaign Schema
 maintainer:
