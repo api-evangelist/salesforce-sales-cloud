@@ -1,0 +1,64 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/salesforce-sales-cloud-analytics-api-openapi.yml, openapi/salesforce-sales-cloud-apex-rest-api-openapi.yml,
+  openapi/salesforce-sales-cloud-bulk-api-openapi.yml, openapi/salesforce-sales-cloud-change-data-capture-api-openapi.yml,
+  openapi/salesforce-sales-cloud-composite-api-openapi.yml, openapi/salesforce-sales-cloud-connect-api-openapi.yml,
+  openapi/salesforce-sales-cloud-graphql-api-openapi.yml, openapi/salesforce-sales-cloud-platform-events-api-openapi.yml,
+  openapi/salesforce-sales-cloud-rest-api-openapi.yml, openapi/salesforce-sales-cloud-tooling-api-openapi.yml,
+  openapi/salesforce-sales-cloud-ui-api-openapi.yml
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - authorizationCode
+  - clientCredentials
+schemes:
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+    tokenUrl: https://login.salesforce.com/services/oauth2/token
+    scopes: 1
+  description: Salesforce OAuth 2.0 authentication
+  sources:
+  - openapi/salesforce-sales-cloud-analytics-api-openapi.yml
+  - openapi/salesforce-sales-cloud-apex-rest-api-openapi.yml
+  - openapi/salesforce-sales-cloud-bulk-api-openapi.yml
+  - openapi/salesforce-sales-cloud-change-data-capture-api-openapi.yml
+  - openapi/salesforce-sales-cloud-composite-api-openapi.yml
+  - openapi/salesforce-sales-cloud-connect-api-openapi.yml
+  - openapi/salesforce-sales-cloud-graphql-api-openapi.yml
+  - openapi/salesforce-sales-cloud-platform-events-api-openapi.yml
+  - openapi/salesforce-sales-cloud-tooling-api-openapi.yml
+  - openapi/salesforce-sales-cloud-ui-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: OAuth 2.0 Access Token
+  sources:
+  - openapi/salesforce-sales-cloud-analytics-api-openapi.yml
+  - openapi/salesforce-sales-cloud-apex-rest-api-openapi.yml
+  - openapi/salesforce-sales-cloud-bulk-api-openapi.yml
+  - openapi/salesforce-sales-cloud-change-data-capture-api-openapi.yml
+  - openapi/salesforce-sales-cloud-composite-api-openapi.yml
+  - openapi/salesforce-sales-cloud-connect-api-openapi.yml
+  - openapi/salesforce-sales-cloud-graphql-api-openapi.yml
+  - openapi/salesforce-sales-cloud-platform-events-api-openapi.yml
+  - openapi/salesforce-sales-cloud-rest-api-openapi.yml
+  - openapi/salesforce-sales-cloud-tooling-api-openapi.yml
+  - openapi/salesforce-sales-cloud-ui-api-openapi.yml
+- name: oauth2
+  type: oauth2
+  flows:
+  - flow: authorizationCode
+    authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+    tokenUrl: https://login.salesforce.com/services/oauth2/token
+    scopes: 3
+  - flow: clientCredentials
+    tokenUrl: https://login.salesforce.com/services/oauth2/token
+    scopes: 1
+  description: Salesforce OAuth 2.0 authentication
+  sources:
+  - openapi/salesforce-sales-cloud-rest-api-openapi.yml

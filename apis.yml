@@ -315,6 +315,8 @@ apis:
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-apex-rest-api-openapi.yml
 common:
+- type: DomainSecurity
+  url: security/salesforce-sales-cloud-domain-security.yml
 - type: Authentication
   url: authentication/salesforce-sales-cloud-authentication.yml
 - type: OAuthScopes
