@@ -1,0 +1,363 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Ingest Jobs API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Ingest Jobs
+  description: Create and manage bulk ingest jobs for insert, update, upsert, and delete operations
+paths:
+  /jobs/ingest:
+    get:
+      operationId: listIngestJobs
+      summary: Salesforce Sales Cloud List all ingest jobs
+      description: Retrieves all ingest jobs in the org. Results include jobs that have been opened, those in progress, and completed jobs in all states.
+      tags:
+      - Ingest Jobs
+      parameters:
+      - name: isPkChunkingEnabled
+        in: query
+        description: Filter by PK Chunking enabled status
+        required: false
+        schema:
+          type: boolean
+      - name: jobType
+        in: query
+        description: Filter by job type
+        required: false
+        schema:
+          type: string
+          enum:
+          - BigObjectIngest
+          - Classic
+          - V2Ingest
+      - name: concurrencyMode
+        in: query
+        description: Filter by concurrency mode
+        required: false
+        schema:
+          type: string
+          enum:
+          - parallel
+      - name: queryLocator
+        in: query
+        description: Query locator for paginating through results
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved list of ingest jobs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  done:
+                    type: boolean
+                    description: Indicates if all results have been returned
+                  nextRecordsUrl:
+                    type: string
+                    description: URL for the next set of results
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/IngestJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createIngestJob
+      summary: Salesforce Sales Cloud Create an ingest job
+      description: Creates a new ingest job for bulk insert, update, upsert, or delete operations. After creating the job, upload CSV data using the job ID, then close the job to begin processing.
+      tags:
+      - Ingest Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIngestJobRequest'
+      responses:
+        '200':
+          description: Ingest job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestJobInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /jobs/ingest/{jobId}:
+    get:
+      operationId: getIngestJobInfo
+      summary: Salesforce Sales Cloud Get ingest job information
+      description: Retrieves detailed information about an ingest job, including its current state, number of records processed, and any errors.
+      tags:
+      - Ingest Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved ingest job information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateIngestJobState
+      summary: Salesforce Sales Cloud Close, abort, or delete an ingest job
+      description: Updates the state of an ingest job. Set the state to UploadComplete to close the job and begin processing, or Aborted to abort the job. A job must be closed before Salesforce processes the uploaded data.
+      tags:
+      - Ingest Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - state
+              properties:
+                state:
+                  type: string
+                  description: The new state for the job
+                  enum:
+                  - UploadComplete
+                  - Aborted
+      responses:
+        '200':
+          description: Job state updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IngestJobInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteIngestJob
+      summary: Salesforce Sales Cloud Delete an ingest job
+      description: Deletes an ingest job. The job must be in a terminal state (JobComplete, Aborted, or Failed) before it can be deleted.
+      tags:
+      - Ingest Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '204':
+          description: Job deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    CreateIngestJobRequest:
+      type: object
+      description: Request body for creating a new ingest job
+      required:
+      - object
+      - operation
+      properties:
+        assignmentRuleId:
+          type: string
+          description: The ID of an assignment rule to apply during the operation
+        columnDelimiter:
+          type: string
+          description: The column delimiter used in the CSV data
+          enum:
+          - BACKQUOTE
+          - CARET
+          - COMMA
+          - PIPE
+          - SEMICOLON
+          - TAB
+          default: COMMA
+        contentType:
+          type: string
+          description: The content type of the data
+          enum:
+          - CSV
+          default: CSV
+        externalIdFieldName:
+          type: string
+          description: The external ID field name for upsert operations
+        lineEnding:
+          type: string
+          description: The line ending used in the CSV data
+          enum:
+          - LF
+          - CRLF
+          default: LF
+        object:
+          type: string
+          description: The sObject type for the job (e.g., Account, Contact)
+        operation:
+          type: string
+          description: The operation to perform
+          enum:
+          - insert
+          - delete
+          - hardDelete
+          - update
+          - upsert
+    IngestJobInfo:
+      type: object
+      description: Detailed information about an ingest job
+      properties:
+        id:
+          type: string
+          description: The unique ID for the job
+        operation:
+          type: string
+          enum:
+          - insert
+          - delete
+          - hardDelete
+          - update
+          - upsert
+        object:
+          type: string
+          description: The sObject type
+        createdById:
+          type: string
+          description: The ID of the user who created the job
+        createdDate:
+          type: string
+          format: date-time
+        systemModstamp:
+          type: string
+          format: date-time
+        state:
+          type: string
+          description: The current state of the job
+          enum:
+          - Open
+          - UploadComplete
+          - InProgress
+          - JobComplete
+          - Aborted
+          - Failed
+        externalIdFieldName:
+          type: string
+          description: The external ID field for upsert operations
+        concurrencyMode:
+          type: string
+          enum:
+          - parallel
+        contentType:
+          type: string
+          enum:
+          - CSV
+        apiVersion:
+          type: number
+          description: The API version for the job
+        jobType:
+          type: string
+          enum:
+          - BigObjectIngest
+          - Classic
+          - V2Ingest
+        contentUrl:
+          type: string
+          description: URL for uploading data
+        lineEnding:
+          type: string
+        columnDelimiter:
+          type: string
+        numberRecordsProcessed:
+          type: integer
+          description: Number of records processed
+        numberRecordsFailed:
+          type: integer
+          description: Number of records that failed
+        retries:
+          type: integer
+        totalProcessingTime:
+          type: integer
+          description: Total processing time in milliseconds
+        apiActiveProcessingTime:
+          type: integer
+        apexProcessingTime:
+          type: integer
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      required: true
+      description: The ID of the bulk job
+      schema:
+        type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed or access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified job was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

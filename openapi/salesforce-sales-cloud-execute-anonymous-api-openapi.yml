@@ -1,0 +1,108 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Execute Anonymous API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Execute Anonymous
+  description: Execute anonymous Apex code
+paths:
+  /executeAnonymous:
+    get:
+      operationId: executeAnonymousApex
+      summary: Salesforce Sales Cloud Execute anonymous Apex code
+      description: Executes a block of anonymous Apex code. The code does not need to be part of an Apex class. Returns compilation and execution results, including any debug log output.
+      tags:
+      - Execute Anonymous
+      parameters:
+      - name: anonymousBody
+        in: query
+        required: true
+        description: The Apex code to execute
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Apex code executed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  compiled:
+                    type: boolean
+                  compileProblem:
+                    type: string
+                    nullable: true
+                  exceptionMessage:
+                    type: string
+                    nullable: true
+                  exceptionStackTrace:
+                    type: string
+                    nullable: true
+                  line:
+                    type: integer
+                  column:
+                    type: integer
+                  success:
+                    type: boolean
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

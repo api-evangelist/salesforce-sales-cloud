@@ -1,0 +1,210 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Event Schema API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Event Schema
+  description: Retrieve event schema definitions
+paths:
+  /sobjects/{changeEventName}/eventSchema:
+    get:
+      operationId: getChangeEventSchema
+      summary: Salesforce Sales Cloud Get change event Avro schema
+      description: Retrieves the Apache Avro schema for the specified change event. The schema defines the event message structure including header fields and object-specific data fields.
+      tags:
+      - Event Schema
+      parameters:
+      - $ref: '#/components/parameters/changeEventName'
+      - name: payloadFormat
+        in: query
+        description: The payload format for the schema
+        required: false
+        schema:
+          type: string
+          enum:
+          - EXPANDED
+          - COMPACT
+      responses:
+        '200':
+          description: Successfully retrieved event schema
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                  type:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /event/eventSchema/{schemaId}:
+    get:
+      operationId: getEventSchemaById
+      summary: Salesforce Sales Cloud Get event schema by ID
+      description: Retrieves an event schema using the schema ID provided in a change event message. Useful when dynamically processing change events and needing to resolve the schema at runtime.
+      tags:
+      - Event Schema
+      parameters:
+      - name: schemaId
+        in: path
+        required: true
+        description: The schema ID from the change event message
+        schema:
+          type: string
+      - name: payloadFormat
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - EXPANDED
+          - COMPACT
+      responses:
+        '200':
+          description: Successfully retrieved schema
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sobjects/{eventApiName}/eventSchema:
+    get:
+      operationId: getPlatformEventSchema
+      summary: Salesforce Sales Cloud Get platform event schema
+      description: Retrieves the Apache Avro schema for the specified platform event. The schema describes the event's fields and their types in Avro format, used by the Pub/Sub API for binary event encoding.
+      tags:
+      - Event Schema
+      parameters:
+      - $ref: '#/components/parameters/eventApiName'
+      - name: payloadFormat
+        in: query
+        description: The payload format for the schema
+        required: false
+        schema:
+          type: string
+          enum:
+          - EXPANDED
+          - COMPACT
+      responses:
+        '200':
+          description: Successfully retrieved event schema
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  fields:
+                    type: array
+                    items:
+                      type: object
+                  name:
+                    type: string
+                  namespace:
+                    type: string
+                  type:
+                    type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    eventApiName:
+      name: eventApiName
+      in: path
+      required: true
+      description: The API name of the platform event (e.g., Order_Event__e)
+      schema:
+        type: string
+    changeEventName:
+      name: changeEventName
+      in: path
+      required: true
+      description: The change event API name (e.g., AccountChangeEvent for Account, Contact__ChangeEvent for a custom object)
+      schema:
+        type: string
+      examples:
+        account:
+          value: AccountChangeEvent
+          summary: Account change events
+        contact:
+          value: ContactChangeEvent
+          summary: Contact change events
+        opportunity:
+          value: OpportunityChangeEvent
+          summary: Opportunity change events
+        lead:
+          value: LeadChangeEvent
+          summary: Lead change events
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

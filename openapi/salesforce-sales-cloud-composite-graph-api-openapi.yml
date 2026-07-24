@@ -1,0 +1,166 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite Graph API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Composite Graph
+  description: Complex multi-step composite graph operations
+paths:
+  /composite/graph:
+    post:
+      operationId: executeCompositeGraph
+      summary: Salesforce Sales Cloud Execute a composite graph request
+      description: Executes one or more composite graphs. Each graph consists of a series of composite subrequests that can reference each other. Graphs are independent of each other and can succeed or fail independently. Available in API version 50.0 and later.
+      tags:
+      - Composite Graph
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CompositeGraphRequest'
+      responses:
+        '200':
+          description: Graph request executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CompositeGraphResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    CompositeGraphResponse:
+      type: object
+      description: Response from a composite graph request
+      properties:
+        graphs:
+          type: array
+          items:
+            type: object
+            properties:
+              graphId:
+                type: string
+              graphResponse:
+                type: object
+                properties:
+                  compositeResponse:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        body:
+                          description: The response body
+                        httpHeaders:
+                          type: object
+                        httpStatusCode:
+                          type: integer
+                        referenceId:
+                          type: string
+              isSuccessful:
+                type: boolean
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    CompositeGraphRequest:
+      type: object
+      description: A composite graph request containing one or more graphs
+      required:
+      - graphs
+      properties:
+        graphs:
+          type: array
+          items:
+            type: object
+            required:
+            - graphId
+            - compositeRequest
+            properties:
+              graphId:
+                type: string
+                description: Unique identifier for this graph
+              compositeRequest:
+                type: array
+                items:
+                  type: object
+                  required:
+                  - method
+                  - url
+                  - referenceId
+                  properties:
+                    body:
+                      description: The request body
+                    method:
+                      type: string
+                      enum:
+                      - GET
+                      - POST
+                      - PATCH
+                      - PUT
+                      - DELETE
+                    referenceId:
+                      type: string
+                    url:
+                      type: string
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

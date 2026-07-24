@@ -1,13 +1,7 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Sales Cloud Salesforce Apex REST API
-  description: >-
-    Create custom REST endpoints in Salesforce using Apex classes annotated
-    with @RestResource. Supports OAuth 2.0 authentication and JSON and XML
-    request and response formats. Custom Apex REST endpoints are accessed
-    under the /services/apexrest/ URL namespace. Each endpoint is defined
-    by an Apex class with @HttpGet, @HttpPost, @HttpPatch, @HttpPut, and
-    @HttpDelete annotated methods.
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Custom Endpoints API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
   contact:
@@ -16,36 +10,29 @@ info:
   license:
     name: Salesforce Master Subscription Agreement
     url: https://www.salesforce.com/company/legal/agreements/
-externalDocs:
-  description: Apex REST Developer Guide
-  url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
 servers:
-  - url: https://{instance}.salesforce.com/services/apexrest
-    description: Salesforce Production or Developer Edition
-    variables:
-      instance:
-        default: yourInstance
-        description: Your Salesforce instance identifier
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
 security:
-  - oauth2: []
-  - bearerAuth: []
+- oauth2: []
+- bearerAuth: []
 tags:
-  - name: Custom Endpoints
-    description: Custom Apex REST endpoints defined by @RestResource annotated classes
+- name: Custom Endpoints
+  description: Custom Apex REST endpoints defined by @RestResource annotated classes
 paths:
   /{resourcePath}:
     get:
       operationId: getApexRestResource
       summary: Salesforce Sales Cloud GET request to a custom Apex REST endpoint
-      description: >-
-        Executes the @HttpGet annotated method on the Apex class mapped to
-        the specified resource path. The resource path is defined by the
-        urlMapping property of the @RestResource annotation on the Apex class.
-        Response format depends on the Apex class implementation.
+      description: Executes the @HttpGet annotated method on the Apex class mapped to the specified resource path. The resource path is defined by the urlMapping property of the @RestResource annotation on the Apex class. Response format depends on the Apex class implementation.
       tags:
-        - Custom Endpoints
+      - Custom Endpoints
       parameters:
-        - $ref: '#/components/parameters/resourcePath'
+      - $ref: '#/components/parameters/resourcePath'
       responses:
         '200':
           description: Successful response from the custom endpoint
@@ -67,14 +54,11 @@ paths:
     post:
       operationId: postApexRestResource
       summary: Salesforce Sales Cloud POST request to a custom Apex REST endpoint
-      description: >-
-        Executes the @HttpPost annotated method on the Apex class mapped to
-        the specified resource path. The request body is deserialized into
-        the method's parameters.
+      description: Executes the @HttpPost annotated method on the Apex class mapped to the specified resource path. The request body is deserialized into the method's parameters.
       tags:
-        - Custom Endpoints
+      - Custom Endpoints
       parameters:
-        - $ref: '#/components/parameters/resourcePath'
+      - $ref: '#/components/parameters/resourcePath'
       requestBody:
         required: false
         content:
@@ -106,13 +90,11 @@ paths:
     patch:
       operationId: patchApexRestResource
       summary: Salesforce Sales Cloud PATCH request to a custom Apex REST endpoint
-      description: >-
-        Executes the @HttpPatch annotated method on the Apex class mapped to
-        the specified resource path. Typically used for partial updates.
+      description: Executes the @HttpPatch annotated method on the Apex class mapped to the specified resource path. Typically used for partial updates.
       tags:
-        - Custom Endpoints
+      - Custom Endpoints
       parameters:
-        - $ref: '#/components/parameters/resourcePath'
+      - $ref: '#/components/parameters/resourcePath'
       requestBody:
         required: false
         content:
@@ -137,14 +119,11 @@ paths:
     put:
       operationId: putApexRestResource
       summary: Salesforce Sales Cloud PUT request to a custom Apex REST endpoint
-      description: >-
-        Executes the @HttpPut annotated method on the Apex class mapped to
-        the specified resource path. Typically used for full replacements
-        or upserts.
+      description: Executes the @HttpPut annotated method on the Apex class mapped to the specified resource path. Typically used for full replacements or upserts.
       tags:
-        - Custom Endpoints
+      - Custom Endpoints
       parameters:
-        - $ref: '#/components/parameters/resourcePath'
+      - $ref: '#/components/parameters/resourcePath'
       requestBody:
         required: false
         content:
@@ -173,14 +152,11 @@ paths:
     delete:
       operationId: deleteApexRestResource
       summary: Salesforce Sales Cloud DELETE request to a custom Apex REST endpoint
-      description: >-
-        Executes the @HttpDelete annotated method on the Apex class mapped to
-        the specified resource path. The record to delete is typically
-        identified by a query parameter or path segment.
+      description: Executes the @HttpDelete annotated method on the Apex class mapped to the specified resource path. The record to delete is typically identified by a query parameter or path segment.
       tags:
-        - Custom Endpoints
+      - Custom Endpoints
       parameters:
-        - $ref: '#/components/parameters/resourcePath'
+      - $ref: '#/components/parameters/resourcePath'
       responses:
         '200':
           description: Resource deleted successfully
@@ -193,6 +169,51 @@ paths:
         '500':
           $ref: '#/components/responses/InternalError'
 components:
+  responses:
+    InternalError:
+      description: Unhandled Apex exception or internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters or body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource or endpoint not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    resourcePath:
+      name: resourcePath
+      in: path
+      required: true
+      description: The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
   securitySchemes:
     oauth2:
       type: oauth2
@@ -207,50 +228,6 @@ components:
       type: http
       scheme: bearer
       bearerFormat: OAuth 2.0 Access Token
-  parameters:
-    resourcePath:
-      name: resourcePath
-      in: path
-      required: true
-      description: >-
-        The resource path defined by the @RestResource urlMapping annotation
-        on the Apex class (e.g., /MyCustomEndpoint/*)
-      schema:
-        type: string
-  schemas:
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-  responses:
-    BadRequest:
-      description: Invalid request parameters or body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource or endpoint not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    InternalError:
-      description: Unhandled Apex exception or internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite API
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite Batch API
   description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -21,29 +21,29 @@ security:
 - oauth2: []
 - bearerAuth: []
 tags:
-- name: Composite
-  description: Composite requests with inter-request references
+- name: Composite Batch
+  description: Batch of independent subrequests
 paths:
-  /composite:
+  /composite/batch:
     post:
-      operationId: executeCompositeRequest
-      summary: Salesforce Sales Cloud Execute a composite request
-      description: Executes a series of REST API requests in a single call. Each request can reference the results of previous requests via referenceId, enabling dependent operations. Supports up to 25 subrequests per composite call. If allOrNone is true, all subrequests are rolled back on any failure.
+      operationId: executeCompositeBatch
+      summary: Salesforce Sales Cloud Execute a composite batch request
+      description: Executes up to 25 subrequests in a single request. Subrequests are independent and do not share context or reference each other. Each subrequest counts against rate limits. The response includes the status code and result for each subrequest.
       tags:
-      - Composite
+      - Composite Batch
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/CompositeRequest'
+              $ref: '#/components/schemas/CompositeBatchRequest'
       responses:
         '200':
-          description: Composite request executed successfully
+          description: Batch request executed successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CompositeResponse'
+                $ref: '#/components/schemas/CompositeBatchResponse'
         '400':
           $ref: '#/components/responses/BadRequest'
         '401':
@@ -67,21 +67,16 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/ApiError'
-    CompositeRequest:
+    CompositeBatchRequest:
       type: object
-      description: A composite request containing multiple subrequests
+      description: A batch of independent subrequests
       required:
-      - compositeRequest
+      - batchRequests
       properties:
-        allOrNone:
+        haltOnError:
           type: boolean
           default: false
-          description: If true, all subrequests are rolled back on any failure
-        collateSubrequests:
-          type: boolean
-          default: false
-          description: If true, subrequests with no dependencies are executed in parallel
-        compositeRequest:
+        batchRequests:
           type: array
           maxItems: 25
           items:
@@ -89,14 +84,7 @@ components:
             required:
             - method
             - url
-            - referenceId
             properties:
-              body:
-                description: The request body for the subrequest
-              httpHeaders:
-                type: object
-                additionalProperties:
-                  type: string
               method:
                 type: string
                 enum:
@@ -105,12 +93,25 @@ components:
                 - PATCH
                 - PUT
                 - DELETE
-              referenceId:
-                type: string
-                description: Unique identifier for this subrequest, used to reference results
               url:
                 type: string
-                description: The resource URL relative to the API version
+              richInput:
+                description: The request body for the subrequest
+    CompositeBatchResponse:
+      type: object
+      description: Response from a composite batch request
+      properties:
+        hasErrors:
+          type: boolean
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              statusCode:
+                type: integer
+              result:
+                description: The subrequest result
     ApiError:
       type: object
       properties:
@@ -122,25 +123,6 @@ components:
           type: array
           items:
             type: string
-    CompositeResponse:
-      type: object
-      description: Response from a composite request
-      properties:
-        compositeResponse:
-          type: array
-          items:
-            type: object
-            properties:
-              body:
-                description: The response body
-              httpHeaders:
-                type: object
-                additionalProperties:
-                  type: string
-              httpStatusCode:
-                type: integer
-              referenceId:
-                type: string
   securitySchemes:
     oauth2:
       type: oauth2

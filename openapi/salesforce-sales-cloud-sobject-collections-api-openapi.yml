@@ -1,0 +1,188 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events SObject Collections API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: SObject Collections
+  description: Bulk CRUD on collections of same-type records
+paths:
+  /composite/sobjects:
+    post:
+      operationId: createSObjectCollection
+      summary: Salesforce Sales Cloud Create a collection of sObject records
+      description: Creates up to 200 records of the same or different sObject types in a single request. Returns individual success/failure results for each record.
+      tags:
+      - SObject Collections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allOrNone:
+                  type: boolean
+                  default: false
+                records:
+                  type: array
+                  maxItems: 200
+                  items:
+                    type: object
+                    additionalProperties: true
+      responses:
+        '200':
+          description: Collection operation results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    patch:
+      operationId: updateSObjectCollection
+      summary: Salesforce Sales Cloud Update a collection of sObject records
+      description: Updates up to 200 records in a single request. Each record must include the Id field and sObject type.
+      tags:
+      - SObject Collections
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                allOrNone:
+                  type: boolean
+                  default: false
+                records:
+                  type: array
+                  maxItems: 200
+                  items:
+                    type: object
+                    additionalProperties: true
+      responses:
+        '200':
+          description: Collection update results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    delete:
+      operationId: deleteSObjectCollection
+      summary: Salesforce Sales Cloud Delete a collection of sObject records
+      description: Deletes up to 200 records in a single request. Record IDs are passed as a comma-separated list in the ids query parameter.
+      tags:
+      - SObject Collections
+      parameters:
+      - name: ids
+        in: query
+        required: true
+        description: Comma-separated list of record IDs to delete
+        schema:
+          type: string
+      - name: allOrNone
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      responses:
+        '200':
+          description: Collection delete results
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SaveResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    SaveResult:
+      type: object
+      description: Result of a single record create, update, or delete operation
+      properties:
+        id:
+          type: string
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

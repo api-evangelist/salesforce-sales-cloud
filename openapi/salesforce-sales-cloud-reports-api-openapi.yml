@@ -1,0 +1,427 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Reports API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Reports
+  description: Operations for listing, describing, and running reports
+paths:
+  /reports:
+    get:
+      operationId: listReports
+      summary: Salesforce Sales Cloud List reports
+      description: Returns a list of recently used reports. Each report in the list includes the report ID, name, URL, and description.
+      tags:
+      - Reports
+      responses:
+        '200':
+          description: Successfully retrieved list of reports
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReportListItem'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /reports/{reportId}:
+    get:
+      operationId: getReport
+      summary: Salesforce Sales Cloud Get report metadata
+      description: Retrieves report metadata, including report type, format, groupings, filters, and summary fields for the specified report.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Successfully retrieved report metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportMetadata'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateReport
+      summary: Salesforce Sales Cloud Update a report
+      description: Updates report metadata including filters, groupings, and other settings. Only report properties included in the request body are updated.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reportMetadata:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Report updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportMetadata'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteReport
+      summary: Salesforce Sales Cloud Delete a report
+      description: Deletes the specified report. The report must not be currently in use by a dashboard component.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      responses:
+        '204':
+          description: Report deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /reports/{reportId}/describe:
+    get:
+      operationId: describeReport
+      summary: Salesforce Sales Cloud Describe a report
+      description: Retrieves detailed metadata about a report including the report type metadata, grouping column information, summary field information, and extended metadata. This information can be used to build dynamic report filter UIs.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Successfully retrieved report description
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  reportExtendedMetadata:
+                    type: object
+                  reportMetadata:
+                    type: object
+                  reportTypeMetadata:
+                    type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /reports/{reportId}?includeDetails=true:
+    post:
+      operationId: executeReportSync
+      summary: Salesforce Sales Cloud Run a report synchronously
+      description: Runs a report synchronously and returns the report results. Optionally apply dynamic filters, aggregates, and groupings. Use includeDetails query parameter to include detail rows.
+      tags:
+      - Reports
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reportMetadata:
+                  type: object
+                  description: Override report metadata for this execution
+                  properties:
+                    reportFilters:
+                      type: array
+                      items:
+                        $ref: '#/components/schemas/ReportFilter'
+      responses:
+        '200':
+          description: Report executed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResults'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ReportResults:
+      type: object
+      description: Results from running a report
+      properties:
+        allData:
+          type: boolean
+        factMap:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              aggregates:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    value:
+                      nullable: true
+              rows:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dataCells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          label:
+                            type: string
+                          value:
+                            nullable: true
+        groupingsAcross:
+          type: object
+        groupingsDown:
+          type: object
+        hasDetailRows:
+          type: boolean
+        reportExtendedMetadata:
+          type: object
+        reportMetadata:
+          $ref: '#/components/schemas/ReportMetadata'
+    ReportListItem:
+      type: object
+      description: Summary information about a report
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        url:
+          type: string
+        describeUrl:
+          type: string
+        instancesUrl:
+          type: string
+    ReportFilter:
+      type: object
+      description: A filter applied to a report
+      properties:
+        column:
+          type: string
+        filterType:
+          type: string
+        isRunPageEditable:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - equals
+          - notEqual
+          - lessThan
+          - greaterThan
+          - lessOrEqual
+          - greaterOrEqual
+          - contains
+          - notContain
+          - startsWith
+          - includes
+          - excludes
+        value:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ReportMetadata:
+      type: object
+      description: Metadata describing a report configuration
+      properties:
+        aggregates:
+          type: array
+          items:
+            type: string
+        chart:
+          type: object
+          nullable: true
+        crossFilters:
+          type: array
+          items:
+            type: object
+        currency:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        detailColumns:
+          type: array
+          items:
+            type: string
+        developerName:
+          type: string
+        division:
+          type: string
+          nullable: true
+        folderId:
+          type: string
+        groupingsAcross:
+          type: array
+          items:
+            type: object
+            properties:
+              dateGranularity:
+                type: string
+              name:
+                type: string
+              sortAggregate:
+                type: string
+                nullable: true
+              sortOrder:
+                type: string
+        groupingsDown:
+          type: array
+          items:
+            type: object
+            properties:
+              dateGranularity:
+                type: string
+              name:
+                type: string
+              sortAggregate:
+                type: string
+                nullable: true
+              sortOrder:
+                type: string
+        hasDetailRows:
+          type: boolean
+        hasRecordCount:
+          type: boolean
+        historicalSnapshotDates:
+          type: array
+          items:
+            type: string
+        id:
+          type: string
+        name:
+          type: string
+        reportBooleanFilter:
+          type: string
+          nullable: true
+        reportFilters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportFilter'
+        reportFormat:
+          type: string
+          enum:
+          - TABULAR
+          - SUMMARY
+          - MATRIX
+          - MULTI_BLOCK
+        reportType:
+          type: object
+          properties:
+            label:
+              type: string
+            type:
+              type: string
+        scope:
+          type: string
+        sortBy:
+          type: array
+          items:
+            type: object
+        standardDateFilter:
+          type: object
+          properties:
+            column:
+              type: string
+            durationValue:
+              type: string
+            endDate:
+              type: string
+              nullable: true
+            startDate:
+              type: string
+              nullable: true
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: The 15 or 18 character Salesforce report ID
+      schema:
+        type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

@@ -1,0 +1,333 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Feed Items API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Feed Items
+  description: Individual feed item operations
+paths:
+  /chatter/feed-elements:
+    post:
+      operationId: postFeedElement
+      summary: Salesforce Sales Cloud Post a feed element
+      description: Creates a new feed element (post) on a user profile, group, or record feed. Supports text posts, link posts, and content posts with attachments.
+      tags:
+      - Feed Items
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FeedElementInput'
+      responses:
+        '201':
+          description: Feed element created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedElement'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /chatter/feed-elements/{feedElementId}:
+    get:
+      operationId: getFeedElement
+      summary: Salesforce Sales Cloud Get a feed element
+      description: Returns the specified feed element including its body, comments, likes, and metadata.
+      tags:
+      - Feed Items
+      parameters:
+      - name: feedElementId
+        in: path
+        required: true
+        description: The ID of the feed element
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved feed element
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FeedElement'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteFeedElement
+      summary: Salesforce Sales Cloud Delete a feed element
+      description: Deletes the specified feed element. Only the author or an admin can delete a feed element.
+      tags:
+      - Feed Items
+      parameters:
+      - name: feedElementId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Feed element deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /chatter/feed-elements/{feedElementId}/capabilities/comments/items:
+    get:
+      operationId: getFeedElementComments
+      summary: Salesforce Sales Cloud Get comments on a feed element
+      description: Returns all comments on the specified feed element, paginated.
+      tags:
+      - Feed Items
+      parameters:
+      - name: feedElementId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: pageSize
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 25
+      responses:
+        '200':
+          description: Successfully retrieved comments
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  comments:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Comment'
+                  total:
+                    type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: postComment
+      summary: Salesforce Sales Cloud Post a comment on a feed element
+      description: Creates a new comment on the specified feed element.
+      tags:
+      - Feed Items
+      parameters:
+      - name: feedElementId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                body:
+                  $ref: '#/components/schemas/MessageBody'
+      responses:
+        '201':
+          description: Comment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Comment'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    FeedElementInput:
+      type: object
+      required:
+      - body
+      - feedElementType
+      - subjectId
+      properties:
+        body:
+          $ref: '#/components/schemas/MessageBody'
+        feedElementType:
+          type: string
+          enum:
+          - FeedItem
+        subjectId:
+          type: string
+          description: The ID of the parent record, user, or group
+    FeedElement:
+      type: object
+      properties:
+        id:
+          type: string
+        body:
+          $ref: '#/components/schemas/MessageBody'
+        capabilities:
+          type: object
+          properties:
+            comments:
+              type: object
+              properties:
+                total:
+                  type: integer
+            chatterLikes:
+              type: object
+              properties:
+                total:
+                  type: integer
+        createdDate:
+          type: string
+          format: date-time
+        actor:
+          $ref: '#/components/schemas/UserSummary'
+        feedElementType:
+          type: string
+          enum:
+          - FeedItem
+          - Bundle
+        header:
+          type: object
+          properties:
+            text:
+              type: string
+        parent:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+        type:
+          type: string
+        url:
+          type: string
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+        body:
+          $ref: '#/components/schemas/MessageBody'
+        createdDate:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/UserSummary'
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    UserSummary:
+      type: object
+      properties:
+        companyName:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        photo:
+          type: object
+          properties:
+            smallPhotoUrl:
+              type: string
+            mediumPhotoUrl:
+              type: string
+        title:
+          type: string
+          nullable: true
+        type:
+          type: string
+        url:
+          type: string
+    MessageBody:
+      type: object
+      properties:
+        messageSegments:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Text
+                - Mention
+                - Hashtag
+                - Link
+              text:
+                type: string
+              id:
+                type: string
+              url:
+                type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

@@ -1,0 +1,161 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Process Approvals API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Process Approvals
+  description: Process approval operations
+paths:
+  /process/approvals:
+    get:
+      operationId: getProcessApprovals
+      summary: Salesforce Sales Cloud Get pending process approvals
+      description: Returns a list of all approval processes and their current state. Available in API version 30.0 and later.
+      tags:
+      - Process Approvals
+      responses:
+        '200':
+          description: Successfully retrieved process approvals
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  approvals:
+                    type: object
+                    additionalProperties:
+                      type: array
+                      items:
+                        type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: submitProcessApproval
+      summary: Salesforce Sales Cloud Submit a process approval request
+      description: Submits a particular record for approval, approves or rejects an approval request, or processes bulk approval requests.
+      tags:
+      - Process Approvals
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                requests:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      actionType:
+                        type: string
+                        enum:
+                        - Submit
+                        - Approve
+                        - Reject
+                      contextActorId:
+                        type: string
+                      contextId:
+                        type: string
+                      comments:
+                        type: string
+                      nextApproverIds:
+                        type: array
+                        items:
+                          type: string
+      responses:
+        '200':
+          description: Approval request processed successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    actorIds:
+                      type: array
+                      items:
+                        type: string
+                    entityId:
+                      type: string
+                    instanceId:
+                      type: string
+                    instanceStatus:
+                      type: string
+                    success:
+                      type: boolean
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    BadRequest:
+      description: Invalid request - malformed query, missing required fields, or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed - invalid, expired, or missing access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      description: An API error message
+      properties:
+        statusCode:
+          type: string
+          description: The error status code
+        message:
+          type: string
+          description: The error message
+        fields:
+          type: array
+          description: Fields related to the error
+          items:
+            type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

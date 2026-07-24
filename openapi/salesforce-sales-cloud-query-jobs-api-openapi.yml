@@ -1,0 +1,302 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Query Jobs API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Query Jobs
+  description: Create and manage bulk query jobs for extracting large data sets
+paths:
+  /jobs/query:
+    get:
+      operationId: listQueryJobs
+      summary: Salesforce Sales Cloud List all query jobs
+      description: Retrieves all query jobs in the org. Results include jobs in all states including completed, failed, and aborted jobs.
+      tags:
+      - Query Jobs
+      parameters:
+      - name: isPkChunkingEnabled
+        in: query
+        description: Filter by PK Chunking enabled status
+        required: false
+        schema:
+          type: boolean
+      - name: jobType
+        in: query
+        description: Filter by job type
+        required: false
+        schema:
+          type: string
+          enum:
+          - BigObjectIngest
+          - Classic
+          - V2Query
+      - name: queryLocator
+        in: query
+        description: Query locator for paginating through results
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved list of query jobs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  done:
+                    type: boolean
+                  nextRecordsUrl:
+                    type: string
+                  records:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/QueryJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createQueryJob
+      summary: Salesforce Sales Cloud Create a query job
+      description: Creates a new query job to extract data from Salesforce using SOQL. The query runs asynchronously and results can be retrieved when the job completes.
+      tags:
+      - Query Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQueryJobRequest'
+      responses:
+        '200':
+          description: Query job created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryJobInfo'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /jobs/query/{jobId}:
+    get:
+      operationId: getQueryJobInfo
+      summary: Salesforce Sales Cloud Get query job information
+      description: Retrieves detailed information about a query job including its current state, number of records processed, and the SOQL query.
+      tags:
+      - Query Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved query job information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: abortQueryJob
+      summary: Salesforce Sales Cloud Abort a query job
+      description: Aborts a query job. Only jobs that have not yet completed can be aborted.
+      tags:
+      - Query Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - state
+              properties:
+                state:
+                  type: string
+                  enum:
+                  - Aborted
+      responses:
+        '200':
+          description: Query job aborted successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryJobInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteQueryJob
+      summary: Salesforce Sales Cloud Delete a query job
+      description: Deletes a query job. The job must be in a terminal state before it can be deleted.
+      tags:
+      - Query Jobs
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '204':
+          description: Query job deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      required: true
+      description: The ID of the bulk job
+      schema:
+        type: string
+  schemas:
+    CreateQueryJobRequest:
+      type: object
+      description: Request body for creating a new query job
+      required:
+      - operation
+      - query
+      properties:
+        operation:
+          type: string
+          description: The operation type
+          enum:
+          - query
+          - queryAll
+        query:
+          type: string
+          description: The SOQL query string
+        columnDelimiter:
+          type: string
+          description: The column delimiter for the result CSV
+          enum:
+          - BACKQUOTE
+          - CARET
+          - COMMA
+          - PIPE
+          - SEMICOLON
+          - TAB
+          default: COMMA
+        lineEnding:
+          type: string
+          description: The line ending for the result CSV
+          enum:
+          - LF
+          - CRLF
+          default: LF
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    QueryJobInfo:
+      type: object
+      description: Detailed information about a query job
+      properties:
+        id:
+          type: string
+        operation:
+          type: string
+          enum:
+          - query
+          - queryAll
+        object:
+          type: string
+        createdById:
+          type: string
+        createdDate:
+          type: string
+          format: date-time
+        systemModstamp:
+          type: string
+          format: date-time
+        state:
+          type: string
+          enum:
+          - UploadComplete
+          - InProgress
+          - JobComplete
+          - Aborted
+          - Failed
+        concurrencyMode:
+          type: string
+        contentType:
+          type: string
+        apiVersion:
+          type: number
+        jobType:
+          type: string
+        lineEnding:
+          type: string
+        columnDelimiter:
+          type: string
+        numberRecordsProcessed:
+          type: integer
+        retries:
+          type: integer
+        totalProcessingTime:
+          type: integer
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  responses:
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed or access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified job was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

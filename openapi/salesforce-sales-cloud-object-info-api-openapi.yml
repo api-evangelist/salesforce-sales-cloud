@@ -1,0 +1,241 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Object Info API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Object Info
+  description: Object and field metadata for UI rendering
+paths:
+  /object-info/{objectApiName}:
+    get:
+      operationId: getObjectInfo
+      summary: Salesforce Sales Cloud Get object metadata for UI
+      description: Returns metadata about the specified sObject optimized for UI rendering, including field metadata, record type info, child relationships, and theme information.
+      tags:
+      - Object Info
+      parameters:
+      - name: objectApiName
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved object info
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ObjectInfo'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ObjectInfo:
+      type: object
+      description: Object metadata optimized for UI rendering
+      properties:
+        apiName:
+          type: string
+        childRelationships:
+          type: array
+          items:
+            type: object
+            properties:
+              childObjectApiName:
+                type: string
+              fieldName:
+                type: string
+              junctionIdListNames:
+                type: array
+                items:
+                  type: string
+              junctionReferenceTo:
+                type: array
+                items:
+                  type: string
+              relationshipName:
+                type: string
+        createable:
+          type: boolean
+        custom:
+          type: boolean
+        defaultRecordTypeId:
+          type: string
+          nullable: true
+        deletable:
+          type: boolean
+        eTag:
+          type: string
+        feedEnabled:
+          type: boolean
+        fields:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              apiName:
+                type: string
+              compound:
+                type: boolean
+              compoundComponentName:
+                type: string
+                nullable: true
+              compoundFieldName:
+                type: string
+                nullable: true
+              controllerName:
+                type: string
+                nullable: true
+              controllingFields:
+                type: array
+                items:
+                  type: string
+              createable:
+                type: boolean
+              custom:
+                type: boolean
+              dataType:
+                type: string
+              extraTypeInfo:
+                type: string
+                nullable: true
+              filterable:
+                type: boolean
+              htmlFormatted:
+                type: boolean
+              inlineHelpText:
+                type: string
+                nullable: true
+              label:
+                type: string
+              length:
+                type: integer
+              nameField:
+                type: boolean
+              polymorphicForeignKey:
+                type: boolean
+              precision:
+                type: integer
+              reference:
+                type: boolean
+              referenceTargetField:
+                type: string
+                nullable: true
+              referenceToInfos:
+                type: array
+                items:
+                  type: object
+              relationshipName:
+                type: string
+                nullable: true
+              required:
+                type: boolean
+              scale:
+                type: integer
+              searchPrefilterable:
+                type: boolean
+              sortable:
+                type: boolean
+              unique:
+                type: boolean
+              updateable:
+                type: boolean
+        keyPrefix:
+          type: string
+        label:
+          type: string
+        labelPlural:
+          type: string
+        layoutable:
+          type: boolean
+        mruEnabled:
+          type: boolean
+        queryable:
+          type: boolean
+        recordTypeInfos:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              available:
+                type: boolean
+              defaultRecordTypeMapping:
+                type: boolean
+              master:
+                type: boolean
+              name:
+                type: string
+              recordTypeId:
+                type: string
+        searchable:
+          type: boolean
+        themeInfo:
+          type: object
+          properties:
+            color:
+              type: string
+            iconUrl:
+              type: string
+        updateable:
+          type: boolean
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

@@ -1,0 +1,360 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Report Instances API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Report Instances
+  description: Asynchronous report execution and results retrieval
+paths:
+  /reports/{reportId}/instances:
+    get:
+      operationId: listReportInstances
+      summary: Salesforce Sales Cloud List report instances
+      description: Returns a list of instances for the specified report that have been run asynchronously. Each instance includes the status and completion date.
+      tags:
+      - Report Instances
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      responses:
+        '200':
+          description: Successfully retrieved report instances
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ReportInstance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: executeReportAsync
+      summary: Salesforce Sales Cloud Run a report asynchronously
+      description: Runs a report asynchronously. Returns the report instance ID which can be used to retrieve the results when the report has finished running.
+      tags:
+      - Report Instances
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                reportMetadata:
+                  type: object
+                  description: Override report metadata for this execution
+      responses:
+        '200':
+          description: Report execution started
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportInstance'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /reports/{reportId}/instances/{instanceId}:
+    get:
+      operationId: getReportInstanceResults
+      summary: Salesforce Sales Cloud Get report instance results
+      description: Retrieves the results of an asynchronous report run using the instance ID. If the report is still running, the status is returned instead of results.
+      tags:
+      - Report Instances
+      parameters:
+      - $ref: '#/components/parameters/reportId'
+      - name: instanceId
+        in: path
+        required: true
+        description: The ID of the report instance
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved report instance results
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReportResults'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  schemas:
+    ReportResults:
+      type: object
+      description: Results from running a report
+      properties:
+        allData:
+          type: boolean
+        factMap:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              aggregates:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    value:
+                      nullable: true
+              rows:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dataCells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          label:
+                            type: string
+                          value:
+                            nullable: true
+        groupingsAcross:
+          type: object
+        groupingsDown:
+          type: object
+        hasDetailRows:
+          type: boolean
+        reportExtendedMetadata:
+          type: object
+        reportMetadata:
+          $ref: '#/components/schemas/ReportMetadata'
+    ReportFilter:
+      type: object
+      description: A filter applied to a report
+      properties:
+        column:
+          type: string
+        filterType:
+          type: string
+        isRunPageEditable:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - equals
+          - notEqual
+          - lessThan
+          - greaterThan
+          - lessOrEqual
+          - greaterOrEqual
+          - contains
+          - notContain
+          - startsWith
+          - includes
+          - excludes
+        value:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ReportInstance:
+      type: object
+      description: Information about an asynchronous report execution instance
+      properties:
+        completionDate:
+          type: string
+          format: date-time
+          nullable: true
+        id:
+          type: string
+        ownerId:
+          type: string
+        requestDate:
+          type: string
+          format: date-time
+        status:
+          type: string
+          enum:
+          - New
+          - Success
+          - Running
+          - Error
+        url:
+          type: string
+    ReportMetadata:
+      type: object
+      description: Metadata describing a report configuration
+      properties:
+        aggregates:
+          type: array
+          items:
+            type: string
+        chart:
+          type: object
+          nullable: true
+        crossFilters:
+          type: array
+          items:
+            type: object
+        currency:
+          type: string
+          nullable: true
+        description:
+          type: string
+          nullable: true
+        detailColumns:
+          type: array
+          items:
+            type: string
+        developerName:
+          type: string
+        division:
+          type: string
+          nullable: true
+        folderId:
+          type: string
+        groupingsAcross:
+          type: array
+          items:
+            type: object
+            properties:
+              dateGranularity:
+                type: string
+              name:
+                type: string
+              sortAggregate:
+                type: string
+                nullable: true
+              sortOrder:
+                type: string
+        groupingsDown:
+          type: array
+          items:
+            type: object
+            properties:
+              dateGranularity:
+                type: string
+              name:
+                type: string
+              sortAggregate:
+                type: string
+                nullable: true
+              sortOrder:
+                type: string
+        hasDetailRows:
+          type: boolean
+        hasRecordCount:
+          type: boolean
+        historicalSnapshotDates:
+          type: array
+          items:
+            type: string
+        id:
+          type: string
+        name:
+          type: string
+        reportBooleanFilter:
+          type: string
+          nullable: true
+        reportFilters:
+          type: array
+          items:
+            $ref: '#/components/schemas/ReportFilter'
+        reportFormat:
+          type: string
+          enum:
+          - TABULAR
+          - SUMMARY
+          - MATRIX
+          - MULTI_BLOCK
+        reportType:
+          type: object
+          properties:
+            label:
+              type: string
+            type:
+              type: string
+        scope:
+          type: string
+        sortBy:
+          type: array
+          items:
+            type: object
+        standardDateFilter:
+          type: object
+          properties:
+            column:
+              type: string
+            durationValue:
+              type: string
+            endDate:
+              type: string
+              nullable: true
+            startDate:
+              type: string
+              nullable: true
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    reportId:
+      name: reportId
+      in: path
+      required: true
+      description: The 15 or 18 character Salesforce report ID
+      schema:
+        type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

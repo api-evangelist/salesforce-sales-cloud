@@ -1,0 +1,326 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events SObject Rows API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: SObject Rows
+  description: CRUD operations on individual sObject records
+paths:
+  /sobjects/{sObjectName}:
+    post:
+      operationId: createSObjectRecord
+      summary: Salesforce Sales Cloud Create a new sObject record
+      description: Creates a new record for the specified sObject. The request body contains the field values for the new record in JSON format.
+      tags:
+      - SObject Rows
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: Field name-value pairs for the new record
+      responses:
+        '201':
+          description: Record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecordResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects/{sObjectName}/{recordId}:
+    get:
+      operationId: getSObjectRecord
+      summary: Salesforce Sales Cloud Get an sObject record by ID
+      description: Retrieves a record for the specified sObject using the record ID. Optionally, specify the fields to return using the fields parameter to limit the response size.
+      tags:
+      - SObject Rows
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      - $ref: '#/components/parameters/recordId'
+      - name: fields
+        in: query
+        description: Comma-separated list of field names to return
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved sObject record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SObjectRecord'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateSObjectRecord
+      summary: Salesforce Sales Cloud Update an sObject record
+      description: Updates an individual record for the specified sObject. Provide field values in the request body as JSON.
+      tags:
+      - SObject Rows
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      - $ref: '#/components/parameters/recordId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+              description: Field name-value pairs to update
+      responses:
+        '204':
+          description: Record updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteSObjectRecord
+      summary: Salesforce Sales Cloud Delete an sObject record
+      description: Deletes a record for the specified sObject using the record ID.
+      tags:
+      - SObject Rows
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      - $ref: '#/components/parameters/recordId'
+      responses:
+        '204':
+          description: Record deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /sobjects/{sObjectName}/{fieldName}/{fieldValue}:
+    get:
+      operationId: getSObjectRecordByExternalId
+      summary: Salesforce Sales Cloud Get record by external ID
+      description: Retrieves a record using an external ID field. If the external ID is not unique, a 300 response with multiple matching records is returned.
+      tags:
+      - SObject Rows
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      - name: fieldName
+        in: path
+        required: true
+        description: The API name of the external ID field
+        schema:
+          type: string
+      - name: fieldValue
+        in: path
+        required: true
+        description: The external ID value
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved record by external ID
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SObjectRecord'
+        '300':
+          description: Multiple records matched the external ID value
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: upsertSObjectRecordByExternalId
+      summary: Salesforce Sales Cloud Upsert record by external ID
+      description: Creates or updates (upserts) a record using an external ID field. If the external ID is not matched, a new record is created. If the external ID is matched, the existing record is updated.
+      tags:
+      - SObject Rows
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      - name: fieldName
+        in: path
+        required: true
+        description: The API name of the external ID field
+        schema:
+          type: string
+      - name: fieldValue
+        in: path
+        required: true
+        description: The external ID value
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: Record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecordResult'
+        '201':
+          description: Record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateRecordResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    SObjectRecord:
+      type: object
+      description: An sObject record with attributes and field values
+      properties:
+        attributes:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The sObject type
+            url:
+              type: string
+              description: The relative URL for the record
+        Id:
+          type: string
+          description: The 18-character Salesforce record ID
+      additionalProperties: true
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      description: An API error message
+      properties:
+        statusCode:
+          type: string
+          description: The error status code
+        message:
+          type: string
+          description: The error message
+        fields:
+          type: array
+          description: Fields related to the error
+          items:
+            type: string
+    CreateRecordResult:
+      type: object
+      description: Result from a create, update, or delete operation
+      properties:
+        id:
+          type: string
+          description: The ID of the created or affected record
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+        errors:
+          type: array
+          description: List of errors if the operation failed
+          items:
+            $ref: '#/components/schemas/ApiError'
+  responses:
+    Unauthorized:
+      description: Authentication failed - invalid, expired, or missing access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request - malformed query, missing required fields, or validation error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found - invalid sObject name or record ID
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      description: The 15 or 18 character Salesforce record ID
+      schema:
+        type: string
+        pattern: ^[a-zA-Z0-9]{15}([a-zA-Z0-9]{3})?$
+    sObjectName:
+      name: sObjectName
+      in: path
+      required: true
+      description: The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)
+      schema:
+        type: string
+      examples:
+        account:
+          value: Account
+          summary: Standard Account object
+        contact:
+          value: Contact
+          summary: Standard Contact object
+        lead:
+          value: Lead
+          summary: Standard Lead object
+        opportunity:
+          value: Opportunity
+          summary: Standard Opportunity object
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

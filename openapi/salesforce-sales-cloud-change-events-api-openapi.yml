@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Platform Events API
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events API
   description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -21,21 +21,21 @@ security:
 - oauth2: []
 - bearerAuth: []
 tags:
-- name: Platform Events
-  description: Publish and describe platform events
+- name: Change Events
+  description: Change event metadata and schema operations
 paths:
-  /sobjects/{eventApiName}:
+  /sobjects/{changeEventName}:
     get:
-      operationId: describePlatformEvent
-      summary: Salesforce Sales Cloud Describe a platform event
-      description: Retrieves metadata about the specified platform event including its fields, label, and API name. The event API name uses the __e suffix (e.g., Order_Event__e).
+      operationId: describeChangeEvent
+      summary: Salesforce Sales Cloud Describe a change event object
+      description: Retrieves metadata about a change event object. For standard objects, the change event name follows the pattern {ObjectName}ChangeEvent (e.g., AccountChangeEvent). For custom objects, the pattern is {ObjectName}__ChangeEvent.
       tags:
-      - Platform Events
+      - Change Events
       parameters:
-      - $ref: '#/components/parameters/eventApiName'
+      - $ref: '#/components/parameters/changeEventName'
       responses:
         '200':
-          description: Successfully retrieved event metadata
+          description: Successfully retrieved change event metadata
           content:
             application/json:
               schema:
@@ -48,8 +48,6 @@ paths:
                         type: string
                       label:
                         type: string
-                      custom:
-                        type: boolean
                       fields:
                         type: array
                         items:
@@ -61,55 +59,22 @@ paths:
                               type: string
                             type:
                               type: string
-                            length:
-                              type: integer
-                  recentItems:
-                    type: array
-                    items:
-                      type: object
         '401':
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-    post:
-      operationId: publishPlatformEvent
-      summary: Salesforce Sales Cloud Publish a platform event
-      description: Publishes a single platform event message by inserting an sObject record for the event type. The event API name uses the __e suffix. Include the event's custom fields in the request body.
-      tags:
-      - Platform Events
-      parameters:
-      - $ref: '#/components/parameters/eventApiName'
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              additionalProperties: true
-              description: Event field name-value pairs
-      responses:
-        '201':
-          description: Event published successfully
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/PublishResult'
-        '400':
-          $ref: '#/components/responses/BadRequest'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-  /sobjects/{eventApiName}/describe:
+  /sobjects/{changeEventName}/describe:
     get:
-      operationId: describePlatformEventFull
-      summary: Salesforce Sales Cloud Get full platform event metadata
-      description: Retrieves complete metadata about the specified platform event including all fields, their types, lengths, and other attributes.
+      operationId: describeChangeEventFull
+      summary: Salesforce Sales Cloud Get full change event metadata
+      description: Returns complete metadata for a change event type including all header and changed fields. The change event header contains the changeType (CREATE, UPDATE, DELETE, UNDELETE), changedFields, commitTimestamp, transactionKey, and other metadata.
       tags:
-      - Platform Events
+      - Change Events
       parameters:
-      - $ref: '#/components/parameters/eventApiName'
+      - $ref: '#/components/parameters/changeEventName'
       responses:
         '200':
-          description: Successfully retrieved full event metadata
+          description: Successfully retrieved full metadata
           content:
             application/json:
               schema:
@@ -119,21 +84,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  parameters:
-    eventApiName:
-      name: eventApiName
-      in: path
-      required: true
-      description: The API name of the platform event (e.g., Order_Event__e)
-      schema:
-        type: string
   responses:
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed
       content:
@@ -154,26 +105,31 @@ components:
     ApiError:
       type: object
       properties:
-        statusCode:
+        errorCode:
           type: string
         message:
           type: string
-        fields:
-          type: array
-          items:
-            type: string
-    PublishResult:
-      type: object
-      properties:
-        id:
-          type: string
-          description: The event message ID
-        success:
-          type: boolean
-        errors:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApiError'
+  parameters:
+    changeEventName:
+      name: changeEventName
+      in: path
+      required: true
+      description: The change event API name (e.g., AccountChangeEvent for Account, Contact__ChangeEvent for a custom object)
+      schema:
+        type: string
+      examples:
+        account:
+          value: AccountChangeEvent
+          summary: Account change events
+        contact:
+          value: ContactChangeEvent
+          summary: Contact change events
+        opportunity:
+          value: OpportunityChangeEvent
+          summary: Opportunity change events
+        lead:
+          value: LeadChangeEvent
+          summary: Lead change events
   securitySchemes:
     oauth2:
       type: oauth2

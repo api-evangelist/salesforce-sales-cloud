@@ -1,0 +1,254 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Tooling SObjects API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Tooling SObjects
+  description: CRUD operations on Tooling API sObjects
+paths:
+  /sobjects:
+    get:
+      operationId: listToolingSObjects
+      summary: Salesforce Sales Cloud List available Tooling API sObjects
+      description: Lists all available Tooling API sObjects and their metadata, including ApexClass, ApexTrigger, ApexComponent, ApexPage, ApexLog, MetadataContainer, and other developer-focused objects.
+      tags:
+      - Tooling SObjects
+      responses:
+        '200':
+          description: Successfully retrieved list of Tooling sObjects
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  encoding:
+                    type: string
+                  maxBatchSize:
+                    type: integer
+                  sobjects:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        activateable:
+                          type: boolean
+                        custom:
+                          type: boolean
+                        label:
+                          type: string
+                        name:
+                          type: string
+                        queryable:
+                          type: boolean
+                        urls:
+                          type: object
+                          additionalProperties:
+                            type: string
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects/{sObjectName}:
+    get:
+      operationId: getToolingSObjectBasicInfo
+      summary: Salesforce Sales Cloud Get Tooling sObject basic information
+      description: Retrieves basic metadata for the specified Tooling API sObject, including default field values and recently accessed records.
+      tags:
+      - Tooling SObjects
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      responses:
+        '200':
+          description: Successfully retrieved sObject info
+          content:
+            application/json:
+              schema:
+                type: object
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    post:
+      operationId: createToolingSObjectRecord
+      summary: Salesforce Sales Cloud Create a Tooling sObject record
+      description: Creates a new record for the specified Tooling API sObject. For example, creating an ApexClass record will create and compile a new Apex class in the org.
+      tags:
+      - Tooling SObjects
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: Record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SaveResult'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sobjects/{sObjectName}/{recordId}:
+    get:
+      operationId: getToolingSObjectRecord
+      summary: Salesforce Sales Cloud Get a Tooling sObject record
+      description: Retrieves a Tooling API record by its ID. For example, retrieve an ApexClass record to get its source code, metadata, and compilation status.
+      tags:
+      - Tooling SObjects
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      - $ref: '#/components/parameters/recordId'
+      responses:
+        '200':
+          description: Successfully retrieved record
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateToolingSObjectRecord
+      summary: Salesforce Sales Cloud Update a Tooling sObject record
+      description: Updates an existing Tooling API record. For example, updating an ApexClass record will update and recompile the Apex class.
+      tags:
+      - Tooling SObjects
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      - $ref: '#/components/parameters/recordId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '204':
+          description: Record updated successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteToolingSObjectRecord
+      summary: Salesforce Sales Cloud Delete a Tooling sObject record
+      description: Deletes a Tooling API record by its ID.
+      tags:
+      - Tooling SObjects
+      parameters:
+      - $ref: '#/components/parameters/sObjectName'
+      - $ref: '#/components/parameters/recordId'
+      responses:
+        '204':
+          description: Record deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  responses:
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      description: The Salesforce record ID
+      schema:
+        type: string
+    sObjectName:
+      name: sObjectName
+      in: path
+      required: true
+      description: The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    SaveResult:
+      type: object
+      properties:
+        id:
+          type: string
+        success:
+          type: boolean
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

@@ -1,0 +1,182 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Run Tests API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Run Tests
+  description: Execute Apex tests
+paths:
+  /runTestsAsynchronous:
+    post:
+      operationId: runTestsAsync
+      summary: Salesforce Sales Cloud Run Apex tests asynchronously
+      description: Runs one or more Apex test methods asynchronously. Returns the test run ID which can be used to check status and retrieve results.
+      tags:
+      - Run Tests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                classids:
+                  type: string
+                  description: Comma-separated list of Apex class IDs
+                suiteids:
+                  type: string
+                  description: Comma-separated list of test suite IDs
+                tests:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      classId:
+                        type: string
+                      testMethods:
+                        type: array
+                        items:
+                          type: string
+                maxFailedTests:
+                  type: integer
+                  description: Maximum number of failed tests before aborting
+                testLevel:
+                  type: string
+                  enum:
+                  - RunSpecifiedTests
+                  - RunLocalTests
+                  - RunAllTestsInOrg
+      responses:
+        '200':
+          description: Test run initiated
+          content:
+            application/json:
+              schema:
+                type: string
+                description: The async test run ID
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /runTestsSynchronous:
+    post:
+      operationId: runTestsSync
+      summary: Salesforce Sales Cloud Run Apex tests synchronously
+      description: Runs specified Apex tests synchronously and returns the results inline. Best for small numbers of tests that complete quickly.
+      tags:
+      - Run Tests
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tests:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      classId:
+                        type: string
+                      testMethods:
+                        type: array
+                        items:
+                          type: string
+                maxFailedTests:
+                  type: integer
+                testLevel:
+                  type: string
+                  enum:
+                  - RunSpecifiedTests
+      responses:
+        '200':
+          description: Test execution completed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  numFailures:
+                    type: integer
+                  numTestsRun:
+                    type: integer
+                  successes:
+                    type: array
+                    items:
+                      type: object
+                  failures:
+                    type: array
+                    items:
+                      type: object
+                  totalTime:
+                    type: number
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

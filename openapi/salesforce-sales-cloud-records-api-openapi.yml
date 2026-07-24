@@ -1,0 +1,266 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Records API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Records
+  description: Record CRUD operations with UI metadata
+paths:
+  /records/{recordId}:
+    get:
+      operationId: getRecord
+      summary: Salesforce Sales Cloud Get a record with UI metadata
+      description: Retrieves a record with field values and UI metadata. Specify the fields to return or use a layout mode to get the fields appropriate for a specific page layout. Returned data respects field-level security.
+      tags:
+      - Records
+      parameters:
+      - $ref: '#/components/parameters/recordId'
+      - name: fields
+        in: query
+        description: Comma-separated list of field API names to return
+        required: false
+        schema:
+          type: string
+      - name: layoutTypes
+        in: query
+        description: Layout type to determine which fields to return
+        required: false
+        schema:
+          type: string
+          enum:
+          - Compact
+          - Full
+      - name: modes
+        in: query
+        description: The mode for the layout
+        required: false
+        schema:
+          type: string
+          enum:
+          - Create
+          - Edit
+          - View
+      - name: optionalFields
+        in: query
+        description: Optional fields returned if accessible
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successfully retrieved record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordRepresentation'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    patch:
+      operationId: updateRecord
+      summary: Salesforce Sales Cloud Update a record
+      description: Updates the specified record. Only include fields that need to be changed. Returns the updated record with UI metadata.
+      tags:
+      - Records
+      parameters:
+      - $ref: '#/components/parameters/recordId'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fields:
+                  type: object
+                  additionalProperties: true
+      responses:
+        '200':
+          description: Record updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordRepresentation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    delete:
+      operationId: deleteRecord
+      summary: Salesforce Sales Cloud Delete a record
+      description: Deletes the specified record.
+      tags:
+      - Records
+      parameters:
+      - $ref: '#/components/parameters/recordId'
+      responses:
+        '204':
+          description: Record deleted successfully
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /records:
+    post:
+      operationId: createRecord
+      summary: Salesforce Sales Cloud Create a record
+      description: Creates a new record. Returns the created record with UI metadata and the new record ID.
+      tags:
+      - Records
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - apiName
+              - fields
+              properties:
+                apiName:
+                  type: string
+                  description: The sObject API name
+                fields:
+                  type: object
+                  additionalProperties: true
+                  description: Field name-value pairs
+      responses:
+        '201':
+          description: Record created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecordRepresentation'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      description: The 18-character Salesforce record ID
+      schema:
+        type: string
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    RecordRepresentation:
+      type: object
+      description: A record with field values and UI metadata
+      properties:
+        apiName:
+          type: string
+          description: The sObject API name
+        childRelationships:
+          type: object
+          additionalProperties: true
+        eTag:
+          type: string
+        fields:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              displayValue:
+                type: string
+                nullable: true
+              value:
+                nullable: true
+        id:
+          type: string
+        lastModifiedById:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        recordTypeId:
+          type: string
+          nullable: true
+        recordTypeInfo:
+          type: object
+          nullable: true
+          properties:
+            available:
+              type: boolean
+            defaultRecordTypeMapping:
+              type: boolean
+            master:
+              type: boolean
+            name:
+              type: string
+            recordTypeId:
+              type: string
+        systemModstamp:
+          type: string
+          format: date-time
+        weakEtag:
+          type: integer
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm

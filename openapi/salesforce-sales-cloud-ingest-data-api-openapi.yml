@@ -1,0 +1,171 @@
+openapi: 3.1.0
+info:
+  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Ingest Data API
+  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  version: 59.0.0
+  termsOfService: https://www.salesforce.com/company/legal/agreements/
+  contact:
+    name: Salesforce Developer Support
+    url: https://developer.salesforce.com/
+  license:
+    name: Salesforce Master Subscription Agreement
+    url: https://www.salesforce.com/company/legal/agreements/
+servers:
+- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+  description: Salesforce Production or Developer Edition
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce instance identifier
+security:
+- oauth2: []
+- bearerAuth: []
+tags:
+- name: Ingest Data
+  description: Upload CSV data to ingest jobs and retrieve results
+paths:
+  /jobs/ingest/{jobId}/batches:
+    put:
+      operationId: uploadIngestJobData
+      summary: Salesforce Sales Cloud Upload data for an ingest job
+      description: Uploads CSV data for an ingest job. The job must be in the Open state. You can upload data in multiple requests, each up to 150 MB. The CSV data must include a header row with field API names.
+      tags:
+      - Ingest Data
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      requestBody:
+        required: true
+        content:
+          text/csv:
+            schema:
+              type: string
+              description: CSV data with header row containing field API names
+      responses:
+        '201':
+          description: Data uploaded successfully
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs/ingest/{jobId}/successfulResults:
+    get:
+      operationId: getIngestJobSuccessfulResults
+      summary: Salesforce Sales Cloud Get successful results for an ingest job
+      description: Retrieves a list of successfully processed records for a completed ingest job. Results are returned in CSV format.
+      tags:
+      - Ingest Data
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved successful results
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: CSV data of successfully processed records
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs/ingest/{jobId}/failedResults:
+    get:
+      operationId: getIngestJobFailedResults
+      summary: Salesforce Sales Cloud Get failed results for an ingest job
+      description: Retrieves a list of failed records for a completed ingest job. Results are returned in CSV format and include error information for each failed record.
+      tags:
+      - Ingest Data
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved failed results
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: CSV data of failed records with error details
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+  /jobs/ingest/{jobId}/unprocessedrecords:
+    get:
+      operationId: getIngestJobUnprocessedRecords
+      summary: Salesforce Sales Cloud Get unprocessed records for an ingest job
+      description: Retrieves a list of unprocessed records for a completed ingest job. These are records that were not processed due to the job being aborted or hitting limits.
+      tags:
+      - Ingest Data
+      parameters:
+      - $ref: '#/components/parameters/jobId'
+      responses:
+        '200':
+          description: Successfully retrieved unprocessed records
+          content:
+            text/csv:
+              schema:
+                type: string
+                description: CSV data of unprocessed records
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+components:
+  parameters:
+    jobId:
+      name: jobId
+      in: path
+      required: true
+      description: The ID of the bulk job
+      schema:
+        type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed or access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified job was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+  securitySchemes:
+    oauth2:
+      type: oauth2
+      description: Salesforce OAuth 2.0 authentication
+      flows:
+        authorizationCode:
+          authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: OAuth 2.0 Access Token
+externalDocs:
+  description: Salesforce Reports and Dashboards REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
