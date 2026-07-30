@@ -2,6 +2,19 @@ name: Salesforce Sales Cloud
 description: >-
   Enterprise CRM platform providing sales automation, customer relationship management, and business intelligence
   capabilities through REST and SOAP APIs.
+accessModel:
+  pricing: enterprise
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Enterprise · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.salesforce.com/content/dam/web/en_us/www/images/salesforce-logo.svg
 url: https://www.salesforce.com/products/sales-cloud/overview/
 created: '2024-01-15'
@@ -14,37 +27,10 @@ tags:
 - Enterprise
 - Sales
 apis:
-- name: Salesforce REST API
-  description: >-
-    Primary REST API for accessing Salesforce data including accounts, contacts, leads, opportunities, and custom
-    objects. Supports JSON and XML formats with a lightweight request and response framework.
-  image: https://www.salesforce.com/content/dam/web/en_us/www/images/salesforce-logo.svg
-  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
-  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
-  tags:
-  - CRUD
-  - Data
-  - Objects
-  - Records
-  - REST
-  properties:
-  - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
-  - type: OpenAPI
-    url: openapi/salesforce-sales-cloud-rest-api-openapi.yml
-  - type: Authentication
-    url: >-
-      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
-  - type: PostmanCollection
-    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
-  - type: GettingStarted
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
-  - type: ChangeLog
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
 - name: Salesforce SOAP API
   description: >-
-    Comprehensive SOAP-based API for enterprise integrations with full CRUD operations on Salesforce objects. Uses
-    WSDL files to define parameters for accessing data through the API.
+    Comprehensive SOAP-based API for enterprise integrations with full CRUD operations on Salesforce objects.
+    Uses WSDL files to define parameters for accessing data through the API.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/
   baseURL: https://yourInstance.salesforce.com/services/Soap/u/59.0
   tags:
@@ -54,37 +40,20 @@ apis:
   - XML
   properties:
   - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_intro.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_intro.htm
   - type: WSDL
     url: https://yourInstance.salesforce.com/services/wsdl/enterprise
   - type: Authentication
-    url: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_login.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_login.htm
   - type: GettingStarted
-    url: https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_steps.htm
-- name: Bulk API 2.0
-  description: >-
-    Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST
-    API. Supports CSV, JSON, and XML data formats.
-  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/
-  baseURL: https://yourInstance.salesforce.com/services/data/v59.0/jobs/ingest
-  tags:
-  - Async
-  - Bulk
-  - Data Loading
-  - ETL
-  properties:
-  - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
-  - type: Examples
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
-  - type: GettingStarted
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
-  - type: OpenAPI
-    url: openapi/salesforce-sales-cloud-bulk-api-openapi.yml
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_steps.htm
 - name: Metadata API
   description: >-
-    API for retrieving, deploying, creating, updating, or deleting customization information such as custom object
-    definitions and page layouts. Essential for managing org configuration and deployment workflows.
+    API for retrieving, deploying, creating, updating, or deleting customization information such as custom
+    object definitions and page layouts. Essential for managing org configuration and deployment workflows.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/
   baseURL: https://yourInstance.salesforce.com/services/Soap/m/59.0
   tags:
@@ -101,8 +70,8 @@ apis:
     url: https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_rns.htm
 - name: Streaming API
   description: >-
-    Push notification API using Bayeux protocol to receive near real-time updates when data changes in Salesforce.
-    Enables event-driven integrations without polling.
+    Push notification API using Bayeux protocol to receive near real-time updates when data changes in
+    Salesforce. Enables event-driven integrations without polling.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/
   baseURL: https://yourInstance.salesforce.com/cometd/59.0
   tags:
@@ -112,14 +81,15 @@ apis:
   - Streaming
   properties:
   - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/intro_stream.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/intro_stream.htm
   - type: Examples
     url: >-
       https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/code_sample_java_client_intro.htm
 - name: Platform Events API
   description: >-
-    Event-driven architecture API for publishing and subscribing to custom events for app integration. Supports
-    defining custom event channels with schema for loosely coupled systems.
+    Event-driven architecture API for publishing and subscribing to custom events for app integration.
+    Supports defining custom event channels with schema for loosely coupled systems.
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/sobjects
   tags:
@@ -136,28 +106,12 @@ apis:
       https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_publish_api.htm
   - type: OpenAPI
     url: openapi/salesforce-sales-cloud-platform-events-api-openapi.yml
-- name: Analytics REST API
-  description: >-
-    Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into
-    custom applications and automating report generation.
-  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/
-  baseURL: https://yourInstance.salesforce.com/services/data/v59.0/analytics
-  tags:
-  - Analytics
-  - Business Intelligence
-  - Dashboards
-  - Reports
-  properties:
-  - type: Documentation
-    url: >-
-      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
-  - type: OpenAPI
-    url: openapi/salesforce-sales-cloud-analytics-api-openapi.yml
 - name: Salesforce Composite API
   description: >-
-    Executes a series of REST API requests in a single call, reducing round trips between client and server. Supports
-    composite batches, composite requests, and composite graphs for complex multi-step operations.
-  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm
+    Executes a series of REST API requests in a single call, reducing round trips between client and server.
+    Supports composite batches, composite requests, and composite graphs for complex multi-step operations.
+  humanURL: >-
+    https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/composite
   tags:
   - Batch
@@ -166,9 +120,11 @@ apis:
   - Performance
   properties:
   - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm
   - type: Reference
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_composite.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_composite.htm
   - type: Guide
     url: >-
       https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_graph_introduction.htm
@@ -176,8 +132,8 @@ apis:
     url: openapi/salesforce-sales-cloud-composite-api-openapi.yml
 - name: Salesforce GraphQL API
   description: >-
-    Query Salesforce data using GraphQL, allowing clients to request exactly the fields they need in a single request.
-    Reduces payload size and supports aggregation across object relationships.
+    Query Salesforce data using GraphQL, allowing clients to request exactly the fields they need in a
+    single request. Reduces payload size and supports aggregation across object relationships.
   humanURL: https://developer.salesforce.com/docs/platform/graphql/overview
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/graphql
   tags:
@@ -196,31 +152,11 @@ apis:
     url: openapi/salesforce-sales-cloud-graphql-api-openapi.yml
   - url: graphql/salesforce-sales-cloud-graphql.md
     type: GraphQL
-- name: Salesforce Tooling API
-  description: >-
-    Build custom development tools for Salesforce applications by accessing metadata about Apex classes, triggers,
-    Visualforce pages, and other development artifacts. Supports both REST and SOAP interfaces.
-  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling
-  baseURL: https://yourInstance.salesforce.com/services/data/v59.0/tooling
-  tags:
-  - Apex
-  - Development
-  - Metadata
-  - Tooling
-  properties:
-  - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
-  - type: Reference
-    url: https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
-  - type: Examples
-    url: >-
-      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
-  - type: OpenAPI
-    url: openapi/salesforce-sales-cloud-tooling-api-openapi.yml
 - name: Salesforce Pub/Sub API
   description: >-
-    gRPC-based API for publishing and subscribing to platform events, change data capture events, and real-time event
-    monitoring events. Uses Apache Avro format for efficient binary event message delivery over HTTP/2.
+    gRPC-based API for publishing and subscribing to platform events, change data capture events, and
+    real-time event monitoring events. Uses Apache Avro format for efficient binary event message delivery
+    over HTTP/2.
   humanURL: https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html
   baseURL: https://yourInstance.salesforce.com
   tags:
@@ -235,85 +171,3336 @@ apis:
     url: https://developer.salesforce.com/docs/platform/pub-sub-api/guide/grpc-api.html
   - type: Reference
     url: https://developer.salesforce.com/docs/platform/pub-sub-api/guide/pub-sub-endpoints.html
-- name: Salesforce Change Data Capture API
-  description: >-
-    Receive near-real-time notifications of changes to Salesforce records including creates, updates, deletes, and
-    undeletes. Enables synchronization of external data stores with Salesforce data.
-  humanURL: https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-change-events-api
+  name: Salesforce Sales Cloud Change Events API
+  description: Change event metadata and schema operations
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0
   tags:
-  - Change Data Capture
-  - Events
-  - Real-Time
-  - Synchronization
+  - Change Events
   properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-change-events-api-openapi.yml
   - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
   - type: Guide
-    url: https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
   - type: Reference
     url: >-
       https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
-  - type: OpenAPI
-    url: openapi/salesforce-sales-cloud-change-data-capture-api-openapi.yml
-- name: Salesforce Connect REST API
-  description: >-
-    Integrate mobile apps, intranet sites, and third-party web applications with Salesforce, including access to
-    Chatter feeds, groups, users, and collaboration features.
-  humanURL: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
-  baseURL: https://yourInstance.salesforce.com/services/data/v59.0/connect
-  tags:
-  - Chatter
-  - Collaboration
-  - Connect
-  - Social
-  properties:
   - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
   - type: GettingStarted
-    url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
   - type: Reference
-    url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
   - type: Examples
-    url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
   - type: ChangeLog
-    url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
-  - type: OpenAPI
-    url: openapi/salesforce-sales-cloud-connect-api-openapi.yml
-- name: Salesforce User Interface API
-  description: >-
-    Build custom user interfaces for Salesforce data using the same API that powers Lightning Experience. Returns data
-    and metadata in a single response with layout, picklist, and field-level security awareness.
-  humanURL: https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi
-  baseURL: https://yourInstance.salesforce.com/services/data/v59.0/ui-api
-  tags:
-  - Layouts
-  - Lightning
-  - Records
-  - User Interface
-  properties:
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
   - type: Documentation
-    url: https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
   - type: Reference
-    url: https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
-  - type: OpenAPI
-    url: openapi/salesforce-sales-cloud-ui-api-openapi.yml
-- name: Salesforce Apex REST API
-  description: >-
-    Create custom REST endpoints in Salesforce using Apex classes annotated with REST resource annotations. Supports
-    OAuth 2.0 authentication and JSON and XML request and response formats.
-  humanURL: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
-  baseURL: https://yourInstance.salesforce.com/services/apexrest
-  tags:
-  - Apex
-  - Custom Endpoints
-  - Development
-  - REST
-  properties:
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
   - type: Documentation
     url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-communities-api
+  name: Salesforce Sales Cloud Communities API
+  description: Community (Experience Cloud) operations
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Communities
+  properties:
   - type: OpenAPI
-    url: openapi/salesforce-sales-cloud-apex-rest-api-openapi.yml
+    url: openapi/salesforce-sales-cloud-communities-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-completions-api
+  name: Salesforce Sales Cloud Completions API
+  description: Apex code completions
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Completions
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-completions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-composite-batch-api
+  name: Salesforce Sales Cloud Composite Batch API
+  description: Batch of independent subrequests
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Composite Batch
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-composite-batch-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-composite-graph-api
+  name: Salesforce Sales Cloud Composite Graph API
+  description: Complex multi-step composite graph operations
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Composite Graph
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-composite-graph-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-custom-endpoints-api
+  name: Salesforce Sales Cloud Custom Endpoints API
+  description: Custom Apex REST endpoints defined by @RestResource annotated classes
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Custom Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-custom-endpoints-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-dashboards-api
+  name: Salesforce Sales Cloud Dashboards API
+  description: Operations for listing, describing, and refreshing dashboards
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Dashboards
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-dashboards-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-event-schema-api
+  name: Salesforce Sales Cloud Event Schema API
+  description: Retrieve event schema definitions
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Event Schema
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-event-schema-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-execute-anonymous-api
+  name: Salesforce Sales Cloud Execute Anonymous API
+  description: Execute anonymous Apex code
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Execute Anonymous
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-execute-anonymous-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-feed-items-api
+  name: Salesforce Sales Cloud Feed Items API
+  description: Individual feed item operations
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Feed Items
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-feed-items-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-feeds-api
+  name: Salesforce Sales Cloud Feeds API
+  description: Chatter feed operations
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Feeds
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-feeds-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-files-api
+  name: Salesforce Sales Cloud Files API
+  description: File sharing and management
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-files-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-groups-api
+  name: Salesforce Sales Cloud Groups API
+  description: Chatter group operations
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Groups
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-groups-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-ingest-data-api
+  name: Salesforce Sales Cloud Ingest Data API
+  description: Upload CSV data to ingest jobs and retrieve results
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Ingest Data
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-ingest-data-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-ingest-jobs-api
+  name: Salesforce Sales Cloud Ingest Jobs API
+  description: Create and manage bulk ingest jobs for insert, update, upsert, and delete operations
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Ingest Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-ingest-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-layouts-api
+  name: Salesforce Sales Cloud Layouts API
+  description: Page layout metadata
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Layouts
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-layouts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-limits-api
+  name: Salesforce Sales Cloud Limits API
+  description: Org limits and usage information
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Limits
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-limits-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-list-views-api
+  name: Salesforce Sales Cloud List Views API
+  description: List view metadata and records
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - List Views
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-list-views-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-lookups-api
+  name: Salesforce Sales Cloud Lookups API
+  description: Lookup field search
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Lookups
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-lookups-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-object-info-api
+  name: Salesforce Sales Cloud Object Info API
+  description: Object and field metadata for UI rendering
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Object Info
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-object-info-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-picklist-values-api
+  name: Salesforce Sales Cloud Picklist Values API
+  description: Picklist field values with record type awareness
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Picklist Values
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-picklist-values-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-process-approvals-api
+  name: Salesforce Sales Cloud Process Approvals API
+  description: Process approval operations
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Process Approvals
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-process-approvals-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-query-api
+  name: Salesforce Sales Cloud Query API
+  description: SOQL query execution
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Query
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-query-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-query-jobs-api
+  name: Salesforce Sales Cloud Query Jobs API
+  description: Create and manage bulk query jobs for extracting large data sets
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Query Jobs
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-query-jobs-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-query-results-api
+  name: Salesforce Sales Cloud Query Results API
+  description: Retrieve results from completed query jobs
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Query Results
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-query-results-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-recently-viewed-api
+  name: Salesforce Sales Cloud Recently Viewed API
+  description: Recently viewed items
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Recently Viewed
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-recently-viewed-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-record-ui-api
+  name: Salesforce Sales Cloud Record UI API
+  description: Complete record page data including layout and metadata
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Record UI
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-record-ui-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-records-api
+  name: Salesforce Sales Cloud Records API
+  description: Record CRUD operations with UI metadata
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Records
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-records-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-report-instances-api
+  name: Salesforce Sales Cloud Report Instances API
+  description: Asynchronous report execution and results retrieval
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Report Instances
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-report-instances-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-report-types-api
+  name: Salesforce Sales Cloud Report Types API
+  description: Report type metadata and discovery
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Report Types
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-report-types-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-reports-api
+  name: Salesforce Sales Cloud Reports API
+  description: Operations for listing, describing, and running reports
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-reports-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-resources-api
+  name: Salesforce Sales Cloud Resources API
+  description: Available REST resources for a given API version
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Resources
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-resources-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-run-tests-api
+  name: Salesforce Sales Cloud Run Tests API
+  description: Execute Apex tests
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Run Tests
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-run-tests-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-search-api
+  name: Salesforce Sales Cloud Search API
+  description: SOSL search execution
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-search-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-sobject-api
+  name: Salesforce Sales Cloud SObject API
+  description: Operations on Salesforce standard and custom objects
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - SObject
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-sobject-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-sobject-collections-api
+  name: Salesforce Sales Cloud SObject Collections API
+  description: Bulk CRUD on collections of same-type records
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - SObject Collections
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-sobject-collections-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-sobject-describe-api
+  name: Salesforce Sales Cloud SObject Describe API
+  description: Metadata description of sObjects
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - SObject Describe
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-sobject-describe-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-sobject-rows-api
+  name: Salesforce Sales Cloud SObject Rows API
+  description: CRUD operations on individual sObject records
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - SObject Rows
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-sobject-rows-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-sobject-tree-api
+  name: Salesforce Sales Cloud SObject Tree API
+  description: Hierarchical record creation
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - SObject Tree
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-sobject-tree-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-tabs-api
+  name: Salesforce Sales Cloud Tabs API
+  description: Tab metadata
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Tabs
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-tabs-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-themes-api
+  name: Salesforce Sales Cloud Themes API
+  description: Theme information
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Themes
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-themes-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-tooling-query-api
+  name: Salesforce Sales Cloud Tooling Query API
+  description: Execute SOQL queries against Tooling API objects
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Tooling Query
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-tooling-query-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-tooling-sobject-describe-api
+  name: Salesforce Sales Cloud Tooling SObject Describe API
+  description: Metadata about Tooling API sObjects
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Tooling SObject Describe
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-tooling-sobject-describe-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-tooling-sobjects-api
+  name: Salesforce Sales Cloud Tooling SObjects API
+  description: CRUD operations on Tooling API sObjects
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Tooling SObjects
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-tooling-sobjects-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
+- aid: salesforce-sales-cloud:salesforce-sales-cloud-users-api
+  name: Salesforce Sales Cloud Users API
+  description: User profile and photo operations
+  humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
+  baseURL: https://yourInstance.salesforce.com/services/data/v59.0
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/salesforce-sales-cloud-users-api-openapi.yml
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm
+  - type: Authentication
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm
+  - type: PostmanCollection
+    url: https://www.postman.com/salesforce-developers/workspace/salesforce-developers
+  - type: GettingStarted
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm
+  - type: ChangeLog
+    url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm
+  - type: Guide
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm
+  - type: GettingStarted
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm
+  - type: Examples
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm
+  - type: ChangeLog
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm
+  - type: Documentation
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
+  - type: Reference
+    url: >-
+      https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm
+  - type: Documentation
+    url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm
 common:
 - type: AgenticAccess
   url: agentic-access/salesforce-sales-cloud-agentic-access.yml
