@@ -3617,8 +3617,6 @@ common:
   url: json-ld/salesforce-sales-cloud-context.jsonld
 - type: SpectralRules
   url: rules/salesforce-sales-cloud-rules.yml
-- type: Capabilities
-  url: capabilities/sales-pipeline-management.yaml
 - type: Vocabulary
   url: vocabulary/salesforce-sales-cloud-vocabulary.yml
 - type: JSONSchema
