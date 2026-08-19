@@ -1,0 +1,204 @@
+{
+  "item": [
+    {
+      "id": "d699f396-a6a8-4f4e-bed3-40ec7374b63a",
+      "name": "Communities",
+      "description": {
+        "content": "Community (Experience Cloud) operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df3e4d35-4483-4157-ae37-af9d9898b95f",
+          "name": "Salesforce Sales Cloud List communities",
+          "request": {
+            "name": "Salesforce Sales Cloud List communities",
+            "description": {
+              "content": "Returns a list of communities (Experience Cloud sites) available to the current user. Includes community name, URL, status, and description.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "communities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ee648d8-bf5e-4b2a-9ed8-2714e636724e",
+              "name": "Successfully retrieved communities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "communities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"communities\": [\n    {\n      \"allowChatterAccessWithoutLogin\": false,\n      \"allowMembersToFlag\": true,\n      \"description\": \"string\",\n      \"id\": \"string\",\n      \"invitationsEnabled\": true,\n      \"knowledgeableEnabled\": true,\n      \"loginUrl\": \"string\",\n      \"name\": \"string\",\n      \"nicknameDisplayEnabled\": false,\n      \"privateMessagesEnabled\": false,\n      \"reputationEnabled\": true,\n      \"sendWelcomeEmail\": false,\n      \"siteAsContainerEnabled\": true,\n      \"siteUrl\": \"string\",\n      \"status\": \"UnderConstruction\",\n      \"url\": \"string\",\n      \"urlPathPrefix\": \"string\"\n    },\n    {\n      \"allowChatterAccessWithoutLogin\": false,\n      \"allowMembersToFlag\": true,\n      \"description\": \"string\",\n      \"id\": \"string\",\n      \"invitationsEnabled\": true,\n      \"knowledgeableEnabled\": false,\n      \"loginUrl\": \"string\",\n      \"name\": \"string\",\n      \"nicknameDisplayEnabled\": true,\n      \"privateMessagesEnabled\": false,\n      \"reputationEnabled\": false,\n      \"sendWelcomeEmail\": true,\n      \"siteAsContainerEnabled\": false,\n      \"siteUrl\": \"string\",\n      \"status\": \"UnderConstruction\",\n      \"url\": \"string\",\n      \"urlPathPrefix\": \"string\"\n    }\n  ],\n  \"total\": 1447\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bed2542-bb6b-4d60-9746-72e504278381",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "communities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Salesforce instance identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourInstance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dd1a1cc4-9bab-451a-83bf-c3b87fd6aeae",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Communities API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

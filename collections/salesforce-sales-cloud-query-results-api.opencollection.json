@@ -1,0 +1,61 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Query Results API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query Results",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get query job results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/query/:jobId/results",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              },
+              {
+                "name": "locator",
+                "value": "",
+                "type": "query",
+                "description": "Locator value for retrieving the next set of results"
+              },
+              {
+                "name": "maxRecords",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return per request"
+              }
+            ]
+          },
+          "docs": "Retrieves the results of a completed query job in CSV format. Use the locator and maxRecords parameters to paginate through large result sets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

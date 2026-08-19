@@ -1,25 +1,26 @@
 {
   "item": [
     {
-      "id": "ee97074d-29ee-449a-81f6-a90222d225ec",
-      "name": "Composite",
+      "id": "02304fb9-7291-42af-b0b2-f59402905e0e",
+      "name": "Composite Graph",
       "description": {
-        "content": "Composite requests with inter-request references",
+        "content": "Complex multi-step composite graph operations",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e0f76bc5-9332-4e6b-af5f-b4bbb70b06ec",
-          "name": "Salesforce Sales Cloud Execute a composite request",
+          "id": "7e02b554-bdbb-4448-9f2a-9cf5c6bca90c",
+          "name": "Salesforce Sales Cloud Execute a composite graph request",
           "request": {
-            "name": "Salesforce Sales Cloud Execute a composite request",
+            "name": "Salesforce Sales Cloud Execute a composite graph request",
             "description": {
-              "content": "Executes a series of REST API requests in a single call. Each request can reference the results of previous requests via referenceId, enabling dependent operations. Supports up to 25 subrequests per composite call. If allOrNone is true, all subrequests are rolled back on any failure.",
+              "content": "Executes one or more composite graphs. Each graph consists of a series of composite subrequests that can reference each other. Graphs are independent of each other and can succeed or fail independently. Available in API version 50.0 and later.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "composite"
+                "composite",
+                "graph"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -48,7 +49,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+              "raw": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        },\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        }\n      ]\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        },\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        }\n      ]\n    }\n  ]\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -58,12 +59,13 @@
           },
           "response": [
             {
-              "id": "87573e41-588e-47f9-862f-68a044750197",
-              "name": "Composite request executed successfully",
+              "id": "3bef8178-803b-4892-9f6b-9d2f5cba901f",
+              "name": "Graph request executed successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "composite",
+                    "graph"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -95,7 +97,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+                  "raw": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        },\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        }\n      ]\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        },\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        }\n      ]\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -111,17 +113,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"compositeResponse\": [\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 4558,\n      \"referenceId\": \"string\"\n    },\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 1180,\n      \"referenceId\": \"string\"\n    }\n  ]\n}",
+              "body": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"string\",\n      \"graphResponse\": {\n        \"compositeResponse\": [\n          {\n            \"body\": {},\n            \"httpHeaders\": {},\n            \"httpStatusCode\": 4949,\n            \"referenceId\": \"string\"\n          },\n          {\n            \"body\": {},\n            \"httpHeaders\": {},\n            \"httpStatusCode\": 6073,\n            \"referenceId\": \"string\"\n          }\n        ]\n      },\n      \"isSuccessful\": true\n    },\n    {\n      \"graphId\": \"string\",\n      \"graphResponse\": {\n        \"compositeResponse\": [\n          {\n            \"body\": {},\n            \"httpHeaders\": {},\n            \"httpStatusCode\": 2674,\n            \"referenceId\": \"string\"\n          },\n          {\n            \"body\": {},\n            \"httpHeaders\": {},\n            \"httpStatusCode\": 7818,\n            \"referenceId\": \"string\"\n          }\n        ]\n      },\n      \"isSuccessful\": true\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c59d294c-6c10-425d-bba9-5fc2fa815fec",
+              "id": "9470f0a4-66a0-42e8-b238-368823bc70b2",
               "name": "Invalid request",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "composite",
+                    "graph"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -153,7 +156,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+                  "raw": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        },\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        }\n      ]\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        },\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        }\n      ]\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -174,12 +177,13 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "743dfc0a-b909-4bd4-ad6d-16c659e0add7",
+              "id": "77afbf99-e476-432b-b1b2-dc311aac8c8d",
               "name": "Authentication failed",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "composite",
+                    "graph"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -211,7 +215,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+                  "raw": "{\n  \"graphs\": [\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        },\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        }\n      ]\n    },\n    {\n      \"graphId\": \"<string>\",\n      \"compositeRequest\": [\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        },\n        {\n          \"method\": \"<string>\",\n          \"url\": \"<string>\",\n          \"referenceId\": \"<string>\",\n          \"body\": {}\n        }\n      ]\n    }\n  ]\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -280,8 +284,8 @@
     ]
   },
   "info": {
-    "_postman_id": "69182933-0e80-49f8-9f4c-9d734f31d803",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite API",
+    "_postman_id": "94d680b8-8f75-4bb4-b923-7b91bc8c12ab",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite Graph API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

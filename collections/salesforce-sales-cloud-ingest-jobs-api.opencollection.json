@@ -1,0 +1,143 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Ingest Jobs API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ingest Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List all ingest jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/ingest",
+            "params": [
+              {
+                "name": "isPkChunkingEnabled",
+                "value": "",
+                "type": "query",
+                "description": "Filter by PK Chunking enabled status"
+              },
+              {
+                "name": "jobType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job type"
+              },
+              {
+                "name": "concurrencyMode",
+                "value": "",
+                "type": "query",
+                "description": "Filter by concurrency mode"
+              },
+              {
+                "name": "queryLocator",
+                "value": "",
+                "type": "query",
+                "description": "Query locator for paginating through results"
+              }
+            ]
+          },
+          "docs": "Retrieves all ingest jobs in the org. Results include jobs that have been opened, those in progress, and completed jobs in all states."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/ingest",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new ingest job for bulk insert, update, upsert, or delete operations. After creating the job, upload CSV data using the job ID, then close the job to begin processing."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get ingest job information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/ingest/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about an ingest job, including its current state, number of records processed, and any errors."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Close, abort, or delete an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/ingest/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the state of an ingest job. Set the state to UploadComplete to close the job and begin processing, or Aborted to abort the job. A job must be closed before Salesforce processes the uploaded data."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete an ingest job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/ingest/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Deletes an ingest job. The job must be in a terminal state (JobComplete, Aborted, or Failed) before it can be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

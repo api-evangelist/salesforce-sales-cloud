@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Query Jobs API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query Jobs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List all query jobs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/query",
+            "params": [
+              {
+                "name": "isPkChunkingEnabled",
+                "value": "",
+                "type": "query",
+                "description": "Filter by PK Chunking enabled status"
+              },
+              {
+                "name": "jobType",
+                "value": "",
+                "type": "query",
+                "description": "Filter by job type"
+              },
+              {
+                "name": "queryLocator",
+                "value": "",
+                "type": "query",
+                "description": "Query locator for paginating through results"
+              }
+            ]
+          },
+          "docs": "Retrieves all query jobs in the org. Results include jobs in all states including completed, failed, and aborted jobs."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create a query job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/query",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new query job to extract data from Salesforce using SOQL. The query runs asynchronously and results can be retrieved when the job completes."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get query job information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/query/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed information about a query job including its current state, number of records processed, and the SOQL query."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Abort a query job",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/query/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Aborts a query job. Only jobs that have not yet completed can be aborted."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a query job",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/jobs/query/:jobId",
+            "params": [
+              {
+                "name": "jobId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the bulk job"
+              }
+            ]
+          },
+          "docs": "Deletes a query job. The job must be in a terminal state before it can be deleted."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

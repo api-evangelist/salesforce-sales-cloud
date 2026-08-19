@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Dashboards API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List dashboards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards"
+          },
+          "docs": "Returns a list of recently used dashboards. Each dashboard in the list includes the dashboard ID, name, URL, and folder information."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get dashboard metadata and results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards/:dashboardId",
+            "params": [
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce dashboard ID"
+              }
+            ]
+          },
+          "docs": "Returns the metadata and cached results for the specified dashboard, including component data, status, and filter information."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Refresh a dashboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards/:dashboardId",
+            "params": [
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce dashboard ID"
+              }
+            ]
+          },
+          "docs": "Refreshes the specified dashboard by re-running all component reports. Dashboard refresh requests are limited to 200 per hour."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a dashboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards/:dashboardId",
+            "params": [
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce dashboard ID"
+              }
+            ]
+          },
+          "docs": "Deletes the specified dashboard."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get dashboard refresh status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/dashboards/:dashboardId/status",
+            "params": [
+              {
+                "name": "dashboardId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce dashboard ID"
+              }
+            ]
+          },
+          "docs": "Returns the status of the most recent refresh for the specified dashboard, including component-level status information."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

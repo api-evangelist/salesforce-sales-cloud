@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Query API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Execute a SOQL query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/query",
+            "params": [
+              {
+                "name": "q",
+                "value": "SELECT Id, Name FROM Account LIMIT 10",
+                "type": "query",
+                "description": "The SOQL query string"
+              }
+            ]
+          },
+          "docs": "Executes the specified SOQL query string and returns the results. If the query results are too large, the response contains the first batch of results and a query identifier to retrieve the remaining results."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Execute a SOQL query including deleted records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/queryAll",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "The SOQL query string"
+              }
+            ]
+          },
+          "docs": "Executes the specified SOQL query, including results from deleted and archived records. This is useful for querying against soft-deleted records in the Recycle Bin."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get next batch of query results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/query/:queryLocator",
+            "params": [
+              {
+                "name": "queryLocator",
+                "value": "",
+                "type": "path",
+                "description": "The query locator returned from a previous query response"
+              }
+            ]
+          },
+          "docs": "Retrieves the next batch of query results using the query locator returned from a previous query request. Use this endpoint to paginate through large result sets."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

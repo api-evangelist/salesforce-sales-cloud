@@ -1,0 +1,127 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Feed Items API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feed Items",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Post a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/chatter/feed-elements",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new feed element (post) on a user profile, group, or record feed. Supports text posts, link posts, and content posts with attachments."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/chatter/feed-elements/:feedElementId",
+            "params": [
+              {
+                "name": "feedElementId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the feed element"
+              }
+            ]
+          },
+          "docs": "Returns the specified feed element including its body, comments, likes, and metadata."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/chatter/feed-elements/:feedElementId",
+            "params": [
+              {
+                "name": "feedElementId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deletes the specified feed element. Only the author or an admin can delete a feed element."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get comments on a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/chatter/feed-elements/:feedElementId/capabilities/comments/items",
+            "params": [
+              {
+                "name": "feedElementId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns all comments on the specified feed element, paginated."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Post a comment on a feed element",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/chatter/feed-elements/:feedElementId/capabilities/comments/items",
+            "params": [
+              {
+                "name": "feedElementId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new comment on the specified feed element."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,31 +1,54 @@
 {
   "item": [
     {
-      "id": "301b819f-5545-473d-8034-c1bed785e945",
-      "name": "GraphQL",
+      "id": "5896d8a5-cb23-4bc7-a29c-60cb554ec7b0",
+      "name": "Query Results",
       "description": {
-        "content": "Execute GraphQL queries and mutations against Salesforce data",
+        "content": "Retrieve results from completed query jobs",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "d3c9d545-9b84-4468-8bb9-ec57314d4283",
-          "name": "Salesforce Sales Cloud Execute a GraphQL query or mutation",
+          "id": "3ea4ae90-a976-4f4c-b1d6-87c085b9584d",
+          "name": "Salesforce Sales Cloud Get query job results",
           "request": {
-            "name": "Salesforce Sales Cloud Execute a GraphQL query or mutation",
+            "name": "Salesforce Sales Cloud Get query job results",
             "description": {
-              "content": "Executes a GraphQL query or mutation against the Salesforce data model. Queries allow reading data from any accessible sObject with field-level precision. Mutations support RecordCreate, RecordUpdate, and RecordDelete operations through the UIAPIMutations type. The request body must contain the GraphQL query string and may optionally include variables and an operation name.",
+              "content": "Retrieves the results of a completed query job in CSV format. Use the locator and maxRecords parameters to paginate through large result sets.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "graphql"
+                "jobs",
+                "query",
+                ":jobId",
+                "results"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "locator",
+                  "value": "<string>",
+                  "description": "Locator value for retrieving the next set of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "maxRecords",
+                  "value": "<integer>",
+                  "description": "Maximum number of records to return per request"
+                }
+              ],
               "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The ID of the bulk job"
+                },
                 {
                   "description": "Your Salesforce instance identifier",
                   "type": "any",
@@ -36,40 +59,46 @@
             },
             "header": [
               {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "text/csv"
               }
             ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"key_0\": 5465.266678267359\n  },\n  \"operationName\": \"<string>\"\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "GET",
+            "auth": null
           },
           "response": [
             {
-              "id": "6b34546a-5239-4177-aa45-a8dff59a9364",
-              "name": "GraphQL query or mutation executed successfully",
+              "id": "90fa89cc-2a7c-43cf-a8dd-e469cec0ab2c",
+              "name": "Successfully retrieved query results",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "graphql"
+                    "jobs",
+                    "query",
+                    ":jobId",
+                    "results"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "locator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxRecords",
+                      "value": "<integer>"
+                    }
+                  ],
                   "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -89,45 +118,68 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "text/csv"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"query\": \"{\\n  uiapi {\\n    query {\\n      Account(first: 10) {\\n        edges {\\n          node {\\n            Id\\n            Name { value }\\n            Industry { value }\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\\n\",\n  \"variables\": {\n    \"key_0\": false\n  },\n  \"operationName\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "OK",
               "code": 200,
               "header": [
                 {
+                  "disabled": false,
+                  "description": "Locator value for the next set of results (null if no more)",
+                  "key": "Sforce-Locator",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "Number of records in this result set",
+                  "key": "Sforce-NumberOfRecords",
+                  "value": "1815"
+                },
+                {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/csv"
                 }
               ],
-              "body": "{\n  \"data\": {},\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"locations\": [\n        {\n          \"line\": 3926,\n          \"column\": 4883\n        },\n        {\n          \"line\": 5063,\n          \"column\": 39\n        }\n      ],\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"extensions\": {\n        \"key_0\": 1630,\n        \"key_1\": \"string\"\n      }\n    },\n    {\n      \"message\": \"string\",\n      \"locations\": [\n        {\n          \"line\": 236,\n          \"column\": 9035\n        },\n        {\n          \"line\": 3588,\n          \"column\": 753\n        }\n      ],\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"extensions\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "body": "string",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "fec57e98-8c3b-4456-ae97-c18178bab656",
-              "name": "Malformed GraphQL request or syntax error",
+              "id": "efda0eec-1493-437a-816c-4e0642402e77",
+              "name": "Authentication failed or access token is invalid",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "graphql"
+                    "jobs",
+                    "query",
+                    ":jobId",
+                    "results"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "locator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxRecords",
+                      "value": "<integer>"
+                    }
+                  ],
                   "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -150,42 +202,53 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"query\": \"{\\n  uiapi {\\n    query {\\n      Account(first: 10) {\\n        edges {\\n          node {\\n            Id\\n            Name { value }\\n            Industry { value }\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\\n\",\n  \"variables\": {\n    \"key_0\": false\n  },\n  \"operationName\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
-              "status": "Bad Request",
-              "code": 400,
+              "status": "Unauthorized",
+              "code": 401,
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"locations\": [\n        {\n          \"line\": 2892,\n          \"column\": 2081\n        },\n        {\n          \"line\": 3722,\n          \"column\": 8685\n        }\n      ],\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"extensions\": {\n        \"key_0\": true\n      }\n    },\n    {\n      \"message\": \"string\",\n      \"locations\": [\n        {\n          \"line\": 2930,\n          \"column\": 3201\n        },\n        {\n          \"line\": 8546,\n          \"column\": 2068\n        }\n      ],\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"extensions\": {\n        \"key_0\": \"string\"\n      }\n    }\n  ]\n}",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "99e15c2a-7bdb-4677-9d92-7a63f2d7718b",
-              "name": "Authentication failed",
+              "id": "f45c372f-f740-4729-a425-5ee699a2bead",
+              "name": "The specified job was not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "graphql"
+                    "jobs",
+                    "query",
+                    ":jobId",
+                    "results"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "locator",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxRecords",
+                      "value": "<integer>"
+                    }
+                  ],
                   "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -208,19 +271,11 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"query\": \"{\\n  uiapi {\\n    query {\\n      Account(first: 10) {\\n        edges {\\n          node {\\n            Id\\n            Name { value }\\n            Industry { value }\\n          }\\n        }\\n      }\\n    }\\n  }\\n}\\n\",\n  \"variables\": {\n    \"key_0\": false\n  },\n  \"operationName\": \"<string>\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
-              "status": "Unauthorized",
-              "code": 401,
+              "status": "Not Found",
+              "code": 404,
               "header": [
                 {
                   "key": "Content-Type",
@@ -280,8 +335,8 @@
     ]
   },
   "info": {
-    "_postman_id": "3901c4ec-b4b1-4192-aeae-9847a66b35ce",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events GraphQL API",
+    "_postman_id": "473a6527-4c5d-44de-a185-2be6b5c1dbfb",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Query Results API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

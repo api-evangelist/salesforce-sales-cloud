@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Report Types API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report Types",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List available report types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reportTypes"
+          },
+          "docs": "Returns a list of report types available in the org. Each report type includes its label and API name."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Describe a report type",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reportTypes/:reportType",
+            "params": [
+              {
+                "name": "reportType",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the report type"
+              }
+            ]
+          },
+          "docs": "Returns metadata about the specified report type including available fields, groupable fields, and filterable fields."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Execute Anonymous API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Execute Anonymous",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Execute anonymous Apex code",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/executeAnonymous",
+            "params": [
+              {
+                "name": "anonymousBody",
+                "value": "",
+                "type": "query",
+                "description": "The Apex code to execute"
+              }
+            ]
+          },
+          "docs": "Executes a block of anonymous Apex code. The code does not need to be part of an Apex class. Returns compilation and execution results, including any debug log output."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

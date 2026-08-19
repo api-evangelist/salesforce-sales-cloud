@@ -1,0 +1,239 @@
+{
+  "item": [
+    {
+      "id": "747768a4-308e-4142-a66a-be2eea6617c6",
+      "name": "Files",
+      "description": {
+        "content": "File sharing and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "126ad684-9e16-4df0-946c-829a775a7dd0",
+          "name": "Salesforce Sales Cloud Get files owned by current user",
+          "request": {
+            "name": "Salesforce Sales Cloud Get files owned by current user",
+            "description": {
+              "content": "Returns a list of files owned by the current user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "files",
+                "users",
+                "me"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f16ad45c-cef2-4d17-8034-e7e24d43a9db",
+              "name": "Successfully retrieved files",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"files\": [\n    {\n      \"id\": \"string\",\n      \"contentUrl\": \"string\",\n      \"description\": \"string\",\n      \"fileExtension\": \"string\",\n      \"fileSize\": 5305,\n      \"fileType\": \"string\",\n      \"modifiedDate\": \"1958-08-30T17:42:48.441Z\",\n      \"owner\": {\n        \"companyName\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"string\",\n          \"mediumPhotoUrl\": \"string\"\n        },\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"title\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"contentUrl\": \"string\",\n      \"description\": \"string\",\n      \"fileExtension\": \"string\",\n      \"fileSize\": 5027,\n      \"fileType\": \"string\",\n      \"modifiedDate\": \"1984-11-14T08:47:17.139Z\",\n      \"owner\": {\n        \"companyName\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"string\",\n          \"mediumPhotoUrl\": \"string\"\n        },\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"title\": \"string\"\n    }\n  ],\n  \"nextPageUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d723a8b-104b-4bb6-b373-5de6239f4b71",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "files",
+                    "users",
+                    "me"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Salesforce instance identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourInstance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cff29f21-e2af-4ef5-94ba-4a24befb75c5",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Files API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

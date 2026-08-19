@@ -1,0 +1,144 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Reports API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List reports",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports"
+          },
+          "docs": "Returns a list of recently used reports. Each report in the list includes the report ID, name, URL, and description."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get report metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ]
+          },
+          "docs": "Retrieves report metadata, including report type, format, groupings, filters, and summary fields for the specified report."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates report metadata including filters, groupings, and other settings. Only report properties included in the request body are updated."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ]
+          },
+          "docs": "Deletes the specified report. The report must not be currently in use by a dashboard component."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Describe a report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId/describe",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ]
+          },
+          "docs": "Retrieves detailed metadata about a report including the report type metadata, grouping column information, summary field information, and extended metadata. This information can be used to build dynamic report filter UIs."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Run a report synchronously",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId?includeDetails=true",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs a report synchronously and returns the report results. Optionally apply dynamic filters, aggregates, and groupings. Use includeDetails query parameter to include detail rows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

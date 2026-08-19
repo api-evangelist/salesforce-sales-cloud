@@ -1,31 +1,56 @@
 {
   "item": [
     {
-      "id": "ee97074d-29ee-449a-81f6-a90222d225ec",
-      "name": "Composite",
+      "id": "0e802e2a-8f7a-4f37-ae03-1a32189fb284",
+      "name": "Layouts",
       "description": {
-        "content": "Composite requests with inter-request references",
+        "content": "Page layout metadata",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e0f76bc5-9332-4e6b-af5f-b4bbb70b06ec",
-          "name": "Salesforce Sales Cloud Execute a composite request",
+          "id": "70ac2339-3c3a-47be-81ba-dd4f48ccf6a4",
+          "name": "Salesforce Sales Cloud Get record layout metadata",
           "request": {
-            "name": "Salesforce Sales Cloud Execute a composite request",
+            "name": "Salesforce Sales Cloud Get record layout metadata",
             "description": {
-              "content": "Executes a series of REST API requests in a single call. Each request can reference the results of previous requests via referenceId, enabling dependent operations. Supports up to 25 subrequests per composite call. If allOrNone is true, all subrequests are rolled back on any failure.",
+              "content": "Returns layout metadata for the specified sObject including sections, fields, and their arrangement on the page. Respects record type and profile-based layout assignments.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "composite"
+                "layout",
+                ":objectApiName"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "layoutType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "recordTypeId",
+                  "value": "<string>",
+                  "description": "The record type ID for record-type-specific layouts"
+                }
+              ],
               "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectApiName",
+                  "description": "(Required) The API name of the sObject"
+                },
                 {
                   "description": "Your Salesforce instance identifier",
                   "type": "any",
@@ -36,40 +61,48 @@
             },
             "header": [
               {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "GET",
+            "auth": null
           },
           "response": [
             {
-              "id": "87573e41-588e-47f9-862f-68a044750197",
-              "name": "Composite request executed successfully",
+              "id": "15552eae-c88f-4d5c-847b-5d08513fcec2",
+              "name": "Successfully retrieved layout",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "layout",
+                    ":objectApiName"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "layoutType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recordTypeId",
+                      "value": "<string>"
+                    }
+                  ],
                   "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectApiName",
+                      "description": "(Required) The API name of the sObject"
+                    },
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -92,16 +125,8 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "OK",
               "code": 200,
@@ -111,81 +136,44 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"compositeResponse\": [\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 4558,\n      \"referenceId\": \"string\"\n    },\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 1180,\n      \"referenceId\": \"string\"\n    }\n  ]\n}",
+              "body": "{}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c59d294c-6c10-425d-bba9-5fc2fa815fec",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "composite"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "743dfc0a-b909-4bd4-ad6d-16c659e0add7",
+              "id": "82236cb8-eebc-4c0a-8bfe-1c92979b9a46",
               "name": "Authentication failed",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "layout",
+                    ":objectApiName"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "layoutType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recordTypeId",
+                      "value": "<string>"
+                    }
+                  ],
                   "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectApiName",
+                      "description": "(Required) The API name of the sObject"
+                    },
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -208,16 +196,8 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "Unauthorized",
               "code": 401,
@@ -227,7 +207,78 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "607d950d-bc63-4575-80df-ffd35fca7cc5",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "layout",
+                    ":objectApiName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "layoutType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "mode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "recordTypeId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectApiName",
+                      "description": "(Required) The API name of the sObject"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -280,8 +331,8 @@
     ]
   },
   "info": {
-    "_postman_id": "69182933-0e80-49f8-9f4c-9d734f31d803",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite API",
+    "_postman_id": "36a955d8-8bbf-4ee3-bd89-5ada3a1f9c27",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Layouts API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

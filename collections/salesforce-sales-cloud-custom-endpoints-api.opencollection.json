@@ -1,0 +1,137 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Custom Endpoints API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Custom Endpoints",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud GET request to a custom Apex REST endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/:resourcePath",
+            "params": [
+              {
+                "name": "resourcePath",
+                "value": "",
+                "type": "path",
+                "description": "The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+              }
+            ]
+          },
+          "docs": "Executes the @HttpGet annotated method on the Apex class mapped to the specified resource path. The resource path is defined by the urlMapping property of the @RestResource annotation on the Apex class. Response format depends on the Apex class implementation."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud POST request to a custom Apex REST endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/:resourcePath",
+            "params": [
+              {
+                "name": "resourcePath",
+                "value": "",
+                "type": "path",
+                "description": "The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes the @HttpPost annotated method on the Apex class mapped to the specified resource path. The request body is deserialized into the method's parameters."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud PUT request to a custom Apex REST endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/:resourcePath",
+            "params": [
+              {
+                "name": "resourcePath",
+                "value": "",
+                "type": "path",
+                "description": "The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes the @HttpPut annotated method on the Apex class mapped to the specified resource path. Typically used for full replacements or upserts."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud PATCH request to a custom Apex REST endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/:resourcePath",
+            "params": [
+              {
+                "name": "resourcePath",
+                "value": "",
+                "type": "path",
+                "description": "The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes the @HttpPatch annotated method on the Apex class mapped to the specified resource path. Typically used for partial updates."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud DELETE request to a custom Apex REST endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/:resourcePath",
+            "params": [
+              {
+                "name": "resourcePath",
+                "value": "",
+                "type": "path",
+                "description": "The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)"
+              }
+            ]
+          },
+          "docs": "Executes the @HttpDelete annotated method on the Apex class mapped to the specified resource path. The record to delete is typically identified by a query parameter or path segment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

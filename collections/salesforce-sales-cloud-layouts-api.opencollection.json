@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Layouts API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Layouts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get record layout metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/layout/:objectApiName",
+            "params": [
+              {
+                "name": "objectApiName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject"
+              },
+              {
+                "name": "layoutType",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "mode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "recordTypeId",
+                "value": "",
+                "type": "query",
+                "description": "The record type ID for record-type-specific layouts"
+              }
+            ]
+          },
+          "docs": "Returns layout metadata for the specified sObject including sections, fields, and their arrangement on the page. Respects record type and profile-based layout assignments."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,270 @@
+{
+  "item": [
+    {
+      "id": "02d870a2-dce9-43aa-8031-2df024d5cd81",
+      "name": "Record UI",
+      "description": {
+        "content": "Complete record page data including layout and metadata",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "435235e0-eb93-4570-896e-4c0177e5af94",
+          "name": "Salesforce Sales Cloud Get record UI data",
+          "request": {
+            "name": "Salesforce Sales Cloud Get record UI data",
+            "description": {
+              "content": "Returns layout information, field metadata, and record data for one or more records in a single response. This is the most efficient way to get everything needed to render a record detail page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "record-ui",
+                ":recordIds"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "formFactor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "layoutTypes",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "modes",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordIds",
+                  "description": "(Required) Comma-separated list of record IDs (up to 200)"
+                },
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a849e23-e1d9-486c-a685-71927037ab4b",
+              "name": "Successfully retrieved record UI data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "record-ui",
+                    ":recordIds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "formFactor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layoutTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "modes",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordIds",
+                      "description": "(Required) Comma-separated list of record IDs (up to 200)"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"layouts\": {\n    \"key_0\": 5681.459752265322,\n    \"key_1\": 6330.447373047576,\n    \"key_2\": 9222\n  },\n  \"objectInfos\": {\n    \"key_0\": {\n      \"apiName\": \"string\",\n      \"childRelationships\": [\n        {\n          \"childObjectApiName\": \"string\",\n          \"fieldName\": \"string\",\n          \"junctionIdListNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"junctionReferenceTo\": [\n            \"string\",\n            \"string\"\n          ],\n          \"relationshipName\": \"string\"\n        },\n        {\n          \"childObjectApiName\": \"string\",\n          \"fieldName\": \"string\",\n          \"junctionIdListNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"junctionReferenceTo\": [\n            \"string\",\n            \"string\"\n          ],\n          \"relationshipName\": \"string\"\n        }\n      ],\n      \"createable\": true,\n      \"custom\": false,\n      \"defaultRecordTypeId\": \"string\",\n      \"deletable\": true,\n      \"eTag\": \"string\",\n      \"feedEnabled\": true,\n      \"fields\": {\n        \"key_0\": {\n          \"apiName\": \"string\",\n          \"compound\": true,\n          \"compoundComponentName\": \"string\",\n          \"compoundFieldName\": \"string\",\n          \"controllerName\": \"string\",\n          \"controllingFields\": [\n            \"string\",\n            \"string\"\n          ],\n          \"createable\": true,\n          \"custom\": false,\n          \"dataType\": \"string\",\n          \"extraTypeInfo\": \"string\",\n          \"filterable\": false,\n          \"htmlFormatted\": false,\n          \"inlineHelpText\": \"string\",\n          \"label\": \"string\",\n          \"length\": 2736,\n          \"nameField\": false,\n          \"polymorphicForeignKey\": false,\n          \"precision\": 4814,\n          \"reference\": true,\n          \"referenceTargetField\": \"string\",\n          \"relationshipName\": \"string\",\n          \"required\": true,\n          \"scale\": 4165,\n          \"searchPrefilterable\": true,\n          \"sortable\": false,\n          \"unique\": true,\n          \"updateable\": true\n        },\n        \"key_1\": {\n          \"apiName\": \"string\",\n          \"compound\": true,\n          \"compoundComponentName\": \"string\",\n          \"compoundFieldName\": \"string\",\n          \"controllerName\": \"string\",\n          \"controllingFields\": [\n            \"string\",\n            \"string\"\n          ],\n          \"createable\": false,\n          \"custom\": false,\n          \"dataType\": \"string\",\n          \"extraTypeInfo\": \"string\",\n          \"filterable\": false,\n          \"htmlFormatted\": true,\n          \"inlineHelpText\": \"string\",\n          \"label\": \"string\",\n          \"length\": 7316,\n          \"nameField\": false,\n          \"polymorphicForeignKey\": false,\n          \"precision\": 3985,\n          \"reference\": true,\n          \"referenceTargetField\": \"string\",\n          \"relationshipName\": \"string\",\n          \"required\": false,\n          \"scale\": 5050,\n          \"searchPrefilterable\": true,\n          \"sortable\": false,\n          \"unique\": false,\n          \"updateable\": false\n        }\n      },\n      \"keyPrefix\": \"string\",\n      \"label\": \"string\",\n      \"labelPlural\": \"string\",\n      \"layoutable\": true,\n      \"mruEnabled\": true,\n      \"queryable\": true,\n      \"recordTypeInfos\": {\n        \"key_0\": {\n          \"available\": true,\n          \"defaultRecordTypeMapping\": false,\n          \"master\": false,\n          \"name\": \"string\",\n          \"recordTypeId\": \"string\"\n        },\n        \"key_1\": {\n          \"available\": true,\n          \"defaultRecordTypeMapping\": true,\n          \"master\": false,\n          \"name\": \"string\",\n          \"recordTypeId\": \"string\"\n        }\n      },\n      \"searchable\": false,\n      \"themeInfo\": {\n        \"color\": \"string\",\n        \"iconUrl\": \"string\"\n      },\n      \"updateable\": true\n    },\n    \"key_1\": {\n      \"apiName\": \"string\",\n      \"childRelationships\": [\n        {\n          \"childObjectApiName\": \"string\",\n          \"fieldName\": \"string\",\n          \"junctionIdListNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"junctionReferenceTo\": [\n            \"string\",\n            \"string\"\n          ],\n          \"relationshipName\": \"string\"\n        },\n        {\n          \"childObjectApiName\": \"string\",\n          \"fieldName\": \"string\",\n          \"junctionIdListNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"junctionReferenceTo\": [\n            \"string\",\n            \"string\"\n          ],\n          \"relationshipName\": \"string\"\n        }\n      ],\n      \"createable\": true,\n      \"custom\": false,\n      \"defaultRecordTypeId\": \"string\",\n      \"deletable\": true,\n      \"eTag\": \"string\",\n      \"feedEnabled\": true,\n      \"fields\": {\n        \"key_0\": {\n          \"apiName\": \"string\",\n          \"compound\": true,\n          \"compoundComponentName\": \"string\",\n          \"compoundFieldName\": \"string\",\n          \"controllerName\": \"string\",\n          \"controllingFields\": [\n            \"string\",\n            \"string\"\n          ],\n          \"createable\": true,\n          \"custom\": true,\n          \"dataType\": \"string\",\n          \"extraTypeInfo\": \"string\",\n          \"filterable\": true,\n          \"htmlFormatted\": false,\n          \"inlineHelpText\": \"string\",\n          \"label\": \"string\",\n          \"length\": 5059,\n          \"nameField\": false,\n          \"polymorphicForeignKey\": false,\n          \"precision\": 4927,\n          \"reference\": false,\n          \"referenceTargetField\": \"string\",\n          \"relationshipName\": \"string\",\n          \"required\": false,\n          \"scale\": 3701,\n          \"searchPrefilterable\": true,\n          \"sortable\": false,\n          \"unique\": false,\n          \"updateable\": true\n        }\n      },\n      \"keyPrefix\": \"string\",\n      \"label\": \"string\",\n      \"labelPlural\": \"string\",\n      \"layoutable\": true,\n      \"mruEnabled\": true,\n      \"queryable\": false,\n      \"recordTypeInfos\": {\n        \"key_0\": {\n          \"available\": true,\n          \"defaultRecordTypeMapping\": false,\n          \"master\": true,\n          \"name\": \"string\",\n          \"recordTypeId\": \"string\"\n        }\n      },\n      \"searchable\": false,\n      \"themeInfo\": {\n        \"color\": \"string\",\n        \"iconUrl\": \"string\"\n      },\n      \"updateable\": false\n    },\n    \"key_2\": {\n      \"apiName\": \"string\",\n      \"childRelationships\": [\n        {\n          \"childObjectApiName\": \"string\",\n          \"fieldName\": \"string\",\n          \"junctionIdListNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"junctionReferenceTo\": [\n            \"string\",\n            \"string\"\n          ],\n          \"relationshipName\": \"string\"\n        },\n        {\n          \"childObjectApiName\": \"string\",\n          \"fieldName\": \"string\",\n          \"junctionIdListNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"junctionReferenceTo\": [\n            \"string\",\n            \"string\"\n          ],\n          \"relationshipName\": \"string\"\n        }\n      ],\n      \"createable\": true,\n      \"custom\": false,\n      \"defaultRecordTypeId\": \"string\",\n      \"deletable\": false,\n      \"eTag\": \"string\",\n      \"feedEnabled\": true,\n      \"fields\": {\n        \"key_0\": {\n          \"apiName\": \"string\",\n          \"compound\": true,\n          \"compoundComponentName\": \"string\",\n          \"compoundFieldName\": \"string\",\n          \"controllerName\": \"string\",\n          \"controllingFields\": [\n            \"string\",\n            \"string\"\n          ],\n          \"createable\": false,\n          \"custom\": true,\n          \"dataType\": \"string\",\n          \"extraTypeInfo\": \"string\",\n          \"filterable\": true,\n          \"htmlFormatted\": false,\n          \"inlineHelpText\": \"string\",\n          \"label\": \"string\",\n          \"length\": 5688,\n          \"nameField\": true,\n          \"polymorphicForeignKey\": false,\n          \"precision\": 6784,\n          \"reference\": false,\n          \"referenceTargetField\": \"string\",\n          \"relationshipName\": \"string\",\n          \"required\": false,\n          \"scale\": 2724,\n          \"searchPrefilterable\": false,\n          \"sortable\": false,\n          \"unique\": false,\n          \"updateable\": false\n        },\n        \"key_1\": {\n          \"apiName\": \"string\",\n          \"compound\": false,\n          \"compoundComponentName\": \"string\",\n          \"compoundFieldName\": \"string\",\n          \"controllerName\": \"string\",\n          \"controllingFields\": [\n            \"string\",\n            \"string\"\n          ],\n          \"createable\": false,\n          \"custom\": true,\n          \"dataType\": \"string\",\n          \"extraTypeInfo\": \"string\",\n          \"filterable\": false,\n          \"htmlFormatted\": true,\n          \"inlineHelpText\": \"string\",\n          \"label\": \"string\",\n          \"length\": 6150,\n          \"nameField\": false,\n          \"polymorphicForeignKey\": true,\n          \"precision\": 720,\n          \"reference\": false,\n          \"referenceTargetField\": \"string\",\n          \"relationshipName\": \"string\",\n          \"required\": false,\n          \"scale\": 2240,\n          \"searchPrefilterable\": true,\n          \"sortable\": false,\n          \"unique\": false,\n          \"updateable\": false\n        },\n        \"key_2\": {\n          \"apiName\": \"string\",\n          \"compound\": false,\n          \"compoundComponentName\": \"string\",\n          \"compoundFieldName\": \"string\",\n          \"controllerName\": \"string\",\n          \"controllingFields\": [\n            \"string\",\n            \"string\"\n          ],\n          \"createable\": true,\n          \"custom\": false,\n          \"dataType\": \"string\",\n          \"extraTypeInfo\": \"string\",\n          \"filterable\": false,\n          \"htmlFormatted\": true,\n          \"inlineHelpText\": \"string\",\n          \"label\": \"string\",\n          \"length\": 7753,\n          \"nameField\": false,\n          \"polymorphicForeignKey\": true,\n          \"precision\": 9977,\n          \"reference\": true,\n          \"referenceTargetField\": \"string\",\n          \"relationshipName\": \"string\",\n          \"required\": true,\n          \"scale\": 5642,\n          \"searchPrefilterable\": true,\n          \"sortable\": false,\n          \"unique\": true,\n          \"updateable\": true\n        },\n        \"key_3\": {\n          \"apiName\": \"string\",\n          \"compound\": true,\n          \"compoundComponentName\": \"string\",\n          \"compoundFieldName\": \"string\",\n          \"controllerName\": \"string\",\n          \"controllingFields\": [\n            \"string\",\n            \"string\"\n          ],\n          \"createable\": false,\n          \"custom\": false,\n          \"dataType\": \"string\",\n          \"extraTypeInfo\": \"string\",\n          \"filterable\": true,\n          \"htmlFormatted\": false,\n          \"inlineHelpText\": \"string\",\n          \"label\": \"string\",\n          \"length\": 5090,\n          \"nameField\": false,\n          \"polymorphicForeignKey\": true,\n          \"precision\": 427,\n          \"reference\": false,\n          \"referenceTargetField\": \"string\",\n          \"relationshipName\": \"string\",\n          \"required\": false,\n          \"scale\": 5148,\n          \"searchPrefilterable\": true,\n          \"sortable\": false,\n          \"unique\": true,\n          \"updateable\": true\n        }\n      },\n      \"keyPrefix\": \"string\",\n      \"label\": \"string\",\n      \"labelPlural\": \"string\",\n      \"layoutable\": false,\n      \"mruEnabled\": true,\n      \"queryable\": true,\n      \"recordTypeInfos\": {\n        \"key_0\": {\n          \"available\": true,\n          \"defaultRecordTypeMapping\": false,\n          \"master\": false,\n          \"name\": \"string\",\n          \"recordTypeId\": \"string\"\n        },\n        \"key_1\": {\n          \"available\": false,\n          \"defaultRecordTypeMapping\": false,\n          \"master\": false,\n          \"name\": \"string\",\n          \"recordTypeId\": \"string\"\n        }\n      },\n      \"searchable\": false,\n      \"themeInfo\": {\n        \"color\": \"string\",\n        \"iconUrl\": \"string\"\n      },\n      \"updateable\": true\n    },\n    \"key_3\": {\n      \"apiName\": \"string\",\n      \"childRelationships\": [\n        {\n          \"childObjectApiName\": \"string\",\n          \"fieldName\": \"string\",\n          \"junctionIdListNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"junctionReferenceTo\": [\n            \"string\",\n            \"string\"\n          ],\n          \"relationshipName\": \"string\"\n        },\n        {\n          \"childObjectApiName\": \"string\",\n          \"fieldName\": \"string\",\n          \"junctionIdListNames\": [\n            \"string\",\n            \"string\"\n          ],\n          \"junctionReferenceTo\": [\n            \"string\",\n            \"string\"\n          ],\n          \"relationshipName\": \"string\"\n        }\n      ],\n      \"createable\": false,\n      \"custom\": false,\n      \"defaultRecordTypeId\": \"string\",\n      \"deletable\": true,\n      \"eTag\": \"string\",\n      \"feedEnabled\": true,\n      \"fields\": {\n        \"key_0\": {\n          \"apiName\": \"string\",\n          \"compound\": true,\n          \"compoundComponentName\": \"string\",\n          \"compoundFieldName\": \"string\",\n          \"controllerName\": \"string\",\n          \"controllingFields\": [\n            \"string\",\n            \"string\"\n          ],\n          \"createable\": false,\n          \"custom\": true,\n          \"dataType\": \"string\",\n          \"extraTypeInfo\": \"string\",\n          \"filterable\": false,\n          \"htmlFormatted\": false,\n          \"inlineHelpText\": \"string\",\n          \"label\": \"string\",\n          \"length\": 6851,\n          \"nameField\": false,\n          \"polymorphicForeignKey\": false,\n          \"precision\": 5205,\n          \"reference\": true,\n          \"referenceTargetField\": \"string\",\n          \"relationshipName\": \"string\",\n          \"required\": true,\n          \"scale\": 1872,\n          \"searchPrefilterable\": false,\n          \"sortable\": false,\n          \"unique\": true,\n          \"updateable\": false\n        },\n        \"key_1\": {\n          \"apiName\": \"string\",\n          \"compound\": false,\n          \"compoundComponentName\": \"string\",\n          \"compoundFieldName\": \"string\",\n          \"controllerName\": \"string\",\n          \"controllingFields\": [\n            \"string\",\n            \"string\"\n          ],\n          \"createable\": false,\n          \"custom\": true,\n          \"dataType\": \"string\",\n          \"extraTypeInfo\": \"string\",\n          \"filterable\": true,\n          \"htmlFormatted\": true,\n          \"inlineHelpText\": \"string\",\n          \"label\": \"string\",\n          \"length\": 9874,\n          \"nameField\": true,\n          \"polymorphicForeignKey\": true,\n          \"precision\": 5840,\n          \"reference\": false,\n          \"referenceTargetField\": \"string\",\n          \"relationshipName\": \"string\",\n          \"required\": false,\n          \"scale\": 114,\n          \"searchPrefilterable\": true,\n          \"sortable\": false,\n          \"unique\": false,\n          \"updateable\": true\n        }\n      },\n      \"keyPrefix\": \"string\",\n      \"label\": \"string\",\n      \"labelPlural\": \"string\",\n      \"layoutable\": false,\n      \"mruEnabled\": false,\n      \"queryable\": true,\n      \"recordTypeInfos\": {\n        \"key_0\": {\n          \"available\": true,\n          \"defaultRecordTypeMapping\": true,\n          \"master\": false,\n          \"name\": \"string\",\n          \"recordTypeId\": \"string\"\n        },\n        \"key_1\": {\n          \"available\": false,\n          \"defaultRecordTypeMapping\": true,\n          \"master\": false,\n          \"name\": \"string\",\n          \"recordTypeId\": \"string\"\n        }\n      },\n      \"searchable\": true,\n      \"themeInfo\": {\n        \"color\": \"string\",\n        \"iconUrl\": \"string\"\n      },\n      \"updateable\": true\n    }\n  },\n  \"records\": {\n    \"key_0\": {\n      \"apiName\": \"string\",\n      \"childRelationships\": {\n        \"key_0\": 4149.5176717816485,\n        \"key_1\": false\n      },\n      \"eTag\": \"string\",\n      \"fields\": {\n        \"key_0\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        },\n        \"key_1\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        },\n        \"key_2\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        },\n        \"key_3\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        }\n      },\n      \"id\": \"string\",\n      \"lastModifiedById\": \"string\",\n      \"lastModifiedDate\": \"2018-03-30T00:33:12.607Z\",\n      \"recordTypeId\": \"string\",\n      \"recordTypeInfo\": {\n        \"available\": false,\n        \"defaultRecordTypeMapping\": true,\n        \"master\": false,\n        \"name\": \"string\",\n        \"recordTypeId\": \"string\"\n      },\n      \"systemModstamp\": \"2005-07-09T23:48:05.288Z\",\n      \"weakEtag\": 9319\n    },\n    \"key_1\": {\n      \"apiName\": \"string\",\n      \"childRelationships\": {\n        \"key_0\": 2252.6888241777133,\n        \"key_1\": 3622\n      },\n      \"eTag\": \"string\",\n      \"fields\": {\n        \"key_0\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        }\n      },\n      \"id\": \"string\",\n      \"lastModifiedById\": \"string\",\n      \"lastModifiedDate\": \"1967-04-18T02:25:09.643Z\",\n      \"recordTypeId\": \"string\",\n      \"recordTypeInfo\": {\n        \"available\": false,\n        \"defaultRecordTypeMapping\": false,\n        \"master\": true,\n        \"name\": \"string\",\n        \"recordTypeId\": \"string\"\n      },\n      \"systemModstamp\": \"1996-10-25T16:01:40.146Z\",\n      \"weakEtag\": 5794\n    },\n    \"key_2\": {\n      \"apiName\": \"string\",\n      \"childRelationships\": {\n        \"key_0\": \"string\",\n        \"key_1\": 684\n      },\n      \"eTag\": \"string\",\n      \"fields\": {\n        \"key_0\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        },\n        \"key_1\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        }\n      },\n      \"id\": \"string\",\n      \"lastModifiedById\": \"string\",\n      \"lastModifiedDate\": \"2021-01-16T08:18:34.602Z\",\n      \"recordTypeId\": \"string\",\n      \"recordTypeInfo\": {\n        \"available\": false,\n        \"defaultRecordTypeMapping\": false,\n        \"master\": true,\n        \"name\": \"string\",\n        \"recordTypeId\": \"string\"\n      },\n      \"systemModstamp\": \"2017-08-28T03:30:01.575Z\",\n      \"weakEtag\": 7062\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ec997789-582f-4071-a380-7b9c2e5596d4",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "record-ui",
+                    ":recordIds"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "formFactor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "layoutTypes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "modes",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordIds",
+                      "description": "(Required) Comma-separated list of record IDs (up to 200)"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Salesforce instance identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourInstance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d29663dd-775b-46c2-bb56-e3127a9d2c59",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Record UI API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

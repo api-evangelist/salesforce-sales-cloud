@@ -1,39 +1,38 @@
 {
   "item": [
     {
-      "id": "3953edc9-d376-491d-8eee-84c480e08de9",
-      "name": "Platform Events",
+      "id": "85768e4a-57e3-46c8-82df-daadcf0976d2",
+      "name": "Query",
       "description": {
-        "content": "Publish and describe platform events",
+        "content": "SOQL query execution",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "f33e9be5-7e82-4a5b-b160-951d7369cc16",
-          "name": "Salesforce Sales Cloud Describe a platform event",
+          "id": "456cfdb5-b89d-48b1-8c2a-b70a25639fb9",
+          "name": "Salesforce Sales Cloud Execute a SOQL query",
           "request": {
-            "name": "Salesforce Sales Cloud Describe a platform event",
+            "name": "Salesforce Sales Cloud Execute a SOQL query",
             "description": {
-              "content": "Retrieves metadata about the specified platform event including its fields, label, and API name. The event API name uses the __e suffix (e.g., Order_Event__e).",
+              "content": "Executes the specified SOQL query string and returns the results. If the query results are too large, the response contains the first batch of results and a query identifier to retrieve the remaining results.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "sobjects",
-                ":eventApiName"
+                "query"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
-              "variable": [
+              "query": [
                 {
                   "disabled": false,
-                  "type": "any",
+                  "key": "q",
                   "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                },
+                  "description": "(Required) The SOQL query string"
+                }
+              ],
+              "variable": [
                 {
                   "description": "Your Salesforce instance identifier",
                   "type": "any",
@@ -53,26 +52,23 @@
           },
           "response": [
             {
-              "id": "e16502f7-0720-4182-a9df-7744e05de9af",
-              "name": "Successfully retrieved event metadata",
+              "id": "ec7d93a9-02fd-4f92-881d-f93166c44716",
+              "name": "Query executed successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "query"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
+                  "query": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
+                      "key": "q",
+                      "value": "SELECT Id, Name FROM Account LIMIT 10"
+                    }
+                  ],
+                  "variable": [
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -106,31 +102,28 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"objectDescribe\": {\n    \"name\": \"string\",\n    \"label\": \"string\",\n    \"custom\": false,\n    \"fields\": [\n      {\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"length\": 8109\n      },\n      {\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"length\": 8893\n      }\n    ]\n  }\n}",
+              "body": "{\n  \"totalSize\": 3679,\n  \"done\": true,\n  \"nextRecordsUrl\": \"string\",\n  \"records\": [\n    {\n      \"attributes\": {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"Id\": \"string\"\n    },\n    {\n      \"attributes\": {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"Id\": \"string\",\n      \"key_0\": true\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "28cbdb58-b69a-4af6-ae66-3e96742ae07b",
-              "name": "Authentication failed",
+              "id": "1faa8aea-1cf9-4a9e-b92b-2b27ab2c54b8",
+              "name": "Invalid request - malformed query, missing required fields, or validation error",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "query"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
+                  "query": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
+                      "key": "q",
+                      "value": "SELECT Id, Name FROM Account LIMIT 10"
+                    }
+                  ],
+                  "variable": [
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -155,259 +148,6 @@
                 ],
                 "method": "GET",
                 "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c3f668c4-d68a-4aca-a4a4-36d865e3fd1b",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "03a7a11d-5a2b-4f8e-961f-d4786711a18a",
-          "name": "Salesforce Sales Cloud Publish a platform event",
-          "request": {
-            "name": "Salesforce Sales Cloud Publish a platform event",
-            "description": {
-              "content": "Publishes a single platform event message by inserting an sObject record for the event type. The event API name uses the __e suffix. Include the event's custom fields in the request body.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sobjects",
-                ":eventApiName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                },
-                {
-                  "description": "Your Salesforce instance identifier",
-                  "type": "any",
-                  "value": "{{instance}}",
-                  "key": "instance"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key_0\": 2292,\n  \"key_1\": 2284,\n  \"key_2\": false,\n  \"key_3\": 7442\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d18cf530-7a07-4a05-8002-89fc6e794566",
-              "name": "Event published successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"success\": true,\n  \"errors\": [\n    {\n      \"statusCode\": \"string\",\n      \"message\": \"string\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"statusCode\": \"string\",\n      \"message\": \"string\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e27092d9-381c-44a1-a1f8-16f6b3345213",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
               },
               "status": "Bad Request",
               "code": 400,
@@ -422,26 +162,23 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "2167bf5b-5664-4ea1-807c-f35bf52812ef",
-              "name": "Authentication failed",
+              "id": "9d18a290-c31e-4b52-bfd9-ea2f8111196b",
+              "name": "Authentication failed - invalid, expired, or missing access token",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "query"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
-                  "variable": [
+                  "query": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
+                      "key": "q",
+                      "value": "SELECT Id, Name FROM Account LIMIT 10"
+                    }
+                  ],
+                  "variable": [
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -464,16 +201,8 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "Unauthorized",
               "code": 401,
@@ -494,19 +223,232 @@
           }
         },
         {
-          "id": "3a35e528-f30b-45cd-b913-8cbf8cea0db5",
-          "name": "Salesforce Sales Cloud Get full platform event metadata",
+          "id": "c8152f2d-8ffb-4378-9874-51eb92b724d2",
+          "name": "Salesforce Sales Cloud Execute a SOQL query including deleted records",
           "request": {
-            "name": "Salesforce Sales Cloud Get full platform event metadata",
+            "name": "Salesforce Sales Cloud Execute a SOQL query including deleted records",
             "description": {
-              "content": "Retrieves complete metadata about the specified platform event including all fields, their types, lengths, and other attributes.",
+              "content": "Executes the specified SOQL query, including results from deleted and archived records. This is useful for querying against soft-deleted records in the Recycle Bin.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "sobjects",
-                ":eventApiName",
-                "describe"
+                "queryAll"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The SOQL query string"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "accd50b8-556f-40d6-9bc2-4701919eab74",
+              "name": "Query executed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queryAll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"totalSize\": 3679,\n  \"done\": true,\n  \"nextRecordsUrl\": \"string\",\n  \"records\": [\n    {\n      \"attributes\": {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"Id\": \"string\"\n    },\n    {\n      \"attributes\": {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"Id\": \"string\",\n      \"key_0\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9740dd5b-88f9-4b03-92c9-8d423652c6d4",
+              "name": "Invalid request - malformed query, missing required fields, or validation error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queryAll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1137e85-1412-470d-b105-a73e119d5eee",
+              "name": "Authentication failed - invalid, expired, or missing access token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "queryAll"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fffca920-72de-4665-b9ec-8cb0e98caed0",
+          "name": "Salesforce Sales Cloud Get next batch of query results",
+          "request": {
+            "name": "Salesforce Sales Cloud Get next batch of query results",
+            "description": {
+              "content": "Retrieves the next batch of query results using the query locator returned from a previous query request. Use this endpoint to paginate through large result sets.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "query",
+                ":queryLocator"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -517,8 +459,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                  "key": "queryLocator",
+                  "description": "(Required) The query locator returned from a previous query response"
                 },
                 {
                   "description": "Your Salesforce instance identifier",
@@ -539,14 +481,13 @@
           },
           "response": [
             {
-              "id": "48463860-0d74-4a37-af65-96c70a304961",
-              "name": "Successfully retrieved full event metadata",
+              "id": "b797eaae-6bad-45fb-a7ef-b96db40237e9",
+              "name": "Successfully retrieved next batch of results",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "query",
+                    ":queryLocator"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -557,8 +498,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "queryLocator",
+                      "description": "(Required) The query locator returned from a previous query response"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -593,19 +534,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{}",
+              "body": "{\n  \"totalSize\": 3679,\n  \"done\": true,\n  \"nextRecordsUrl\": \"string\",\n  \"records\": [\n    {\n      \"attributes\": {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"Id\": \"string\"\n    },\n    {\n      \"attributes\": {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"Id\": \"string\",\n      \"key_0\": true\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "4c5abc98-1977-47f4-ae5b-d2731ee3c06f",
-              "name": "Authentication failed",
+              "id": "60cf0414-e50a-4bb6-a87a-6d6866ba0e5d",
+              "name": "Authentication failed - invalid, expired, or missing access token",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "query",
+                    ":queryLocator"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -616,8 +556,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "queryLocator",
+                      "description": "(Required) The query locator returned from a previous query response"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -657,14 +597,13 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "410a1749-f363-446d-9c78-4097c22b80f7",
-              "name": "Resource not found",
+              "id": "56bfcc42-a59c-4d4e-ac4e-fef7274fe19d",
+              "name": "Resource not found - invalid sObject name or record ID",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "query",
+                    ":queryLocator"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -675,8 +614,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "queryLocator",
+                      "description": "(Required) The query locator returned from a previous query response"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -764,8 +703,8 @@
     ]
   },
   "info": {
-    "_postman_id": "9e9261e4-0d9f-4d59-9550-6b132d788716",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Platform Events API",
+    "_postman_id": "d97d544e-ee72-4353-b110-0fb89241d705",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Query API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

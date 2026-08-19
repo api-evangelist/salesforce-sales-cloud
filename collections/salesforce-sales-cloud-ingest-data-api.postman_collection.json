@@ -1,26 +1,28 @@
 {
   "item": [
     {
-      "id": "3953edc9-d376-491d-8eee-84c480e08de9",
-      "name": "Platform Events",
+      "id": "989c2edf-ecfb-4cd4-aa2a-dae0cf9ae1b6",
+      "name": "Ingest Data",
       "description": {
-        "content": "Publish and describe platform events",
+        "content": "Upload CSV data to ingest jobs and retrieve results",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "f33e9be5-7e82-4a5b-b160-951d7369cc16",
-          "name": "Salesforce Sales Cloud Describe a platform event",
+          "id": "b3464d23-3c09-4aae-8845-7140a6650b79",
+          "name": "Salesforce Sales Cloud Upload data for an ingest job",
           "request": {
-            "name": "Salesforce Sales Cloud Describe a platform event",
+            "name": "Salesforce Sales Cloud Upload data for an ingest job",
             "description": {
-              "content": "Retrieves metadata about the specified platform event including its fields, label, and API name. The event API name uses the __e suffix (e.g., Order_Event__e).",
+              "content": "Uploads CSV data for an ingest job. The job must be in the Open state. You can upload data in multiple requests, each up to 150 MB. The CSV data must include a header row with field API names.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "sobjects",
-                ":eventApiName"
+                "jobs",
+                "ingest",
+                ":jobId",
+                "batches"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -31,232 +33,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                },
-                {
-                  "description": "Your Salesforce instance identifier",
-                  "type": "any",
-                  "value": "{{instance}}",
-                  "key": "instance"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "e16502f7-0720-4182-a9df-7744e05de9af",
-              "name": "Successfully retrieved event metadata",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"objectDescribe\": {\n    \"name\": \"string\",\n    \"label\": \"string\",\n    \"custom\": false,\n    \"fields\": [\n      {\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"length\": 8109\n      },\n      {\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"length\": 8893\n      }\n    ]\n  }\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "28cbdb58-b69a-4af6-ae66-3e96742ae07b",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "c3f668c4-d68a-4aca-a4a4-36d865e3fd1b",
-              "name": "Resource not found",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Not Found",
-              "code": 404,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "03a7a11d-5a2b-4f8e-961f-d4786711a18a",
-          "name": "Salesforce Sales Cloud Publish a platform event",
-          "request": {
-            "name": "Salesforce Sales Cloud Publish a platform event",
-            "description": {
-              "content": "Publishes a single platform event message by inserting an sObject record for the event type. The event API name uses the __e suffix. Include the event's custom fields in the request body.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sobjects",
-                ":eventApiName"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                  "key": "jobId",
+                  "description": "(Required) The ID of the bulk job"
                 },
                 {
                   "description": "Your Salesforce instance identifier",
@@ -269,34 +47,31 @@
             "header": [
               {
                 "key": "Content-Type",
-                "value": "application/json"
+                "value": "text/csv"
               },
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "POST",
+            "method": "PUT",
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"key_0\": 2292,\n  \"key_1\": 2284,\n  \"key_2\": false,\n  \"key_3\": 7442\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
+              "raw": "<string>"
             }
           },
           "response": [
             {
-              "id": "d18cf530-7a07-4a05-8002-89fc6e794566",
-              "name": "Event published successfully",
+              "id": "4a7a9693-c97c-4754-a7be-747461646e56",
+              "name": "Data uploaded successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "batches"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -307,8 +82,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -326,21 +101,12 @@
                     },
                     "key": "Authorization",
                     "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
                   }
                 ],
-                "method": "POST",
+                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  "raw": "<string>"
                 }
               },
               "status": "Created",
@@ -348,21 +114,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/plain"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"success\": true,\n  \"errors\": [\n    {\n      \"statusCode\": \"string\",\n      \"message\": \"string\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"statusCode\": \"string\",\n      \"message\": \"string\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "body": "",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "e27092d9-381c-44a1-a1f8-16f6b3345213",
-              "name": "Invalid request",
+              "id": "bc663048-cde3-4b2a-80a7-e56e6d315974",
+              "name": "Invalid request parameters or malformed request body",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "batches"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -373,8 +141,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -398,15 +166,10 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
+                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  "raw": "<string>"
                 }
               },
               "status": "Bad Request",
@@ -417,18 +180,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "2167bf5b-5664-4ea1-807c-f35bf52812ef",
-              "name": "Authentication failed",
+              "id": "e273e9a6-79c2-4345-8110-a8ae1f51549e",
+              "name": "Authentication failed or access token is invalid",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "batches"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -439,8 +204,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -464,15 +229,10 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
+                "method": "PUT",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
+                  "raw": "<string>"
                 }
               },
               "status": "Unauthorized",
@@ -483,7 +243,70 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "271b483f-0437-44cf-9344-434db70a7b1f",
+              "name": "The specified job was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "batches"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -494,19 +317,20 @@
           }
         },
         {
-          "id": "3a35e528-f30b-45cd-b913-8cbf8cea0db5",
-          "name": "Salesforce Sales Cloud Get full platform event metadata",
+          "id": "2ebc177e-be5e-405a-9443-71da935c7626",
+          "name": "Salesforce Sales Cloud Get successful results for an ingest job",
           "request": {
-            "name": "Salesforce Sales Cloud Get full platform event metadata",
+            "name": "Salesforce Sales Cloud Get successful results for an ingest job",
             "description": {
-              "content": "Retrieves complete metadata about the specified platform event including all fields, their types, lengths, and other attributes.",
+              "content": "Retrieves a list of successfully processed records for a completed ingest job. Results are returned in CSV format.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "sobjects",
-                ":eventApiName",
-                "describe"
+                "jobs",
+                "ingest",
+                ":jobId",
+                "successfulResults"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -517,8 +341,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                  "key": "jobId",
+                  "description": "(Required) The ID of the bulk job"
                 },
                 {
                   "description": "Your Salesforce instance identifier",
@@ -531,7 +355,7 @@
             "header": [
               {
                 "key": "Accept",
-                "value": "application/json"
+                "value": "text/csv"
               }
             ],
             "method": "GET",
@@ -539,14 +363,15 @@
           },
           "response": [
             {
-              "id": "48463860-0d74-4a37-af65-96c70a304961",
-              "name": "Successfully retrieved full event metadata",
+              "id": "78432234-2750-459b-85a5-0f22c66e9cc3",
+              "name": "Successfully retrieved successful results",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "successfulResults"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -557,8 +382,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -579,7 +404,7 @@
                   },
                   {
                     "key": "Accept",
-                    "value": "application/json"
+                    "value": "text/csv"
                   }
                 ],
                 "method": "GET",
@@ -590,22 +415,23 @@
               "header": [
                 {
                   "key": "Content-Type",
-                  "value": "application/json"
+                  "value": "text/csv"
                 }
               ],
-              "body": "{}",
+              "body": "string",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "_postman_previewlanguage": "text"
             },
             {
-              "id": "4c5abc98-1977-47f4-ae5b-d2731ee3c06f",
-              "name": "Authentication failed",
+              "id": "189aeef0-4321-4d54-8767-11d641c3e13b",
+              "name": "Authentication failed or access token is invalid",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "successfulResults"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -616,8 +442,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -652,19 +478,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "410a1749-f363-446d-9c78-4097c22b80f7",
-              "name": "Resource not found",
+              "id": "b5bc8f9c-e214-48ca-850d-3ade2fa578b9",
+              "name": "The specified job was not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "successfulResults"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -675,8 +502,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -711,7 +538,471 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "773daef1-abea-463b-b7ca-bacf2c7687d2",
+          "name": "Salesforce Sales Cloud Get failed results for an ingest job",
+          "request": {
+            "name": "Salesforce Sales Cloud Get failed results for an ingest job",
+            "description": {
+              "content": "Retrieves a list of failed records for a completed ingest job. Results are returned in CSV format and include error information for each failed record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "ingest",
+                ":jobId",
+                "failedResults"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The ID of the bulk job"
+                },
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c242d51b-90f2-48b6-bccf-c4b307056fd5",
+              "name": "Successfully retrieved failed results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "failedResults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "3214b25e-f320-4cab-87f4-4fe03d82ca17",
+              "name": "Authentication failed or access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "failedResults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c80d4433-d8bb-4ea7-ac09-e412e4a411ce",
+              "name": "The specified job was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "failedResults"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f08e7d6-84e4-4804-b0ae-80f0b77816e3",
+          "name": "Salesforce Sales Cloud Get unprocessed records for an ingest job",
+          "request": {
+            "name": "Salesforce Sales Cloud Get unprocessed records for an ingest job",
+            "description": {
+              "content": "Retrieves a list of unprocessed records for a completed ingest job. These are records that were not processed due to the job being aborted or hitting limits.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "jobs",
+                "ingest",
+                ":jobId",
+                "unprocessedrecords"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "jobId",
+                  "description": "(Required) The ID of the bulk job"
+                },
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/csv"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94fd49d2-9040-4aca-9f2e-cb1de6a6878b",
+              "name": "Successfully retrieved unprocessed records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "unprocessedrecords"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/csv"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/csv"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7cde4e89-5501-4f0e-8e7e-adfda831c6ee",
+              "name": "Authentication failed or access token is invalid",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "unprocessedrecords"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c877e04-4664-4f47-8f27-9228c8ab839e",
+              "name": "The specified job was not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "jobs",
+                    "ingest",
+                    ":jobId",
+                    "unprocessedrecords"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "jobId",
+                      "description": "(Required) The ID of the bulk job"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -764,8 +1055,8 @@
     ]
   },
   "info": {
-    "_postman_id": "9e9261e4-0d9f-4d59-9550-6b132d788716",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Platform Events API",
+    "_postman_id": "fd8f486b-1c44-4071-bf87-0d69b73c79c9",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Ingest Data API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

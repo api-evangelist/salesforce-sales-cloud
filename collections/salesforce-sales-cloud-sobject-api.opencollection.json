@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events SObject API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SObject",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List available sObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects"
+          },
+          "docs": "Lists the available objects and their metadata for your organization's data. Provides the name, label, custom status, keyPrefix, and URLs for each object."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get sObject basic information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              }
+            ]
+          },
+          "docs": "Describes the individual metadata for the specified object. Returns metadata about the object including default field values, and child relationships."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

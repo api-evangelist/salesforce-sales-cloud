@@ -1,0 +1,319 @@
+{
+  "item": [
+    {
+      "id": "8541ba1c-05b3-4d1c-8f46-c251b3647c23",
+      "name": "Lookups",
+      "description": {
+        "content": "Lookup field search",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "30cb2062-64b8-4fe8-b8d9-3cae2e517d05",
+          "name": "Salesforce Sales Cloud Search for lookup field values",
+          "request": {
+            "name": "Salesforce Sales Cloud Search for lookup field values",
+            "description": {
+              "content": "Searches for records to populate a lookup field, filtered by the lookup filter criteria configured for the field.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "lookups",
+                ":objectApiName",
+                ":fieldApiName",
+                ":targetApiName"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search string"
+                },
+                {
+                  "disabled": false,
+                  "key": "searchType",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "objectApiName",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "fieldApiName",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetApiName",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7771ba5f-0b2b-4072-9fe0-a27bbad4c157",
+              "name": "Successfully retrieved lookup results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":objectApiName",
+                    ":fieldApiName",
+                    ":targetApiName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectApiName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fieldApiName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetApiName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"count\": 5487,\n  \"records\": [\n    {\n      \"apiName\": \"string\",\n      \"childRelationships\": {\n        \"key_0\": false\n      },\n      \"eTag\": \"string\",\n      \"fields\": {\n        \"key_0\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        },\n        \"key_1\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        }\n      },\n      \"id\": \"string\",\n      \"lastModifiedById\": \"string\",\n      \"lastModifiedDate\": \"1949-09-25T16:44:29.088Z\",\n      \"recordTypeId\": \"string\",\n      \"recordTypeInfo\": {\n        \"available\": false,\n        \"defaultRecordTypeMapping\": false,\n        \"master\": false,\n        \"name\": \"string\",\n        \"recordTypeId\": \"string\"\n      },\n      \"systemModstamp\": \"1995-06-26T11:14:08.551Z\",\n      \"weakEtag\": 502\n    },\n    {\n      \"apiName\": \"string\",\n      \"childRelationships\": {\n        \"key_0\": \"string\",\n        \"key_1\": 2935.7567994162428\n      },\n      \"eTag\": \"string\",\n      \"fields\": {\n        \"key_0\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        },\n        \"key_1\": {\n          \"displayValue\": \"string\",\n          \"value\": {}\n        }\n      },\n      \"id\": \"string\",\n      \"lastModifiedById\": \"string\",\n      \"lastModifiedDate\": \"2025-09-08T12:40:11.718Z\",\n      \"recordTypeId\": \"string\",\n      \"recordTypeInfo\": {\n        \"available\": false,\n        \"defaultRecordTypeMapping\": true,\n        \"master\": false,\n        \"name\": \"string\",\n        \"recordTypeId\": \"string\"\n      },\n      \"systemModstamp\": \"1991-01-08T00:49:42.558Z\",\n      \"weakEtag\": 5163\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32fb4a4b-d9c6-4688-a575-452b1fc11282",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "lookups",
+                    ":objectApiName",
+                    ":fieldApiName",
+                    ":targetApiName"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "searchType",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "objectApiName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "fieldApiName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetApiName",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Salesforce instance identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourInstance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "426bc2f5-9618-41ed-89e7-6cf1ffdfd4bc",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Lookups API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

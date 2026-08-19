@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Record UI API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Record UI",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get record UI data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/record-ui/:recordIds",
+            "params": [
+              {
+                "name": "recordIds",
+                "value": "",
+                "type": "path",
+                "description": "Comma-separated list of record IDs (up to 200)"
+              },
+              {
+                "name": "formFactor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "layoutTypes",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "modes",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns layout information, field metadata, and record data for one or more records in a single response. This is the most efficient way to get everything needed to render a record detail page."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

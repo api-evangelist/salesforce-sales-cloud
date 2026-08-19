@@ -1,31 +1,50 @@
 {
   "item": [
     {
-      "id": "ee97074d-29ee-449a-81f6-a90222d225ec",
-      "name": "Composite",
+      "id": "afebc424-c557-45d2-89f2-369a8e5dc9e1",
+      "name": "List Views",
       "description": {
-        "content": "Composite requests with inter-request references",
+        "content": "List view metadata and records",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e0f76bc5-9332-4e6b-af5f-b4bbb70b06ec",
-          "name": "Salesforce Sales Cloud Execute a composite request",
+          "id": "2dd9a898-de31-45f0-86cd-c94c0c67b470",
+          "name": "Salesforce Sales Cloud Get list view records",
           "request": {
-            "name": "Salesforce Sales Cloud Execute a composite request",
+            "name": "Salesforce Sales Cloud Get list view records",
             "description": {
-              "content": "Executes a series of REST API requests in a single call. Each request can reference the results of previous requests via referenceId, enabling dependent operations. Supports up to 25 subrequests per composite call. If allOrNone is true, all subrequests are rolled back on any failure.",
+              "content": "Returns records and metadata for the specified list view, including column definitions, sort information, and filtered records.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "composite"
+                "list-ui",
+                ":listViewId"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "50"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>"
+                }
+              ],
               "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "listViewId",
+                  "description": "(Required) "
+                },
                 {
                   "description": "Your Salesforce instance identifier",
                   "type": "any",
@@ -36,40 +55,44 @@
             },
             "header": [
               {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "GET",
+            "auth": null
           },
           "response": [
             {
-              "id": "87573e41-588e-47f9-862f-68a044750197",
-              "name": "Composite request executed successfully",
+              "id": "8288295c-5230-49fe-8a89-fd30cb017ee7",
+              "name": "Successfully retrieved list view records",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "list-ui",
+                    ":listViewId"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
                   "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listViewId",
+                      "description": "(Required) "
+                    },
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -92,16 +115,8 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "OK",
               "code": 200,
@@ -111,81 +126,40 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"compositeResponse\": [\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 4558,\n      \"referenceId\": \"string\"\n    },\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 1180,\n      \"referenceId\": \"string\"\n    }\n  ]\n}",
+              "body": "{}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c59d294c-6c10-425d-bba9-5fc2fa815fec",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "composite"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "743dfc0a-b909-4bd4-ad6d-16c659e0add7",
+              "id": "b728303c-aa5f-4f03-8396-4d83ba1e80c2",
               "name": "Authentication failed",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "list-ui",
+                    ":listViewId"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
                   "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listViewId",
+                      "description": "(Required) "
+                    },
                     {
                       "description": "Your Salesforce instance identifier",
                       "type": "any",
@@ -208,16 +182,8 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "Unauthorized",
               "code": 401,
@@ -227,7 +193,74 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4b6730a-c67f-4706-aafe-e0e934ac3384",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "list-ui",
+                    ":listViewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "50"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "listViewId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -280,8 +313,8 @@
     ]
   },
   "info": {
-    "_postman_id": "69182933-0e80-49f8-9f4c-9d734f31d803",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite API",
+    "_postman_id": "d3027eeb-ad2b-423d-ba41-6f1263acafb8",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events List Views API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

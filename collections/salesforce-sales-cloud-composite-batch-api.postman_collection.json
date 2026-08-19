@@ -1,25 +1,26 @@
 {
   "item": [
     {
-      "id": "ee97074d-29ee-449a-81f6-a90222d225ec",
-      "name": "Composite",
+      "id": "d3d7745a-b0b3-4b14-886a-960407580df4",
+      "name": "Composite Batch",
       "description": {
-        "content": "Composite requests with inter-request references",
+        "content": "Batch of independent subrequests",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e0f76bc5-9332-4e6b-af5f-b4bbb70b06ec",
-          "name": "Salesforce Sales Cloud Execute a composite request",
+          "id": "1f19b10f-a76a-4a8b-88da-81753fcf81e9",
+          "name": "Salesforce Sales Cloud Execute a composite batch request",
           "request": {
-            "name": "Salesforce Sales Cloud Execute a composite request",
+            "name": "Salesforce Sales Cloud Execute a composite batch request",
             "description": {
-              "content": "Executes a series of REST API requests in a single call. Each request can reference the results of previous requests via referenceId, enabling dependent operations. Supports up to 25 subrequests per composite call. If allOrNone is true, all subrequests are rolled back on any failure.",
+              "content": "Executes up to 25 subrequests in a single request. Subrequests are independent and do not share context or reference each other. Each subrequest counts against rate limits. The response includes the status code and result for each subrequest.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "composite"
+                "composite",
+                "batch"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -48,7 +49,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+              "raw": "{\n  \"batchRequests\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"richInput\": {}\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"richInput\": {}\n    }\n  ],\n  \"haltOnError\": false\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -58,12 +59,13 @@
           },
           "response": [
             {
-              "id": "87573e41-588e-47f9-862f-68a044750197",
-              "name": "Composite request executed successfully",
+              "id": "fd61729e-ab08-4e3a-810c-942bb7812b87",
+              "name": "Batch request executed successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "composite",
+                    "batch"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -95,7 +97,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+                  "raw": "{\n  \"batchRequests\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"richInput\": {}\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"richInput\": {}\n    }\n  ],\n  \"haltOnError\": false\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -111,17 +113,18 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"compositeResponse\": [\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 4558,\n      \"referenceId\": \"string\"\n    },\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 1180,\n      \"referenceId\": \"string\"\n    }\n  ]\n}",
+              "body": "{\n  \"hasErrors\": true,\n  \"results\": [\n    {\n      \"statusCode\": 7797,\n      \"result\": {}\n    },\n    {\n      \"statusCode\": 9764,\n      \"result\": {}\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c59d294c-6c10-425d-bba9-5fc2fa815fec",
+              "id": "2a50605e-c223-4a4f-a96a-29b53ed1694c",
               "name": "Invalid request",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "composite",
+                    "batch"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -153,7 +156,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+                  "raw": "{\n  \"batchRequests\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"richInput\": {}\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"richInput\": {}\n    }\n  ],\n  \"haltOnError\": false\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -174,12 +177,13 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "743dfc0a-b909-4bd4-ad6d-16c659e0add7",
+              "id": "fe724865-f6e0-416b-a51e-7a7c2c430a56",
               "name": "Authentication failed",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "composite",
+                    "batch"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -211,7 +215,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
+                  "raw": "{\n  \"batchRequests\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"richInput\": {}\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"richInput\": {}\n    }\n  ],\n  \"haltOnError\": false\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -280,8 +284,8 @@
     ]
   },
   "info": {
-    "_postman_id": "69182933-0e80-49f8-9f4c-9d734f31d803",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite API",
+    "_postman_id": "46d9e9a2-65cc-4e4e-9584-94780a9c0152",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite Batch API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

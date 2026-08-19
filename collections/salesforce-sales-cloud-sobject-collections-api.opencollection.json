@@ -1,0 +1,84 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events SObject Collections API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SObject Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create a collection of sObject records",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/composite/sobjects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates up to 200 records of the same or different sObject types in a single request. Returns individual success/failure results for each record."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update a collection of sObject records",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/composite/sobjects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates up to 200 records in a single request. Each record must include the Id field and sObject type."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a collection of sObject records",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/composite/sobjects",
+            "params": [
+              {
+                "name": "ids",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of record IDs to delete"
+              },
+              {
+                "name": "allOrNone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Deletes up to 200 records in a single request. Record IDs are passed as a comma-separated list in the ids query parameter."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

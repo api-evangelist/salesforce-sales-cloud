@@ -1,0 +1,83 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Picklist Values API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Picklist Values",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get picklist values for all fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/object-info/:objectApiName/picklist-values/:recordTypeId",
+            "params": [
+              {
+                "name": "objectApiName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recordTypeId",
+                "value": "",
+                "type": "path",
+                "description": "The record type ID (use 012000000000000AAA for master)"
+              }
+            ]
+          },
+          "docs": "Returns the picklist values for all picklist fields on the specified object, filtered by record type. Includes dependent picklist controlling field information."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get picklist values for a specific field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/object-info/:objectApiName/picklist-values/:recordTypeId/:fieldApiName",
+            "params": [
+              {
+                "name": "objectApiName",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "recordTypeId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldApiName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the picklist field"
+              }
+            ]
+          },
+          "docs": "Returns the picklist values for the specified picklist field, filtered by record type."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

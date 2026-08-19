@@ -1,0 +1,535 @@
+{
+  "item": [
+    {
+      "id": "f9619e6b-0558-4e65-b229-dc46dd028e74",
+      "name": "Feeds",
+      "description": {
+        "content": "Chatter feed operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8b1af6f3-8e7f-4671-9b8e-b7ef76aafcb4",
+          "name": "Salesforce Sales Cloud Get news feed for current user",
+          "request": {
+            "name": "Salesforce Sales Cloud Get news feed for current user",
+            "description": {
+              "content": "Returns the news feed for the current user. The news feed includes updates from people and records the user follows, groups the user belongs to, and the user's own posts.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chatter",
+                "feeds",
+                "news",
+                "me",
+                "feed-elements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25",
+                  "description": "Number of items per page (default 25, max 100)"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>",
+                  "description": "Token for the next page of results"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort order for feed elements"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3bf8dedd-805a-46dd-9977-ea6539957c40",
+              "name": "Successfully retrieved news feed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chatter",
+                    "feeds",
+                    "news",
+                    "me",
+                    "feed-elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"elements\": [\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Hashtag\",\n            \"text\": \"string\",\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"type\": \"Text\",\n            \"text\": \"string\",\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      },\n      \"capabilities\": {\n        \"comments\": {\n          \"total\": 8189\n        },\n        \"chatterLikes\": {\n          \"total\": 8813\n        }\n      },\n      \"createdDate\": \"2019-03-02T16:56:39.931Z\",\n      \"actor\": {\n        \"companyName\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"string\",\n          \"mediumPhotoUrl\": \"string\"\n        },\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"feedElementType\": \"FeedItem\",\n      \"header\": {\n        \"text\": \"string\"\n      },\n      \"parent\": {\n        \"id\": \"string\",\n        \"type\": \"string\"\n      },\n      \"type\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Link\",\n            \"text\": \"string\",\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"type\": \"Link\",\n            \"text\": \"string\",\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      },\n      \"capabilities\": {\n        \"comments\": {\n          \"total\": 3793\n        },\n        \"chatterLikes\": {\n          \"total\": 8011\n        }\n      },\n      \"createdDate\": \"2016-09-14T11:43:58.243Z\",\n      \"actor\": {\n        \"companyName\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"string\",\n          \"mediumPhotoUrl\": \"string\"\n        },\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"feedElementType\": \"FeedItem\",\n      \"header\": {\n        \"text\": \"string\"\n      },\n      \"parent\": {\n        \"id\": \"string\",\n        \"type\": \"string\"\n      },\n      \"type\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"nextPageUrl\": \"string\",\n  \"updatesUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4404014-ed25-41c2-a986-c062a74eda64",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chatter",
+                    "feeds",
+                    "news",
+                    "me",
+                    "feed-elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5cf4cbfc-1ffa-485b-97b9-2e5c14b97fe1",
+          "name": "Salesforce Sales Cloud Get feed for a specific record",
+          "request": {
+            "name": "Salesforce Sales Cloud Get feed for a specific record",
+            "description": {
+              "content": "Returns the feed associated with the specified record. The record feed includes posts, comments, and tracked changes for the record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chatter",
+                "feeds",
+                "record",
+                ":recordId",
+                "feed-elements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordId",
+                  "description": "(Required) The ID of the record"
+                },
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "445d47ac-74e0-4cd8-8298-d1e20e796784",
+              "name": "Successfully retrieved record feed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chatter",
+                    "feeds",
+                    "record",
+                    ":recordId",
+                    "feed-elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) The ID of the record"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"elements\": [\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Hashtag\",\n            \"text\": \"string\",\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"type\": \"Text\",\n            \"text\": \"string\",\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      },\n      \"capabilities\": {\n        \"comments\": {\n          \"total\": 8189\n        },\n        \"chatterLikes\": {\n          \"total\": 8813\n        }\n      },\n      \"createdDate\": \"2019-03-02T16:56:39.931Z\",\n      \"actor\": {\n        \"companyName\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"string\",\n          \"mediumPhotoUrl\": \"string\"\n        },\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"feedElementType\": \"FeedItem\",\n      \"header\": {\n        \"text\": \"string\"\n      },\n      \"parent\": {\n        \"id\": \"string\",\n        \"type\": \"string\"\n      },\n      \"type\": \"string\",\n      \"url\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"body\": {\n        \"messageSegments\": [\n          {\n            \"type\": \"Link\",\n            \"text\": \"string\",\n            \"id\": \"string\",\n            \"url\": \"string\"\n          },\n          {\n            \"type\": \"Link\",\n            \"text\": \"string\",\n            \"id\": \"string\",\n            \"url\": \"string\"\n          }\n        ]\n      },\n      \"capabilities\": {\n        \"comments\": {\n          \"total\": 3793\n        },\n        \"chatterLikes\": {\n          \"total\": 8011\n        }\n      },\n      \"createdDate\": \"2016-09-14T11:43:58.243Z\",\n      \"actor\": {\n        \"companyName\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"string\",\n          \"mediumPhotoUrl\": \"string\"\n        },\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"feedElementType\": \"FeedItem\",\n      \"header\": {\n        \"text\": \"string\"\n      },\n      \"parent\": {\n        \"id\": \"string\",\n        \"type\": \"string\"\n      },\n      \"type\": \"string\",\n      \"url\": \"string\"\n    }\n  ],\n  \"nextPageUrl\": \"string\",\n  \"updatesUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94b30fa7-22f5-4ffd-af52-167843ab87f7",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chatter",
+                    "feeds",
+                    "record",
+                    ":recordId",
+                    "feed-elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) The ID of the record"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99a4e5ef-7cdd-4e2a-876d-567363254bd6",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chatter",
+                    "feeds",
+                    "record",
+                    ":recordId",
+                    "feed-elements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordId",
+                      "description": "(Required) The ID of the record"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Salesforce instance identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourInstance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "21413a6e-5a3c-4ebd-afd1-a5703279e498",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Feeds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

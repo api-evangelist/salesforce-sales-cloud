@@ -1,26 +1,27 @@
 {
   "item": [
     {
-      "id": "3953edc9-d376-491d-8eee-84c480e08de9",
-      "name": "Platform Events",
+      "id": "e45bce7c-12c6-4f1e-900b-62484180aff1",
+      "name": "Report Instances",
       "description": {
-        "content": "Publish and describe platform events",
+        "content": "Asynchronous report execution and results retrieval",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "f33e9be5-7e82-4a5b-b160-951d7369cc16",
-          "name": "Salesforce Sales Cloud Describe a platform event",
+          "id": "99bc1505-6860-402c-ad77-cddc2c440e55",
+          "name": "Salesforce Sales Cloud List report instances",
           "request": {
-            "name": "Salesforce Sales Cloud Describe a platform event",
+            "name": "Salesforce Sales Cloud List report instances",
             "description": {
-              "content": "Retrieves metadata about the specified platform event including its fields, label, and API name. The event API name uses the __e suffix (e.g., Order_Event__e).",
+              "content": "Returns a list of instances for the specified report that have been run asynchronously. Each instance includes the status and completion date.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "sobjects",
-                ":eventApiName"
+                "reports",
+                ":reportId",
+                "instances"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -31,8 +32,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                  "key": "reportId",
+                  "description": "(Required) The 15 or 18 character Salesforce report ID"
                 },
                 {
                   "description": "Your Salesforce instance identifier",
@@ -53,13 +54,14 @@
           },
           "response": [
             {
-              "id": "e16502f7-0720-4182-a9df-7744e05de9af",
-              "name": "Successfully retrieved event metadata",
+              "id": "6cfbd428-f9e7-46be-8da1-bf65e286f25e",
+              "name": "Successfully retrieved report instances",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "reports",
+                    ":reportId",
+                    "instances"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -70,8 +72,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -106,18 +108,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"objectDescribe\": {\n    \"name\": \"string\",\n    \"label\": \"string\",\n    \"custom\": false,\n    \"fields\": [\n      {\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"length\": 8109\n      },\n      {\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"length\": 8893\n      }\n    ]\n  }\n}",
+              "body": "[\n  {\n    \"completionDate\": \"1970-03-18T06:48:57.374Z\",\n    \"id\": \"string\",\n    \"ownerId\": \"string\",\n    \"requestDate\": \"1968-12-28T01:04:11.023Z\",\n    \"status\": \"Error\",\n    \"url\": \"string\"\n  },\n  {\n    \"completionDate\": \"2009-06-19T13:12:59.410Z\",\n    \"id\": \"string\",\n    \"ownerId\": \"string\",\n    \"requestDate\": \"1990-02-07T11:49:18.472Z\",\n    \"status\": \"New\",\n    \"url\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "28cbdb58-b69a-4af6-ae66-3e96742ae07b",
+              "id": "3c72a8ee-d972-4108-be02-0c5cd82d5f91",
               "name": "Authentication failed",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "reports",
+                    ":reportId",
+                    "instances"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -128,8 +131,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -164,18 +167,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c3f668c4-d68a-4aca-a4a4-36d865e3fd1b",
+              "id": "22cfafe4-7646-488b-ae72-cde3f9de8362",
               "name": "Resource not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "reports",
+                    ":reportId",
+                    "instances"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -186,8 +190,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -222,7 +226,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -233,18 +237,19 @@
           }
         },
         {
-          "id": "03a7a11d-5a2b-4f8e-961f-d4786711a18a",
-          "name": "Salesforce Sales Cloud Publish a platform event",
+          "id": "d8a946dc-3097-4bb7-a248-60be152497d4",
+          "name": "Salesforce Sales Cloud Run a report asynchronously",
           "request": {
-            "name": "Salesforce Sales Cloud Publish a platform event",
+            "name": "Salesforce Sales Cloud Run a report asynchronously",
             "description": {
-              "content": "Publishes a single platform event message by inserting an sObject record for the event type. The event API name uses the __e suffix. Include the event's custom fields in the request body.",
+              "content": "Runs a report asynchronously. Returns the report instance ID which can be used to retrieve the results when the report has finished running.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "sobjects",
-                ":eventApiName"
+                "reports",
+                ":reportId",
+                "instances"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -255,8 +260,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                  "key": "reportId",
+                  "description": "(Required) The 15 or 18 character Salesforce report ID"
                 },
                 {
                   "description": "Your Salesforce instance identifier",
@@ -280,7 +285,7 @@
             "auth": null,
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"key_0\": 2292,\n  \"key_1\": 2284,\n  \"key_2\": false,\n  \"key_3\": 7442\n}",
+              "raw": "{\n  \"reportMetadata\": \"<object>\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -290,13 +295,14 @@
           },
           "response": [
             {
-              "id": "d18cf530-7a07-4a05-8002-89fc6e794566",
-              "name": "Event published successfully",
+              "id": "e53aec79-b0c0-42b1-8b6c-aab6ed705d91",
+              "name": "Report execution started",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "reports",
+                    ":reportId",
+                    "instances"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -307,8 +313,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -335,7 +341,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "raw": "{\n  \"reportMetadata\": \"<object>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -343,92 +349,27 @@
                   }
                 }
               },
-              "status": "Created",
-              "code": 201,
+              "status": "OK",
+              "code": 200,
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"id\": \"string\",\n  \"success\": true,\n  \"errors\": [\n    {\n      \"statusCode\": \"string\",\n      \"message\": \"string\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"statusCode\": \"string\",\n      \"message\": \"string\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "body": "{\n  \"completionDate\": \"1977-05-08T20:09:03.459Z\",\n  \"id\": \"string\",\n  \"ownerId\": \"string\",\n  \"requestDate\": \"1954-07-07T18:42:41.261Z\",\n  \"status\": \"New\",\n  \"url\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "e27092d9-381c-44a1-a1f8-16f6b3345213",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2167bf5b-5664-4ea1-807c-f35bf52812ef",
+              "id": "4658f891-d4ce-4171-b34c-63528b70498c",
               "name": "Authentication failed",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "reports",
+                    ":reportId",
+                    "instances"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -439,8 +380,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -467,7 +408,7 @@
                 "method": "POST",
                 "body": {
                   "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
+                  "raw": "{\n  \"reportMetadata\": \"<object>\"\n}",
                   "options": {
                     "raw": {
                       "language": "json"
@@ -483,7 +424,74 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "217542eb-dcb3-4973-b606-ae3b79df2aac",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId",
+                    "instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": \"<object>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -494,19 +502,20 @@
           }
         },
         {
-          "id": "3a35e528-f30b-45cd-b913-8cbf8cea0db5",
-          "name": "Salesforce Sales Cloud Get full platform event metadata",
+          "id": "3e1ccd6d-6bf3-4859-b0cf-76f119d1db1f",
+          "name": "Salesforce Sales Cloud Get report instance results",
           "request": {
-            "name": "Salesforce Sales Cloud Get full platform event metadata",
+            "name": "Salesforce Sales Cloud Get report instance results",
             "description": {
-              "content": "Retrieves complete metadata about the specified platform event including all fields, their types, lengths, and other attributes.",
+              "content": "Retrieves the results of an asynchronous report run using the instance ID. If the report is still running, the status is returned instead of results.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "sobjects",
-                ":eventApiName",
-                "describe"
+                "reports",
+                ":reportId",
+                "instances",
+                ":instanceId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -517,8 +526,15 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                  "key": "reportId",
+                  "description": "(Required) The 15 or 18 character Salesforce report ID"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "instanceId",
+                  "description": "(Required) The ID of the report instance"
                 },
                 {
                   "description": "Your Salesforce instance identifier",
@@ -539,14 +555,15 @@
           },
           "response": [
             {
-              "id": "48463860-0d74-4a37-af65-96c70a304961",
-              "name": "Successfully retrieved full event metadata",
+              "id": "f6e0d6d2-c7da-4b3a-b2e0-5305419580e2",
+              "name": "Successfully retrieved report instance results",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "reports",
+                    ":reportId",
+                    "instances",
+                    ":instanceId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -557,8 +574,15 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The ID of the report instance"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -593,19 +617,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{}",
+              "body": "{\n  \"allData\": true,\n  \"factMap\": {\n    \"key_0\": {\n      \"aggregates\": [\n        {\n          \"label\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"label\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"rows\": [\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            },\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            }\n          ]\n        },\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            },\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            }\n          ]\n        }\n      ]\n    }\n  },\n  \"groupingsAcross\": {},\n  \"groupingsDown\": {},\n  \"hasDetailRows\": false,\n  \"reportExtendedMetadata\": {},\n  \"reportMetadata\": {\n    \"aggregates\": [\n      \"string\",\n      \"string\"\n    ],\n    \"chart\": {},\n    \"currency\": \"string\",\n    \"description\": \"string\",\n    \"detailColumns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"developerName\": \"string\",\n    \"division\": \"string\",\n    \"folderId\": \"string\",\n    \"groupingsAcross\": [\n      {\n        \"dateGranularity\": \"string\",\n        \"name\": \"string\",\n        \"sortAggregate\": \"string\",\n        \"sortOrder\": \"string\"\n      },\n      {\n        \"dateGranularity\": \"string\",\n        \"name\": \"string\",\n        \"sortAggregate\": \"string\",\n        \"sortOrder\": \"string\"\n      }\n    ],\n    \"groupingsDown\": [\n      {\n        \"dateGranularity\": \"string\",\n        \"name\": \"string\",\n        \"sortAggregate\": \"string\",\n        \"sortOrder\": \"string\"\n      },\n      {\n        \"dateGranularity\": \"string\",\n        \"name\": \"string\",\n        \"sortAggregate\": \"string\",\n        \"sortOrder\": \"string\"\n      }\n    ],\n    \"hasDetailRows\": true,\n    \"hasRecordCount\": false,\n    \"historicalSnapshotDates\": [\n      \"string\",\n      \"string\"\n    ],\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"reportBooleanFilter\": \"string\",\n    \"reportFilters\": [\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": false,\n        \"operator\": \"excludes\",\n        \"value\": \"string\"\n      },\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": true,\n        \"operator\": \"lessOrEqual\",\n        \"value\": \"string\"\n      }\n    ],\n    \"reportFormat\": \"SUMMARY\",\n    \"reportType\": {\n      \"label\": \"string\",\n      \"type\": \"string\"\n    },\n    \"scope\": \"string\",\n    \"standardDateFilter\": {\n      \"column\": \"string\",\n      \"durationValue\": \"string\",\n      \"endDate\": \"string\",\n      \"startDate\": \"string\"\n    }\n  }\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "4c5abc98-1977-47f4-ae5b-d2731ee3c06f",
+              "id": "578c95b0-3420-4fc2-98da-6fb179c37bbc",
               "name": "Authentication failed",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "reports",
+                    ":reportId",
+                    "instances",
+                    ":instanceId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -616,8 +641,15 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The ID of the report instance"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -652,19 +684,20 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "410a1749-f363-446d-9c78-4097c22b80f7",
+              "id": "ff252910-e07d-4b31-8fab-d6a50df46f40",
               "name": "Resource not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "reports",
+                    ":reportId",
+                    "instances",
+                    ":instanceId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -675,8 +708,15 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "instanceId",
+                      "description": "(Required) The ID of the report instance"
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -711,7 +751,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -764,8 +804,8 @@
     ]
   },
   "info": {
-    "_postman_id": "9e9261e4-0d9f-4d59-9550-6b132d788716",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Platform Events API",
+    "_postman_id": "03b3b227-0fae-4122-a68e-e8cb75631b50",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Report Instances API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

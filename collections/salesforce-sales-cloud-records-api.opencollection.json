@@ -1,0 +1,130 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Records API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Records",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get a record with UI metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/records/:recordId",
+            "params": [
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 18-character Salesforce record ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of field API names to return"
+              },
+              {
+                "name": "layoutTypes",
+                "value": "",
+                "type": "query",
+                "description": "Layout type to determine which fields to return"
+              },
+              {
+                "name": "modes",
+                "value": "",
+                "type": "query",
+                "description": "The mode for the layout"
+              },
+              {
+                "name": "optionalFields",
+                "value": "",
+                "type": "query",
+                "description": "Optional fields returned if accessible"
+              }
+            ]
+          },
+          "docs": "Retrieves a record with field values and UI metadata. Specify the fields to return or use a layout mode to get the fields appropriate for a specific page layout. Returned data respects field-level security."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/records/:recordId",
+            "params": [
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 18-character Salesforce record ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates the specified record. Only include fields that need to be changed. Returns the updated record with UI metadata."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/records/:recordId",
+            "params": [
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 18-character Salesforce record ID"
+              }
+            ]
+          },
+          "docs": "Deletes the specified record."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create a record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/records",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new record. Returns the created record with UI metadata and the new record ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

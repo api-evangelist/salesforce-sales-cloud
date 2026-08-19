@@ -1,26 +1,215 @@
 {
   "item": [
     {
-      "id": "3953edc9-d376-491d-8eee-84c480e08de9",
-      "name": "Platform Events",
+      "id": "f6fb7e4c-571b-454d-8dee-4fe4685dd588",
+      "name": "Groups",
       "description": {
-        "content": "Publish and describe platform events",
+        "content": "Chatter group operations",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "f33e9be5-7e82-4a5b-b160-951d7369cc16",
-          "name": "Salesforce Sales Cloud Describe a platform event",
+          "id": "6cfd6f2f-b584-48c2-bc2b-3d0b7db004cb",
+          "name": "Salesforce Sales Cloud List Chatter groups",
           "request": {
-            "name": "Salesforce Sales Cloud Describe a platform event",
+            "name": "Salesforce Sales Cloud List Chatter groups",
             "description": {
-              "content": "Retrieves metadata about the specified platform event including its fields, label, and API name. The event API name uses the __e suffix (e.g., Order_Event__e).",
+              "content": "Returns a list of Chatter groups visible to the current user. Includes public groups, private groups the user is a member of, and unlisted groups the user has access to.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "sobjects",
-                ":eventApiName"
+                "chatter",
+                "groups"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                },
+                {
+                  "disabled": false,
+                  "key": "pageToken",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search term to filter groups"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "18fafdd9-c64e-49d7-8838-2dd7e39b60cc",
+              "name": "Successfully retrieved groups",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chatter",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"groups\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"memberCount\": 4976,\n      \"myRole\": \"GroupOwner\",\n      \"visibility\": \"PublicAccess\",\n      \"url\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"description\": \"string\",\n      \"memberCount\": 4684,\n      \"myRole\": \"NotAMember\",\n      \"visibility\": \"Unlisted\",\n      \"url\": \"string\"\n    }\n  ],\n  \"nextPageUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4842f36c-e5f4-48c7-a4b4-6cbdb6ba7310",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "chatter",
+                    "groups"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    },
+                    {
+                      "key": "pageToken",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "975074e6-74d3-4e32-96fb-68664b56e418",
+          "name": "Salesforce Sales Cloud Get a Chatter group",
+          "request": {
+            "name": "Salesforce Sales Cloud Get a Chatter group",
+            "description": {
+              "content": "Returns detailed information about the specified Chatter group including member count, description, and the current user's membership status.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "chatter",
+                "groups",
+                ":groupId"
               ],
               "host": [
                 "{{baseUrl}}"
@@ -31,8 +220,8 @@
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                  "key": "groupId",
+                  "description": "(Required) "
                 },
                 {
                   "description": "Your Salesforce instance identifier",
@@ -53,13 +242,14 @@
           },
           "response": [
             {
-              "id": "e16502f7-0720-4182-a9df-7744e05de9af",
-              "name": "Successfully retrieved event metadata",
+              "id": "e8d0d307-83cf-446b-9926-9a7aac1e7134",
+              "name": "Successfully retrieved group",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "chatter",
+                    "groups",
+                    ":groupId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -70,8 +260,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "groupId",
+                      "description": "(Required) "
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -106,18 +296,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"objectDescribe\": {\n    \"name\": \"string\",\n    \"label\": \"string\",\n    \"custom\": false,\n    \"fields\": [\n      {\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"length\": 8109\n      },\n      {\n        \"name\": \"string\",\n        \"label\": \"string\",\n        \"type\": \"string\",\n        \"length\": 8893\n      }\n    ]\n  }\n}",
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"memberCount\": 453,\n  \"myRole\": \"GroupManager\",\n  \"visibility\": \"PublicAccess\",\n  \"url\": \"string\"\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "28cbdb58-b69a-4af6-ae66-3e96742ae07b",
+              "id": "1601694c-350d-4013-b396-0def819712fc",
               "name": "Authentication failed",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "chatter",
+                    "groups",
+                    ":groupId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -128,8 +319,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "groupId",
+                      "description": "(Required) "
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -164,18 +355,19 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c3f668c4-d68a-4aca-a4a4-36d865e3fd1b",
+              "id": "ae3568c0-f336-43a5-be52-90f1430ba0cc",
               "name": "Resource not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName"
+                    "chatter",
+                    "groups",
+                    ":groupId"
                   ],
                   "host": [
                     "{{baseUrl}}"
@@ -186,8 +378,8 @@
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "groupId",
+                      "description": "(Required) "
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -222,7 +414,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -233,292 +425,38 @@
           }
         },
         {
-          "id": "03a7a11d-5a2b-4f8e-961f-d4786711a18a",
-          "name": "Salesforce Sales Cloud Publish a platform event",
+          "id": "ad8ee027-9f36-44f2-89d3-a37b9df3f0a3",
+          "name": "Salesforce Sales Cloud Get group members",
           "request": {
-            "name": "Salesforce Sales Cloud Publish a platform event",
+            "name": "Salesforce Sales Cloud Get group members",
             "description": {
-              "content": "Publishes a single platform event message by inserting an sObject record for the event type. The event API name uses the __e suffix. Include the event's custom fields in the request body.",
+              "content": "Returns a list of members in the specified Chatter group.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "sobjects",
-                ":eventApiName"
+                "chatter",
+                "groups",
+                ":groupId",
+                "members"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "25"
+                }
+              ],
               "variable": [
                 {
                   "disabled": false,
                   "type": "any",
                   "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                },
-                {
-                  "description": "Your Salesforce instance identifier",
-                  "type": "any",
-                  "value": "{{instance}}",
-                  "key": "instance"
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"key_0\": 2292,\n  \"key_1\": 2284,\n  \"key_2\": false,\n  \"key_3\": 7442\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
-          },
-          "response": [
-            {
-              "id": "d18cf530-7a07-4a05-8002-89fc6e794566",
-              "name": "Event published successfully",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Created",
-              "code": 201,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"id\": \"string\",\n  \"success\": true,\n  \"errors\": [\n    {\n      \"statusCode\": \"string\",\n      \"message\": \"string\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"statusCode\": \"string\",\n      \"message\": \"string\",\n      \"fields\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "e27092d9-381c-44a1-a1f8-16f6b3345213",
-              "name": "Invalid request",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Bad Request",
-              "code": 400,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2167bf5b-5664-4ea1-807c-f35bf52812ef",
-              "name": "Authentication failed",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "sobjects",
-                    ":eventApiName"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
-                    },
-                    {
-                      "description": "Your Salesforce instance identifier",
-                      "type": "any",
-                      "value": "{{instance}}",
-                      "key": "instance"
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: oauth2",
-                      "type": "text/plain"
-                    },
-                    "key": "Authorization",
-                    "value": "<token>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"key_0\": \"string\"\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
-              },
-              "status": "Unauthorized",
-              "code": 401,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "3a35e528-f30b-45cd-b913-8cbf8cea0db5",
-          "name": "Salesforce Sales Cloud Get full platform event metadata",
-          "request": {
-            "name": "Salesforce Sales Cloud Get full platform event metadata",
-            "description": {
-              "content": "Retrieves complete metadata about the specified platform event including all fields, their types, lengths, and other attributes.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "sobjects",
-                ":eventApiName",
-                "describe"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "eventApiName",
-                  "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                  "key": "groupId",
+                  "description": "(Required) "
                 },
                 {
                   "description": "Your Salesforce instance identifier",
@@ -539,26 +477,32 @@
           },
           "response": [
             {
-              "id": "48463860-0d74-4a37-af65-96c70a304961",
-              "name": "Successfully retrieved full event metadata",
+              "id": "1c2c282c-aafb-42cd-9cbe-1c116799c5b0",
+              "name": "Successfully retrieved group members",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "chatter",
+                    "groups",
+                    ":groupId",
+                    "members"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
                   "variable": [
                     {
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "groupId",
+                      "description": "(Required) "
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -593,31 +537,37 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{}",
+              "body": "{\n  \"members\": [\n    {\n      \"id\": \"string\",\n      \"role\": \"string\",\n      \"user\": {\n        \"companyName\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"string\",\n          \"mediumPhotoUrl\": \"string\"\n        },\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"role\": \"string\",\n      \"user\": {\n        \"companyName\": \"string\",\n        \"displayName\": \"string\",\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"photo\": {\n          \"smallPhotoUrl\": \"string\",\n          \"mediumPhotoUrl\": \"string\"\n        },\n        \"title\": \"string\",\n        \"type\": \"string\",\n        \"url\": \"string\"\n      }\n    }\n  ],\n  \"totalMemberCount\": 7583\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "4c5abc98-1977-47f4-ae5b-d2731ee3c06f",
+              "id": "ca5fdcba-8b16-44b7-a5e3-ff9daa115055",
               "name": "Authentication failed",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "chatter",
+                    "groups",
+                    ":groupId",
+                    "members"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
                   "variable": [
                     {
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "groupId",
+                      "description": "(Required) "
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -652,31 +602,37 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "410a1749-f363-446d-9c78-4097c22b80f7",
+              "id": "e60dc02e-df16-4f5d-a323-7b9f46464cff",
               "name": "Resource not found",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "sobjects",
-                    ":eventApiName",
-                    "describe"
+                    "chatter",
+                    "groups",
+                    ":groupId",
+                    "members"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "pageSize",
+                      "value": "25"
+                    }
+                  ],
                   "variable": [
                     {
                       "disabled": false,
                       "type": "any",
                       "value": "<string>",
-                      "key": "eventApiName",
-                      "description": "(Required) The API name of the platform event (e.g., Order_Event__e)"
+                      "key": "groupId",
+                      "description": "(Required) "
                     },
                     {
                       "description": "Your Salesforce instance identifier",
@@ -711,7 +667,7 @@
                   "value": "application/json"
                 }
               ],
-              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
               "cookie": [],
               "_postman_previewlanguage": "json"
             }
@@ -764,8 +720,8 @@
     ]
   },
   "info": {
-    "_postman_id": "9e9261e4-0d9f-4d59-9550-6b132d788716",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Platform Events API",
+    "_postman_id": "602a4a36-baf5-4521-8c45-1e878429f03e",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Groups API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

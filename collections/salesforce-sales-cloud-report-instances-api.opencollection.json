@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Report Instances API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Report Instances",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List report instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId/instances",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ]
+          },
+          "docs": "Returns a list of instances for the specified report that have been run asynchronously. Each instance includes the status and completion date."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Run a report asynchronously",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId/instances",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Runs a report asynchronously. Returns the report instance ID which can be used to retrieve the results when the report has finished running."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get report instance results",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/reports/:reportId/instances/:instanceId",
+            "params": [
+              {
+                "name": "reportId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce report ID"
+              },
+              {
+                "name": "instanceId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the report instance"
+              }
+            ]
+          },
+          "docs": "Retrieves the results of an asynchronous report run using the instance ID. If the report is still running, the status is returned instead of results."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

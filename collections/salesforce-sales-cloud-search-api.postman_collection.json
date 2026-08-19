@@ -1,30 +1,37 @@
 {
   "item": [
     {
-      "id": "ee97074d-29ee-449a-81f6-a90222d225ec",
-      "name": "Composite",
+      "id": "7f389dfb-bd09-427f-8538-46b0b7b091cf",
+      "name": "Search",
       "description": {
-        "content": "Composite requests with inter-request references",
+        "content": "SOSL search execution",
         "type": "text/plain"
       },
       "item": [
         {
-          "id": "e0f76bc5-9332-4e6b-af5f-b4bbb70b06ec",
-          "name": "Salesforce Sales Cloud Execute a composite request",
+          "id": "b36bddd8-cc97-4f8f-bc62-809a0a7c21d6",
+          "name": "Salesforce Sales Cloud Execute a SOSL search",
           "request": {
-            "name": "Salesforce Sales Cloud Execute a composite request",
+            "name": "Salesforce Sales Cloud Execute a SOSL search",
             "description": {
-              "content": "Executes a series of REST API requests in a single call. Each request can reference the results of previous requests via referenceId, enabling dependent operations. Supports up to 25 subrequests per composite call. If allOrNone is true, all subrequests are rolled back on any failure.",
+              "content": "Executes the specified SOSL search string and returns matching records. SOSL searches are optimized for text-based searching across multiple objects simultaneously.",
               "type": "text/plain"
             },
             "url": {
               "path": [
-                "composite"
+                "search"
               ],
               "host": [
                 "{{baseUrl}}"
               ],
-              "query": [],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) The SOSL search string"
+                }
+              ],
               "variable": [
                 {
                   "description": "Your Salesforce instance identifier",
@@ -36,39 +43,31 @@
             },
             "header": [
               {
-                "key": "Content-Type",
-                "value": "application/json"
-              },
-              {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "POST",
-            "auth": null,
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-              "options": {
-                "raw": {
-                  "language": "json"
-                }
-              }
-            }
+            "method": "GET",
+            "auth": null
           },
           "response": [
             {
-              "id": "87573e41-588e-47f9-862f-68a044750197",
-              "name": "Composite request executed successfully",
+              "id": "c74341de-d7b0-44b5-8881-0b0f0fe8f6eb",
+              "name": "Search executed successfully",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "search"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "FIND {Acme} IN ALL FIELDS RETURNING Account(Id, Name)"
+                    }
+                  ],
                   "variable": [
                     {
                       "description": "Your Salesforce instance identifier",
@@ -92,16 +91,8 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "OK",
               "code": 200,
@@ -111,22 +102,27 @@
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"compositeResponse\": [\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 4558,\n      \"referenceId\": \"string\"\n    },\n    {\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"httpStatusCode\": 1180,\n      \"referenceId\": \"string\"\n    }\n  ]\n}",
+              "body": "{\n  \"searchRecords\": [\n    {\n      \"attributes\": {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"Id\": \"string\",\n      \"key_0\": 891.2601321534453\n    },\n    {\n      \"attributes\": {\n        \"type\": \"string\",\n        \"url\": \"string\"\n      },\n      \"Id\": \"string\"\n    }\n  ]\n}",
               "cookie": [],
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "c59d294c-6c10-425d-bba9-5fc2fa815fec",
-              "name": "Invalid request",
+              "id": "9c1f682d-68b7-4288-a06b-eeda5b3797b9",
+              "name": "Invalid request - malformed query, missing required fields, or validation error",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "search"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "FIND {Acme} IN ALL FIELDS RETURNING Account(Id, Name)"
+                    }
+                  ],
                   "variable": [
                     {
                       "description": "Your Salesforce instance identifier",
@@ -150,16 +146,8 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "Bad Request",
               "code": 400,
@@ -174,17 +162,22 @@
               "_postman_previewlanguage": "json"
             },
             {
-              "id": "743dfc0a-b909-4bd4-ad6d-16c659e0add7",
-              "name": "Authentication failed",
+              "id": "dd2ccf34-92c1-404e-b59b-172af779413e",
+              "name": "Authentication failed - invalid, expired, or missing access token",
               "originalRequest": {
                 "url": {
                   "path": [
-                    "composite"
+                    "search"
                   ],
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "FIND {Acme} IN ALL FIELDS RETURNING Account(Id, Name)"
+                    }
+                  ],
                   "variable": [
                     {
                       "description": "Your Salesforce instance identifier",
@@ -208,16 +201,8 @@
                     "value": "application/json"
                   }
                 ],
-                "method": "POST",
-                "body": {
-                  "mode": "raw",
-                  "raw": "{\n  \"compositeRequest\": [\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    },\n    {\n      \"method\": \"<string>\",\n      \"url\": \"<string>\",\n      \"referenceId\": \"<string>\",\n      \"body\": {},\n      \"httpHeaders\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      }\n    }\n  ],\n  \"allOrNone\": false,\n  \"collateSubrequests\": false\n}",
-                  "options": {
-                    "raw": {
-                      "language": "json"
-                    }
-                  }
-                }
+                "method": "GET",
+                "body": {}
               },
               "status": "Unauthorized",
               "code": 401,
@@ -280,8 +265,8 @@
     ]
   },
   "info": {
-    "_postman_id": "69182933-0e80-49f8-9f4c-9d734f31d803",
-    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite API",
+    "_postman_id": "39b5d373-311e-430c-b6ec-378984ecfb4f",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Search API",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "description": {
       "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",

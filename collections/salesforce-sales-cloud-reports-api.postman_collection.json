@@ -1,0 +1,1510 @@
+{
+  "item": [
+    {
+      "id": "861b2bfa-9090-465c-a611-b8705fa85c27",
+      "name": "Reports",
+      "description": {
+        "content": "Operations for listing, describing, and running reports",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8d27643f-aec4-4dc4-8266-8274d68f6e30",
+          "name": "Salesforce Sales Cloud List reports",
+          "request": {
+            "name": "Salesforce Sales Cloud List reports",
+            "description": {
+              "content": "Returns a list of recently used reports. Each report in the list includes the report ID, name, URL, and description.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c7aa8803-1019-4e7f-bad3-7f7f805f9e67",
+              "name": "Successfully retrieved list of reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"url\": \"string\",\n    \"describeUrl\": \"string\",\n    \"instancesUrl\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"url\": \"string\",\n    \"describeUrl\": \"string\",\n    \"instancesUrl\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51d4d55f-3137-4fd2-87b6-b5fb1eeb1dec",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "101f6487-1825-4b47-be2c-3b90aa6f5477",
+          "name": "Salesforce Sales Cloud Get report metadata",
+          "request": {
+            "name": "Salesforce Sales Cloud Get report metadata",
+            "description": {
+              "content": "Retrieves report metadata, including report type, format, groupings, filters, and summary fields for the specified report.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) The 15 or 18 character Salesforce report ID"
+                },
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5472e758-ec0b-43dc-8e8f-c70d71857db4",
+              "name": "Successfully retrieved report metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aggregates\": [\n    \"string\",\n    \"string\"\n  ],\n  \"chart\": {},\n  \"currency\": \"string\",\n  \"description\": \"string\",\n  \"detailColumns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"developerName\": \"string\",\n  \"division\": \"string\",\n  \"folderId\": \"string\",\n  \"groupingsAcross\": [\n    {\n      \"dateGranularity\": \"string\",\n      \"name\": \"string\",\n      \"sortAggregate\": \"string\",\n      \"sortOrder\": \"string\"\n    },\n    {\n      \"dateGranularity\": \"string\",\n      \"name\": \"string\",\n      \"sortAggregate\": \"string\",\n      \"sortOrder\": \"string\"\n    }\n  ],\n  \"groupingsDown\": [\n    {\n      \"dateGranularity\": \"string\",\n      \"name\": \"string\",\n      \"sortAggregate\": \"string\",\n      \"sortOrder\": \"string\"\n    },\n    {\n      \"dateGranularity\": \"string\",\n      \"name\": \"string\",\n      \"sortAggregate\": \"string\",\n      \"sortOrder\": \"string\"\n    }\n  ],\n  \"hasDetailRows\": true,\n  \"hasRecordCount\": true,\n  \"historicalSnapshotDates\": [\n    \"string\",\n    \"string\"\n  ],\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"reportBooleanFilter\": \"string\",\n  \"reportFilters\": [\n    {\n      \"column\": \"string\",\n      \"filterType\": \"string\",\n      \"isRunPageEditable\": true,\n      \"operator\": \"notContain\",\n      \"value\": \"string\"\n    },\n    {\n      \"column\": \"string\",\n      \"filterType\": \"string\",\n      \"isRunPageEditable\": false,\n      \"operator\": \"lessThan\",\n      \"value\": \"string\"\n    }\n  ],\n  \"reportFormat\": \"MULTI_BLOCK\",\n  \"reportType\": {\n    \"label\": \"string\",\n    \"type\": \"string\"\n  },\n  \"scope\": \"string\",\n  \"standardDateFilter\": {\n    \"column\": \"string\",\n    \"durationValue\": \"string\",\n    \"endDate\": \"string\",\n    \"startDate\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9458fe1b-ec75-4485-b57a-5d014892c113",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a36d669b-7d1b-49a3-a018-3d70f00af506",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3068fb1a-5a93-4d58-920c-8e9b36088c92",
+          "name": "Salesforce Sales Cloud Update a report",
+          "request": {
+            "name": "Salesforce Sales Cloud Update a report",
+            "description": {
+              "content": "Updates report metadata including filters, groupings, and other settings. Only report properties included in the request body are updated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) The 15 or 18 character Salesforce report ID"
+                },
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reportMetadata\": {\n    \"key_0\": 9566.205003433897,\n    \"key_1\": \"string\",\n    \"key_2\": \"string\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "161e43cd-6ed7-4f62-a696-6f237f15ccf6",
+              "name": "Report updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"aggregates\": [\n    \"string\",\n    \"string\"\n  ],\n  \"chart\": {},\n  \"currency\": \"string\",\n  \"description\": \"string\",\n  \"detailColumns\": [\n    \"string\",\n    \"string\"\n  ],\n  \"developerName\": \"string\",\n  \"division\": \"string\",\n  \"folderId\": \"string\",\n  \"groupingsAcross\": [\n    {\n      \"dateGranularity\": \"string\",\n      \"name\": \"string\",\n      \"sortAggregate\": \"string\",\n      \"sortOrder\": \"string\"\n    },\n    {\n      \"dateGranularity\": \"string\",\n      \"name\": \"string\",\n      \"sortAggregate\": \"string\",\n      \"sortOrder\": \"string\"\n    }\n  ],\n  \"groupingsDown\": [\n    {\n      \"dateGranularity\": \"string\",\n      \"name\": \"string\",\n      \"sortAggregate\": \"string\",\n      \"sortOrder\": \"string\"\n    },\n    {\n      \"dateGranularity\": \"string\",\n      \"name\": \"string\",\n      \"sortAggregate\": \"string\",\n      \"sortOrder\": \"string\"\n    }\n  ],\n  \"hasDetailRows\": true,\n  \"hasRecordCount\": true,\n  \"historicalSnapshotDates\": [\n    \"string\",\n    \"string\"\n  ],\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"reportBooleanFilter\": \"string\",\n  \"reportFilters\": [\n    {\n      \"column\": \"string\",\n      \"filterType\": \"string\",\n      \"isRunPageEditable\": true,\n      \"operator\": \"notContain\",\n      \"value\": \"string\"\n    },\n    {\n      \"column\": \"string\",\n      \"filterType\": \"string\",\n      \"isRunPageEditable\": false,\n      \"operator\": \"lessThan\",\n      \"value\": \"string\"\n    }\n  ],\n  \"reportFormat\": \"MULTI_BLOCK\",\n  \"reportType\": {\n    \"label\": \"string\",\n    \"type\": \"string\"\n  },\n  \"scope\": \"string\",\n  \"standardDateFilter\": {\n    \"column\": \"string\",\n    \"durationValue\": \"string\",\n    \"endDate\": \"string\",\n    \"startDate\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5b36d82-7ef6-4c06-82e2-1c60aff95814",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "814a6290-f8dc-43f3-9de1-e95b5a4f7844",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8014749-6b8b-4dd1-9a1e-9d0d5a6979c8",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"key_0\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b782bf64-8a5f-47d1-9a44-3d387b530543",
+          "name": "Salesforce Sales Cloud Delete a report",
+          "request": {
+            "name": "Salesforce Sales Cloud Delete a report",
+            "description": {
+              "content": "Deletes the specified report. The report must not be currently in use by a dashboard component.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":reportId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) The 15 or 18 character Salesforce report ID"
+                },
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dac8206f-6d58-408a-8ffe-c123f3a90288",
+              "name": "Report deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d25ef933-bd8e-4fe3-8768-750798d8974c",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc074b7a-d6ce-4fd1-858f-ec8555e46714",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a21ef7ce-d2bd-4c43-9b49-d960dfa80a75",
+          "name": "Salesforce Sales Cloud Describe a report",
+          "request": {
+            "name": "Salesforce Sales Cloud Describe a report",
+            "description": {
+              "content": "Retrieves detailed metadata about a report including the report type metadata, grouping column information, summary field information, and extended metadata. This information can be used to build dynamic report filter UIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                ":reportId",
+                "describe"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "reportId",
+                  "description": "(Required) The 15 or 18 character Salesforce report ID"
+                },
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fccd7f42-a45f-456d-9a16-b69b310c4bbe",
+              "name": "Successfully retrieved report description",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId",
+                    "describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"reportExtendedMetadata\": {},\n  \"reportMetadata\": {},\n  \"reportTypeMetadata\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "924b2464-512f-435e-9652-161f16bae14e",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId",
+                    "describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35c174f0-e212-44da-96f8-0c201638882d",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    ":reportId",
+                    "describe"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "reportId",
+                      "description": "(Required) The 15 or 18 character Salesforce report ID"
+                    },
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e4bebc8d-288d-48ed-b426-3693d30f67ec",
+          "name": "Salesforce Sales Cloud Run a report synchronously",
+          "request": {
+            "name": "Salesforce Sales Cloud Run a report synchronously",
+            "description": {
+              "content": "Runs a report synchronously and returns the report results. Optionally apply dynamic filters, aggregates, and groupings. Use includeDetails query parameter to include detail rows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reports",
+                "{{reportId}}"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "key": "includeDetails",
+                  "value": "true"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"column\": \"<string>\",\n        \"filterType\": \"<string>\",\n        \"isRunPageEditable\": \"<boolean>\",\n        \"operator\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "002cc482-5a90-4df8-be07-33988bd19c26",
+              "name": "Report executed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "{{reportId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": true,\n        \"operator\": \"excludes\",\n        \"value\": \"string\"\n      },\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": false,\n        \"operator\": \"includes\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"allData\": true,\n  \"factMap\": {\n    \"key_0\": {\n      \"aggregates\": [\n        {\n          \"label\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"label\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"rows\": [\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            },\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            }\n          ]\n        },\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            },\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            }\n          ]\n        }\n      ]\n    },\n    \"key_1\": {\n      \"aggregates\": [\n        {\n          \"label\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"label\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"rows\": [\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            },\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            }\n          ]\n        },\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            },\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            }\n          ]\n        }\n      ]\n    },\n    \"key_2\": {\n      \"aggregates\": [\n        {\n          \"label\": \"string\",\n          \"value\": {}\n        },\n        {\n          \"label\": \"string\",\n          \"value\": {}\n        }\n      ],\n      \"rows\": [\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            },\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            }\n          ]\n        },\n        {\n          \"dataCells\": [\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            },\n            {\n              \"label\": \"string\",\n              \"value\": {}\n            }\n          ]\n        }\n      ]\n    }\n  },\n  \"groupingsAcross\": {},\n  \"groupingsDown\": {},\n  \"hasDetailRows\": false,\n  \"reportExtendedMetadata\": {},\n  \"reportMetadata\": {\n    \"aggregates\": [\n      \"string\",\n      \"string\"\n    ],\n    \"chart\": {},\n    \"currency\": \"string\",\n    \"description\": \"string\",\n    \"detailColumns\": [\n      \"string\",\n      \"string\"\n    ],\n    \"developerName\": \"string\",\n    \"division\": \"string\",\n    \"folderId\": \"string\",\n    \"groupingsAcross\": [\n      {\n        \"dateGranularity\": \"string\",\n        \"name\": \"string\",\n        \"sortAggregate\": \"string\",\n        \"sortOrder\": \"string\"\n      },\n      {\n        \"dateGranularity\": \"string\",\n        \"name\": \"string\",\n        \"sortAggregate\": \"string\",\n        \"sortOrder\": \"string\"\n      }\n    ],\n    \"groupingsDown\": [\n      {\n        \"dateGranularity\": \"string\",\n        \"name\": \"string\",\n        \"sortAggregate\": \"string\",\n        \"sortOrder\": \"string\"\n      },\n      {\n        \"dateGranularity\": \"string\",\n        \"name\": \"string\",\n        \"sortAggregate\": \"string\",\n        \"sortOrder\": \"string\"\n      }\n    ],\n    \"hasDetailRows\": true,\n    \"hasRecordCount\": true,\n    \"historicalSnapshotDates\": [\n      \"string\",\n      \"string\"\n    ],\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"reportBooleanFilter\": \"string\",\n    \"reportFilters\": [\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": false,\n        \"operator\": \"lessOrEqual\",\n        \"value\": \"string\"\n      },\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": true,\n        \"operator\": \"contains\",\n        \"value\": \"string\"\n      }\n    ],\n    \"reportFormat\": \"TABULAR\",\n    \"reportType\": {\n      \"label\": \"string\",\n      \"type\": \"string\"\n    },\n    \"scope\": \"string\",\n    \"standardDateFilter\": {\n      \"column\": \"string\",\n      \"durationValue\": \"string\",\n      \"endDate\": \"string\",\n      \"startDate\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ec8367c-48da-48ec-ae3f-1be8b55c39e4",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "{{reportId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": true,\n        \"operator\": \"excludes\",\n        \"value\": \"string\"\n      },\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": false,\n        \"operator\": \"includes\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ea5f7e9-6e81-4488-a164-87eb944e8770",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "{{reportId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": true,\n        \"operator\": \"excludes\",\n        \"value\": \"string\"\n      },\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": false,\n        \"operator\": \"includes\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23014e2a-3ab7-4716-ab8d-8dfc191560af",
+              "name": "Resource not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reports",
+                    "{{reportId}}"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"reportMetadata\": {\n    \"reportFilters\": [\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": true,\n        \"operator\": \"excludes\",\n        \"value\": \"string\"\n      },\n      {\n        \"column\": \"string\",\n        \"filterType\": \"string\",\n        \"isRunPageEditable\": false,\n        \"operator\": \"includes\",\n        \"value\": \"string\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  },\n  {\n    \"errorCode\": \"string\",\n    \"message\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Salesforce instance identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourInstance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/analytics",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The 15 or 18 character Salesforce report ID",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "reportId"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4c4e3dec-0cc8-466d-a595-9fac0cfc1ce2",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",
+      "type": "text/plain"
+    }
+  }
+}

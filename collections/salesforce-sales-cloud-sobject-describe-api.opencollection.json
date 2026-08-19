@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events SObject Describe API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SObject Describe",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Describe an sObject",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/describe",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              }
+            ]
+          },
+          "docs": "Completely describes the individual metadata at all levels for the specified object. Returns metadata including fields, child relationships, record type mappings, and other object-level attributes."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get sObject page layouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/describe/layouts",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              }
+            ]
+          },
+          "docs": "Returns a list of layouts and descriptions, including for publisher actions, for the specified sObject."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,204 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events SObject Rows API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SObject Rows",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create a new sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new record for the specified sObject. The request body contains the field values for the new record in JSON format."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get an sObject record by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce record ID"
+              },
+              {
+                "name": "fields",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of field names to return"
+              }
+            ]
+          },
+          "docs": "Retrieves a record for the specified sObject using the record ID. Optionally, specify the fields to return using the fields parameter to limit the response size."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update an sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce record ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an individual record for the specified sObject. Provide field values in the request body as JSON."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete an sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The 15 or 18 character Salesforce record ID"
+              }
+            ]
+          },
+          "docs": "Deletes a record for the specified sObject using the record ID."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get record by external ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/:fieldName/:fieldValue",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "fieldName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the external ID field"
+              },
+              {
+                "name": "fieldValue",
+                "value": "",
+                "type": "path",
+                "description": "The external ID value"
+              }
+            ]
+          },
+          "docs": "Retrieves a record using an external ID field. If the external ID is not unique, a 300 response with multiple matching records is returned."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Upsert record by external ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/:fieldName/:fieldValue",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the sObject (e.g., Account, Contact, Lead, Opportunity)"
+              },
+              {
+                "name": "fieldName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the external ID field"
+              },
+              {
+                "name": "fieldValue",
+                "value": "",
+                "type": "path",
+                "description": "The external ID value"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates or updates (upserts) a record using an external ID field. If the external ID is not matched, a new record is created. If the external ID is matched, the existing record is updated."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

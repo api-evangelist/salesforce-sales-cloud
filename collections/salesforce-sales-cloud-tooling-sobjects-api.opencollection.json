@@ -1,0 +1,162 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Tooling SObjects API",
+    "version": "59.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "oauth2",
+      "flow": "authorization_code",
+      "authorizationUrl": "https://login.salesforce.com/services/oauth2/authorize",
+      "accessTokenUrl": "https://login.salesforce.com/services/oauth2/token",
+      "credentials": {
+        "clientId": "{{clientId}}",
+        "clientSecret": "{{clientSecret}}"
+      }
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tooling SObjects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud List available Tooling API sObjects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects"
+          },
+          "docs": "Lists all available Tooling API sObjects and their metadata, including ApexClass, ApexTrigger, ApexComponent, ApexPage, ApexLog, MetadataContainer, and other developer-focused objects."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get Tooling sObject basic information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              }
+            ]
+          },
+          "docs": "Retrieves basic metadata for the specified Tooling API sObject, including default field values and recently accessed records."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Create a Tooling sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new record for the specified Tooling API sObject. For example, creating an ApexClass record will create and compile a new Apex class in the org."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Get a Tooling sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The Salesforce record ID"
+              }
+            ]
+          },
+          "docs": "Retrieves a Tooling API record by its ID. For example, retrieve an ApexClass record to get its source code, metadata, and compilation status."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Update a Tooling sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The Salesforce record ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updates an existing Tooling API record. For example, updating an ApexClass record will update and recompile the Apex class."
+        },
+        {
+          "info": {
+            "name": "Salesforce Sales Cloud Delete a Tooling sObject record",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{instance}.salesforce.com/services/data/v59.0/analytics/sobjects/:sObjectName/:recordId",
+            "params": [
+              {
+                "name": "sObjectName",
+                "value": "",
+                "type": "path",
+                "description": "The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)"
+              },
+              {
+                "name": "recordId",
+                "value": "",
+                "type": "path",
+                "description": "The Salesforce record ID"
+              }
+            ]
+          },
+          "docs": "Deletes a Tooling API record by its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

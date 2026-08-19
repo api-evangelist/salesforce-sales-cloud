@@ -1,0 +1,520 @@
+{
+  "item": [
+    {
+      "id": "88e10893-5e84-4f96-8385-21b07b9325ad",
+      "name": "Run Tests",
+      "description": {
+        "content": "Execute Apex tests",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02efedcc-2707-4a5d-a1fc-5126e688d7eb",
+          "name": "Salesforce Sales Cloud Run Apex tests asynchronously",
+          "request": {
+            "name": "Salesforce Sales Cloud Run Apex tests asynchronously",
+            "description": {
+              "content": "Runs one or more Apex test methods asynchronously. Returns the test run ID which can be used to check status and retrieve results.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "runTestsAsynchronous"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"classids\": \"<string>\",\n  \"suiteids\": \"<string>\",\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6de334e0-6082-48d5-b9de-3d3dcb634d8d",
+              "name": "Test run initiated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runTestsAsynchronous"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"classids\": \"<string>\",\n  \"suiteids\": \"<string>\",\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c71f3d6d-65b1-4fe1-bceb-5214d075b959",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runTestsAsynchronous"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"classids\": \"<string>\",\n  \"suiteids\": \"<string>\",\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bd9317a0-c50a-42c0-ba95-6bd68b2e2065",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runTestsAsynchronous"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"classids\": \"<string>\",\n  \"suiteids\": \"<string>\",\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c84614d6-2b50-446c-bdb0-fff7142b9471",
+          "name": "Salesforce Sales Cloud Run Apex tests synchronously",
+          "request": {
+            "name": "Salesforce Sales Cloud Run Apex tests synchronously",
+            "description": {
+              "content": "Runs specified Apex tests synchronously and returns the results inline. Best for small numbers of tests that complete quickly.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "runTestsSynchronous"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Salesforce instance identifier",
+                  "type": "any",
+                  "value": "{{instance}}",
+                  "key": "instance"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "df62da6b-f4ec-4cb7-a230-c6ca54381605",
+              "name": "Test execution completed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runTestsSynchronous"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"numFailures\": 9860,\n  \"numTestsRun\": 1853,\n  \"totalTime\": 995.6245133091679\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a632d9ab-bf48-4a78-9dd3-d0b7f849395d",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runTestsSynchronous"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76fef835-0364-466a-9ddd-1f143cab1ac0",
+              "name": "Authentication failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "runTestsSynchronous"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Salesforce instance identifier",
+                      "type": "any",
+                      "value": "{{instance}}",
+                      "key": "instance"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: oauth2",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"tests\": [\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    {\n      \"classId\": \"<string>\",\n      \"testMethods\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  ],\n  \"maxFailedTests\": \"<integer>\",\n  \"testLevel\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  },\n  {\n    \"statusCode\": \"string\",\n    \"message\": \"string\",\n    \"fields\": [\n      \"string\",\n      \"string\"\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Salesforce instance identifier",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "yourInstance",
+      "key": "instance"
+    },
+    {
+      "type": "string",
+      "value": "https://{{instance}}.salesforce.com/services/data/v59.0/analytics",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "oauth2",
+    "oauth2": [
+      {
+        "key": "scope",
+        "value": "api"
+      },
+      {
+        "key": "accessTokenUrl",
+        "value": "https://login.salesforce.com/services/oauth2/token"
+      },
+      {
+        "key": "authUrl",
+        "value": "https://login.salesforce.com/services/oauth2/authorize"
+      },
+      {
+        "key": "grant_type",
+        "value": "authorization_code"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "35143314-ee9f-4d60-a344-3a616b3ff8d6",
+    "name": "Salesforce Sales Cloud Salesforce Analytics REST Change Events Run Tests API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.\n\nContact Support:\n Name: Salesforce Developer Support",
+      "type": "text/plain"
+    }
+  }
+}
