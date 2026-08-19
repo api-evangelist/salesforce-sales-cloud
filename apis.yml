@@ -19,7 +19,7 @@ image: https://www.salesforce.com/content/dam/web/en_us/www/images/salesforce-lo
 url: https://www.salesforce.com/products/sales-cloud/overview/
 created: '2024-01-15'
 modified: '2026-05-19'
-specificationVersion: '0.18'
+specificationVersion: '0.23'
 tags:
 - Cloud
 - CRM
