@@ -75,6 +75,11 @@ apis:
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/
   baseURL: https://yourInstance.salesforce.com/cometd/59.0
   tags:
+  - Event
+  - Push Notifications
+  - Real-Time
+  - Streaming
+  tags_raw:
   - Events
   - Push Notifications
   - Real-Time
@@ -93,6 +98,11 @@ apis:
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0/sobjects
   tags:
+  - Event
+  - Integration
+  - Messaging
+  - Pub-Sub
+  tags_raw:
   - Events
   - Integration
   - Messaging
@@ -160,6 +170,11 @@ apis:
   humanURL: https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html
   baseURL: https://yourInstance.salesforce.com
   tags:
+  - Event
+  - gRPC
+  - Pub-Sub
+  - Real-Time
+  tags_raw:
   - Events
   - gRPC
   - Pub/Sub
@@ -991,6 +1006,8 @@ apis:
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -1065,6 +1082,8 @@ apis:
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0
   tags:
+  - Group
+  tags_raw:
   - Groups
   properties:
   - type: OpenAPI
@@ -1657,6 +1676,8 @@ apis:
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0
   tags:
+  - Pick List Values
+  tags_raw:
   - Picklist Values
   properties:
   - type: OpenAPI
@@ -3433,6 +3454,8 @@ apis:
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
