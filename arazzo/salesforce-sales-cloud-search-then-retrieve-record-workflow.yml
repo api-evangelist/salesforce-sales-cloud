@@ -10,8 +10,11 @@ info:
     request and the OAuth bearer Authorization header.
   version: 1.0.0
 sourceDescriptions:
-- name: restApi
-  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+- name: searchApi
+  url: ../openapi/salesforce-sales-cloud-search-api-openapi.yml
+  type: openapi
+- name: sobjectRowsApi
+  url: ../openapi/salesforce-sales-cloud-sobject-rows-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: search-then-retrieve-record

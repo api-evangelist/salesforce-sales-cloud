@@ -10,11 +10,11 @@ info:
     OAuth bearer Authorization header.
   version: 1.0.0
 sourceDescriptions:
-- name: compositeApi
-  url: ../openapi/salesforce-sales-cloud-composite-api-openapi.yml
+- name: sobjectRowsApi
+  url: ../openapi/salesforce-sales-cloud-sobject-rows-api-openapi.yml
   type: openapi
-- name: restApi
-  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+- name: sobjectTreeApi
+  url: ../openapi/salesforce-sales-cloud-sobject-tree-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: account-tree-with-contacts

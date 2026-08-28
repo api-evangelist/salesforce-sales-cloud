@@ -12,8 +12,8 @@ info:
     Authorization header so the flow reads end to end.
   version: 1.0.0
 sourceDescriptions:
-- name: restApi
-  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+- name: sobjectRowsApi
+  url: ../openapi/salesforce-sales-cloud-sobject-rows-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: create-and-convert-lead

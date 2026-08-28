@@ -10,8 +10,11 @@ info:
     its request and the OAuth bearer Authorization header.
   version: 1.0.0
 sourceDescriptions:
-- name: restApi
-  url: ../openapi/salesforce-sales-cloud-rest-api-openapi.yml
+- name: queryApi
+  url: ../openapi/salesforce-sales-cloud-query-api-openapi.yml
+  type: openapi
+- name: sobjectRowsApi
+  url: ../openapi/salesforce-sales-cloud-sobject-rows-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: schedule-event-with-contact
