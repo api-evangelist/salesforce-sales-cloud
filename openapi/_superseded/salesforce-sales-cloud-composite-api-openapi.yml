@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite API
   description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
@@ -63,10 +63,40 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
     ErrorResponse:
       type: array
       items:
         $ref: '#/components/schemas/ApiError'
+    CompositeResponse:
+      type: object
+      description: Response from a composite request
+      properties:
+        compositeResponse:
+          type: array
+          items:
+            type: object
+            properties:
+              body:
+                description: The response body
+              httpHeaders:
+                type: object
+                additionalProperties:
+                  type: string
+              httpStatusCode:
+                type: integer
+              referenceId:
+                type: string
     CompositeRequest:
       type: object
       description: A composite request containing multiple subrequests
@@ -111,36 +141,6 @@ components:
               url:
                 type: string
                 description: The resource URL relative to the API version
-    ApiError:
-      type: object
-      properties:
-        statusCode:
-          type: string
-        message:
-          type: string
-        fields:
-          type: array
-          items:
-            type: string
-    CompositeResponse:
-      type: object
-      description: Response from a composite request
-      properties:
-        compositeResponse:
-          type: array
-          items:
-            type: object
-            properties:
-              body:
-                description: The response body
-              httpHeaders:
-                type: object
-                additionalProperties:
-                  type: string
-              httpStatusCode:
-                type: integer
-              referenceId:
-                type: string
   securitySchemes:
     oauth2:
       type: oauth2

@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Communities API
-  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  title: Salesforce Sales Cloud Salesforce Connect REST Communities API
+  description: Integrate mobile apps, intranet sites, and third-party web applications with Salesforce. Provides access to Chatter feeds, groups, users, files, and collaboration features. Responses are localized, structured for presentation, and can be filtered to contain only what the app needs.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
   contact:
@@ -11,7 +11,7 @@ info:
     name: Salesforce Master Subscription Agreement
     url: https://www.salesforce.com/company/legal/agreements/
 servers:
-- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+- url: https://{instance}.salesforce.com/services/data/v59.0/connect
   description: Salesforce Production or Developer Edition
   variables:
     instance:
@@ -48,25 +48,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
     Community:
       type: object
       properties:
@@ -109,6 +91,24 @@ components:
           type: string
         urlPathPrefix:
           type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth2:
       type: oauth2
@@ -119,10 +119,11 @@ components:
           tokenUrl: https://login.salesforce.com/services/oauth2/token
           scopes:
             api: Access and manage your Salesforce data
+            chatter_api: Access Chatter data
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: OAuth 2.0 Access Token
 externalDocs:
-  description: Salesforce Reports and Dashboards REST API Developer Guide
-  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  description: Connect REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm

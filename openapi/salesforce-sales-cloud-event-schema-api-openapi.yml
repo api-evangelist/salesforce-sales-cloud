@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Event Schema API
-  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  title: Salesforce Sales Cloud Salesforce Change Data Capture Event Schema API
+  description: Receive near-real-time notifications of changes to Salesforce records including creates, updates, deletes, and undeletes. Enables synchronization of external data stores with Salesforce data. Uses REST endpoints for schema retrieval and configuration, with event delivery via CometD streaming or Pub/Sub API.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
   contact:
@@ -11,7 +11,7 @@ info:
     name: Salesforce Master Subscription Agreement
     url: https://www.salesforce.com/company/legal/agreements/
 servers:
-- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+- url: https://{instance}.salesforce.com/services/data/v59.0
   description: Salesforce Production or Developer Edition
   variables:
     instance:
@@ -97,55 +97,33 @@ paths:
           $ref: '#/components/responses/Unauthorized'
         '404':
           $ref: '#/components/responses/NotFound'
-  /sobjects/{eventApiName}/eventSchema:
-    get:
-      operationId: getPlatformEventSchema
-      summary: Salesforce Sales Cloud Get platform event schema
-      description: Retrieves the Apache Avro schema for the specified platform event. The schema describes the event's fields and their types in Avro format, used by the Pub/Sub API for binary event encoding.
-      tags:
-      - Event Schema
-      parameters:
-      - $ref: '#/components/parameters/eventApiName'
-      - name: payloadFormat
-        in: query
-        description: The payload format for the schema
-        required: false
-        schema:
-          type: string
-          enum:
-          - EXPANDED
-          - COMPACT
-      responses:
-        '200':
-          description: Successfully retrieved event schema
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  fields:
-                    type: array
-                    items:
-                      type: object
-                  name:
-                    type: string
-                  namespace:
-                    type: string
-                  type:
-                    type: string
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        '404':
-          $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
   parameters:
-    eventApiName:
-      name: eventApiName
-      in: path
-      required: true
-      description: The API name of the platform event (e.g., Order_Event__e)
-      schema:
-        type: string
     changeEventName:
       name: changeEventName
       in: path
@@ -166,31 +144,6 @@ components:
         lead:
           value: LeadChangeEvent
           summary: Lead change events
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
   securitySchemes:
     oauth2:
       type: oauth2
@@ -206,5 +159,5 @@ components:
       scheme: bearer
       bearerFormat: OAuth 2.0 Access Token
 externalDocs:
-  description: Salesforce Reports and Dashboards REST API Developer Guide
-  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  description: Change Data Capture Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm

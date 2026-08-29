@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Custom Endpoints API
-  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  title: Salesforce Sales Cloud Salesforce Apex REST Custom Endpoints API
+  description: Create custom REST endpoints in Salesforce using Apex classes annotated with @RestResource. Supports OAuth 2.0 authentication and JSON and XML request and response formats. Custom Apex REST endpoints are accessed under the /services/apexrest/ URL namespace. Each endpoint is defined by an Apex class with @HttpGet, @HttpPost, @HttpPatch, @HttpPut, and @HttpDelete annotated methods.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
   contact:
@@ -11,7 +11,7 @@ info:
     name: Salesforce Master Subscription Agreement
     url: https://www.salesforce.com/company/legal/agreements/
 servers:
-- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+- url: https://{instance}.salesforce.com/services/apexrest
   description: Salesforce Production or Developer Edition
   variables:
     instance:
@@ -170,18 +170,6 @@ paths:
           $ref: '#/components/responses/InternalError'
 components:
   responses:
-    InternalError:
-      description: Unhandled Apex exception or internal server error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request parameters or body
       content:
@@ -194,14 +182,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    resourcePath:
-      name: resourcePath
-      in: path
-      required: true
-      description: The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)
-      schema:
-        type: string
+    InternalError:
+      description: Unhandled Apex exception or internal server error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     ErrorResponse:
       type: array
@@ -214,6 +206,14 @@ components:
           type: string
         message:
           type: string
+  parameters:
+    resourcePath:
+      name: resourcePath
+      in: path
+      required: true
+      description: The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2
@@ -229,5 +229,5 @@ components:
       scheme: bearer
       bearerFormat: OAuth 2.0 Access Token
 externalDocs:
-  description: Salesforce Reports and Dashboards REST API Developer Guide
-  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  description: Apex REST Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm

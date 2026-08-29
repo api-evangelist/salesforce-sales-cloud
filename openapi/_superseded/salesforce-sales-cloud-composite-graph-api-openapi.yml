@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite Graph API
   description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
@@ -49,7 +49,35 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ApiError:
+      type: object
+      properties:
+        statusCode:
+          type: string
+        message:
+          type: string
+        fields:
+          type: array
+          items:
+            type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     CompositeGraphResponse:
       type: object
       description: Response from a composite graph request
@@ -79,10 +107,6 @@ components:
                           type: string
               isSuccessful:
                 type: boolean
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     CompositeGraphRequest:
       type: object
       description: A composite graph request containing one or more graphs
@@ -123,30 +147,6 @@ components:
                       type: string
                     url:
                       type: string
-    ApiError:
-      type: object
-      properties:
-        statusCode:
-          type: string
-        message:
-          type: string
-        fields:
-          type: array
-          items:
-            type: string
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth2:
       type: oauth2

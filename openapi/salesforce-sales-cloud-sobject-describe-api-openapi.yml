@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events SObject Describe API
-  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  title: Salesforce Sales Cloud Salesforce REST SObject Describe API
+  description: Primary REST API for accessing Salesforce data including accounts, contacts, leads, opportunities, and custom objects. Supports JSON and XML formats with a lightweight request and response framework. Provides CRUD operations on standard and custom sObjects, SOQL/SOSL queries, and access to org metadata.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
   contact:
@@ -11,12 +11,18 @@ info:
     name: Salesforce Master Subscription Agreement
     url: https://www.salesforce.com/company/legal/agreements/
 servers:
-- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+- url: https://{instance}.salesforce.com/services/data/v59.0
   description: Salesforce Production or Developer Edition
   variables:
     instance:
       default: yourInstance
-      description: Your Salesforce instance identifier
+      description: Your Salesforce instance identifier (e.g., na1, eu5, or custom My Domain)
+- url: https://{instance}.sandbox.my.salesforce.com/services/data/v59.0
+  description: Salesforce Sandbox
+  variables:
+    instance:
+      default: yourInstance
+      description: Your Salesforce sandbox instance identifier
 security:
 - oauth2: []
 - bearerAuth: []
@@ -66,19 +72,159 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    Unauthorized:
-      description: Authentication failed - invalid, expired, or missing access token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Resource not found - invalid sObject name or record ID
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed - invalid, expired, or missing access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
+    SObjectDescribe:
+      type: object
+      description: Full metadata description of an sObject including fields and relationships
+      properties:
+        actionOverrides:
+          type: array
+          items:
+            type: object
+        activateable:
+          type: boolean
+        childRelationships:
+          type: array
+          items:
+            type: object
+            properties:
+              cascadeDelete:
+                type: boolean
+              childSObject:
+                type: string
+              deprecatedAndHidden:
+                type: boolean
+              field:
+                type: string
+              junctionIdListNames:
+                type: array
+                items:
+                  type: string
+              junctionReferenceTo:
+                type: array
+                items:
+                  type: string
+              relationshipName:
+                type: string
+                nullable: true
+              restrictedDelete:
+                type: boolean
+        compactLayoutable:
+          type: boolean
+        createable:
+          type: boolean
+        custom:
+          type: boolean
+        customSetting:
+          type: boolean
+        deletable:
+          type: boolean
+        deprecatedAndHidden:
+          type: boolean
+        feedEnabled:
+          type: boolean
+        fields:
+          type: array
+          items:
+            $ref: '#/components/schemas/FieldDescribe'
+        hasSubtypes:
+          type: boolean
+        isSubtype:
+          type: boolean
+        keyPrefix:
+          type: string
+          nullable: true
+        label:
+          type: string
+        labelPlural:
+          type: string
+        layoutable:
+          type: boolean
+        listviewable:
+          type: boolean
+        lookupLayoutable:
+          type: boolean
+        mergeable:
+          type: boolean
+        mruEnabled:
+          type: boolean
+        name:
+          type: string
+        namedLayoutInfos:
+          type: array
+          items:
+            type: object
+        queryable:
+          type: boolean
+        recordTypeInfos:
+          type: array
+          items:
+            type: object
+            properties:
+              active:
+                type: boolean
+              available:
+                type: boolean
+              defaultRecordTypeMapping:
+                type: boolean
+              developerName:
+                type: string
+              master:
+                type: boolean
+              name:
+                type: string
+              recordTypeId:
+                type: string
+        replicateable:
+          type: boolean
+        retrieveable:
+          type: boolean
+        searchLayoutable:
+          type: boolean
+        searchable:
+          type: boolean
+        triggerable:
+          type: boolean
+        undeletable:
+          type: boolean
+        updateable:
+          type: boolean
+        urls:
+          type: object
+          additionalProperties:
+            type: string
+    ApiError:
+      type: object
+      description: An API error message
+      properties:
+        statusCode:
+          type: string
+          description: The error status code
+        message:
+          type: string
+          description: The error message
+        fields:
+          type: array
+          description: Fields related to the error
+          items:
+            type: string
     FieldDescribe:
       type: object
       description: Metadata description of a single field on an sObject
@@ -240,146 +386,6 @@ components:
           type: boolean
         writeRequiresMasterRead:
           type: boolean
-    SObjectDescribe:
-      type: object
-      description: Full metadata description of an sObject including fields and relationships
-      properties:
-        actionOverrides:
-          type: array
-          items:
-            type: object
-        activateable:
-          type: boolean
-        childRelationships:
-          type: array
-          items:
-            type: object
-            properties:
-              cascadeDelete:
-                type: boolean
-              childSObject:
-                type: string
-              deprecatedAndHidden:
-                type: boolean
-              field:
-                type: string
-              junctionIdListNames:
-                type: array
-                items:
-                  type: string
-              junctionReferenceTo:
-                type: array
-                items:
-                  type: string
-              relationshipName:
-                type: string
-                nullable: true
-              restrictedDelete:
-                type: boolean
-        compactLayoutable:
-          type: boolean
-        createable:
-          type: boolean
-        custom:
-          type: boolean
-        customSetting:
-          type: boolean
-        deletable:
-          type: boolean
-        deprecatedAndHidden:
-          type: boolean
-        feedEnabled:
-          type: boolean
-        fields:
-          type: array
-          items:
-            $ref: '#/components/schemas/FieldDescribe'
-        hasSubtypes:
-          type: boolean
-        isSubtype:
-          type: boolean
-        keyPrefix:
-          type: string
-          nullable: true
-        label:
-          type: string
-        labelPlural:
-          type: string
-        layoutable:
-          type: boolean
-        listviewable:
-          type: boolean
-        lookupLayoutable:
-          type: boolean
-        mergeable:
-          type: boolean
-        mruEnabled:
-          type: boolean
-        name:
-          type: string
-        namedLayoutInfos:
-          type: array
-          items:
-            type: object
-        queryable:
-          type: boolean
-        recordTypeInfos:
-          type: array
-          items:
-            type: object
-            properties:
-              active:
-                type: boolean
-              available:
-                type: boolean
-              defaultRecordTypeMapping:
-                type: boolean
-              developerName:
-                type: string
-              master:
-                type: boolean
-              name:
-                type: string
-              recordTypeId:
-                type: string
-        replicateable:
-          type: boolean
-        retrieveable:
-          type: boolean
-        searchLayoutable:
-          type: boolean
-        searchable:
-          type: boolean
-        triggerable:
-          type: boolean
-        undeletable:
-          type: boolean
-        updateable:
-          type: boolean
-        urls:
-          type: object
-          additionalProperties:
-            type: string
-    ErrorResponse:
-      type: array
-      description: Standard Salesforce REST API error response
-      items:
-        $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      description: An API error message
-      properties:
-        statusCode:
-          type: string
-          description: The error status code
-        message:
-          type: string
-          description: The error message
-        fields:
-          type: array
-          description: Fields related to the error
-          items:
-            type: string
   parameters:
     sObjectName:
       name: sObjectName
@@ -409,12 +415,20 @@ components:
         authorizationCode:
           authorizationUrl: https://login.salesforce.com/services/oauth2/authorize
           tokenUrl: https://login.salesforce.com/services/oauth2/token
+          refreshUrl: https://login.salesforce.com/services/oauth2/token
+          scopes:
+            api: Access and manage your Salesforce data
+            full: Full access to your Salesforce data
+            refresh_token: Allow refresh token access
+        clientCredentials:
+          tokenUrl: https://login.salesforce.com/services/oauth2/token
           scopes:
             api: Access and manage your Salesforce data
     bearerAuth:
       type: http
       scheme: bearer
       bearerFormat: OAuth 2.0 Access Token
+      description: Bearer token obtained via OAuth 2.0 flow
 externalDocs:
-  description: Salesforce Reports and Dashboards REST API Developer Guide
-  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  description: Salesforce REST API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm

@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Analytics REST Change Events Records API
-  description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
+  title: Salesforce Sales Cloud Salesforce User Interface Records API
+  description: Build custom user interfaces for Salesforce data using the same API that powers Lightning Experience. Returns data and metadata in a single response with layout, picklist, and field-level security awareness. Provides record CRUD operations, layout metadata, picklist values, and object information optimized for UI rendering.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
   contact:
@@ -11,7 +11,7 @@ info:
     name: Salesforce Master Subscription Agreement
     url: https://www.salesforce.com/company/legal/agreements/
 servers:
-- url: https://{instance}.salesforce.com/services/data/v59.0/analytics
+- url: https://{instance}.salesforce.com/services/data/v59.0/ui-api
   description: Salesforce Production or Developer Edition
   variables:
     instance:
@@ -157,38 +157,7 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  parameters:
-    recordId:
-      name: recordId
-      in: path
-      required: true
-      description: The 18-character Salesforce record ID
-      schema:
-        type: string
   schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     RecordRepresentation:
       type: object
       description: A record with field values and UI metadata
@@ -240,6 +209,10 @@ components:
           format: date-time
         weakEtag:
           type: integer
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -247,6 +220,33 @@ components:
           type: string
         message:
           type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      description: The 18-character Salesforce record ID
+      schema:
+        type: string
   securitySchemes:
     oauth2:
       type: oauth2
@@ -262,5 +262,5 @@ components:
       scheme: bearer
       bearerFormat: OAuth 2.0 Access Token
 externalDocs:
-  description: Salesforce Reports and Dashboards REST API Developer Guide
-  url: https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm
+  description: User Interface API Developer Guide
+  url: https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm
