@@ -112,7 +112,7 @@ apis:
   tags:
   - Event
   - gRPC
-  - Pub-Sub
+  - Pub/Sub
   - Real-Time
   tags_raw:
   - Events
@@ -1468,7 +1468,7 @@ apis:
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0
   tags:
-  - Pick List Values
+  - Picklist Values
   tags_raw:
   - Picklist Values
   properties:
