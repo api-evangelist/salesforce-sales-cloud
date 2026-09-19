@@ -724,6 +724,8 @@ apis:
   humanURL: https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/
   baseURL: https://yourInstance.salesforce.com/services/data/v59.0
   tags:
+  - Feed
+  tags_raw:
   - Feeds
   properties:
   - type: OpenAPI
