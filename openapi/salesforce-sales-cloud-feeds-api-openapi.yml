@@ -101,90 +101,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-    FeedElement:
-      type: object
-      properties:
-        id:
-          type: string
-        body:
-          $ref: '#/components/schemas/MessageBody'
-        capabilities:
-          type: object
-          properties:
-            comments:
-              type: object
-              properties:
-                total:
-                  type: integer
-            chatterLikes:
-              type: object
-              properties:
-                total:
-                  type: integer
-        createdDate:
-          type: string
-          format: date-time
-        actor:
-          $ref: '#/components/schemas/UserSummary'
-        feedElementType:
-          type: string
-          enum:
-          - FeedItem
-          - Bundle
-        header:
-          type: object
-          properties:
-            text:
-              type: string
-        parent:
-          type: object
-          properties:
-            id:
-              type: string
-            type:
-              type: string
-        type:
-          type: string
-        url:
-          type: string
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
-    FeedElementPage:
-      type: object
-      properties:
-        elements:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeedElement'
-        nextPageUrl:
-          type: string
-          nullable: true
-        updatesUrl:
-          type: string
-          nullable: true
     UserSummary:
       type: object
       properties:
@@ -232,6 +149,89 @@ components:
                 type: string
               url:
                 type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    FeedElementPage:
+      type: object
+      properties:
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeedElement'
+        nextPageUrl:
+          type: string
+          nullable: true
+        updatesUrl:
+          type: string
+          nullable: true
+    FeedElement:
+      type: object
+      properties:
+        id:
+          type: string
+        body:
+          $ref: '#/components/schemas/MessageBody'
+        capabilities:
+          type: object
+          properties:
+            comments:
+              type: object
+              properties:
+                total:
+                  type: integer
+            chatterLikes:
+              type: object
+              properties:
+                total:
+                  type: integer
+        createdDate:
+          type: string
+          format: date-time
+        actor:
+          $ref: '#/components/schemas/UserSummary'
+        feedElementType:
+          type: string
+          enum:
+          - FeedItem
+          - Bundle
+        header:
+          type: object
+          properties:
+            text:
+              type: string
+        parent:
+          type: object
+          properties:
+            id:
+              type: string
+            type:
+              type: string
+        type:
+          type: string
+        url:
+          type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth2:
       type: oauth2

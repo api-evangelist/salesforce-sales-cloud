@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Change Data Capture Event Schema API
+  title: Salesforce Sales Cloud Salesforce Change Data Capture Event…
   description: Receive near-real-time notifications of changes to Salesforce records including creates, updates, deletes, and undeletes. Enables synchronization of external data stores with Salesforce data. Uses REST endpoints for schema retrieval and configuration, with event delivery via CometD streaming or Pub/Sub API.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -99,30 +99,18 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     changeEventName:
       name: changeEventName
@@ -144,6 +132,18 @@ components:
         lead:
           value: LeadChangeEvent
           summary: Lead change events
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Connect REST Feed Items API
+  title: Salesforce Sales Cloud Salesforce Connect REST Feed Items…
   description: Integrate mobile apps, intranet sites, and third-party web applications with Salesforce. Provides access to Chatter feeds, groups, users, files, and collaboration features. Responses are localized, structured for presentation, and can be filtered to contain only what the app needs.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -162,26 +162,33 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    BadRequest:
-      description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    UserSummary:
+      type: object
+      properties:
+        companyName:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        photo:
+          type: object
+          properties:
+            smallPhotoUrl:
+              type: string
+            mediumPhotoUrl:
+              type: string
+        title:
+          type: string
+          nullable: true
+        type:
+          type: string
+        url:
+          type: string
     Comment:
       type: object
       properties:
@@ -194,10 +201,27 @@ components:
           format: date-time
         user:
           $ref: '#/components/schemas/UserSummary'
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
+    MessageBody:
+      type: object
+      properties:
+        messageSegments:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Text
+                - Mention
+                - Hashtag
+                - Link
+              text:
+                type: string
+              id:
+                type: string
+              url:
+                type: string
     FeedElementInput:
       type: object
       required:
@@ -214,6 +238,13 @@ components:
         subjectId:
           type: string
           description: The ID of the parent record, user, or group
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
     FeedElement:
       type: object
       properties:
@@ -260,60 +291,29 @@ components:
           type: string
         url:
           type: string
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
-    UserSummary:
-      type: object
-      properties:
-        companyName:
-          type: string
-          nullable: true
-        displayName:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        photo:
-          type: object
-          properties:
-            smallPhotoUrl:
-              type: string
-            mediumPhotoUrl:
-              type: string
-        title:
-          type: string
-          nullable: true
-        type:
-          type: string
-        url:
-          type: string
-    MessageBody:
-      type: object
-      properties:
-        messageSegments:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - Text
-                - Mention
-                - Hashtag
-                - Link
-              text:
-                type: string
-              id:
-                type: string
-              url:
-                type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth2:
       type: oauth2

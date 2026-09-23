@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Bulk API 2.0 Query Results API
+  title: Salesforce Sales Cloud Salesforce Bulk API 2.0 Query…
   description: Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST API. Supports ingest (insert, update, upsert, delete) and query operations on large volumes of records using CSV data format. Designed for ETL workflows and mass data operations.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -74,30 +74,18 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: The specified job was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed or access token is invalid
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
+    NotFound:
+      description: The specified job was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     jobId:
       name: jobId
@@ -106,6 +94,18 @@ components:
       description: The ID of the bulk job
       schema:
         type: string
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   securitySchemes:
     oauth2:
       type: oauth2

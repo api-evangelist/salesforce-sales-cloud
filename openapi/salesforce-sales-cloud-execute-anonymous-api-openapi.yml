@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Tooling Execute Anonymous API
+  title: Salesforce Sales Cloud Salesforce Tooling Execute Anonymous…
   description: Build custom development tools for Salesforce applications by accessing metadata about Apex classes, triggers, Visualforce pages, and other development artifacts. Provides REST endpoints for querying, creating, updating, and deleting tooling objects such as ApexClass, ApexTrigger, ApexLog, ApexTestQueueItem, and MetadataContainer.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -67,6 +67,10 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -78,10 +82,6 @@ components:
           type: array
           items:
             type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed

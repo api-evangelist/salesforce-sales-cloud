@@ -14,7 +14,7 @@ sourceDescriptions:
   url: ../openapi/salesforce-sales-cloud-sobject-rows-api-openapi.yml
   type: openapi
 - name: sobjectTreeApi
-  url: ../openapi/salesforce-sales-cloud-sobject-tree-api-openapi.yml
+  url: ../openapi/_superseded/salesforce-sales-cloud-sobject-tree-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: account-tree-with-contacts

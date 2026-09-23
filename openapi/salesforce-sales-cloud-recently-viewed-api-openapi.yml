@@ -57,21 +57,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ApiError:
-      type: object
-      description: An API error message
-      properties:
-        statusCode:
-          type: string
-          description: The error status code
-        message:
-          type: string
-          description: The error message
-        fields:
-          type: array
-          description: Fields related to the error
-          items:
-            type: string
     ErrorResponse:
       type: array
       description: Standard Salesforce REST API error response
@@ -94,6 +79,21 @@ components:
           type: string
           description: The 18-character Salesforce record ID
       additionalProperties: true
+    ApiError:
+      type: object
+      description: An API error message
+      properties:
+        statusCode:
+          type: string
+          description: The error status code
+        message:
+          type: string
+          description: The error message
+        fields:
+          type: array
+          description: Fields related to the error
+          items:
+            type: string
   responses:
     Unauthorized:
       description: Authentication failed - invalid, expired, or missing access token

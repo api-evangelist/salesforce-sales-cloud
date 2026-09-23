@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Analytics REST Report Instances API
+  title: Salesforce Sales Cloud Salesforce Analytics REST Report…
   description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -103,36 +103,30 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ReportFilter:
+    ReportInstance:
       type: object
-      description: A filter applied to a report
+      description: Information about an asynchronous report execution instance
       properties:
-        column:
+        completionDate:
           type: string
-        filterType:
+          format: date-time
+          nullable: true
+        id:
           type: string
-        isRunPageEditable:
-          type: boolean
-        operator:
+        ownerId:
+          type: string
+        requestDate:
+          type: string
+          format: date-time
+        status:
           type: string
           enum:
-          - equals
-          - notEqual
-          - lessThan
-          - greaterThan
-          - lessOrEqual
-          - greaterOrEqual
-          - contains
-          - notContain
-          - startsWith
-          - includes
-          - excludes
-        value:
+          - New
+          - Success
+          - Running
+          - Error
+        url:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     ReportResults:
       type: object
       description: Results from running a report
@@ -177,37 +171,6 @@ components:
           type: object
         reportMetadata:
           $ref: '#/components/schemas/ReportMetadata'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
-    ReportInstance:
-      type: object
-      description: Information about an asynchronous report execution instance
-      properties:
-        completionDate:
-          type: string
-          format: date-time
-          nullable: true
-        id:
-          type: string
-        ownerId:
-          type: string
-        requestDate:
-          type: string
-          format: date-time
-        status:
-          type: string
-          enum:
-          - New
-          - Success
-          - Running
-          - Error
-        url:
-          type: string
     ReportMetadata:
       type: object
       description: Metadata describing a report configuration
@@ -320,19 +283,43 @@ components:
             startDate:
               type: string
               nullable: true
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
+    ReportFilter:
+      type: object
+      description: A filter applied to a report
+      properties:
+        column:
+          type: string
+        filterType:
+          type: string
+        isRunPageEditable:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - equals
+          - notEqual
+          - lessThan
+          - greaterThan
+          - lessOrEqual
+          - greaterOrEqual
+          - contains
+          - notContain
+          - startsWith
+          - includes
+          - excludes
+        value:
+          type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   parameters:
     reportId:
       name: reportId
@@ -341,6 +328,19 @@ components:
       description: The 15 or 18 character Salesforce report ID
       schema:
         type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -72,24 +72,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found - invalid sObject name or record ID
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed - invalid, expired, or missing access token
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found - invalid sObject name or record ID
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: array
-      description: Standard Salesforce REST API error response
-      items:
-        $ref: '#/components/schemas/ApiError'
     SObjectDescribe:
       type: object
       description: Full metadata description of an sObject including fields and relationships
@@ -209,21 +204,6 @@ components:
         urls:
           type: object
           additionalProperties:
-            type: string
-    ApiError:
-      type: object
-      description: An API error message
-      properties:
-        statusCode:
-          type: string
-          description: The error status code
-        message:
-          type: string
-          description: The error message
-        fields:
-          type: array
-          description: Fields related to the error
-          items:
             type: string
     FieldDescribe:
       type: object
@@ -386,6 +366,26 @@ components:
           type: boolean
         writeRequiresMasterRead:
           type: boolean
+    ApiError:
+      type: object
+      description: An API error message
+      properties:
+        statusCode:
+          type: string
+          description: The error status code
+        message:
+          type: string
+          description: The error message
+        fields:
+          type: array
+          description: Fields related to the error
+          items:
+            type: string
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
   parameters:
     sObjectName:
       name: sObjectName

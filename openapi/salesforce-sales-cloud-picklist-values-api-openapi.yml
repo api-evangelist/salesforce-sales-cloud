@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce User Interface Picklist Values API
+  title: Salesforce Sales Cloud Salesforce User Interface Picklist…
   description: Build custom user interfaces for Salesforce data using the same API that powers Lightning Experience. Returns data and metadata in a single response with layout, picklist, and field-level security awareness. Provides record CRUD operations, layout metadata, picklist values, and object information optimized for UI rendering.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -120,23 +120,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     PicklistValue:
       type: object
       properties:
@@ -159,6 +155,10 @@ components:
           type: string
         message:
           type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   securitySchemes:
     oauth2:
       type: oauth2

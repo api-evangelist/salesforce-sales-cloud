@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Connect REST Communities API
+  title: Salesforce Sales Cloud Salesforce Connect REST Communities…
   description: Integrate mobile apps, intranet sites, and third-party web applications with Salesforce. Provides access to Chatter feeds, groups, users, files, and collaboration features. Responses are localized, structured for presentation, and can be filtered to contain only what the app needs.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -49,6 +49,10 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     Community:
       type: object
       properties:
@@ -98,10 +102,6 @@ components:
           type: string
         message:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed

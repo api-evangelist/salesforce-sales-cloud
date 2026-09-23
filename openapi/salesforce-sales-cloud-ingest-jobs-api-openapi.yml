@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Bulk API 2.0 Ingest Jobs API
+  title: Salesforce Sales Cloud Salesforce Bulk API 2.0 Ingest Jobs…
   description: Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST API. Supports ingest (insert, update, upsert, delete) and query operations on large volumes of records using CSV data format. Designed for ETL workflows and mass data operations.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -183,25 +183,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    BadRequest:
-      description: Invalid request parameters or malformed request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The specified job was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed or access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     CreateIngestJobRequest:
       type: object
@@ -252,10 +233,6 @@ components:
           - hardDelete
           - update
           - upsert
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     IngestJobInfo:
       type: object
       description: Detailed information about an ingest job
@@ -342,6 +319,29 @@ components:
           type: string
         message:
           type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    Unauthorized:
+      description: Authentication failed or access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: The specified job was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     jobId:
       name: jobId

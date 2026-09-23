@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Analytics REST Dashboards API
+  title: Salesforce Sales Cloud Salesforce Analytics REST Dashboards…
   description: Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications, automating report generation, running reports synchronously or asynchronously, and managing dashboard components and filters.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -134,23 +134,19 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     DashboardListItem:
       type: object
       description: Summary information about a dashboard
@@ -167,6 +163,17 @@ components:
           type: string
         folderName:
           type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     Dashboard:
       type: object
       description: Full dashboard representation with components and data
@@ -208,13 +215,6 @@ components:
                 type: string
               type:
                 type: string
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
   parameters:
     dashboardId:
       name: dashboardId

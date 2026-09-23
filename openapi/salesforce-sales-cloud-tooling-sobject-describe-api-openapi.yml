@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Tooling Tooling SObject Describe API
+  title: Salesforce Sales Cloud Salesforce Tooling Tooling SObject…
   description: Build custom development tools for Salesforce applications by accessing metadata about Apex classes, triggers, Visualforce pages, and other development artifacts. Provides REST endpoints for querying, creating, updating, and deleting tooling objects such as ApexClass, ApexTrigger, ApexLog, ApexTestQueueItem, and MetadataContainer.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -46,23 +46,27 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+  parameters:
+    sObjectName:
+      name: sObjectName
+      in: path
+      required: true
+      description: The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)
+      schema:
+        type: string
   schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -74,14 +78,10 @@ components:
           type: array
           items:
             type: string
-  parameters:
-    sObjectName:
-      name: sObjectName
-      in: path
-      required: true
-      description: The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)
-      schema:
-        type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   securitySchemes:
     oauth2:
       type: oauth2

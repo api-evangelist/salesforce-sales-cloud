@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Apex REST Custom Endpoints API
+  title: Salesforce Sales Cloud Salesforce Apex REST Custom…
   description: Create custom REST endpoints in Salesforce using Apex classes annotated with @RestResource. Supports OAuth 2.0 authentication and JSON and XML request and response formats. Custom Apex REST endpoints are accessed under the /services/apexrest/ URL namespace. Each endpoint is defined by an Apex class with @HttpGet, @HttpPost, @HttpPatch, @HttpPut, and @HttpDelete annotated methods.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -170,6 +170,12 @@ paths:
           $ref: '#/components/responses/InternalError'
 components:
   responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request parameters or body
       content:
@@ -188,24 +194,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-  schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
   parameters:
     resourcePath:
       name: resourcePath
@@ -214,6 +202,18 @@ components:
       description: The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)
       schema:
         type: string
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   securitySchemes:
     oauth2:
       type: oauth2

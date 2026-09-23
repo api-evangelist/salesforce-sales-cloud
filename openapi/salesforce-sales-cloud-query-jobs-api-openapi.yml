@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Salesforce Sales Cloud Salesforce Bulk API 2.0 Query Jobs API
+  title: Salesforce Sales Cloud Salesforce Bulk API 2.0 Query Jobs…
   description: Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST API. Supports ingest (insert, update, upsert, delete) and query operations on large volumes of records using CSV data format. Designed for ETL workflows and mass data operations.
   version: 59.0.0
   termsOfService: https://www.salesforce.com/company/legal/agreements/
@@ -170,6 +170,12 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   responses:
+    Unauthorized:
+      description: Authentication failed or access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request parameters or malformed request body
       content:
@@ -182,17 +188,41 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed or access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
+    CreateQueryJobRequest:
+      type: object
+      description: Request body for creating a new query job
+      required:
+      - operation
+      - query
+      properties:
+        operation:
+          type: string
+          description: The operation type
+          enum:
+          - query
+          - queryAll
+        query:
+          type: string
+          description: The SOQL query string
+        columnDelimiter:
+          type: string
+          description: The column delimiter for the result CSV
+          enum:
+          - BACKQUOTE
+          - CARET
+          - COMMA
+          - PIPE
+          - SEMICOLON
+          - TAB
+          default: COMMA
+        lineEnding:
+          type: string
+          description: The line ending for the result CSV
+          enum:
+          - LF
+          - CRLF
+          default: LF
     QueryJobInfo:
       type: object
       description: Detailed information about a query job
@@ -247,40 +277,10 @@ components:
           type: string
         message:
           type: string
-    CreateQueryJobRequest:
-      type: object
-      description: Request body for creating a new query job
-      required:
-      - operation
-      - query
-      properties:
-        operation:
-          type: string
-          description: The operation type
-          enum:
-          - query
-          - queryAll
-        query:
-          type: string
-          description: The SOQL query string
-        columnDelimiter:
-          type: string
-          description: The column delimiter for the result CSV
-          enum:
-          - BACKQUOTE
-          - CARET
-          - COMMA
-          - PIPE
-          - SEMICOLON
-          - TAB
-          default: COMMA
-        lineEnding:
-          type: string
-          description: The line ending for the result CSV
-          enum:
-          - LF
-          - CRLF
-          default: LF
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   parameters:
     jobId:
       name: jobId
