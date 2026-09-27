@@ -103,6 +103,36 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ReportFilter:
+      type: object
+      description: A filter applied to a report
+      properties:
+        column:
+          type: string
+        filterType:
+          type: string
+        isRunPageEditable:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - equals
+          - notEqual
+          - lessThan
+          - greaterThan
+          - lessOrEqual
+          - greaterOrEqual
+          - contains
+          - notContain
+          - startsWith
+          - includes
+          - excludes
+        value:
+          type: string
     ReportInstance:
       type: object
       description: Information about an asynchronous report execution instance
@@ -127,50 +157,6 @@ components:
           - Error
         url:
           type: string
-    ReportResults:
-      type: object
-      description: Results from running a report
-      properties:
-        allData:
-          type: boolean
-        factMap:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              aggregates:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    label:
-                      type: string
-                    value:
-                      nullable: true
-              rows:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    dataCells:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          label:
-                            type: string
-                          value:
-                            nullable: true
-        groupingsAcross:
-          type: object
-        groupingsDown:
-          type: object
-        hasDetailRows:
-          type: boolean
-        reportExtendedMetadata:
-          type: object
-        reportMetadata:
-          $ref: '#/components/schemas/ReportMetadata'
     ReportMetadata:
       type: object
       description: Metadata describing a report configuration
@@ -283,32 +269,50 @@ components:
             startDate:
               type: string
               nullable: true
-    ReportFilter:
+    ReportResults:
       type: object
-      description: A filter applied to a report
+      description: Results from running a report
       properties:
-        column:
-          type: string
-        filterType:
-          type: string
-        isRunPageEditable:
+        allData:
           type: boolean
-        operator:
-          type: string
-          enum:
-          - equals
-          - notEqual
-          - lessThan
-          - greaterThan
-          - lessOrEqual
-          - greaterOrEqual
-          - contains
-          - notContain
-          - startsWith
-          - includes
-          - excludes
-        value:
-          type: string
+        factMap:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              aggregates:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    value:
+                      nullable: true
+              rows:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dataCells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          label:
+                            type: string
+                          value:
+                            nullable: true
+        groupingsAcross:
+          type: object
+        groupingsDown:
+          type: object
+        hasDetailRows:
+          type: boolean
+        reportExtendedMetadata:
+          type: object
+        reportMetadata:
+          $ref: '#/components/schemas/ReportMetadata'
     ApiError:
       type: object
       properties:
@@ -316,10 +320,19 @@ components:
           type: string
         message:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     reportId:
       name: reportId
@@ -328,19 +341,6 @@ components:
       description: The 15 or 18 character Salesforce report ID
       schema:
         type: string
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth2:
       type: oauth2

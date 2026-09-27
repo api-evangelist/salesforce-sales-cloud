@@ -169,19 +169,19 @@ paths:
         '500':
           $ref: '#/components/responses/InternalError'
 components:
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
   responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters or body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
     NotFound:
       description: Resource or endpoint not found
       content:
@@ -194,6 +194,18 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters or body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     resourcePath:
       name: resourcePath
@@ -202,18 +214,6 @@ components:
       description: The resource path defined by the @RestResource urlMapping annotation on the Apex class (e.g., /MyCustomEndpoint/*)
       schema:
         type: string
-  schemas:
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   securitySchemes:
     oauth2:
       type: oauth2

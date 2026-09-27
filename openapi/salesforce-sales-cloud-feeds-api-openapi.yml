@@ -102,32 +102,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    UserSummary:
-      type: object
-      properties:
-        companyName:
-          type: string
-          nullable: true
-        displayName:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        photo:
-          type: object
-          properties:
-            smallPhotoUrl:
-              type: string
-            mediumPhotoUrl:
-              type: string
-        title:
-          type: string
-          nullable: true
-        type:
-          type: string
-        url:
-          type: string
     MessageBody:
       type: object
       properties:
@@ -149,13 +123,6 @@ components:
                 type: string
               url:
                 type: string
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
     ErrorResponse:
       type: array
       items:
@@ -219,15 +186,48 @@ components:
           type: string
         url:
           type: string
+    UserSummary:
+      type: object
+      properties:
+        companyName:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        photo:
+          type: object
+          properties:
+            smallPhotoUrl:
+              type: string
+            mediumPhotoUrl:
+              type: string
+        title:
+          type: string
+          nullable: true
+        type:
+          type: string
+        url:
+          type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
   responses:
-    Unauthorized:
-      description: Authentication failed
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication failed
       content:
         application/json:
           schema:

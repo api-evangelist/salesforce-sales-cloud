@@ -133,43 +133,7 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
-    DashboardListItem:
-      type: object
-      description: Summary information about a dashboard
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        statusUrl:
-          type: string
-        url:
-          type: string
-        folderId:
-          type: string
-        folderName:
-          type: string
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
     ErrorResponse:
       type: array
       items:
@@ -215,6 +179,29 @@ components:
                 type: string
               type:
                 type: string
+    DashboardListItem:
+      type: object
+      description: Summary information about a dashboard
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        statusUrl:
+          type: string
+        url:
+          type: string
+        folderId:
+          type: string
+        folderName:
+          type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
   parameters:
     dashboardId:
       name: dashboardId
@@ -223,6 +210,19 @@ components:
       description: The 15 or 18 character Salesforce dashboard ID
       schema:
         type: string
+  responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth2:
       type: oauth2

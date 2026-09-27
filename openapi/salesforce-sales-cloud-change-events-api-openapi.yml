@@ -84,15 +84,27 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
   responses:
-    Unauthorized:
-      description: Authentication failed
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    Unauthorized:
+      description: Authentication failed
       content:
         application/json:
           schema:
@@ -118,18 +130,6 @@ components:
         lead:
           value: LeadChangeEvent
           summary: Lead change events
-  schemas:
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -163,6 +163,59 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    MessageBody:
+      type: object
+      properties:
+        messageSegments:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Text
+                - Mention
+                - Hashtag
+                - Link
+              text:
+                type: string
+              id:
+                type: string
+              url:
+                type: string
+    Comment:
+      type: object
+      properties:
+        id:
+          type: string
+        body:
+          $ref: '#/components/schemas/MessageBody'
+        createdDate:
+          type: string
+          format: date-time
+        user:
+          $ref: '#/components/schemas/UserSummary'
+    FeedElementInput:
+      type: object
+      required:
+      - body
+      - feedElementType
+      - subjectId
+      properties:
+        body:
+          $ref: '#/components/schemas/MessageBody'
+        feedElementType:
+          type: string
+          enum:
+          - FeedItem
+        subjectId:
+          type: string
+          description: The ID of the parent record, user, or group
     UserSummary:
       type: object
       properties:
@@ -188,62 +241,6 @@ components:
         type:
           type: string
         url:
-          type: string
-    Comment:
-      type: object
-      properties:
-        id:
-          type: string
-        body:
-          $ref: '#/components/schemas/MessageBody'
-        createdDate:
-          type: string
-          format: date-time
-        user:
-          $ref: '#/components/schemas/UserSummary'
-    MessageBody:
-      type: object
-      properties:
-        messageSegments:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - Text
-                - Mention
-                - Hashtag
-                - Link
-              text:
-                type: string
-              id:
-                type: string
-              url:
-                type: string
-    FeedElementInput:
-      type: object
-      required:
-      - body
-      - feedElementType
-      - subjectId
-      properties:
-        body:
-          $ref: '#/components/schemas/MessageBody'
-        feedElementType:
-          type: string
-          enum:
-          - FeedItem
-        subjectId:
-          type: string
-          description: The ID of the parent record, user, or group
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
           type: string
     FeedElement:
       type: object
@@ -291,11 +288,20 @@ components:
           type: string
         url:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
   responses:
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
     Unauthorized:
       description: Authentication failed
       content:
@@ -304,12 +310,6 @@ components:
             $ref: '#/components/schemas/ErrorResponse'
     BadRequest:
       description: Invalid request
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
       content:
         application/json:
           schema:
