@@ -62,33 +62,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-    FileReference:
-      type: object
-      properties:
-        id:
-          type: string
-        contentUrl:
-          type: string
-        description:
-          type: string
-          nullable: true
-        fileExtension:
-          type: string
-        fileSize:
-          type: integer
-        fileType:
-          type: string
-        modifiedDate:
-          type: string
-          format: date-time
-        owner:
-          $ref: '#/components/schemas/UserSummary'
-        title:
-          type: string
     UserSummary:
       type: object
       properties:
@@ -115,12 +88,39 @@ components:
           type: string
         url:
           type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
         errorCode:
           type: string
         message:
+          type: string
+    FileReference:
+      type: object
+      properties:
+        id:
+          type: string
+        contentUrl:
+          type: string
+        description:
+          type: string
+          nullable: true
+        fileExtension:
+          type: string
+        fileSize:
+          type: integer
+        fileType:
+          type: string
+        modifiedDate:
+          type: string
+          format: date-time
+        owner:
+          $ref: '#/components/schemas/UserSummary'
+        title:
           type: string
   responses:
     Unauthorized:

@@ -119,18 +119,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
   responses:
     NotFound:
       description: The specified job was not found
@@ -158,6 +146,18 @@ components:
       description: The ID of the bulk job
       schema:
         type: string
+  schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
   securitySchemes:
     oauth2:
       type: oauth2

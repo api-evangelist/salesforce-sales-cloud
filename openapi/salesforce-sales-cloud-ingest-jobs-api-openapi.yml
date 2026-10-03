@@ -183,11 +183,86 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
+  responses:
+    NotFound:
+      description: The specified job was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    Unauthorized:
+      description: Authentication failed or access token is invalid
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    BadRequest:
+      description: Invalid request parameters or malformed request body
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    CreateIngestJobRequest:
+      type: object
+      description: Request body for creating a new ingest job
+      required:
+      - object
+      - operation
+      properties:
+        assignmentRuleId:
+          type: string
+          description: The ID of an assignment rule to apply during the operation
+        columnDelimiter:
+          type: string
+          description: The column delimiter used in the CSV data
+          enum:
+          - BACKQUOTE
+          - CARET
+          - COMMA
+          - PIPE
+          - SEMICOLON
+          - TAB
+          default: COMMA
+        contentType:
+          type: string
+          description: The content type of the data
+          enum:
+          - CSV
+          default: CSV
+        externalIdFieldName:
+          type: string
+          description: The external ID field name for upsert operations
+        lineEnding:
+          type: string
+          description: The line ending used in the CSV data
+          enum:
+          - LF
+          - CRLF
+          default: LF
+        object:
+          type: string
+          description: The sObject type for the job (e.g., Account, Contact)
+        operation:
+          type: string
+          description: The operation to perform
+          enum:
+          - insert
+          - delete
+          - hardDelete
+          - update
+          - upsert
     ErrorResponse:
       type: array
       items:
         $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
     IngestJobInfo:
       type: object
       description: Detailed information about an ingest job
@@ -267,81 +342,6 @@ components:
           type: integer
         apexProcessingTime:
           type: integer
-    CreateIngestJobRequest:
-      type: object
-      description: Request body for creating a new ingest job
-      required:
-      - object
-      - operation
-      properties:
-        assignmentRuleId:
-          type: string
-          description: The ID of an assignment rule to apply during the operation
-        columnDelimiter:
-          type: string
-          description: The column delimiter used in the CSV data
-          enum:
-          - BACKQUOTE
-          - CARET
-          - COMMA
-          - PIPE
-          - SEMICOLON
-          - TAB
-          default: COMMA
-        contentType:
-          type: string
-          description: The content type of the data
-          enum:
-          - CSV
-          default: CSV
-        externalIdFieldName:
-          type: string
-          description: The external ID field name for upsert operations
-        lineEnding:
-          type: string
-          description: The line ending used in the CSV data
-          enum:
-          - LF
-          - CRLF
-          default: LF
-        object:
-          type: string
-          description: The sObject type for the job (e.g., Account, Contact)
-        operation:
-          type: string
-          description: The operation to perform
-          enum:
-          - insert
-          - delete
-          - hardDelete
-          - update
-          - upsert
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
-  responses:
-    NotFound:
-      description: The specified job was not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed or access token is invalid
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     jobId:
       name: jobId
