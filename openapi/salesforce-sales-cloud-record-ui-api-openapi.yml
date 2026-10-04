@@ -87,6 +87,64 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    RecordRepresentation:
+      type: object
+      description: A record with field values and UI metadata
+      properties:
+        apiName:
+          type: string
+          description: The sObject API name
+        childRelationships:
+          type: object
+          additionalProperties: true
+        eTag:
+          type: string
+        fields:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              displayValue:
+                type: string
+                nullable: true
+              value:
+                nullable: true
+        id:
+          type: string
+        lastModifiedById:
+          type: string
+        lastModifiedDate:
+          type: string
+          format: date-time
+        recordTypeId:
+          type: string
+          nullable: true
+        recordTypeInfo:
+          type: object
+          nullable: true
+          properties:
+            available:
+              type: boolean
+            defaultRecordTypeMapping:
+              type: boolean
+            master:
+              type: boolean
+            name:
+              type: string
+            recordTypeId:
+              type: string
+        systemModstamp:
+          type: string
+          format: date-time
+        weakEtag:
+          type: integer
     ObjectInfo:
       type: object
       description: Object metadata optimized for UI rendering
@@ -239,64 +297,6 @@ components:
       type: array
       items:
         $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
-    RecordRepresentation:
-      type: object
-      description: A record with field values and UI metadata
-      properties:
-        apiName:
-          type: string
-          description: The sObject API name
-        childRelationships:
-          type: object
-          additionalProperties: true
-        eTag:
-          type: string
-        fields:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              displayValue:
-                type: string
-                nullable: true
-              value:
-                nullable: true
-        id:
-          type: string
-        lastModifiedById:
-          type: string
-        lastModifiedDate:
-          type: string
-          format: date-time
-        recordTypeId:
-          type: string
-          nullable: true
-        recordTypeInfo:
-          type: object
-          nullable: true
-          properties:
-            available:
-              type: boolean
-            defaultRecordTypeMapping:
-              type: boolean
-            master:
-              type: boolean
-            name:
-              type: string
-            recordTypeId:
-              type: string
-        systemModstamp:
-          type: string
-          format: date-time
-        weakEtag:
-          type: integer
   responses:
     Unauthorized:
       description: Authentication failed

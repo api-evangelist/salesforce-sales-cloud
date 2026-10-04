@@ -169,9 +169,21 @@ paths:
         '500':
           $ref: '#/components/responses/InternalError'
 components:
+  schemas:
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   responses:
-    NotFound:
-      description: Resource or endpoint not found
+    Unauthorized:
+      description: Authentication failed
       content:
         application/json:
           schema:
@@ -182,8 +194,8 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
+    NotFound:
+      description: Resource or endpoint not found
       content:
         application/json:
           schema:
@@ -194,18 +206,6 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-  schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
   parameters:
     resourcePath:
       name: resourcePath

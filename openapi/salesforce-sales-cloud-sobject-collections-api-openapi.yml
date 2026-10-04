@@ -168,26 +168,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ErrorResponse:
-      type: array
-      description: Standard Salesforce REST API error response
-      items:
-        $ref: '#/components/schemas/ApiError'
-    CreateRecordResult:
-      type: object
-      description: Result from a create, update, or delete operation
-      properties:
-        id:
-          type: string
-          description: The ID of the created or affected record
-        success:
-          type: boolean
-          description: Whether the operation succeeded
-        errors:
-          type: array
-          description: List of errors if the operation failed
-          items:
-            $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       description: An API error message
@@ -203,6 +183,26 @@ components:
           description: Fields related to the error
           items:
             type: string
+    CreateRecordResult:
+      type: object
+      description: Result from a create, update, or delete operation
+      properties:
+        id:
+          type: string
+          description: The ID of the created or affected record
+        success:
+          type: boolean
+          description: Whether the operation succeeded
+        errors:
+          type: array
+          description: List of errors if the operation failed
+          items:
+            $ref: '#/components/schemas/ApiError'
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed - invalid, expired, or missing access token

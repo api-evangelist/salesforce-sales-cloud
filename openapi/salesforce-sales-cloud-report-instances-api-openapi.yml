@@ -102,20 +102,33 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ReportFilter:
+      type: object
+      description: A filter applied to a report
+      properties:
+        column:
+          type: string
+        filterType:
+          type: string
+        isRunPageEditable:
+          type: boolean
+        operator:
+          type: string
+          enum:
+          - equals
+          - notEqual
+          - lessThan
+          - greaterThan
+          - lessOrEqual
+          - greaterOrEqual
+          - contains
+          - notContain
+          - startsWith
+          - includes
+          - excludes
+        value:
+          type: string
     ReportMetadata:
       type: object
       description: Metadata describing a report configuration
@@ -228,32 +241,6 @@ components:
             startDate:
               type: string
               nullable: true
-    ReportFilter:
-      type: object
-      description: A filter applied to a report
-      properties:
-        column:
-          type: string
-        filterType:
-          type: string
-        isRunPageEditable:
-          type: boolean
-        operator:
-          type: string
-          enum:
-          - equals
-          - notEqual
-          - lessThan
-          - greaterThan
-          - lessOrEqual
-          - greaterOrEqual
-          - contains
-          - notContain
-          - startsWith
-          - includes
-          - excludes
-        value:
-          type: string
     ReportInstance:
       type: object
       description: Information about an asynchronous report execution instance
@@ -278,10 +265,13 @@ components:
           - Error
         url:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
     ReportResults:
       type: object
       description: Results from running a report
@@ -326,13 +316,23 @@ components:
           type: object
         reportMetadata:
           $ref: '#/components/schemas/ReportMetadata'
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     reportId:
       name: reportId

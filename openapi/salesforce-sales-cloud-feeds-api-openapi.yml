@@ -101,19 +101,6 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
     UserSummary:
       type: object
@@ -141,44 +128,6 @@ components:
           type: string
         url:
           type: string
-    MessageBody:
-      type: object
-      properties:
-        messageSegments:
-          type: array
-          items:
-            type: object
-            properties:
-              type:
-                type: string
-                enum:
-                - Text
-                - Mention
-                - Hashtag
-                - Link
-              text:
-                type: string
-              id:
-                type: string
-              url:
-                type: string
-    FeedElementPage:
-      type: object
-      properties:
-        elements:
-          type: array
-          items:
-            $ref: '#/components/schemas/FeedElement'
-        nextPageUrl:
-          type: string
-          nullable: true
-        updatesUrl:
-          type: string
-          nullable: true
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     FeedElement:
       type: object
       properties:
@@ -225,6 +174,19 @@ components:
           type: string
         url:
           type: string
+    FeedElementPage:
+      type: object
+      properties:
+        elements:
+          type: array
+          items:
+            $ref: '#/components/schemas/FeedElement'
+        nextPageUrl:
+          type: string
+          nullable: true
+        updatesUrl:
+          type: string
+          nullable: true
     ApiError:
       type: object
       properties:
@@ -232,6 +194,44 @@ components:
           type: string
         message:
           type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    MessageBody:
+      type: object
+      properties:
+        messageSegments:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                - Text
+                - Mention
+                - Hashtag
+                - Link
+              text:
+                type: string
+              id:
+                type: string
+              url:
+                type: string
+  responses:
+    Unauthorized:
+      description: Authentication failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   securitySchemes:
     oauth2:
       type: oauth2

@@ -83,20 +83,22 @@ paths:
         '404':
           $ref: '#/components/responses/NotFound'
 components:
-  responses:
-    NotFound:
-      description: Resource not found - invalid sObject name or record ID
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
-    Unauthorized:
-      description: Authentication failed - invalid, expired, or missing access token
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ErrorResponse'
   schemas:
+    ApiError:
+      type: object
+      description: An API error message
+      properties:
+        statusCode:
+          type: string
+          description: The error status code
+        message:
+          type: string
+          description: The error message
+        fields:
+          type: array
+          description: Fields related to the error
+          items:
+            type: string
     SObjectDescribe:
       type: object
       description: Full metadata description of an sObject including fields and relationships
@@ -204,6 +206,61 @@ components:
         retrieveable:
           type: boolean
         searchLayoutable:
+          type: boolean
+        searchable:
+          type: boolean
+        triggerable:
+          type: boolean
+        undeletable:
+          type: boolean
+        updateable:
+          type: boolean
+        urls:
+          type: object
+          additionalProperties:
+            type: string
+    SObjectDescribeBrief:
+      type: object
+      description: Brief metadata description of an sObject
+      properties:
+        activateable:
+          type: boolean
+        custom:
+          type: boolean
+        customSetting:
+          type: boolean
+        createable:
+          type: boolean
+        deletable:
+          type: boolean
+        deprecatedAndHidden:
+          type: boolean
+        feedEnabled:
+          type: boolean
+        hasSubtypes:
+          type: boolean
+        isSubtype:
+          type: boolean
+        keyPrefix:
+          type: string
+          nullable: true
+        label:
+          type: string
+        labelPlural:
+          type: string
+        layoutable:
+          type: boolean
+        mergeable:
+          type: boolean
+        mruEnabled:
+          type: boolean
+        name:
+          type: string
+        queryable:
+          type: boolean
+        replicateable:
+          type: boolean
+        retrieveable:
           type: boolean
         searchable:
           type: boolean
@@ -378,81 +435,6 @@ components:
           type: boolean
         writeRequiresMasterRead:
           type: boolean
-    SObjectDescribeBrief:
-      type: object
-      description: Brief metadata description of an sObject
-      properties:
-        activateable:
-          type: boolean
-        custom:
-          type: boolean
-        customSetting:
-          type: boolean
-        createable:
-          type: boolean
-        deletable:
-          type: boolean
-        deprecatedAndHidden:
-          type: boolean
-        feedEnabled:
-          type: boolean
-        hasSubtypes:
-          type: boolean
-        isSubtype:
-          type: boolean
-        keyPrefix:
-          type: string
-          nullable: true
-        label:
-          type: string
-        labelPlural:
-          type: string
-        layoutable:
-          type: boolean
-        mergeable:
-          type: boolean
-        mruEnabled:
-          type: boolean
-        name:
-          type: string
-        queryable:
-          type: boolean
-        replicateable:
-          type: boolean
-        retrieveable:
-          type: boolean
-        searchable:
-          type: boolean
-        triggerable:
-          type: boolean
-        undeletable:
-          type: boolean
-        updateable:
-          type: boolean
-        urls:
-          type: object
-          additionalProperties:
-            type: string
-    ErrorResponse:
-      type: array
-      description: Standard Salesforce REST API error response
-      items:
-        $ref: '#/components/schemas/ApiError'
-    ApiError:
-      type: object
-      description: An API error message
-      properties:
-        statusCode:
-          type: string
-          description: The error status code
-        message:
-          type: string
-          description: The error message
-        fields:
-          type: array
-          description: Fields related to the error
-          items:
-            type: string
     SObjectRecord:
       type: object
       description: An sObject record with attributes and field values
@@ -470,6 +452,24 @@ components:
           type: string
           description: The 18-character Salesforce record ID
       additionalProperties: true
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
+  responses:
+    Unauthorized:
+      description: Authentication failed - invalid, expired, or missing access token
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFound:
+      description: Resource not found - invalid sObject name or record ID
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
   parameters:
     sObjectName:
       name: sObjectName

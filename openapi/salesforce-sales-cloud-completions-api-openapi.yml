@@ -55,10 +55,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -70,6 +66,10 @@ components:
           type: array
           items:
             type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed

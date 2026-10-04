@@ -88,10 +88,6 @@ components:
           type: string
         url:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -122,6 +118,10 @@ components:
           $ref: '#/components/schemas/UserSummary'
         title:
           type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed
