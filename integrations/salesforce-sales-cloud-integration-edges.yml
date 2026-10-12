@@ -1,0 +1,16 @@
+generated: '2026-10-12'
+method: none
+source:
+- https://zapier.com/apps/salesforce-sales-cloud/integrations
+- https://n8n.io/integrations/salesforce-sales-cloud/
+- https://composio.dev/toolkits/salesforce-sales-cloud
+- https://monid.ai/tools/salesforce-sales-cloud
+checked:
+- https://composio.dev/toolkits/salesforce-sales-cloud
+- https://monid.ai/tools/salesforce-sales-cloud
+- https://n8n.io/integrations/salesforce-sales-cloud/
+- https://zapier.com/apps/salesforce-sales-cloud/integrations
+summary: null
+marketplace_apps: []
+edges: []
+templates: []
