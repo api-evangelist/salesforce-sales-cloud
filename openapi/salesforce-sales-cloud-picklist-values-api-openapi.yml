@@ -120,13 +120,6 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
     ErrorResponse:
       type: array
       items:
@@ -145,6 +138,13 @@ components:
             type: integer
           description: Indices of controlling field values for which this value is valid
         value:
+          type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
           type: string
   responses:
     Unauthorized:

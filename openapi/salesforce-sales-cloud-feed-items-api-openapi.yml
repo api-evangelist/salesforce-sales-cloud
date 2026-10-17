@@ -163,32 +163,10 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    UserSummary:
-      type: object
-      properties:
-        companyName:
-          type: string
-          nullable: true
-        displayName:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        photo:
-          type: object
-          properties:
-            smallPhotoUrl:
-              type: string
-            mediumPhotoUrl:
-              type: string
-        title:
-          type: string
-          nullable: true
-        type:
-          type: string
-        url:
-          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     FeedElement:
       type: object
       properties:
@@ -235,13 +213,6 @@ components:
           type: string
         url:
           type: string
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
     Comment:
       type: object
       properties:
@@ -270,10 +241,39 @@ components:
         subjectId:
           type: string
           description: The ID of the parent record, user, or group
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
+    UserSummary:
+      type: object
+      properties:
+        companyName:
+          type: string
+          nullable: true
+        displayName:
+          type: string
+        id:
+          type: string
+        name:
+          type: string
+        photo:
+          type: object
+          properties:
+            smallPhotoUrl:
+              type: string
+            mediumPhotoUrl:
+              type: string
+        title:
+          type: string
+          nullable: true
+        type:
+          type: string
+        url:
+          type: string
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
     MessageBody:
       type: object
       properties:
@@ -302,14 +302,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request
+    NotFound:
+      description: Resource not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found
+    BadRequest:
+      description: Invalid request
       content:
         application/json:
           schema:

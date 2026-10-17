@@ -103,32 +103,78 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ReportFilter:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ReportInstance:
       type: object
-      description: A filter applied to a report
+      description: Information about an asynchronous report execution instance
       properties:
-        column:
+        completionDate:
           type: string
-        filterType:
+          format: date-time
+          nullable: true
+        id:
           type: string
-        isRunPageEditable:
-          type: boolean
-        operator:
+        ownerId:
+          type: string
+        requestDate:
+          type: string
+          format: date-time
+        status:
           type: string
           enum:
-          - equals
-          - notEqual
-          - lessThan
-          - greaterThan
-          - lessOrEqual
-          - greaterOrEqual
-          - contains
-          - notContain
-          - startsWith
-          - includes
-          - excludes
-        value:
+          - New
+          - Success
+          - Running
+          - Error
+        url:
           type: string
+    ReportResults:
+      type: object
+      description: Results from running a report
+      properties:
+        allData:
+          type: boolean
+        factMap:
+          type: object
+          additionalProperties:
+            type: object
+            properties:
+              aggregates:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    label:
+                      type: string
+                    value:
+                      nullable: true
+              rows:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    dataCells:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          label:
+                            type: string
+                          value:
+                            nullable: true
+        groupingsAcross:
+          type: object
+        groupingsDown:
+          type: object
+        hasDetailRows:
+          type: boolean
+        reportExtendedMetadata:
+          type: object
+        reportMetadata:
+          $ref: '#/components/schemas/ReportMetadata'
     ReportMetadata:
       type: object
       description: Metadata describing a report configuration
@@ -241,29 +287,31 @@ components:
             startDate:
               type: string
               nullable: true
-    ReportInstance:
+    ReportFilter:
       type: object
-      description: Information about an asynchronous report execution instance
+      description: A filter applied to a report
       properties:
-        completionDate:
+        column:
           type: string
-          format: date-time
-          nullable: true
-        id:
+        filterType:
           type: string
-        ownerId:
-          type: string
-        requestDate:
-          type: string
-          format: date-time
-        status:
+        isRunPageEditable:
+          type: boolean
+        operator:
           type: string
           enum:
-          - New
-          - Success
-          - Running
-          - Error
-        url:
+          - equals
+          - notEqual
+          - lessThan
+          - greaterThan
+          - lessOrEqual
+          - greaterOrEqual
+          - contains
+          - notContain
+          - startsWith
+          - includes
+          - excludes
+        value:
           type: string
     ApiError:
       type: object
@@ -272,54 +320,6 @@ components:
           type: string
         message:
           type: string
-    ReportResults:
-      type: object
-      description: Results from running a report
-      properties:
-        allData:
-          type: boolean
-        factMap:
-          type: object
-          additionalProperties:
-            type: object
-            properties:
-              aggregates:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    label:
-                      type: string
-                    value:
-                      nullable: true
-              rows:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    dataCells:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          label:
-                            type: string
-                          value:
-                            nullable: true
-        groupingsAcross:
-          type: object
-        groupingsDown:
-          type: object
-        hasDetailRows:
-          type: boolean
-        reportExtendedMetadata:
-          type: object
-        reportMetadata:
-          $ref: '#/components/schemas/ReportMetadata'
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed

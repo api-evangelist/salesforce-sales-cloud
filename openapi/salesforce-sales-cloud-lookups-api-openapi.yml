@@ -85,6 +85,17 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
     RecordRepresentation:
       type: object
       description: A record with field values and UI metadata
@@ -136,17 +147,6 @@ components:
           format: date-time
         weakEtag:
           type: integer
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed

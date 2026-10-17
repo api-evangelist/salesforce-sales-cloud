@@ -136,6 +136,10 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     UserSummary:
       type: object
       properties:
@@ -196,10 +200,6 @@ components:
           - Unlisted
         url:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed

@@ -115,6 +115,11 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       description: An API error message
@@ -130,11 +135,6 @@ components:
           description: Fields related to the error
           items:
             type: string
-    ErrorResponse:
-      type: array
-      description: Standard Salesforce REST API error response
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     BadRequest:
       description: Invalid request - malformed query, missing required fields, or validation error

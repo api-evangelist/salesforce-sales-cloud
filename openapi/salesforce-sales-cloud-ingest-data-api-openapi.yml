@@ -120,6 +120,10 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -127,10 +131,6 @@ components:
           type: string
         message:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed or access token is invalid
@@ -138,14 +138,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request parameters or malformed request body
+    NotFound:
+      description: The specified job was not found
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: The specified job was not found
+    BadRequest:
+      description: Invalid request parameters or malformed request body
       content:
         application/json:
           schema:

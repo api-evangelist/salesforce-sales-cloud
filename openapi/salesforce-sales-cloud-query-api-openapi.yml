@@ -108,21 +108,28 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ApiError:
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
+    SObjectRecord:
       type: object
-      description: An API error message
+      description: An sObject record with attributes and field values
       properties:
-        statusCode:
+        attributes:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The sObject type
+            url:
+              type: string
+              description: The relative URL for the record
+        Id:
           type: string
-          description: The error status code
-        message:
-          type: string
-          description: The error message
-        fields:
-          type: array
-          description: Fields related to the error
-          items:
-            type: string
+          description: The 18-character Salesforce record ID
+      additionalProperties: true
     QueryResult:
       type: object
       description: Result from a SOQL query execution
@@ -141,28 +148,21 @@ components:
           description: Array of matching records
           items:
             $ref: '#/components/schemas/SObjectRecord'
-    SObjectRecord:
+    ApiError:
       type: object
-      description: An sObject record with attributes and field values
+      description: An API error message
       properties:
-        attributes:
-          type: object
-          properties:
-            type:
-              type: string
-              description: The sObject type
-            url:
-              type: string
-              description: The relative URL for the record
-        Id:
+        statusCode:
           type: string
-          description: The 18-character Salesforce record ID
-      additionalProperties: true
-    ErrorResponse:
-      type: array
-      description: Standard Salesforce REST API error response
-      items:
-        $ref: '#/components/schemas/ApiError'
+          description: The error status code
+        message:
+          type: string
+          description: The error message
+        fields:
+          type: array
+          description: Fields related to the error
+          items:
+            type: string
   responses:
     Unauthorized:
       description: Authentication failed - invalid, expired, or missing access token
@@ -170,14 +170,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    BadRequest:
-      description: Invalid request - malformed query, missing required fields, or validation error
+    NotFound:
+      description: Resource not found - invalid sObject name or record ID
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
-    NotFound:
-      description: Resource not found - invalid sObject name or record ID
+    BadRequest:
+      description: Invalid request - malformed query, missing required fields, or validation error
       content:
         application/json:
           schema:

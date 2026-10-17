@@ -50,13 +50,10 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
-    ApiError:
-      type: object
-      properties:
-        errorCode:
-          type: string
-        message:
-          type: string
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     ObjectInfo:
       type: object
       description: Object metadata optimized for UI rendering
@@ -205,10 +202,13 @@ components:
               type: string
         updateable:
           type: boolean
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
+    ApiError:
+      type: object
+      properties:
+        errorCode:
+          type: string
+        message:
+          type: string
   responses:
     Unauthorized:
       description: Authentication failed

@@ -49,6 +49,10 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     Community:
       type: object
       properties:
@@ -98,10 +102,6 @@ components:
           type: string
         message:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed

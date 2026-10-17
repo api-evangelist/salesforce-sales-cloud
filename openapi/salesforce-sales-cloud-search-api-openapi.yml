@@ -58,29 +58,11 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    ApiError:
-      type: object
-      description: An API error message
-      properties:
-        statusCode:
-          type: string
-          description: The error status code
-        message:
-          type: string
-          description: The error message
-        fields:
-          type: array
-          description: Fields related to the error
-          items:
-            type: string
-    SearchResult:
-      type: object
-      description: Result from a SOSL search execution
-      properties:
-        searchRecords:
-          type: array
-          items:
-            $ref: '#/components/schemas/SObjectRecord'
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
     SObjectRecord:
       type: object
       description: An sObject record with attributes and field values
@@ -98,11 +80,29 @@ components:
           type: string
           description: The 18-character Salesforce record ID
       additionalProperties: true
-    ErrorResponse:
-      type: array
-      description: Standard Salesforce REST API error response
-      items:
-        $ref: '#/components/schemas/ApiError'
+    SearchResult:
+      type: object
+      description: Result from a SOSL search execution
+      properties:
+        searchRecords:
+          type: array
+          items:
+            $ref: '#/components/schemas/SObjectRecord'
+    ApiError:
+      type: object
+      description: An API error message
+      properties:
+        statusCode:
+          type: string
+          description: The error status code
+        message:
+          type: string
+          description: The error message
+        fields:
+          type: array
+          description: Fields related to the error
+          items:
+            type: string
   responses:
     Unauthorized:
       description: Authentication failed - invalid, expired, or missing access token

@@ -175,6 +175,10 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
     ApiError:
       type: object
       properties:
@@ -197,10 +201,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApiError'
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed
@@ -221,18 +221,18 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    recordId:
-      name: recordId
-      in: path
-      required: true
-      description: The Salesforce record ID
-      schema:
-        type: string
     sObjectName:
       name: sObjectName
       in: path
       required: true
       description: The API name of the Tooling sObject (e.g., ApexClass, ApexTrigger)
+      schema:
+        type: string
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      description: The Salesforce record ID
       schema:
         type: string
   securitySchemes:

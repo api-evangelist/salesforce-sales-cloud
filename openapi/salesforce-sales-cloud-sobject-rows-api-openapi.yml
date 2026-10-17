@@ -213,6 +213,28 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      description: Standard Salesforce REST API error response
+      items:
+        $ref: '#/components/schemas/ApiError'
+    SObjectRecord:
+      type: object
+      description: An sObject record with attributes and field values
+      properties:
+        attributes:
+          type: object
+          properties:
+            type:
+              type: string
+              description: The sObject type
+            url:
+              type: string
+              description: The relative URL for the record
+        Id:
+          type: string
+          description: The 18-character Salesforce record ID
+      additionalProperties: true
     ApiError:
       type: object
       description: An API error message
@@ -243,28 +265,6 @@ components:
           description: List of errors if the operation failed
           items:
             $ref: '#/components/schemas/ApiError'
-    SObjectRecord:
-      type: object
-      description: An sObject record with attributes and field values
-      properties:
-        attributes:
-          type: object
-          properties:
-            type:
-              type: string
-              description: The sObject type
-            url:
-              type: string
-              description: The relative URL for the record
-        Id:
-          type: string
-          description: The 18-character Salesforce record ID
-      additionalProperties: true
-    ErrorResponse:
-      type: array
-      description: Standard Salesforce REST API error response
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed - invalid, expired, or missing access token
@@ -285,14 +285,6 @@ components:
           schema:
             $ref: '#/components/schemas/ErrorResponse'
   parameters:
-    recordId:
-      name: recordId
-      in: path
-      required: true
-      description: The 15 or 18 character Salesforce record ID
-      schema:
-        type: string
-        pattern: ^[a-zA-Z0-9]{15}([a-zA-Z0-9]{3})?$
     sObjectName:
       name: sObjectName
       in: path
@@ -313,6 +305,14 @@ components:
         opportunity:
           value: Opportunity
           summary: Standard Opportunity object
+    recordId:
+      name: recordId
+      in: path
+      required: true
+      description: The 15 or 18 character Salesforce record ID
+      schema:
+        type: string
+        pattern: ^[a-zA-Z0-9]{15}([a-zA-Z0-9]{3})?$
   securitySchemes:
     oauth2:
       type: oauth2

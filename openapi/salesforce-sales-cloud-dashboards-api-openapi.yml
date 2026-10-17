@@ -134,6 +134,26 @@ paths:
           $ref: '#/components/responses/NotFound'
 components:
   schemas:
+    ErrorResponse:
+      type: array
+      items:
+        $ref: '#/components/schemas/ApiError'
+    DashboardListItem:
+      type: object
+      description: Summary information about a dashboard
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        statusUrl:
+          type: string
+        url:
+          type: string
+        folderId:
+          type: string
+        folderName:
+          type: string
     Dashboard:
       type: object
       description: Full dashboard representation with components and data
@@ -175,22 +195,6 @@ components:
                 type: string
               type:
                 type: string
-    DashboardListItem:
-      type: object
-      description: Summary information about a dashboard
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        statusUrl:
-          type: string
-        url:
-          type: string
-        folderId:
-          type: string
-        folderName:
-          type: string
     ApiError:
       type: object
       properties:
@@ -198,10 +202,6 @@ components:
           type: string
         message:
           type: string
-    ErrorResponse:
-      type: array
-      items:
-        $ref: '#/components/schemas/ApiError'
   responses:
     Unauthorized:
       description: Authentication failed
