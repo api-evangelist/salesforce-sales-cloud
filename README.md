@@ -1,0 +1,542 @@
+# Salesforce Sales Cloud (salesforce-sales-cloud)
+
+<!-- API-EVANGELIST-PROVENANCE:BEGIN -->
+> ### About this repository
+>
+> **This is not our API.** This repository is an independent, third-party profile of a company's
+> **publicly available** API surface, maintained by [API Evangelist](https://apievangelist.com).
+> API Evangelist does not operate, host, resell, or support this company's APIs, and is not
+> affiliated with or endorsed by the company unless stated on the profile.
+>
+> **Where the information came from.** Everything here is assembled from material a member of the
+> public can reach with a browser and no credentials — the company's own website, developer portal
+> and documentation, the specifications it publishes for public use (OpenAPI, AsyncAPI, JSON Schema,
+> `apis.json`, `llms.txt` and similar), its public repositories, and its public status, pricing and
+> changelog pages. **Nothing here is obtained by breaching a system, defeating an access control, or
+> using credentials of any kind.**
+>
+> **The rating is an independent assessment.** The Kin Score and Agent Readiness rating are
+> independently calculated scores of a company's *public* API artifacts, produced by API Evangelist
+> against a published rubric. They are not certifications, endorsements, security assessments, or
+> audits, and they score published artifacts — not the quality, safety, or security of the software.
+>
+> **Corrections, re-scores, and removal are free.** No partnership, contract, or purchase is
+> required, and you do not need to justify the request.
+>
+> - **Something wrong?** Open an issue on this repository, or email
+>   [info@apievangelist.com](mailto:info@apievangelist.com).
+> - **Published something new?** Ask for a re-score and we will re-run the rating.
+> - **Want the listing taken down?** Say so and we will honor it. The profile is reduced to your
+>   company name, a factual description, and a link to your own site, and the company is recorded as
+>   **unrated** — never scored zero for having asked.
+>
+> **Response times.** Acknowledgement within **one business day**; removal or restriction within
+> **two business days**; corrections and re-scores within **five business days**.
+>
+> **Not from the company, and here with a question?** You are welcome here — we would rather be the
+> front line and point you the right way than have a good report go nowhere. What this repository
+> can answer is narrow, though, so it is worth knowing who you are actually looking for:
+>
+> - **A question about how the API works, an account, billing, or a bug in the service** — that is
+>   the company's own support, not us. We profile this API; we do not operate it and cannot see
+>   your account.
+> - **A bug in an open-source project we only catalog** — file it on that project's own repository.
+>   This has happened with a real and correct bug report that reached us instead of the people who
+>   could fix it, which helped nobody.
+> - **Anything about this listing itself** — the description, the tags, the rating, a missing or
+>   wrong artifact — is ours. Open an issue here.
+> - **Not sure, or something general about API Evangelist or APIs.io** — open an issue on the
+>   [APIs.io Inbox](https://github.com/api-search/inbox) and we will route it.
+>
+> **This repository contains no software, and we will never ask you to download anything.** There is
+> no build, release, installer, or binary here — only text and machine-readable API descriptions, so
+> there is nothing here that can be "corrupt" or need "repairing". Any issue, comment, or email
+> claiming otherwise and offering a download link is not from us and is hostile. Do not follow the
+> link; it is a lure. Report it to GitHub and, if you like, tell us at
+> [info@apievangelist.com](mailto:info@apievangelist.com) so we can take it down.
+>
+> **On a security or compliance team?** Email
+> [info@apievangelist.com](mailto:info@apievangelist.com) with *security* in the subject line and
+> you will get a person, not a form. We will tell you exactly which public URLs this profile was
+> built from so your team can see the same surface we did, and we will take the listing down on
+> request while you work through it.
+>
+> Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
+<!-- API-EVANGELIST-PROVENANCE:END -->
+
+Enterprise CRM platform providing sales automation, customer relationship management, and business intelligence capabilities through REST and SOAP APIs.
+
+**APIs.json:** [https://www.salesforce.com/products/sales-cloud/overview/](https://www.salesforce.com/products/sales-cloud/overview/)
+
+## Tags
+
+- Cloud
+- CRM
+- Customer Management
+- Enterprise
+- Sales
+
+## Timestamps
+
+- **Created:** 2024-01-15
+- **Modified:** 2026-05-19
+
+## APIs
+
+### Salesforce REST API
+
+Primary REST API for accessing Salesforce data including accounts, contacts, leads, opportunities, and custom objects. Supports JSON and XML formats with a lightweight request and response framework.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0`
+
+#### Tags
+
+- CRUD
+- Data
+- Objects
+- Records
+- REST
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm)
+- [Postman  Collection](https://www.postman.com/salesforce-developers/workspace/salesforce-developers)
+- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm)
+- [Changelog](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm)
+
+### Salesforce SOAP API
+
+Comprehensive SOAP-based API for enterprise integrations with full CRUD operations on Salesforce objects. Uses WSDL files to define parameters for accessing data through the API.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/)
+- **Base URL:** `https://yourInstance.salesforce.com/services/Soap/u/59.0`
+
+#### Tags
+
+- Enterprise
+- Integration
+- SOAP
+- XML
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_intro.htm)
+- [W S D L](https://yourInstance.salesforce.com/services/wsdl/enterprise)
+- [Authentication](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_login.htm)
+- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_steps.htm)
+- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Bulk API 2.0
+
+Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST API. Supports CSV, JSON, and XML data formats.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/jobs/ingest`
+
+#### Tags
+
+- Async
+- Bulk
+- Data Loading
+- ETL
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm)
+- [Examples](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm)
+- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-bulk-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Metadata API
+
+API for retrieving, deploying, creating, updating, or deleting customization information such as custom object definitions and page layouts. Essential for managing org configuration and deployment workflows.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/)
+- **Base URL:** `https://yourInstance.salesforce.com/services/Soap/m/59.0`
+
+#### Tags
+
+- Configuration
+- Customization
+- Deployment
+- Metadata
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm)
+- [W S D L](https://yourInstance.salesforce.com/services/wsdl/metadata)
+- [Changelog](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_rns.htm)
+- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Streaming API
+
+Push notification API using Bayeux protocol to receive near real-time updates when data changes in Salesforce. Enables event-driven integrations without polling.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/)
+- **Base URL:** `https://yourInstance.salesforce.com/cometd/59.0`
+
+#### Tags
+
+- Events
+- Push Notifications
+- Real-Time
+- Streaming
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/intro_stream.htm)
+- [Examples](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/code_sample_java_client_intro.htm)
+- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Platform Events API
+
+Event-driven architecture API for publishing and subscribing to custom events for app integration. Supports defining custom event channels with schema for loosely coupled systems.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/](https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/sobjects`
+
+#### Tags
+
+- Events
+- Integration
+- Messaging
+- Pub/Sub
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_intro.htm)
+- [Guide](https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_publish_api.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-platform-events-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Analytics REST API
+
+Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications and automating report generation.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/](https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/analytics`
+
+#### Tags
+
+- Analytics
+- Business Intelligence
+- Dashboards
+- Reports
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-analytics-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Salesforce Composite API
+
+Executes a series of REST API requests in a single call, reducing round trips between client and server. Supports composite batches, composite requests, and composite graphs for complex multi-step operations.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/composite`
+
+#### Tags
+
+- Batch
+- Composite
+- Integration
+- Performance
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm)
+- [Reference](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_composite.htm)
+- [Guide](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_graph_introduction.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-composite-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Salesforce GraphQL API
+
+Query Salesforce data using GraphQL, allowing clients to request exactly the fields they need in a single request. Reduces payload size and supports aggregation across object relationships.
+
+- **Human URL:** [https://developer.salesforce.com/docs/platform/graphql/overview](https://developer.salesforce.com/docs/platform/graphql/overview)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/graphql`
+
+#### Tags
+
+- Data Access
+- GraphQL
+- Query
+- Schema
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/platform/graphql/guide/intro-graphql-api.html)
+- [Getting Started](https://developer.salesforce.com/docs/platform/graphql/guide/get-started.html)
+- [Reference](https://developer.salesforce.com/docs/platform/graphql/guide/requests-and-responses.html)
+- [OpenAPI](openapi/salesforce-sales-cloud-graphql-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Salesforce Tooling API
+
+Build custom development tools for Salesforce applications by accessing metadata about Apex classes, triggers, Visualforce pages, and other development artifacts. Supports both REST and SOAP interfaces.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling](https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/tooling`
+
+#### Tags
+
+- Apex
+- Development
+- Metadata
+- Tooling
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm)
+- [Reference](https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm)
+- [Examples](https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-tooling-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Salesforce Pub/Sub API
+
+gRPC-based API for publishing and subscribing to platform events, change data capture events, and real-time event monitoring events. Uses Apache Avro format for efficient binary event message delivery over HTTP/2.
+
+- **Human URL:** [https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html](https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html)
+- **Base URL:** `https://yourInstance.salesforce.com`
+
+#### Tags
+
+- Events
+- gRPC
+- Pub/Sub
+- Real-Time
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html)
+- [Getting Started](https://developer.salesforce.com/docs/platform/pub-sub-api/guide/grpc-api.html)
+- [Reference](https://developer.salesforce.com/docs/platform/pub-sub-api/guide/pub-sub-endpoints.html)
+- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Salesforce Change Data Capture API
+
+Receive near-real-time notifications of changes to Salesforce records including creates, updates, deletes, and undeletes. Enables synchronization of external data stores with Salesforce data.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm](https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0`
+
+#### Tags
+
+- Change Data Capture
+- Events
+- Real-Time
+- Synchronization
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm)
+- [Guide](https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm)
+- [Reference](https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-change-data-capture-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Salesforce Connect REST API
+
+Integrate mobile apps, intranet sites, and third-party web applications with Salesforce, including access to Chatter feeds, groups, users, and collaboration features.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/connect`
+
+#### Tags
+
+- Chatter
+- Collaboration
+- Connect
+- Social
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm)
+- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm)
+- [Reference](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm)
+- [Examples](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm)
+- [Changelog](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-connect-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Salesforce User Interface API
+
+Build custom user interfaces for Salesforce data using the same API that powers Lightning Experience. Returns data and metadata in a single response with layout, picklist, and field-level security awareness.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi](https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi)
+- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/ui-api`
+
+#### Tags
+
+- Layouts
+- Lightning
+- Records
+- User Interface
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm)
+- [Reference](https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-ui-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+### Salesforce Apex REST API
+
+Create custom REST endpoints in Salesforce using Apex classes annotated with REST resource annotations. Supports OAuth 2.0 authentication and JSON and XML request and response formats.
+
+- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm)
+- **Base URL:** `https://yourInstance.salesforce.com/services/apexrest`
+
+#### Tags
+
+- Apex
+- Custom Endpoints
+- Development
+- REST
+
+#### Properties
+
+- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm)
+- [OpenAPI](openapi/salesforce-sales-cloud-apex-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
+- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
+- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+
+## Common Properties
+
+- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
+- [LinkedIn](https://www.linkedin.com/showcase/salesforcesalescloud)
+- [Portal](https://developer.salesforce.com/)
+- [Documentation](https://developer.salesforce.com/docs)
+- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm)
+- [Authentication](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_authenticate.htm)
+- [Blog](https://developer.salesforce.com/blogs)
+- [Status Page](https://status.salesforce.com/)
+- [Support](https://help.salesforce.com/)
+- [Terms of Service](https://www.salesforce.com/company/legal/agreements/)
+- [Privacy Policy](https://www.salesforce.com/company/privacy/)
+- [GitHub Organization](https://github.com/salesforce)
+- [Community](https://trailhead.salesforce.com/en/trailblazercommunity)
+- [Website](https://www.salesforce.com/products/sales-cloud/)
+- [Login](https://login.salesforce.com/)
+- [Sign Up](https://developer.salesforce.com/signup)
+- [S D Ks](https://developer.salesforce.com/tools/sdk)
+- [A P I  Console](https://workbench.developerforce.com/)
+- [Trailhead  Learning](https://trailhead.salesforce.com/en/content/learn/modules/api_basics)
+- [A P I  Limits](https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_api.htm)
+- [A P I  Library](https://developer.salesforce.com/docs/apis)
+- [Postman  Collection](https://www.postman.com/salesforce-developers/workspace/salesforce-developers)
+- [Changelog](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm)
+- [S O Q L and  S O S L  Reference](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_sosl_intro.htm)
+- [J S O N- L D  Context](json-ld/salesforce-sales-cloud-context.jsonld)
+- [Spectral  Rules](rules/salesforce-sales-cloud-rules.yml)
+- [Capabilities](capabilities/sales-pipeline-management.yaml)
+- [Vocabulary](vocabulary/salesforce-sales-cloud-vocabulary.yml)
+- [J S O N  Schema](json-schema/salesforce-sales-cloud-account-schema.json)
+- [J S O N  Schema](json-schema/salesforce-sales-cloud-contact-schema.json)
+- [J S O N  Schema](json-schema/salesforce-sales-cloud-lead-schema.json)
+- [J S O N  Schema](json-schema/salesforce-sales-cloud-opportunity-schema.json)
+- [J S O N  Schema](json-schema/salesforce-sales-cloud-task-schema.json)
+- [J S O N  Schema](json-schema/salesforce-sales-cloud-case-schema.json)
+- [J S O N  Schema](json-schema/salesforce-sales-cloud-campaign-schema.json)
