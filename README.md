@@ -1,4 +1,4 @@
-# Salesforce Sales Cloud (salesforce-sales-cloud)
+# Salesforce Sales Cloud
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,477 +66,293 @@
 
 Enterprise CRM platform providing sales automation, customer relationship management, and business intelligence capabilities through REST and SOAP APIs.
 
-**APIs.json:** [https://www.salesforce.com/products/sales-cloud/overview/](https://www.salesforce.com/products/sales-cloud/overview/)
-
-## Tags
+**Areas:** Cloud · CRM · Customer Management · Enterprise · Sales
+
+## Salesforce Sales Cloud on APIs.io
+
+Everything profiled for Salesforce Sales Cloud is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/salesforce-sales-cloud/](https://apis.io/providers/salesforce-sales-cloud/)** — or go straight to one of the APIs or properties below.
+
+### APIs (46)
+
+- [Salesforce SOAP API](https://apis.io/apis/salesforce-sales-cloud/salesforce-soap-api/) — Comprehensive SOAP-based API for enterprise integrations with full CRUD operations on Salesforce objects. Uses WSDL files to define parameters for accessing…
+- [Metadata API](https://apis.io/apis/salesforce-sales-cloud/metadata-api/) — API for retrieving, deploying, creating, updating, or deleting customization information such as custom object definitions and page layouts. Essential for…
+- [Streaming API](https://apis.io/apis/salesforce-sales-cloud/streaming-api/) — Push notification API using Bayeux protocol to receive near real-time updates when data changes in Salesforce. Enables event-driven integrations without…
+- [Salesforce Pub/Sub API](https://apis.io/apis/salesforce-sales-cloud/salesforce-pubsub-api/) — gRPC-based API for publishing and subscribing to platform events, change data capture events, and real-time event monitoring events. Uses Apache Avro format…
+- [Salesforce Sales Cloud Change Events API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-change-events-api/) — Change event metadata and schema operations
+- [Salesforce Sales Cloud Communities API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-communities-api/) — Community (Experience Cloud) operations
+- [Salesforce Sales Cloud Completions API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-completions-api/) — Apex code completions
+- [Salesforce Sales Cloud Custom Endpoints API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-custom-endpoints-api/) — Custom Apex REST endpoints defined by @RestResource annotated classes
+- [Salesforce Sales Cloud Dashboards API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-dashboards-api/) — Operations for listing, describing, and refreshing dashboards
+- [Salesforce Sales Cloud Event Schema API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-event-schema-api/) — Retrieve event schema definitions
+- [Salesforce Sales Cloud Execute Anonymous API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-execute-anonymous-api/) — Execute anonymous Apex code
+- [Salesforce Sales Cloud Feed Items API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-feed-items-api/) — Individual feed item operations
+- [Salesforce Sales Cloud Feeds API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-feeds-api/) — Chatter feed operations
+- [Salesforce Sales Cloud Files API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-files-api/) — File sharing and management
+- [Salesforce Sales Cloud Groups API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-groups-api/) — Chatter group operations
+- [Salesforce Sales Cloud Ingest Data API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-ingest-data-api/) — Upload CSV data to ingest jobs and retrieve results
+- [Salesforce Sales Cloud Ingest Jobs API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-ingest-jobs-api/) — Create and manage bulk ingest jobs for insert, update, upsert, and delete operations
+- [Salesforce Sales Cloud Layouts API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-layouts-api/) — Page layout metadata
+- [Salesforce Sales Cloud Limits API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-limits-api/) — Org limits and usage information
+- [Salesforce Sales Cloud List Views API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-list-views-api/) — List view metadata and records
+- [Salesforce Sales Cloud Lookups API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-lookups-api/) — Lookup field search
+- [Salesforce Sales Cloud Object Info API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-object-info-api/) — Object and field metadata for UI rendering
+- [Salesforce Sales Cloud Picklist Values API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-picklist-values-api/) — Picklist field values with record type awareness
+- [Salesforce Sales Cloud Process Approvals API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-process-approvals-api/) — Process approval operations
+- [Salesforce Sales Cloud Query API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-query-api/) — SOQL query execution
+- [Salesforce Sales Cloud Query Jobs API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-query-jobs-api/) — Create and manage bulk query jobs for extracting large data sets
+- [Salesforce Sales Cloud Query Results API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-query-results-api/) — Retrieve results from completed query jobs
+- [Salesforce Sales Cloud Recently Viewed API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-recently-viewed-api/) — Recently viewed items
+- [Salesforce Sales Cloud Record UI API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-record-ui-api/) — Complete record page data including layout and metadata
+- [Salesforce Sales Cloud Records API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-records-api/) — Record CRUD operations with UI metadata
+- [Salesforce Sales Cloud Report Instances API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-report-instances-api/) — Asynchronous report execution and results retrieval
+- [Salesforce Sales Cloud Report Types API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-report-types-api/) — Report type metadata and discovery
+- [Salesforce Sales Cloud Reports API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-reports-api/) — Operations for listing, describing, and running reports
+- [Salesforce Sales Cloud Resources API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-resources-api/) — Available REST resources for a given API version
+- [Salesforce Sales Cloud Run Tests API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-run-tests-api/) — Execute Apex tests
+- [Salesforce Sales Cloud Search API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-search-api/) — SOSL search execution
+- [Salesforce Sales Cloud SObject API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-sobject-api/) — Operations on Salesforce standard and custom objects
+- [Salesforce Sales Cloud SObject Collections API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-sobject-collections-api/) — Bulk CRUD on collections of same-type records
+- [Salesforce Sales Cloud SObject Describe API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-sobject-describe-api/) — Metadata description of sObjects
+- [Salesforce Sales Cloud SObject Rows API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-sobject-rows-api/) — CRUD operations on individual sObject records
+- [Salesforce Sales Cloud Tabs API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-tabs-api/) — Tab metadata
+- [Salesforce Sales Cloud Themes API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-themes-api/) — Theme information
+- [Salesforce Sales Cloud Tooling Query API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-tooling-query-api/) — Execute SOQL queries against Tooling API objects
+- [Salesforce Sales Cloud Tooling SObject Describe API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-tooling-sobject-describe-api/) — Metadata about Tooling API sObjects
+- [Salesforce Sales Cloud Tooling SObjects API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-tooling-sobjects-api/) — CRUD operations on Tooling API sObjects
+- [Salesforce Sales Cloud Users API](https://apis.io/apis/salesforce-sales-cloud/salesforce-sales-cloud-users-api/) — User profile and photo operations
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Arazzo workflows (18)
+
+Multi-step workflows that chain operations into a business task.
+
+- [Salesforce Sales Cloud Account 360 Enrichment](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-account-360-enrichment-workflow/)
+- [Salesforce Sales Cloud Account Tree With Contacts](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-account-tree-with-contacts-workflow/)
+- [Salesforce Sales Cloud Bulk Import Accounts](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-bulk-import-accounts-workflow/)
+- [Salesforce Sales Cloud Close Opportunity Won](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-close-opportunity-won-workflow/)
+- [Salesforce Sales Cloud Create And Convert Lead](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-create-and-convert-lead-workflow/)
+- [Salesforce Sales Cloud Create Then Retrieve Contact](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-create-then-retrieve-contact-workflow/)
+- [Salesforce Sales Cloud Delete Stale Lead](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-delete-stale-lead-workflow/)
+- [Salesforce Sales Cloud Describe Then Create Record](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-describe-then-create-record-workflow/)
+- [Salesforce Sales Cloud Log Task On Account](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-log-task-on-account-workflow/)
+- [Salesforce Sales Cloud New Customer Onboarding](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-new-customer-onboarding-workflow/)
+- [Salesforce Sales Cloud Opportunity With Contact Role](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-opportunity-with-contact-role-workflow/)
+- [Salesforce Sales Cloud Paginated SOQL Export](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-paginated-soql-export-workflow/)
+- [Salesforce Sales Cloud Query Then Update Account](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-query-then-update-account-workflow/)
+- [Salesforce Sales Cloud Reparent Contact To Account](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-reparent-contact-to-account-workflow/)
+- [Salesforce Sales Cloud Schedule Event With Contact](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-schedule-event-with-contact-workflow/)
+- [Salesforce Sales Cloud Search Then Retrieve Record](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-search-then-retrieve-record-workflow/)
+- [Salesforce Sales Cloud Submit Opportunity For Approval](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-submit-opportunity-for-approval-workflow/)
+- [Salesforce Sales Cloud Upsert Account By External ID](https://apis.io/arazzos/salesforce-sales-cloud/salesforce-sales-cloud-upsert-account-by-external-id-workflow/)
+
+#### GraphQL (1)
+
+GraphQL schemas.
+
+- [Salesforce Sales Cloud GraphQL API](https://apis.io/graphqls/salesforce-sales-cloud/salesforce-sales-cloud-graphql/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Salesforce Sales Cloud Agentic Access](https://apis.io/agentic-access/salesforce-sales-cloud/salesforce-sales-cloud-agentic-access/)
+
+#### JSON Schema (54)
+
+The data models the API reads and writes.
+
+- [Salesforce Account](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-account/)
+- [ApiError](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-apierror/)
+- [Salesforce Campaign](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-campaign/)
+- [Salesforce Case](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-case/)
+- [ChangeEventMessage](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-changeeventmessage/)
+- [ChatterGroup](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-chattergroup/)
+- [Comment](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-comment/)
+- [Community](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-community/)
+- [CompositeBatchRequest](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-compositebatchrequest/)
+- [CompositeBatchResponse](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-compositebatchresponse/)
+- [CompositeGraphRequest](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-compositegraphrequest/)
+- [CompositeGraphResponse](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-compositegraphresponse/)
+- [CompositeRequest](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-compositerequest/)
+- [CompositeResponse](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-compositeresponse/)
+- [Salesforce Contact](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-contact/)
+- [CreateIngestJobRequest](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-createingestjobrequest/)
+- [CreateQueryJobRequest](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-createqueryjobrequest/)
+- [CreateRecordResult](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-createrecordresult/)
+- [Dashboard](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-dashboard/)
+- [DashboardListItem](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-dashboardlistitem/)
+- [ErrorResponse](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-errorresponse/)
+- [FeedElement](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-feedelement/)
+- [FeedElementInput](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-feedelementinput/)
+- [FeedElementPage](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-feedelementpage/)
+- [FieldDescribe](https://apis.io/schemas/salesforce-sales-cloud/salesforce-sales-cloud-fielddescribe/)
+- …and 29 more published on APIs.io
 
-- Cloud
-- CRM
-- Customer Management
-- Enterprise
-- Sales
-
-## Timestamps
+#### JSON Structure (3)
 
-- **Created:** 2024-01-15
-- **Modified:** 2026-05-19
+Data models expressed in JSON Structure.
 
-## APIs
+- [Salesforce Sales Cloud Account Structure](https://apis.io/json-structure/salesforce-sales-cloud/salesforce-sales-cloud-account-structure/)
+- [Salesforce Sales Cloud Opportunity Structure](https://apis.io/json-structure/salesforce-sales-cloud/salesforce-sales-cloud-opportunity-structure/)
+- [Salesforce Sales Cloud Structure](https://apis.io/json-structure/salesforce-sales-cloud/salesforce-sales-cloud-structure/)
 
-### Salesforce REST API
+#### JSON-LD (1)
 
-Primary REST API for accessing Salesforce data including accounts, contacts, leads, opportunities, and custom objects. Supports JSON and XML formats with a lightweight request and response framework.
+Linked-data contexts for the provider's vocabulary.
 
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0`
+- [Salesforce Sales Cloud Context](https://apis.io/jsonld/salesforce-sales-cloud/salesforce-sales-cloud-context/)
 
-#### Tags
+#### Vocabulary (1)
 
-- CRUD
-- Data
-- Objects
-- Records
-- REST
+The provider's domain terms, defined.
 
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_rest.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Authentication](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/intro_understanding_authentication.htm)
-- [Postman  Collection](https://www.postman.com/salesforce-developers/workspace/salesforce-developers)
-- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm)
-- [Changelog](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm)
-
-### Salesforce SOAP API
-
-Comprehensive SOAP-based API for enterprise integrations with full CRUD operations on Salesforce objects. Uses WSDL files to define parameters for accessing data through the API.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/)
-- **Base URL:** `https://yourInstance.salesforce.com/services/Soap/u/59.0`
-
-#### Tags
-
-- Enterprise
-- Integration
-- SOAP
-- XML
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_intro.htm)
-- [W S D L](https://yourInstance.salesforce.com/services/wsdl/enterprise)
-- [Authentication](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_calls_login.htm)
-- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.api.meta/api/sforce_api_quickstart_steps.htm)
-- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Bulk API 2.0
-
-Optimized API for loading, updating, or deleting large data sets asynchronously with better performance than REST API. Supports CSV, JSON, and XML data formats.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/jobs/ingest`
-
-#### Tags
-
-- Async
-- Bulk
-- Data Loading
-- ETL
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_intro.htm)
-- [Examples](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/asynch_api_code_samples.htm)
-- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/bulk_api_2_0.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-bulk-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Metadata API
-
-API for retrieving, deploying, creating, updating, or deleting customization information such as custom object definitions and page layouts. Essential for managing org configuration and deployment workflows.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/)
-- **Base URL:** `https://yourInstance.salesforce.com/services/Soap/m/59.0`
-
-#### Tags
-
-- Configuration
-- Customization
-- Deployment
-- Metadata
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_intro.htm)
-- [W S D L](https://yourInstance.salesforce.com/services/wsdl/metadata)
-- [Changelog](https://developer.salesforce.com/docs/atlas.en-us.api_meta.meta/api_meta/meta_rns.htm)
-- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Streaming API
-
-Push notification API using Bayeux protocol to receive near real-time updates when data changes in Salesforce. Enables event-driven integrations without polling.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/)
-- **Base URL:** `https://yourInstance.salesforce.com/cometd/59.0`
-
-#### Tags
-
-- Events
-- Push Notifications
-- Real-Time
-- Streaming
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/intro_stream.htm)
-- [Examples](https://developer.salesforce.com/docs/atlas.en-us.api_streaming.meta/api_streaming/code_sample_java_client_intro.htm)
-- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Salesforce Sales Cloud Vocabulary](https://apis.io/vocabularies/salesforce-sales-cloud/salesforce-sales-cloud-vocabulary/)
 
-### Platform Events API
-
-Event-driven architecture API for publishing and subscribing to custom events for app integration. Supports defining custom event channels with schema for loosely coupled systems.
+#### Examples (2)
 
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/](https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/sobjects`
+Example requests and responses.
 
-#### Tags
+- [Salesforce Sales Cloud Create Opportunity Example](https://apis.io/examples/salesforce-sales-cloud/salesforce-sales-cloud-create-opportunity-example/)
+- [Salesforce Sales Cloud Soql Query Example](https://apis.io/examples/salesforce-sales-cloud/salesforce-sales-cloud-soql-query-example/)
 
-- Events
-- Integration
-- Messaging
-- Pub/Sub
-
-#### Properties
+#### Collections (67)
 
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_intro.htm)
-- [Guide](https://developer.salesforce.com/docs/atlas.en-us.platform_events.meta/platform_events/platform_events_publish_api.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-platform-events-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Postman and Open Collection request collections.
 
-### Analytics REST API
+- [Salesforce Sales Cloud Salesforce Analytics REST API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-analytics-api/)
+- [Salesforce Sales Cloud Salesforce Apex REST API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-apex-rest-api/)
+- [Salesforce Sales Cloud Salesforce Bulk API 2.0](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-bulk-api/)
+- [Salesforce Sales Cloud Salesforce Change Data Capture API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-change-data-capture-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-change-events-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Communities API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-communities-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Completions API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-completions-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-composite-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite Batch API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-composite-batch-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Composite Graph API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-composite-graph-api/)
+- [Salesforce Sales Cloud Salesforce Connect REST API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-connect-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Custom Endpoints API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-custom-endpoints-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Dashboards API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-dashboards-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Event Schema API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-event-schema-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Execute Anonymous API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-execute-anonymous-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Feed Items API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-feed-items-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Feeds API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-feeds-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Files API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-files-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events GraphQL API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-graphql-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Groups API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-groups-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Ingest Data API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-ingest-data-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Ingest Jobs API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-ingest-jobs-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Layouts API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-layouts-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events Limits API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-limits-api/)
+- [Salesforce Sales Cloud Salesforce Analytics REST Change Events List Views API](https://apis.io/collections/salesforce-sales-cloud/open-salesforce-sales-cloud-list-views-api/)
+- …and 42 more published on APIs.io
 
-Access Salesforce reports, dashboards, and analytics data programmatically. Enables embedding analytics into custom applications and automating report generation.
+#### Governance rules (2)
 
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/](https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/analytics`
+Spectral rulesets for the provider's contracts.
 
-#### Tags
+- [Salesforce Sales Cloud — jsonschema rules](https://apis.io/rules/salesforce-sales-cloud/salesforce-sales-cloud-jsonschema-spectral-rules/)
+- [Salesforce Sales Cloud API Rules](https://apis.io/rules/salesforce-sales-cloud/salesforce-sales-cloud-rules/)
 
-- Analytics
-- Business Intelligence
-- Dashboards
-- Reports
+#### Security (2)
 
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_analytics.meta/api_analytics/sforce_analytics_rest_api_intro.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-analytics-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Salesforce Composite API
-
-Executes a series of REST API requests in a single call, reducing round trips between client and server. Supports composite batches, composite requests, and composite graphs for complex multi-step operations.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/composite`
-
-#### Tags
-
-- Batch
-- Composite
-- Integration
-- Performance
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/using_composite_resources.htm)
-- [Reference](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_composite.htm)
-- [Guide](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/resources_composite_graph_introduction.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-composite-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Salesforce GraphQL API
-
-Query Salesforce data using GraphQL, allowing clients to request exactly the fields they need in a single request. Reduces payload size and supports aggregation across object relationships.
-
-- **Human URL:** [https://developer.salesforce.com/docs/platform/graphql/overview](https://developer.salesforce.com/docs/platform/graphql/overview)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/graphql`
-
-#### Tags
-
-- Data Access
-- GraphQL
-- Query
-- Schema
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/platform/graphql/guide/intro-graphql-api.html)
-- [Getting Started](https://developer.salesforce.com/docs/platform/graphql/guide/get-started.html)
-- [Reference](https://developer.salesforce.com/docs/platform/graphql/guide/requests-and-responses.html)
-- [OpenAPI](openapi/salesforce-sales-cloud-graphql-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Salesforce Tooling API
-
-Build custom development tools for Salesforce applications by accessing metadata about Apex classes, triggers, Visualforce pages, and other development artifacts. Supports both REST and SOAP interfaces.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling](https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/tooling`
-
-#### Tags
-
-- Apex
-- Development
-- Metadata
-- Tooling
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_overview.htm)
-- [Reference](https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resources.htm)
-- [Examples](https://developer.salesforce.com/docs/atlas.en-us.api_tooling.meta/api_tooling/intro_rest_resource_examples.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-tooling-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Salesforce Pub/Sub API
-
-gRPC-based API for publishing and subscribing to platform events, change data capture events, and real-time event monitoring events. Uses Apache Avro format for efficient binary event message delivery over HTTP/2.
-
-- **Human URL:** [https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html](https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html)
-- **Base URL:** `https://yourInstance.salesforce.com`
+- [Salesforce Sales Cloud Authentication](https://apis.io/security/salesforce-sales-cloud/salesforce-sales-cloud-authentication/)
+- [Salesforce Sales Cloud Domain Security](https://apis.io/security/salesforce-sales-cloud/salesforce-sales-cloud-domain-security/)
 
-#### Tags
+#### OAuth scopes (1)
 
-- Events
-- gRPC
-- Pub/Sub
-- Real-Time
-
-#### Properties
+The permissions the API asks for.
 
-- [Documentation](https://developer.salesforce.com/docs/platform/pub-sub-api/guide/intro.html)
-- [Getting Started](https://developer.salesforce.com/docs/platform/pub-sub-api/guide/grpc-api.html)
-- [Reference](https://developer.salesforce.com/docs/platform/pub-sub-api/guide/pub-sub-endpoints.html)
-- [Postman Collection](collections/salesforce-sales-cloud-analytics-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-analytics-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-bulk-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-bulk-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-composite-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-composite-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-graphql-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-graphql-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-platform-events-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-platform-events-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-tooling-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-tooling-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Salesforce Sales Cloud Scopes](https://apis.io/scopes/salesforce-sales-cloud/salesforce-sales-cloud-scopes/)
 
-### Salesforce Change Data Capture API
+#### Plans and pricing (1)
 
-Receive near-real-time notifications of changes to Salesforce records including creates, updates, deletes, and undeletes. Enables synchronization of external data stores with Salesforce data.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm](https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0`
-
-#### Tags
-
-- Change Data Capture
-- Events
-- Real-Time
-- Synchronization
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_intro.htm)
-- [Guide](https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_what.htm)
-- [Reference](https://developer.salesforce.com/docs/atlas.en-us.change_data_capture.meta/change_data_capture/cdc_message_structure.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-change-data-capture-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-change-data-capture-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-change-data-capture-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Salesforce Connect REST API
-
-Integrate mobile apps, intranet sites, and third-party web applications with Salesforce, including access to Chatter feeds, groups, users, and collaboration features.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/connect`
-
-#### Tags
-
-- Chatter
-- Collaboration
-- Connect
-- Social
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_what_is_chatter_connect.htm)
-- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickstart.htm)
-- [Reference](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/connect_resources_overview.htm)
-- [Examples](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/quickreference.htm)
-- [Changelog](https://developer.salesforce.com/docs/atlas.en-us.chatterapi.meta/chatterapi/intro_release_notes.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-connect-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-connect-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-connect-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Salesforce User Interface API
-
-Build custom user interfaces for Salesforce data using the same API that powers Lightning Experience. Returns data and metadata in a single response with layout, picklist, and field-level security awareness.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi](https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi)
-- **Base URL:** `https://yourInstance.salesforce.com/services/data/v59.0/ui-api`
-
-#### Tags
-
-- Layouts
-- Lightning
-- Records
-- User Interface
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_get_started.htm)
-- [Reference](https://developer.salesforce.com/docs/atlas.en-us.uiapi.meta/uiapi/ui_api_resources_overview.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-ui-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-ui-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-ui-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Salesforce Apex REST API
-
-Create custom REST endpoints in Salesforce using Apex classes annotated with REST resource annotations. Supports OAuth 2.0 authentication and JSON and XML request and response formats.
-
-- **Human URL:** [https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm)
-- **Base URL:** `https://yourInstance.salesforce.com/services/apexrest`
-
-#### Tags
-
-- Apex
-- Custom Endpoints
-- Development
-- REST
-
-#### Properties
-
-- [Documentation](https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_rest.htm)
-- [OpenAPI](openapi/salesforce-sales-cloud-apex-rest-api-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/salesforce-sales-cloud-apex-rest-api.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/salesforce-sales-cloud-apex-rest-api.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [Arazzo Workflows](arazzo/) — [Arazzo Specification](https://spec.openapis.org/arazzo/latest.html)
-- [LinkedIn](https://www.linkedin.com/showcase/salesforcesalescloud)
-- [Portal](https://developer.salesforce.com/)
-- [Documentation](https://developer.salesforce.com/docs)
-- [Getting Started](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm)
-- [Authentication](https://help.salesforce.com/s/articleView?id=sf.remoteaccess_authenticate.htm)
-- [Blog](https://developer.salesforce.com/blogs)
-- [Status Page](https://status.salesforce.com/)
-- [Support](https://help.salesforce.com/)
-- [Terms of Service](https://www.salesforce.com/company/legal/agreements/)
-- [Privacy Policy](https://www.salesforce.com/company/privacy/)
-- [GitHub Organization](https://github.com/salesforce)
-- [Community](https://trailhead.salesforce.com/en/trailblazercommunity)
+Published plans, tiers and prices.
+
+- [Salesforce Sales Cloud Plans Pricing](https://apis.io/plans/salesforce-sales-cloud/salesforce-sales-cloud-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Salesforce Sales Cloud Rate Limits](https://apis.io/rate-limits/salesforce-sales-cloud/salesforce-sales-cloud-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Salesforce Sales Cloud Finops](https://apis.io/finops/salesforce-sales-cloud/salesforce-sales-cloud-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.salesforce.com/products/sales-cloud/)
-- [Login](https://login.salesforce.com/)
-- [Sign Up](https://developer.salesforce.com/signup)
-- [S D Ks](https://developer.salesforce.com/tools/sdk)
-- [A P I  Console](https://workbench.developerforce.com/)
-- [Trailhead  Learning](https://trailhead.salesforce.com/en/content/learn/modules/api_basics)
-- [A P I  Limits](https://developer.salesforce.com/docs/atlas.en-us.salesforce_app_limits_cheatsheet.meta/salesforce_app_limits_cheatsheet/salesforce_app_limits_platform_api.htm)
-- [A P I  Library](https://developer.salesforce.com/docs/apis)
-- [Postman  Collection](https://www.postman.com/salesforce-developers/workspace/salesforce-developers)
+- [Documentation](https://developer.salesforce.com/docs)
+- [Getting started](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/quickstart.htm)
+- [Support](https://help.salesforce.com/)
 - [Changelog](https://developer.salesforce.com/docs/atlas.en-us.api_rest.meta/api_rest/rest_rns.htm)
-- [S O Q L and  S O S L  Reference](https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql_sosl_intro.htm)
-- [J S O N- L D  Context](json-ld/salesforce-sales-cloud-context.jsonld)
-- [Spectral  Rules](rules/salesforce-sales-cloud-rules.yml)
-- [Capabilities](capabilities/sales-pipeline-management.yaml)
-- [Vocabulary](vocabulary/salesforce-sales-cloud-vocabulary.yml)
-- [J S O N  Schema](json-schema/salesforce-sales-cloud-account-schema.json)
-- [J S O N  Schema](json-schema/salesforce-sales-cloud-contact-schema.json)
-- [J S O N  Schema](json-schema/salesforce-sales-cloud-lead-schema.json)
-- [J S O N  Schema](json-schema/salesforce-sales-cloud-opportunity-schema.json)
-- [J S O N  Schema](json-schema/salesforce-sales-cloud-task-schema.json)
-- [J S O N  Schema](json-schema/salesforce-sales-cloud-case-schema.json)
-- [J S O N  Schema](json-schema/salesforce-sales-cloud-campaign-schema.json)
+- [Blog](https://developer.salesforce.com/blogs)
+- [Terms of service](https://www.salesforce.com/company/legal/agreements/)
+- [Privacy policy](https://www.salesforce.com/company/privacy/)
+- [GitHub](https://github.com/salesforce)
+- [Status](https://status.salesforce.com/)
+
+## API Evangelist rating
+
+**Kin Score 56.6** — strong · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 64.3 |
+| Contract quality | 63.8 |
+| Contract governance | 23.5 |
+| Operational transparency | 31.6 |
+| Developer ergonomics | 76.2 |
+| Access clarity | 32.9 |
+
+**Agent readiness 26.1** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | negotiable (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | documented (partial credit) |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 34.3** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/salesforce-sales-cloud/](https://apis.io/providers/salesforce-sales-cloud/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Salesforce Sales Cloud: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/salesforce-sales-cloud/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
